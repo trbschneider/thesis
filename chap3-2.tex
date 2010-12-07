@@ -1,16 +1,4 @@
 %!TEX root = ./report.tex
-% Different font in captions
-\newcommand{\SFshort}{SF$_{90}$}
-\newcommand{\SFlong}{SF$_{360}$}
-\newcommand{\OIlong}{OI$_{360}$}
-\newcommand{\mat}[1]{\ensuremath{\vec{#1}}}
-\newcommand{\vek}[1]{\ensuremath{\vec{#1}}}
-
-\newenvironment{tikzfigures}%
-{\noindent\ignorespaces}%
-{\par\noindent%
-\ignorespacesafterend}
-
 \section{In-vivo estimates of axonal characteristics using optimized diffusion MRI protocols for single fibre orientation}
 \subsection*{Introduction}
 Our aim in this study is to reduce total scan time to a clinical feasible maximum of 20-25 minutes while maintaining accuracy of the parameter estimation. To attain the reduction we discard the requirement for orientational invariance and focus on structures with known fibre orientation such as the corpus callosum similar to earlier studies \cite{assaf2008,barazany2009}. We modify the existing protocol optimization framework \cite{alexander2008} to incorporate this a-priori information about fibre organisation and define single fibre (SF) protocols that measure only the diffusion signal perpendicular and parallel to the known fibre orientation. We use computer simulations to compare the SF and the OI approach and perform a scan/rescan experiment on two healthy volunteers to investigate feasibility of estimating microstructural parameters in-vivo. 
@@ -19,9 +7,9 @@ Our aim in this study is to reduce total scan time to a clinical feasible maximu
 In the original approach, the toal number of acquisitions $N$ is chosen to account for the acquisition time limit. The acquisition is divided in $M$ sets of different PGSE settings with gradient directions in each set being fixed. However, in this approach a decrease of the total number of acquisitions $N$ must reduce the angular resolution of gradient direction sampling, which will increase the uncertainty in fibre direction estimates and thus tissue parameter measures. The OI approach also requires that $N$ and $M$ are known so that for every combination of $N$ and $M$ the full optimization algorithm has to be performed. Furthermore this method does not reward protocols that sample more important measurements more heavily.
 
 In this work we introduce the asymptotic SF protocol optimisation. We focus on specific structures with known fibre orientation like the CC. This avoids the need for high angular resolution, which potentially dramatically reduces the number of required measurements. As in \cite{assaf2008,barazany2009}, we constrain most measurements in the protocol to have gradient direction perpendicular to the fibre bundles, but we include one measurement in the parallel direction for the estimation of diffusivity along the axons. We adapt Eq. \ref{eq-optimality} so that: 
-$$
+\begin{equation}
 	\mat{\Omega}=diag\{w_1,\cdots,w_M\} \mbox{ with } \sum_{m=1}^{M}w_m=1
-$$
+\end{equation}
 The weighting factors $w_m$ reflect how important each measurement is, i.e. how often it should be sampled relative to the other measurements. For any given $N$ we can calculate the number of measurements for each element of $\mathcal{P}$ by $N_{m}=w_mN$, hence the resulting protocols are independent of $N$.
 \paragraph{Model fitting}
 We use the three stage fitting algorithm as described by Alexander et al\cite{alexander2009}, to fit the tissue model to the acquired MR signal in each voxel. We increase stability by fixing $d_\parallel$ to $1.7\cdot 10^{-9} m^2s^{-1}$ and $d_I$ is fixed to $3.0\cdot 10^{-9} m^2s^{-1}$\cite{assaf2008,barazany2009,alexander2009}. The objective function is defined as the maximum likelihood of model parameters given the observed MR signals under Rician noise ($\sigma=0.05$). An initial estimation is found using a coarse grid search algorithm over a set of physiologically possible parameters. Then a gradient descent algorithm further refines the parameter estimates. Finally a Markov Chain Monte Carlo (MCMC) algorithm with a burn-in of 2000, 50 samples at an interval of 200 provides posterior distributions of the parameters $f_1$, $f_2$ and the axon radius $r$. An average over the MCMC samples provides the final parameter estimates. We report the axon diameter index $a=2r$ and the axon density index $\rho=4f_1\pi^{-1}r^{-2}$.
@@ -59,7 +47,7 @@ We use the three stage fitting algorithm as described by Alexander et al\cite{al
 }
 \label{tab:protocols}
 \end{table}
-We motivated our protocol optimization by the aim to produce protocols that can be performed on a typical human scanner in a clinically feasible time. To validate our approach, we generate optimized protocols for a clinical 3T Philips Achieva scanner with a maximum gradient strength of $|\vek{G}_{max}|=60mT/m$. We use the asymptotic optimization to generate SF protocols that can be performed in 20 minutes with a total number of acquisitions $N=90$ (\SFshort). For comparison with previous studies, we also generate an OI protocol using $N=360$ (\OIlong) and an SF protocol with the same number of acquisitions (\SFlong). The resulting protocols are presented in table \ref{tab:protocols}. For the \SFshort{} and \SFlong{} protocols we set $M=8$ but only sequences with $w>0$ are reported. The \OIlong{} protocol optimisation uses $M=4$ and report the three unique PGSE parameter settings.
+We motivated our protocol optimization by the aim to produce protocols that can be performed on a typical human scanner in a clinically feasible time. To validate our approach, we generate optimized protocols for a clinical 3T Philips Achieva scanner with a maximum gradient strength of $|\vec{G}_{max}|=60mT/m$. We use the asymptotic optimization to generate SF protocols that can be performed in 20 minutes with a total number of acquisitions $N=90$ (\SFshort). For comparison with previous studies, we also generate an OI protocol using $N=360$ (\OIlong) and an SF protocol with the same number of acquisitions (\SFlong). The resulting protocols are presented in table \ref{tab:protocols}. For the \SFshort{} and \SFlong{} protocols we set $M=8$ but only sequences with $w>0$ are reported. The \OIlong{} protocol optimisation uses $M=4$ and report the three unique PGSE parameter settings.
 \paragraph{Simulations}
 We use the free diffusion simulation of Hall and Alexander\cite{hall2008}, which performs a Monte Carlo (MC) simulation of water particles in packed cylinders. We use the 44 synthetic white matter substrates from Alexander et al\cite{alexander2009} with diameter distributions and packing densities similar to previously reported histology studies. %\cite{aboitiz1992,keyserlink1984,lamantia1990}.%%
 We perform the MC simulation with 50000 walkers and 20000 time steps for each protocol. For each substrate we generate 10 sets of noise-free MR signals and add Rician noise of $\sigma=0.05$, resulting in  total of 440 sets of noisy MR signals. For each protocol we apply the model fitting procedure to the 440 sets of MR signals and retrieve the tissue model parameters. 

@@ -6,18 +6,28 @@
 \usepackage{subfig}
 %\usepackage{amssymb}
 
+\newcommand{\SFshort}{SF$_{90}$}
+\newcommand{\SFlong}{SF$_{360}$}
+\newcommand{\OIlong}{OI$_{360}$}
+
+\newenvironment{tikzfigures}%
+{\noindent\ignorespaces}%
+{\par\noindent%
+\ignorespacesafterend}
+
+\newcommand{\mat}[1]{\ensuremath{#1}}
+
+
 \begin{document} 
 \title{Spinal Cord Diffusion Imaging: Challenging Characterization and Prognostic Value} 
 \date{\today} 
 \author{Torben Schneider} 
 \maketitle 
-
-
 \chapter{Introduction} 
-\chapter{Literature Review} 
+\chapter{Background} 
+\input{chap2.tex} 
 \chapter{Project Progress}
 \input{chap3-1.tex} 
-\input{chap3-2.tex} 
+\input{chap3-2.tex}
 \chapter{Conclusions and Future Work}
-
 \end{document} 

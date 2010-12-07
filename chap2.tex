@@ -1,0 +1,52 @@
+%!TEX root = ./report.tex
+\section{Diffusion MRI}
+Diffusion weighted MRI (DWI) is an imaging technique that is sensitive to the random motion of water molecules. The standard pulse sequence for MRI is the pulsed gradient spin echo (PGSE) by Tanner and Stejskal\cite{tanner65}. The basic design is based on a simple spin echo (SE) sequence, i.e, it starts with a 90° (P90) RF-pulse that flips magnetization in the transverse plane, followed by a 180° RF pulse (P180) after time TE/2 and the signal readout after another TE/2. In theory the P180 will reverse the demagnetization by field inhomogeneties. When TE<T1 of the tissue the resulting signal will be mainly T2 weighted. In the PGSE sequence, a pair of identical diffusion weighting gradients ($\vec{G}$) are added to the SE sequence (see Figure \ref{fig:pgse}) to make the sequence sensitive to the diffusion of water molecules. The first diffusion gradient adds a phase offset dependent on each molecules's position. If the molecule's position doesn't change, the second diffusion gradient will reverse the phase offset. However, in the case motion due to diffusion, the individual positions will differ between the first and second diffusion gradient, resulting in a reduced signal amplitude. The degree of signal loss is dependent on the rate of diffusion in the tissue but is also controlled by the parameters of the PGSE sequence:
+\begin{itemize}
+	\item the strength $|G|$ and direction $\vec{g}$ of the diffusion gradients
+	\item the gradient pulse duration $\delta$
+	\item the diffusion time between both diffusion gradient pulse $\Delta$.
+\end{itemize}
+The combination of those parameters is often summarised in terms of the single diffusion weighing factor $b$. For the PGSE sequence, the $b$-factor is defined as:
+\begin{equation}
+	b = \gamma^2|G|^2\delta^2(\Delta-\frac{\delta}{3}),
+\end{equation}
+where $\gamma$ is the gyromagnetic ratio.
+
+\section{Gaussian diffusion}
+\subsection*{Apparent diffusion coefficient}
+As described above, DWI is sensitive to the displacement of water molecules. The contrast in DWI is driven by the displacement probability density function (DPDF) $p(r)$. When $p(\Delta r)$ is assumed to be Gaussian, the diffusion weighted signal $S$ is given by:
+\begin{equation}
+	S(b) = S_{0}\exp(-b\cdot ADC),
+\end{equation}
+with $b$ being the diffusion weighting factor as given in Equation \ref{eq:bvalue}, $S_{0}$ the non-diffusion weighted signal ($b=0$) and $ADC$ the apparent diffusion coefficient. The parameters $S_0$ and $ADC$ are properties of the examined sample and can be estimated by acquiring a minimum of two diffusion weighted images with different $b$-values (usually $b=0$ and $b=800-1200mm/s^2$ for in-vivo tissue). 
+\subsection*{Diffusion tensor imaging}
+In ordered tissue like white matter the diffusion will be directed, i.e., the $ADC$ will depend on the direction $\vec{g}$ of the applied gradient. The Equation \ref{eq:adc} can be extended to reflect the in 3D by using the diffusion tensor formulation:
+\begin{equation}
+	S(b,\vec{G}) = S_{0}\exp(-b\vec{g}^T \mat{D}\vec{g}) \mbox{ with } D = blll.
+\end{equation}
+Since the DT is positive symmetric, it requires one non-diffusion weighted measurement and a minimum of 6 different diffusion weighted measurements with non-coplanar gradient directions. However, we usually acquire more signals to overdetermine the solution, add noise control and increase directional resolution \ref{jones00}.
+
+By an Eigen decomposition of the DT we obtain the three eigenvectors $\vec{v}_1, \vec{v}_3, \vec{v}_3$ and their corresponding eigenvalues $\lambda_1\ge\lambda_2\ge\lambda_3$. The first eigenvector can be interpreted as the principal diffusion directions with $\lambda_1$ being the principal diffusivity. Usually $\lambda_1$ is also referred to as the axial diffusivity (AD) as it corresponds with the diffusivity parallel to white matter axons. Other commonly used DT metrics are:
+\begin{itemize}
+	\item The mean diffusivity (MD) that is equivalent with the mean ADC described in Equation \ref{eq:adc}. MD is computed as:
+	\begin{equation}
+		MD = \mbox{Tr}(D) = \lambda_1 + \lambda_2 +\lambda_3.
+	\end{equation}
+	\item The fractional anisotropy (FA) that represents the degree of diffusion anisotropy in each voxel. FA increases
+	with directional dependence of particle displacements and is greatest when diffusion is highly directed. FA is computed by
+	\begin{equation}
+		FA = \cdots
+	\end{equation}
+	\item The radial diffusivity (RD) is the average diffusivity perpendicular to the major diffusion direction:
+	\begin{equation}
+		RD = \frac{\lambda_2 + \lambda_3}{2}.
+	\end{equation}
+\end{itemize}
+\section{Q-space imaging}
+In the previous section diffusion was described under the assumption of Gaussian DPDF. However, it has been shown that in the presence of hindering structures, such as cell membranes or axon myelin sheaths, the DPDF can become non-Gaussian\cite{Callaghan}. This was validated by a variety of studies, ranging from diffusion simulations in simple structures \cite{TODO} to in-vivo measurements in in-vivo brain white matter \cite{TODO}. Q-space imaging (QSI) can estimate the DPDF directly by exploiting the Fourier relation between the signal $S(q)$ and $p(r)$\cite at fixed diffusion time $\Delta${Callaghan86}:
+\begin{equation}
+	S(q)=\mbox{F}\left[p(\Delta r)\right] \mbox{ with } q = \gamma|G|\delta. 
+\end{equation}   
+Diffusion time - compartment size ... SGP ... high q sampling.
+\section{Multi compartment models}
+\section{Protocol optimisation}
