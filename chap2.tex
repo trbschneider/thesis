@@ -30,7 +30,7 @@ By an Eigen decomposition of the DT we obtain the three eigenvectors $\vec{v}_1,
 \begin{itemize}
 	\item The mean diffusivity (MD) that is equivalent with the mean ADC described in Equation \ref{eq:adc}. MD is computed as:
 	\begin{equation}
-		MD = \mbox{Tr}(D) = \lambda_1 + \lambda_2 +\lambda_3.
+		MD = \frac{\mbox{Tr}(D)}{3} = \frac{\lambda_1 + \lambda_2 +\lambda_3}{3}.
 	\end{equation}
 	\item The fractional anisotropy (FA) that represents the degree of diffusion anisotropy in each voxel. FA increases
 	with directional dependence of particle displacements and is greatest when diffusion is highly directed. FA is computed by
@@ -49,4 +49,39 @@ In the previous section diffusion was described under the assumption of Gaussian
 \end{equation}   
 Diffusion time - compartment size ... SGP ... high q sampling.
 \section{Multi compartment models}
+DTI parameters have been shown to correlates with pathology changes in white matter diseases of the brain and spinal cord. However, the underlying assumptions of Gaussian DPDF have been proven inaccurate. As a result, different microstructural changed pathologies often have the same effect on DTI metrics and therefore cannot be told apart by DTI alone. At least in theory, QSI has the potential to overcome this limitation but requires both very strong diffusion gradients and long acquisition times.
+
+Over the years various diffusion models beyond the DT have been published, e.g., for the diffusion signal in simple geometries such cylinders, spheres or parallel planes\cite{TODO}. A common approach to model the diffusion signal in biological tissue as a combination of $n$ compartments with signals $S_i$ and volume fraction $f_i$ with $1 \le i \le n$. The total signal is then given by:
+\begin{equation}
+	S=\sum_{i=0}^{n}f_i\cdot S_i.
+\end{equation}
+\subsection*{Bi-exponential model}
+One of the simplest two-compartment models the bi-exponential model, describing the signal by a combination of two separate mono-exponential diffusion decay curves as in Equation \ref{eq:adc} with two different diffusion coefficients (often called $ADC_{slow}$ and $ADC_{fast}$):
+\begin{equation}
+	S_{biexp}(b) = f_{slow} exp(-b\cdot ADC_{slow}) + f_{fast} exp(-b\cdot ADC_{fast}).
+\end{equation}
+Experiments in in-vivo brain data demonstrate good agreement between measurements and fitted signal curves over a range of $b$-values \cite{clark02}. However, the biophysical interpretation of the two compartments is still in debate and the relation between the compartments and the microstructural properties of white matter remains unclear. 
+\subsection*{Models of nervous tissue}
+A-priori information about the underlying micro-anatomy of the imaged tissue can be used to achieve more direct microstructure estimates from DWI. Stanisz et al. [91] proposed a model of restricted diffusion in bovine optic nerve using a three-compartment model. Nerve tissue was modeled expressed by prolate ellipsoids for axons, glial cells represented spheres represented and Gaussian diffusion was assumed in a homogeneous extra-cellular medium surrounded by partially permeable membranes. Fitting the model to experimental data showed significant departure of the diffsion MRI signal from the simple Gaussian model. However, the complexity of this models requires very high quality measurements, typically only achievable in NMR spectroscopy rather than MRI.
+
+
+Recently, Assaf et al\cite{assaf2008} developed the AxCalibre model of cylindrical axons with gamma distributed radii to estimate axon diameter distributions in white matter tissue. The AxCaliber model assumes two compartments, representing diffusion in intra-axonal and extra-axonal space. The intra-axonal compartment is modeled by parallel cylinders, with the size of radii following a gamma-distribution. The extra-cellular compartment is modeled by a DT with the principal diffusion direction $\vec{v}_1$ aligned with the long cylinder axis. The method is validated in in-vitro optic and sciatic nerve samples and estimated parameters show good correlation with corresponding histology. In later work, Barazany et al\cite{barazany2009} extended the AxCalibre model by an isotropic diffusion compartment to account for partial volume effects and contributions from areas of CSF. They apply their model to image axon size distributions in the corpus callosum of live rat brain. However, in both experiments, scan times are long and the high 7T magnetic field and maximum gradient strength (400 mT/m) are impossible to achieve on a live human scanners, that typically operate at 1.5-3T and can achieve maximum gradient strength between 30-60 mT/m. 
+
+
+Alexander et al\cite{alexander2009} demonstrates measurements of axon diameter and density in excised monkey brain and live human brain on a standard clinical scanner using a simplified AxCalibre model and multi shell high angular resolution diffusion imaging (HARDI). The model used expresses diffusion in a white matter voxel as a combination of water particles trapped inside three different compartments: 
+\begin{enumerate}
+  \item Intra-axonal water experiencing diffusion restricted inside cylindrical axons with equal radius $R$ as in \cite{gelderen2000}
+  \item Extra-axonal water that is hindered due to the presence of adjacent axons. Diffusion is approximated by a diffusion tensor, with parallel diffusion coefficent $d_\parallel$ in the direction of the cylinders and symmetric diffusion $d_\perp$ in the perpendicular directions.
+  \item Water that experiences unhindered diffusion, e.g., in the cerebro-spinal fluid (CSF), modeled by an isotropic Gaussian distribution of displacements with diffusion coefficient $d_{I}$.
+\end{enumerate}
+To reduce the number of free parameters in the model, $d_\perp$ is expressed by using the tortuosity formulation of Szafer et al\cite{szafer1995}.
+
 \section{Protocol optimisation}
+More complex models usually require advanced DWI protocols with several different diffusion weightings at various diffusion times. For example Barazany et al.\cite{assaf08} perform approx. 900 different combinations of $0\le|G|\le 0.3mT$, $0\le \delta \le 0.03ms$ and $0\le \Delta \le 0.30ms$ to estimate the axon diameter distribution of live rat brain \cite{TODO}. This extensive sampling of the PGSE parameter space requires long acquisition times (between hours and days) and is infeasible for in-vivo clinical scanning. The principle of Alexander's \cite{alexander2008} protocol optimisation is to find the protocol $\mathcal{P}$, that allows the most accurate estimation of the tissue model parameters under given hardware and time constraints. The Fisher information matrix (FIM) provides a lower bound on the inverse covariance matrix of parameter estimates, i.e., the $\mathcal{P}$ that maximizes the FIM will maximize the precision of those estimates. We use the d-optimality criterion \cite{obrien2003}, which is defined as the determinant of the inverse FIM of protocol $\mathcal{P}$ and tissue model parameters $\vec{\theta}$:
+\begin{equation}
+	D(\vec{\theta},\mathcal{P})=\det[(\mat{J}^T\mat{\Omega}\mat{J})^{-1}]~, 
+	\label{eq-optimality}
+\end{equation}
+where $\mat{J}$ is the $N\times6$ Jacobian matrix with the $ij$st element $\partial S(\vec{g}_i,\delta_i,\Delta_i) / \partial \vec{\theta}_j$. In the original approach $\mat{\Omega}=diag\{1,\cdots,1\}$. Following \cite{alexander2008}, we use a stochastic optimization algorithm \cite{zelinka2000} that returns $\mathcal{P}'$ with minimal $D$ among all possible $\mathcal{P}$ with respect to the given scanner hardware limits.
+
+In the original approach, $N$ is chosen to account for the acquisition time limit. The acquisition is divided in $M$ sets of different PGSE settings with gradient directions in each set being fixed. However, in this approach a decrease of the total number of acquisitions $N$ must reduce the angular resolution of gradient direction sampling, which will increase the uncertainty in fibre direction estimates and thus tissue parameter measures. The OI approach also requires that $N$ and $M$ are known so that for every combination of $N$ and $M$ the full optimization algorithm has to be performed. Furthermore this method does not reward protocols that sample more important measurements more heavily.
