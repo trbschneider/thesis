@@ -1,10 +1,14 @@
 \documentclass[a4paper]{scrreprt} 
 \usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multirow}
+
 \usepackage{xltxtra} 
 \usepackage{pgf}
 \usepackage{pgfplots}
 \usepackage{ctable}
 \usepackage{subfig}
+
 
 \newcommand{\SFshort}{SF$_{90}$}
 \newcommand{\SFlong}{SF$_{360}$}
@@ -18,7 +22,7 @@
 {\par\noindent%
 \ignorespacesafterend}
 
-\newcommand{\mat}[1]{\ensuremath{#1}}
+\newcommand{\mat}[1]{\ensuremath{\mathbf{#1}}}
 
 
 \begin{document} 
@@ -27,9 +31,7 @@
 \author{Torben Schneider} 
 \maketitle 
 \chapter{Introduction}
-	\section{Problem Statement}
-	\section{Project Aims}
-	\section{Summary of contributions}
+\input{chap1.tex}
 \chapter{Background} 
 \input{chap2.tex} 
 \chapter{Project Progress}

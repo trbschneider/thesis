@@ -1,6 +1,10 @@
 %!TEX root = ./report.tex
+\section{Anatomy of the spinal cord}
 \section{Diffusion MRI}
-Diffusion weighted MRI (DWI) is an imaging technique that is sensitive to the random motion of water molecules. The standard pulse sequence for MRI is the pulsed gradient spin echo (PGSE) by Tanner and Stejskal\cite{tanner65}. The basic design is based on a simple spin echo (SE) sequence, i.e, it starts with a 90° (P90) RF-pulse that flips magnetization in the transverse plane, followed by a 180° RF pulse (P180) after time TE/2 and the signal readout after another TE/2. The P180 will reverse the demagnetization by field inhomogeneties resulting in an mainly T2-weighted image when TE sufficiently small compared to the T1 of the sample. In the PGSE sequence, a pair of identical diffusion weighting gradients are added to the SE sequence (see Figure \ref{fig:pgse}) to make the sequence sensitive to the diffusion of water molecules. The first diffusion gradient adds a phase offset dependent on each molecules's position. If the molecule's position doesn't change, the second diffusion gradient will reverse the phase offset. However, in the case of motion due to diffusion, the individual positions will differ between the first and second diffusion gradient, resulting in a reduced signal amplitude. The degree of signal loss is dependent on the rate of diffusion in the tissue but is also controlled by the parameters of the PGSE sequence:
+Diffusion weighted MRI (DWI) is an imaging technique that is sensitive to the random motion of water molecules. The standard pulse sequence for MRI is the pulsed gradient spin echo (PGSE) by Tanner and Stejskal\cite{tanner65}. The basic design is based on a simple spin echo (SE) sequence, i.e, it starts with a 90° (P90) RF-pulse that flips magnetization in the transverse plane, followed by a 180° RF pulse (P180) after time TE/2 and the signal readout after another TE/2, resulting in an echo time of TE. The P180 inversion pulse will reverse the demagnetization by field inhomogeneties so that the contrast is mainly driven by spin-spin relaxation (T2 weighting) when TE is sufficiently small compared to the spin-lattice relaxation time T1 of the sample. 
+
+
+In the PGSE sequence, a pair of identical diffusion weighting gradients are added to the SE sequence (see Figure \ref{fig:pgse}) to make the sequence sensitive to the diffusion of water molecules. The first diffusion gradient adds a phase offset dependent on each molecules's position. If the molecule's position doesn't change, the second diffusion gradient will reverse the phase offset. However, in the case of motion due to diffusion, the individual positions will differ between the first and second diffusion gradient, resulting in a reduced signal amplitude. The degree of signal loss is dependent on the rate of diffusion in the tissue but is also controlled by the parameters of the PGSE sequence:
 \begin{itemize}
 	\item the strength $|G|$ and direction $\vec{g}$ of the diffusion gradients
 	\item the gradient pulse duration $\delta$
@@ -9,22 +13,31 @@ Diffusion weighted MRI (DWI) is an imaging technique that is sensitive to the ra
 The combination of those parameters is often summarised in terms of the single diffusion weighing factor $b$. For the PGSE sequence, the $b$-factor is defined as:
 \begin{equation}
 	b = \gamma^2|G|^2\delta^2(\Delta-\frac{\delta}{3}),
+    \label{eq:bvalue}
 \end{equation}
-where $\gamma$ is the gyromagnetic ratio.
+where $\gamma$ is the gyromagnetic ratio.            
 
 \section{Gaussian diffusion}
 \subsection*{Apparent diffusion coefficient}
 As described above, DWI is sensitive to the displacement of water molecules. The contrast in DWI is driven by the displacement probability density function (DPDF) $p(r)$. When $p(\Delta r)$ is assumed to be Gaussian, the diffusion weighted signal $S$ is given by:
 \begin{equation}
 	S(b) = S_{0}\exp(-b\cdot ADC),
+    \label{eq:adc}
 \end{equation}
 with $b$ being the diffusion weighting factor as given in Equation \ref{eq:bvalue}, $S_{0}$ the non-diffusion weighted signal ($b=0$) and $ADC$ the apparent diffusion coefficient. The parameters $S_0$ and $ADC$ are properties of the examined sample and can be estimated by acquiring a minimum of two diffusion weighted images with different $b$-values (usually $b=0$ and $b=800-1200mm/s^2$ for in-vivo tissue). 
 \subsection*{Diffusion tensor imaging}
 In ordered tissue like white matter the diffusion will be directed, i.e., the $ADC$ will depend on the direction $\vec{g}$ of the applied gradient. The Equation \ref{eq:adc} can be extended to reflect the in 3D by using the diffusion tensor formulation:
 \begin{equation}
-	S(b,\vec{G}) = S_{0}\exp(-b\vec{g}^T \mat{D}\vec{g}) \mbox{ with } D = blll.
+	S(b,\vec{G}) = S_{0}\exp(-b\vec{g}^T \mat{D}\vec{g}) \mbox{ with } \mat{D} = 
+	\left[
+	\begin{array}{ccc}
+	d_{xx} & d_{xy} & d_{xz} \\
+	{\color{gray} d_{xy}} & d_{yy} & d_{yz} \\
+	{\color{gray} d_{xz}} & {\color{gray} d_{yz}} & d_{zz} 	
+	\end{array} \right].	
+    \label{eq:dti}
 \end{equation}
-Since the DT is positive symmetric, it requires one non-diffusion weighted measurement and a minimum of 6 different diffusion weighted measurements with non-coplanar gradient directions. However, we usually acquire more signals to overdetermine the solution, add noise control and increase directional resolution \ref{jones00}.
+Since the DT is positive symmetric, it requires one non-diffusion weighted measurement and a minimum of 6 different diffusion weighted measurements with non-coplanar gradient directions to fit the 7 free parameters of the model. However, we usually acquire more signals to overdetermine the solution, add noise control and increase directional resolution \ref{jones00}.
 
 By an Eigen decomposition of the DT we obtain the three eigenvectors $\vec{v}_1, \vec{v}_3, \vec{v}_3$ and their corresponding eigenvalues $\lambda_1\ge\lambda_2\ge\lambda_3$. The first eigenvector can be interpreted as the principal diffusion directions with $\lambda_1$ being the principal diffusivity. Usually $\lambda_1$ is also referred to as the axial diffusivity (AD) as it corresponds with the diffusivity parallel to white matter axons. Other commonly used DT metrics are:
 \begin{itemize}
@@ -65,27 +78,30 @@ At sufficiently large diffusion times and simple restricted structures (e.g. cyl
 \end{equation}   
 In heterogenous tissue, the diffraction pattern cannot be distinguished as clearly. However, Cory and Galloway demonstrated in yeast cells that the cells’ diameter can be obtained from reconstructed DPDF (see Equation \ref{eq:qspaceft}).
 \paragraph*{Technical limitations}
-It has to be noted that the Fourier relationship between signal and DPDF only holds when the gradient pulse time $\delta$ is short (short gradient pulse (SGP) condition), i.e., the gradient pulse can be approximated by a delta function ($\delta\rightarrow 0$). Therefore, to achieve high $q$-values, the gradient strength $|G|$ must be very high. This can often not be fulfilled on clinical systems and longer gradients pulses must be used to achieve high $q$-value measurements. Violation of the short gradient pulse condition will compromise the accuracy of estimation of small size structures as demonstrated by \cite{laett07,TODO}. Despite the limitations, the usefulness of $q$-space MRI beyond conventional diffusion MRI metrics in the investigation of various white matter pathologies of has been shown in animal models \cite{TODO} and also in human brain white matter\cite{TODO} and spinal spinal cord\cite{TODO}.  
+It has to be noted that the Fourier relationship between signal and DPDF only holds when the gradient pulse time $\delta$ is short (short gradient pulse (SGP) condition), i.e., the gradient pulse can be approximated by a delta function ($\delta\rightarrow 0$). Therefore, to achieve high $q$-values, the gradient strength $|G|$ must be very high. This can often not be fulfilled on clinical systems and longer gradients pulses must be used to achieve high $q$-value measurements. Violation of the short gradient pulse condition will compromise the accuracy of estimation of small size structures as demonstrated by \cite{laett07,TODO}. Despite the limitations, $q$-space MRI has been used successfully in various white matter pathologies in animal models \cite{TODO} and also in human brain \cite{TODO} and spinal spinal cord\cite{TODO}.  
 
 
 \section{Multi compartment models}
-Over the years various analytic solutions for the diffusion signal in simple geometries such cylinders, spheres or parallel planes\cite{TODO}. A common approach is to model the diffusion signal in biological tissue as the a combination of signals from $n$ simple geometric compartments with signals $S_i$ and volume fraction $f_i$ with $1 \le i \le n$. The total signal is then given by:
+In addition to the simple Gaussian diffusion model, discussed in section \ref{sec:gaussiandiff}, various analytic solutions were developed for the diffusion signal in simple geometries such cylinders, spheres or parallel planes\cite{TODO}. Using a-priori information about the microstructure of the investigated sample, the diffusion signal can be approximated by a combination of these simple geometric compartments. Each of the $n$ different compartments possesses the model parameters $\phi_{i}$ from which the signal $S_i$ is computed. Each compartment is assigned a volume fraction $f_i$ with $0 \le f_i \le 1$ for all $1 \le i \le n$. The total signal for the model under the combined model parameter set $\phi=\phi_{1}\cup\dots\cup\phi_{n}$ is then given by:
 \begin{equation}
-	S=\sum_{i=0}^{n}f_i\cdot S_i.
+	S(\phi)=\sum_{i=0}^{n}f_i\cdot S_i(\phi_i).
 \end{equation}
+The model parameters $\phi$ can be fitted to the measured diffusion signals. When the model is chosen carefully, the microstructural properties of the tissue  can be inferred directly from the fitted parameters.
+
+
 \subsection*{Bi-exponential model}
-One of the simplest compartment models the bi-exponential model, describing the signal by a combination of two separate mono-exponential diffusion decay curves as in Equation \ref{eq:adc} with two different diffusion coefficients (usually named $ADC_{slow}$ and $ADC_{fast}$):
+One of the simplest compartment models is the bi-exponential model, expressing diffusion as the summation of two separate mono-exponential decay curves (see Equation \ref{eq:adc}) with two different diffusion coefficients (usually named $ADC_{slow}$ and $ADC_{fast}$):
 \begin{equation}
 	S_{biexp}(b) = f_{slow} exp(-b\cdot ADC_{slow}) + f_{fast} exp(-b\cdot ADC_{fast}).
 \end{equation}
 Experiments in in-vivo brain data demonstrate good agreement between measurements and fitted signal curves over a range of $b$-values \cite{clark02}. However, the biophysical interpretation of the two compartments is still in debate and the relation between the compartments and the microstructural properties of white matter remains unclear. 
 \subsection*{Models of nervous tissue}
 \paragraph*{Stanisz' model}
-A-priori information about the underlying micro-anatomy of the imaged tissue can be used to achieve more direct microstructure estimates from DWI. Stanisz et al. [91] proposed a model of restricted diffusion in bovine optic nerve using a three-compartment model. Nerve tissue was modeled expressed by prolate ellipsoids for axons, glial cells represented spheres represented and Gaussian diffusion was assumed in a homogeneous extra-cellular medium surrounded by partially permeable membranes. Fitting the model to experimental data showed significant departure of the diffsion MRI signal from the simple Gaussian model. However, the complexity of this models requires very high quality measurements, typically only achievable in NMR spectroscopy rather than MRI.
+Stanisz et al.\cite{stanisz90} were the first to propose a model that reflects the underlying micro-anatomy of nervous tissue. They introduced a model of restricted diffusion in bovine optic nerve using a three-compartment model. In their model, prolate ellipsoids represented axons, glial cells are represented by spheres represented and Gaussian diffusion was assumed in a homogeneous extra-cellular medium surrounded by partially permeable membranes. Experimental data was in agreement with the signal predicted by their model and showed significant departure of the diffusion MRI signal from the simple Gaussian model. However, the complexity of this models requires very high quality measurements, typically only achievable in NMR spectroscopy rather than MRI.
 \paragraph*{The AxCalibre model}
-Recently, Assaf et al\cite{assaf2008} developed the AxCalibre model of cylindrical axons with gamma distributed radii to estimate axon diameter distributions in white matter tissue. The AxCaliber model assumes two compartments, representing diffusion in intra-axonal and extra-axonal space. The intra-axonal compartment is modeled by parallel cylinders, with the size of radii following a gamma-distribution. The extra-cellular compartment is modeled by a DT with the principal diffusion direction $\vec{v}_1$ aligned with the long cylinder axis. The method is validated in in-vitro optic and sciatic nerve samples and estimated parameters show good correlation with corresponding histology. In later work, Barazany et al\cite{barazany2009} extended the AxCalibre model by an isotropic diffusion compartment to account for partial volume effects and contributions from areas of CSF. They apply their model to image axon size distributions in the corpus callosum of live rat brain. However, in both experiments, scan times are long and the high 7T magnetic field and maximum gradient strength (400 mT/m) are impossible to achieve on a live human scanners, that typically operate at 1.5-3T and can achieve maximum gradient strength between 30-60 mT/m. 
+Recently, Assaf et al\cite{assaf2008} developed the AxCalibre model of cylindrical axons with gamma distributed radii to estimate axon diameter distributions in white matter tissue. The AxCaliber model assumes two compartments, representing diffusion in intra-axonal and extra-axonal space. The intra-axonal compartment is modeled by parallel cylinders, with the size of radii following a gamma-distribution. The extra-cellular compartment is modeled by a DT with the principal diffusion direction $\vec{v}_1$ aligned with the long cylinder axis. The method is validated in in-vitro optic and sciatic nerve samples and estimated parameters show good correlation with corresponding histology. In later work, Barazany et al\cite{barazany2009} extended the AxCalibre model by an isotropic diffusion compartment to account for partial volume effects and contributions from areas of CSF. They apply their model to image axon size distributions in the corpus callosum of live rat brain. However, in both experiments, scan times are long and the high 7T magnetic field and maximum gradient strength (400 mT/m) are impossible to achieve on a live human scanners, typically operating at 1.5-3T with maximum gradient strength between 30-60 mT/m. 
 \paragraph*{Alexander's simplified AxCalibre model}
-Alexander et al\cite{alexander2009} demonstrates measurements of axon diameter and density in excised monkey brain and live human brain on a standard clinical scanner using a simplified AxCalibre model and multi shell high angular resolution diffusion imaging (HARDI). The model used expresses diffusion in a white matter voxel as a combination of water particles trapped inside three different compartments: 
+Alexander et al\cite{alexander2009} using a simplified AxCalibre model to demonstrate measurements of axon diameter and density in excised monkey brain and live human brain on a standard clinical scanner with multi shell high angular resolution diffusion imaging (HARDI). The model used expresses diffusion in a white matter voxel as a combination of water particles trapped inside three different compartments: 
 \begin{enumerate}
   \item Intra-axonal water experiencing diffusion restricted inside cylindrical axons with equal radius $R$ as in \cite{gelderen2000}
   \item Extra-axonal water that is hindered due to the presence of adjacent axons. Diffusion is approximated by a diffusion tensor, with parallel diffusion coefficent $d_\parallel$ in the direction of the cylinders and symmetric diffusion $d_\perp$ in the perpendicular directions.
@@ -98,7 +114,7 @@ More complex models usually require DWI acquisitions with several different diff
 
 The principle of Alexander's protocol optimisation framework\cite{alexander08} is to find the protocol $\mathcal{P}$, that allows the most accurate estimation of the tissue model parameters under given hardware and time constraints. The Fisher information matrix (FIM) provides a lower bound on the inverse covariance matrix of parameter estimates, i.e., the $\mathcal{P}$ that maximizes the FIM will maximize the precision of those estimates. He uses the d-optimality criterion \cite{obrien2003}, which is defined as the determinant of the inverse FIM of protocol $\mathcal{P}$ and tissue model parameters $\vec{\theta}$:
 \begin{equation}
-	D(\vec{\theta},\mathcal{P})=\det[(\mat{J}^T\mat{\Omega}\mat{J})^{-1}]~, 
+	D(\vec{\theta},\mathcal{P})=\det[(\mat{J}^T\Omega\mat{J})^{-1}]~, 
 	\label{eq-optimality}
 \end{equation}
 where $\mat{J}$ is the $N\times6$ Jacobian matrix with the $ij$st element $\partial S(\vec{g}_i,\delta_i,\Delta_i) / \partial \vec{\theta}_j$. In the original approach $\mat{\Omega}=diag\{1,\cdots,1\}$. Following \cite{alexander2008}, he uses a stochastic optimization algorithm \cite{zelinka2000} that returns $\mathcal{P}'$ with minimal $D$ among all possible $\mathcal{P}$ with respect to the given scanner hardware limits.
