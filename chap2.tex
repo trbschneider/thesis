@@ -1,6 +1,6 @@
 %!TEX root = ./report.tex
 \section{Anatomy of the spinal cord}
-The spinal cord the part of the central nervous system (CNS) that connects the brain and peripheral nervous system. It controls the voluntary movement of limbs and trunk, receives sensory information from these regions and monitors and coordinates the internal organ function in thorax, abdomen and pelvis. 
+The spinal cord is the part of the central nervous system (CNS) that connects the brain and peripheral nervous system. It controls the voluntary movement of limbs and trunk, receives sensory information from these regions and monitors and coordinates the internal organ function in thorax, abdomen and pelvis. 
 
 The spinal cord is protected by the vertebral column and is located inside the vertebral canal. In cross-section, the cord is can be divided in two regions: (i) the peripheral region containing neuronal white matter tracts. (ii) the grey, butterfly-shaped central region made up of nerve cell bodies. This gray matter is centered around the central canal, extending containing cerebrospinal fluid.
 
@@ -8,23 +8,32 @@ The spinal cord is protected by the vertebral column and is located inside the v
 The white matter of the spinal cord consists mostly of longitudinally running axons and glial cells. White matter axons are organized hierarchally grouped in bundles, tracts and pathways. Bundles of neighboring white matter axons that share similar features are called fibre bundles. A tract is formed by fibre bundles with same origin, course, termination and function. Multiple tracts with the same function form a pathway.
 
 \subsubsection*{Ascending tracts}
-\label{sec:section_name}
-Sensory tracts ascending in the white matter of the spinal cord arise either from cells of spinal ganglia or from intrinsic neurons within the gray matter that receive primary sensory input. The dorsal column hold the largest ascending tracts and are associated with tactile, pressure, and kinesthetic sense connecting with sensory areas of the cerebral cortex. Fibres of the spinothalamic tracts ascend in the lateral ventral part of the cord and convey signals related to pain and thermal sense. The anterior spinothalamic tract arises ascends more anteriorly in the spinal cord; conveying impulses related to light touch. At brain level the two spinothalamic tracts tend to merge and cannot be distinguished as separate entities. Anterior and posterior spinocerebellar tracts are involved in automatic muscle tone regulation. These tracts ascend peripherally in the dorsal and ventral margins of the cord.
+\label{sec:chap2:ascendingtracts}
+Figure \ref{fig:spinal_cord_anatomy} illustrates the location of the major ascending pathways in the spinal cord. These sensory tracts, arise either from cells of spinal ganglia in the white matter of the spinal cord or from intrinsic neurons within the gray matter that receive primary sensory input. The dorsal column hold the largest ascending tracts and are associated with tactile, pressure, and kinesthetic sense connecting with sensory areas of the cerebral cortex. Fibres of the spinothalamic tracts ascend in the lateral ventral part of the cord and convey signals related to pain and thermal sense. The anterior spinothalamic tract arises ascends more anteriorly in the spinal cord; conveying impulses related to light touch. At brain level the two spinothalamic tracts tend to merge and cannot be distinguished as separate entities. Anterior and posterior spinocerebellar tracts are involved in automatic muscle tone regulation. These tracts ascend peripherally in the dorsal and ventral margins of the cord.
 
 \subsubsection*{Descending tracts}
-\label{sec:section_name}
-Tracts descending to the spinal cord are concerned modulation of ascending sensory signals and are associated with voluntary motor function such as muscle tone and reflexes. The largest and most important, the corticospinal tract (CST), originates in broad regions of the cerebral cortex and descents in the lateral dorsal part spinal cord white matter. Smaller descending tracts like the rubrospinal tract, the vestibulospinal tract, and the reticulospinal tract originate in small and diffuse regions of the midbrain, pons, and medulla and descend ventrally and laterally.
+\label{sec:chap2:descendingtracts}
+Tracts descending to the spinal cord as illustrated in Figure~\ref{fig:spinal_cord_anatomy} are concerned modulation of ascending sensory signals and are associated with voluntary motor function such as muscle tone and reflexes. The largest and most important, the corticospinal tract (CST), originates in broad regions of the cerebral cortex and descents in the lateral dorsal part spinal cord white matter. Smaller descending tracts like the rubrospinal tract, the vestibulospinal tract, and the reticulospinal tract originate in small and diffuse regions of the midbrain, pons, and medulla and descend ventrally and laterally.
+
+\begin{figure}
+ \centering
+  \pgfimage[width=10cm]{pictures/chap2/spinalcordtracts.pdf}
+  \caption{Illustration of the major ascending and descending fibre pathways of the spinal cord (adapted from \url{http://en.wikipedia.org/wiki/Spinal_cord}).}
+  \label{fig:spinal_cord_anatomy}
+\end{figure}
+
 
 \section{Diffusion MRI}
-Diffusion weighted MRI (DWI) is an imaging technique that is sensitive to the random motion of water molecules. The standard pulse sequence for MRI is the pulsed gradient spin echo (PGSE) by Tanner and Stejskal\cite{tanner65}. The basic design is based on a simple spin echo (SE) sequence, i.e, it starts with a 90° (P90) RF-pulse that flips magnetization in the transverse plane, followed by a 180° RF pulse (P180) after time TE/2 and the signal readout after another TE/2, resulting in an echo time of TE. The P180 inversion pulse will reverse the demagnetization by field inhomogeneties so that the contrast is mainly driven by spin-spin relaxation (T2 weighting) when TE is sufficiently small compared to the spin-lattice relaxation time T1 of the sample. 
+Diffusion weighted MRI (DWI) is an imaging technique that is sensitive to the random motion of water molecules. The standard pulse sequence for MRI is the pulsed gradient spin echo (PGSE) introduced by \cite{Stejskal:1965}. The basic design is based on a simple spin echo (SE) sequence, i.e, it starts with a 90° (P90) RF-pulse that flips magnetization in the transverse plane, followed by a 180° RF pulse (P180) after time TE/2 and the signal readout after another TE/2, resulting in an echo time of TE. The P180 inversion pulse will reverse the demagnetization by field inhomogeneties so that the contrast is mainly driven by spin-spin relaxation (T2 weighting) when TE is sufficiently small compared to the spin-lattice relaxation time T1 of the sample. 
 
 
-In the PGSE sequence, a pair of identical diffusion weighting gradients are added to the SE sequence (see Figure \ref{fig:pgse}) to make the sequence sensitive to the diffusion of water molecules. The first diffusion gradient adds a phase offset dependent on each molecules's position. If the molecule's position doesn't change, the second diffusion gradient will reverse the phase offset. However, in the case of motion due to diffusion, the individual positions will differ between the first and second diffusion gradient, resulting in a reduced signal amplitude. The degree of signal loss is dependent on the rate of diffusion in the tissue but is also controlled by the parameters of the PGSE sequence:
+In the PGSE sequence, a pair of identical diffusion weighting gradients are added to the SE sequence (see Figure \ref{fig:pgse_diagram}) to make the sequence sensitive to the diffusion of water molecules. The first diffusion gradient adds a phase offset dependent on each molecules's position. If the molecule's position doesn't change, the second diffusion gradient will reverse the phase offset. However, in the case of motion due to diffusion, the individual positions will differ between the first and second diffusion gradient, resulting in a reduced signal amplitude. The degree of signal loss is dependent on the rate of diffusion in the tissue but is also controlled by the parameters of the PGSE sequence (see Figure~\ref{fig:fig:erosion_se_effect}):
 \begin{itemize}
-	\item the strength $|G|$ and direction $\vec{g}$ of the diffusion gradients
-	\item the gradient pulse duration $\delta$
+	\item the strength $|G|$ and direction $\vec{g}$ of the diffusion gradients,
+	\item the gradient pulse duration $\delta$,
 	\item the diffusion time between both diffusion gradient pulse $\Delta$.
 \end{itemize}
+
 The combination of those parameters is often summarised in terms of the single diffusion weighing factor $b$. For the PGSE sequence, the $b$-factor is defined as:
 \begin{equation}
 	b = \gamma^2|G|^2\delta^2(\Delta-\frac{\delta}{3}),
@@ -37,8 +46,18 @@ where $\gamma$ is the gyromagnetic ratio.
 	\item common techniques (cardiac gating, small FOV imaging)
 \end{itemize}
 
+\begin{figure}
+ \centering
+  \pgfimage[width=8cm]{pictures/chap2/PGSEdiagram.pdf}
+  \caption{Diagram of the Stejskal-Tanner PGSE pulse sequence. Imaging and read-out gradients are omitted in for clarity.}
+  \label{fig:pgse_diagram}
+\end{figure}
+
+
 \section{Gaussian diffusion}
+\label{sec:gaussian_diffusion}
 \subsection*{Apparent diffusion coefficient}
+\label{subsec:adc}
 As described above, DWI is sensitive to the displacement of water molecules. The contrast in DWI is driven by the displacement probability density function (DPDF) $p(r)$. When $p(\Delta r)$ is assumed to be Gaussian, the diffusion weighted signal $S$ is given by:
 \begin{equation}
 	S(b) = S_{0}\exp(-b\cdot ADC),
@@ -46,6 +65,7 @@ As described above, DWI is sensitive to the displacement of water molecules. The
 \end{equation}
 with $b$ being the diffusion weighting factor as given in Equation \ref{eq:bvalue}, $S_{0}$ the non-diffusion weighted signal ($b=0$) and $ADC$ the apparent diffusion coefficient. The parameters $S_0$ and $ADC$ are properties of the examined sample and can be estimated by acquiring a minimum of two diffusion weighted images with different $b$-values (usually $b=0$ and $b=800-1200mm/s^2$ for in-vivo tissue). 
 \subsection*{Diffusion tensor imaging}
+\label{subsec:dti}
 In ordered tissue like white matter the diffusion will be directed, i.e., the $ADC$ will depend on the direction $\vec{g}$ of the applied gradient. The Equation \ref{eq:adc} can be extended to reflect the in 3D by using the diffusion tensor formulation:
 \begin{equation}
 	S(b,\vec{G}) = S_{0}\exp(-b\vec{g}^T \mat{D}\vec{g}) \mbox{ with } \mat{D} = 
@@ -57,7 +77,7 @@ In ordered tissue like white matter the diffusion will be directed, i.e., the $A
 	\end{array} \right].	
     \label{eq:dti}
 \end{equation}
-Since the DT is positive symmetric, it requires one non-diffusion weighted measurement and a minimum of 6 different diffusion weighted measurements with non-coplanar gradient directions to fit the 7 free parameters of the model. However, we usually acquire more signals to overdetermine the solution, add noise control and increase directional resolution \ref{jones00}.
+Since the DT is positive symmetric, it requires one non-diffusion weighted measurement and a minimum of 6 different diffusion weighted measurements with non-coplanar gradient directions to fit the 7 free parameters of the model. However, we usually acquire more signals to overdetermine the solution, add noise control and increase directional resolution \citep{Jones:2004a}.
 
 By an Eigen decomposition of the DT we obtain the three eigenvectors $\vec{v}_1, \vec{v}_3, \vec{v}_3$ and their corresponding eigenvalues $\lambda_1\ge\lambda_2\ge\lambda_3$. The first eigenvector can be interpreted as the principal diffusion directions with $\lambda_1$ being the principal diffusivity. Usually $\lambda_1$ is also referred to as the axial diffusivity (AD) as it corresponds with the diffusivity parallel to white matter axons. Other commonly used DT metrics are:
 \begin{itemize}
@@ -78,8 +98,10 @@ By an Eigen decomposition of the DT we obtain the three eigenvectors $\vec{v}_1,
 
 
 \section{Q-space imaging}
-In the previous section diffusion was described under the assumption of Gaussian DPDF. However, it has been shown that in the presence of hindering structures, such as cell membranes or axon myelin sheaths, the DPDF can become non-Gaussian\cite{Callaghan}. This was validated by a variety of studies, ranging from diffusion simulations in simple structures \cite{TODO} to in-vivo measurements in in-vivo brain white matter \cite{TODO}. Q-space imaging (QSI) can estimate the DPDF directly by exploiting the Fourier relation between the signal $S(q)$ and $p(r)$\cite at fixed diffusion time $\Delta$\cite{Callaghan86}:
+\label{sec:qspace}
+In the previous section diffusion was described under the assumption of Gaussian DPDF. However, it has been shown that in the presence of hindering structures, such as cell membranes or axon myelin sheaths, the DPDF can become non-Gaussian as demonstrated by \citet{Callaghan:1996} and \citet{Liu:2005}. Q-space imaging (QSI) can estimate the DPDF directly by exploiting the Fourier relation between the signal $S(q)$ and $p(r)$ at fixed diffusion time $\Delta$ \citep{Callaghan:1994}:
 \begin{equation}
+	\label{eq:qspaceft}
 	S(q)=\mbox{F}\left[p(\Delta r)\right] \mbox{ with } q = \gamma|G|\delta. 
 \end{equation}
 \paragraph*{Estimation of compartment size}
@@ -88,20 +110,21 @@ By sampling the diffusion decay over a large range of $q$-values we can directly
 	\item zero-displacement probability (P0), being the maximum height of the DPDF
 	\item full width of half maximum (FWHM) of the displacement profile.
 \end{itemize}
-In the case of Gaussian DPDF, the FWHM is proportional to the root mean squared displacement (RMSD)\cite{cory90} and can be expressed as:
+In the case of Gaussian DPDF, the FWHM is proportional to the root mean squared displacement (RMSD) as shown by \citet{Cory:1990} and can be expressed as:
 \begin{equation}
 	RMSD = \frac{FWHM}{2\sqrt{2\mbox{ln}2}}.
 \end{equation}
-At sufficiently large diffusion times and simple restricted structures (e.g. cylinders, spheres), the diffraction pattern of the signal decay curve can be directly related to the size and shape of the compartment in which the diffusion occurs. In highly ordered structures, e.g, in porous materials the diffusion restriction can be already seen in the diffraction peaks of the signal decay \cite{TODO} parameters will be reflected by diffraction peaks in the signal decay. These studies also established the smallest detectable compartment size $a$, which relates to the diffusion time $\Delta$ and diffusivity $D$ by:
+At sufficiently large diffusion times and simple restricted structures (e.g. cylinders, spheres), the diffraction pattern of the signal decay curve can be directly related to the size and shape of the compartment in which the diffusion occurs. In highly ordered structures, e.g, in porous materials the diffusion restriction can be already seen in the diffraction peaks of the signal decay \citep{Callaghan:1996}. The smallest detectable compartment size $a$ relates to the diffusion time $\Delta$ and diffusivity $D$ by:
 \begin{equation}
 	\Delta \ge \frac{a^2}{2}.
 \end{equation}   
-In heterogenous tissue, the diffraction pattern cannot be distinguished as clearly. However, Cory and Galloway\cite{cory90} showed that the compartment size can still be estimated from the reconstructed DPDF using the Fourier relationship in Equation \ref{eq:qspaceft}). 
+In heterogenous tissue, the diffraction pattern cannot be distinguished as clearly. However, \citet{Cory:1990} showed that the compartment size can still be estimated from the reconstructed DPDF using the Fourier relationship in Equation \ref{eq:qspaceft}). 
 \paragraph*{Technical limitations}
-It has to be noted that the Fourier relationship between signal and DPDF only holds when the gradient pulse time $\delta$ is short (short gradient pulse (SGP) condition), i.e., the gradient pulse can be approximated by a delta function ($\delta\rightarrow 0$). Therefore, to achieve high $q$-values, the gradient strength $|G|$ must be very high. This can often not be fulfilled on clinical systems and longer gradients pulses must be used to achieve high $q$-value measurements. Violation of the short gradient pulse condition will compromise the accuracy of estimation of small size structures as demonstrated by \cite{laett07,TODO}. Despite the limitations, $q$-space MRI has been used successfully in various white matter pathologies in animal models \cite{TODO} and also in human brain \cite{TODO} and spinal spinal cord\cite{TODO}.
+It has to be noted that the Fourier relationship between signal and DPDF only holds when the gradient pulse time $\delta$ is short (short gradient pulse (SGP) condition), i.e., the gradient pulse can be approximated by a delta function ($\delta\rightarrow 0$). Therefore, to achieve high $q$-values, the gradient strength $|G|$ must be very high. This can often not be fulfilled on clinical systems and longer gradients pulses must be used to achieve high $q$-value measurements. Violation of the short gradient pulse condition will compromise the accuracy of estimation of small size structures as demonstrated by \cite{Linse:1995, Latt:2007}. Despite the limitations, $q$-space MRI has been used successfully in various white matter pathologies in animal models \citep{Ong:2008} and also in human brain \citep{Assaf:2002} and spinal spinal cord \citep{Assaf:2000, Farrell:2008}.
 
 \section{Multi compartment models}
-In addition to the simple Gaussian diffusion model, discussed in section \ref{sec:gaussiandiff}, various analytic solutions were developed for the diffusion signal in simple geometries such cylinders, spheres or parallel planes\cite{TODO}. Using a-priori information about the microstructure of the investigated sample, the diffusion signal can be approximated by a combination of these simple geometric compartments. Each of the $n$ different compartments possesses the model parameters $\phi_{i}$ from which the signal $S_i$ is computed. Each compartment is assigned a volume fraction $f_i$ with $0 \le f_i \le 1$ for all $1 \le i \le n$. The total signal for the model under the combined model parameter set $\phi=\phi_{1}\cup\dots\cup\phi_{n}$ is then given by:
+\label{sec:multicompartment_modeling}
+In addition to the simple Gaussian diffusion model, discussed in section \ref{sec:gaussian_diffusion}, various analytic solutions were developed for the diffusion signal in simple geometries such cylinders, spheres, parallel planes \citep{Balinov:1993, Linse:1995, Callaghan:1996} or cylinders \citep{Gelderen:1994}. Using a-priori information about the microstructure of the investigated sample, the diffusion signal can be approximated by a combination of these simple geometric compartments. Each of the $n$ different compartments possesses the model parameters $\phi_{i}$ from which the signal $S_i$ is computed. Each compartment is assigned a volume fraction $f_i$ with $0 \le f_i \le 1$ for all $1 \le i \le n$. The total signal for the model under the combined model parameter set $\phi=\phi_{1}\cup\dots\cup\phi_{n}$ is then given by:
 \begin{equation}
 	S(\phi)=\sum_{i=0}^{n}f_i\cdot S_i(\phi_i).
 \end{equation}
@@ -113,32 +136,34 @@ One of the simplest compartment models is the bi-exponential model, expressing d
 \begin{equation}
 	S_{biexp}(b) = f_{slow} exp(-b\cdot ADC_{slow}) + f_{fast} exp(-b\cdot ADC_{fast}).
 \end{equation}
-Experiments in in-vivo brain data demonstrate good agreement between measurements and fitted signal curves over a range of $b$-values \cite{clark02}. However, the biophysical interpretation of the two compartments is still in debate and the relation between the compartments and the microstructural properties of white matter remains unclear. 
+Experiments by \citet{Clark:2002} in in-vivo brain data demonstrate good agreement between measurements and fitted signal curves over a range of $b$-values. However, the biophysical interpretation of the two compartments is still in debate and the relation between the compartments and the microstructural properties of white matter remains unclear. 
 \subsection*{Models of nervous tissue}
 \paragraph*{Stanisz' model}
-Stanisz et al.\cite{stanisz90} were the first to propose a model that reflects the underlying micro-anatomy of nervous tissue. They introduced a model of restricted diffusion in bovine optic nerve using a three-compartment model. In their model, prolate ellipsoids represented axons, glial cells are represented by spheres represented and Gaussian diffusion was assumed in a homogeneous extra-cellular medium surrounded by partially permeable membranes. Experimental data was in agreement with the signal predicted by their model and showed significant departure of the diffusion MRI signal from the simple Gaussian model. However, the complexity of this models requires very high quality measurements, typically only achievable in NMR spectroscopy rather than MRI.
+\cite{Stanisz:1997} were the first to propose a model that reflects the underlying micro-anatomy of nervous tissue. They introduced a model of restricted diffusion in bovine optic nerve using a three-compartment model. In their model, prolate ellipsoids represented axons, glial cells are represented by spheres represented and Gaussian diffusion was assumed in a homogeneous extra-cellular medium surrounded by partially permeable membranes. Experimental data was in agreement with the signal predicted by their model and showed significant departure of the diffusion MRI signal from the simple Gaussian model. However, the complexity of this models requires very high quality measurements, typically only achievable in NMR spectroscopy rather than MRI.
 \paragraph*{The AxCalibre model}
-Recently, Assaf et al\cite{assaf2008} developed the AxCalibre model of cylindrical axons with gamma distributed radii to estimate axon diameter distributions in white matter tissue. The AxCaliber model assumes two compartments, representing diffusion in intra-axonal and extra-axonal space. The intra-axonal compartment is modeled by parallel cylinders, with the size of radii following a gamma-distribution. The extra-cellular compartment is modeled by a DT with the principal diffusion direction $\vec{v}_1$ aligned with the long cylinder axis. The method is validated in in-vitro optic and sciatic nerve samples and estimated parameters show good correlation with corresponding histology. In later work, Barazany et al\cite{barazany2009} extended the AxCalibre model by an isotropic diffusion compartment to account for partial volume effects and contributions from areas of CSF. They apply their model to image axon size distributions in the corpus callosum of live rat brain. However, in both experiments, scan times are long and the high 7T magnetic field and maximum gradient strength (400 mT/m) are impossible to achieve on a live human scanners, typically operating at 1.5-3T with maximum gradient strength between 30-60 mT/m. 
-\paragraph*{Alexander's simplified AxCalibre model}
-Alexander et al\cite{alexander2009} using a simplified AxCalibre model to demonstrate measurements of axon diameter and density in excised monkey brain and live human brain on a standard clinical scanner with multi shell high angular resolution diffusion imaging (HARDI). The model used expresses diffusion in a white matter voxel as a combination of water particles trapped inside three different compartments: 
+Recently, \citet{Assaf:2008} developed the AxCalibre model of cylindrical axons with gamma distributed radii to estimate axon diameter distributions in white matter tissue. The AxCaliber model assumes two compartments, representing diffusion in intra-axonal and extra-axonal space. The intra-axonal compartment is modeled by parallel cylinders, with the size of radii following a gamma-distribution. The extra-cellular compartment is modeled by a DT with the principal diffusion direction $\vec{v}_1$ aligned with the long cylinder axis. The method is validated in in-vitro optic and sciatic nerve samples and estimated parameters show good correlation with corresponding histology. In later work, \citet{Barazany:2009} extended the AxCalibre model by an isotropic diffusion compartment to account for partial volume effects and contributions from areas of CSF. They apply their model to image axon size distributions in the corpus callosum of live rat brain. However, in both experiments, scan times are long and the high 7T magnetic field and maximum gradient strength (400 mT/m) are impossible to achieve on a live human scanners, typically operating at 1.5-3T with maximum gradient strength between 30-60 mT/m. 
+\paragraph*{Alexander's simplified AxCalibre model} 
+\label{par:alexanders_model}
+\citet{Alexander:2010} uses a simplified AxCalibre model to demonstrate measurements of axon diameter and density in excised monkey brain and live human brain on a standard clinical scanner with multi shell high angular resolution diffusion imaging (HARDI). The model used expresses diffusion in a white matter voxel as a combination of water particles trapped inside three different compartments: 
 \begin{enumerate}
-  \item Intra-axonal water experiencing diffusion restricted inside cylindrical axons with equal radius $R$ as in \cite{gelderen2000}
+  \item Intra-axonal water experiencing diffusion restricted inside cylindrical axons with equal radius $R$ as developed by \citet{Gelderen:1994}
   \item Extra-axonal water that is hindered due to the presence of adjacent axons. Diffusion is approximated by a diffusion tensor, with parallel diffusion coefficent $d_\parallel$ in the direction of the cylinders and symmetric diffusion $d_\perp$ in the perpendicular directions.
   \item Water that experiences unhindered diffusion, e.g., in the cerebro-spinal fluid (CSF), modeled by an isotropic Gaussian distribution of displacements with diffusion coefficient $d_{I}$.
 \end{enumerate}
-To reduce the number of free parameters in the model, $d_\perp$ is expressed by using the tortuosity formulation of Szafer et al\cite{szafer1995}.
+To reduce the number of free parameters in the model, $d_\perp$ is expressed by using the tortuosity formulation of \citet{Szafer:1995}.
 
 \section{Protocol optimisation}
-More complex models usually require DWI acquisitions with several different diffusion weightings at various diffusion times. For example Barazany et al.\cite{assaf08} perform approx. 900 different combinations of $0\le|G|\le 0.3mT$, $0\le \delta \le 0.03ms$ and $0\le \Delta \le 0.30ms$ to estimate the axon diameter distribution of live rat brain \cite{TODO}. This extensive sampling of the PGSE parameter space requires long acquisition times (between hours and days) and is infeasible for in-vivo clinical scanning. 
+\label{sec:protocol_optimisation}
+More complex models usually require DWI acquisitions with several different diffusion weightings at various diffusion times. For example \citet{Barazany:2009} perform approx. 900 different combinations of $0\le|G|\le 0.3mT$, $0\le \delta \le 0.03ms$ and $0\le \Delta \le 0.30ms$ to estimate the axon diameter distribution of live rat brain. This extensive sampling of the PGSE parameter space requires long acquisition times (between hours and days) and is infeasible for in-vivo clinical scanning. 
 
-The principle of Alexander's protocol optimisation framework\cite{alexander08} is to find the protocol $\mathcal{P}$, that allows the most accurate estimation of the tissue model parameters under given hardware and time constraints. The Fisher information matrix (FIM) provides a lower bound on the inverse covariance matrix of parameter estimates, i.e., the $\mathcal{P}$ that maximizes the FIM will maximize the precision of those estimates. He uses the d-optimality criterion \cite{obrien2003}, which is defined as the determinant of the inverse FIM of protocol $\mathcal{P}$ and tissue model parameters $\vec{\theta}$:
+The principle of the protocol optimisation framework of \cite{Alexander:2008} is to find the protocol $\mathcal{P}$, that allows the most accurate estimation of the tissue model parameters under given hardware and time constraints. The Fisher information matrix (FIM) provides a lower bound on the inverse covariance matrix of parameter estimates, i.e., the $\mathcal{P}$ that maximizes the FIM will maximize the precision of those estimates. He uses the d-optimality criterion \citep{OBrien:2003}, which is defined as the determinant of the inverse FIM of protocol $\mathcal{P}$ and tissue model parameters $\vec{\theta}$:
 \begin{equation}
-	D(\vec{\theta},\mathcal{P})=\det[(\mat{J}^T\Omega\mat{J})^{-1}]~, 
+	D(\vec{\theta},\mathcal{P})=\det[(\mat{J}^T\Omega\mat{J})^{-1}], 
 	\label{eq-optimality}
 \end{equation}
-where $\mat{J}$ is the $N\times \mbox{size}(\theta)$ Jacobian matrix with the $ij$st element $\partial S(\vec{g}_i,\delta_i,\Delta_i) / \partial \vec{\theta}_j$. In the original approach $\mat{\Omega}=diag\{1,\cdots,1\}$. Following \cite{alexander2008}, he uses a stochastic optimization algorithm \cite{zelinka2000} that returns $\mathcal{P}'$ with minimal $D$ among all possible $\mathcal{P}$ with respect to the given scanner hardware limits.
+where $\mat{J}$ is the $N\times \mbox{size}(\theta)$ Jacobian matrix with the $ij$st element $\partial S(\vec{g}_i,\delta_i,\Delta_i) / \partial \vec{\theta}_j$. In the original approach $\mat{\Omega}=diag\{1,\cdots,1\}$. Following \cite{Alexander:2008}, he uses a stochastic optimization algorithm \citep{Zelinka:2010} that returns $\mathcal{P}'$ with minimal $D$ among all possible $\mathcal{P}$ with respect to the given scanner hardware limits.
 
-The optimisation framework was used by Alexander et al \cite{alexander2009} to estimate the parameters of the simplified AxCaliber model, described in section \ref{sec:alexandersmodel} using a standard clinical Philips 3T scanner with maximum gradient strenght of $60mT/m$ and a maximum scan time of one hour (total number of acquisitions $N=360$). To achieve estimates independent of fibre orientation, the $N$ acquisition are divided in $M$ sets of different PGSE settings with gradient directions in each set being fixed and uniformly distributed over the sphere as in \cite{jones00}. They performed in-vivo scans of the corpus callosum and compared their axon diameter and density indices with high resolution scans of ex-vivo monkey brain and previously published histology studies. They found that the trends in diameter and density agreed with both ex-vivo scans and histology, although the axon diameter was over-estimated. This is mainly an effect of limited gradient strength as has been shown in \cite{dyrby2010}.   
+The optimisation framework was used in \citet{Alexander:2010} to estimate the parameters of the simplified AxCaliber model, described in section \ref{par:alexanders_model} using a standard clinical Philips 3T scanner with maximum gradient strenght of $60mT/m$ and a maximum scan time of one hour (total number of acquisitions $N=360$). To achieve estimates independent of fibre orientation, the $N$ acquisition are divided in $M$ sets of different PGSE settings with gradient directions in each set being fixed and uniformly distributed over the sphere as in \cite{Jones:2004a}. They performed in-vivo scans of the corpus callosum and compared their axon diameter and density indices with high resolution scans of ex-vivo monkey brain and previously published histology studies. They found that the trends in diameter and density agreed with both ex-vivo scans and histology, although the axon diameter was over-estimated. This is mainly an effect of limited gradient strength as has been shown in \cite{Dyrby:2010}.   
 \section{Summary}
 We have discussed ways of inferring microstructual information from DWI, ranging from simple methods such as ADC or DTI to sophisticated multi-compartment modelling. ADC and DTI are easy to obtain but the simplistic underlying assumptions of Gaussian DPDF is often inaccurate. As a result, different microstructural changed pathologies can have the same effect on those metrics and therefore cannot be told apart by DTI alone. At least in theory, QSI has the potential to overcome this limitation but requires both very strong diffusion gradients and long acquisition times. Furthermore, QSI derived parameters DPDF measures only relates indirectly to white matter structure and must be carefully interpreted if the SGP is violated.
 
