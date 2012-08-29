@@ -1,0 +1,22 @@
+\pgfplotsset{cutoff_vs_dti_barchart/.style={ybar,
+                                            bar width=20pt,
+                                            width=6cm,
+                                            height=6cm,
+                                            xtick={{1},{2},{3},{4},{5},{6}},
+                                            xticklabels={rLT,lLT,AT,PT,GM,SCA}, fill=red},
+                                            yticklabel style={/pgf/number format/.cd,
+                                                              fixed,
+                                                              fixed zerofill,
+                                                              precision=2}}
+\pgfplotsset{cutoff_vs_dti_barchart plot/.style={fill=olive!40!white,error bars/.cd, y dir=both, y explicit}}
+
+\begin{tikzpicture}
+\begin{axis}[cutoff_vs_dti_barchart, title=$ADC_{xy}$ $\times 10^{-9} m^2/s$, ymin=0]
+    \addplot+[cutoff_vs_dti_barchart plot] table[y=ADCX, y error=ADCXerr] {chapter5/figs/exp1_qspacevals.dat};
+\end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+\begin{axis}[cutoff_vs_dti_barchart, title=$ADC_{z}$ $\times 10^{-9} m^2/s$, ymin=0]
+    \addplot+[cutoff_vs_dti_barchart plot] table[y=ADCZ, y error=ADCZerr] {chapter5/figs/exp1_qspacevals.dat};
+\end{axis}
+\end{tikzpicture}

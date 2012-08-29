@@ -1,0 +1,503 @@
+%!TEX root = ../thesis.tex
+\chapter[QSI of the healthy cord (II)]{Q-space imaging of the healthy cervical spinal cord (II)}
+\label{chap:chap6 QSI in cord II}
+The aim of this study is to repeat the experiment in Chapter~\ref{chap:chap5 QSI in cord I} and improve on the several confounding factors in we identified the previous chapter. We carefully optimise the acquisition to achieve an increase in spatial resolution and signal-to-noise ratio of the axial \gls{DWI} measurements, and higher diffusion gradient strength as well as linear spacing of $q$-values.
+
+\section{Methods}
+\subsection*{Study design}
+We recruit 10 healthy volunteers (4 male/6 female) to be scanned on a 3T Philips Achieva 3TX (Philips Healthcare, Eindhoven). Four subjects are rescanned at a different time  to assess intra-subject reproducibility of the derived parameters.
+\subsection*{Data acquisition}
+To ensure consistent positioning of the \gls{DWI} columes among all scans, we acquire a structural scan of the whole cervical cord using a sagittal T2 weighted turbo-spin-echo sequence (voxel size=1x1x3 mm$^3$, FOV=256x247$mm^2$, TR=4000ms, TE=63ms, 2 averages). We then position the \gls{DWI} images based on the structural scan so that the centre of the acquisitions volume is aligned with the C2/C3 disc and the acquisition plane is parallel to the cord at this level.
+
+
+We use a cardiac gated \gls{DWI} acquisition with the following imaging parameters: voxel size=1x1x5 mm$^3$, FOV=64x64$mm^2$, TR=9RR, TE=129ms). To avoid aliasing artifacts from surrounding tissue we use a ZOOM sequence with outer-volume suppression as described in \citep{Wilm:2007}. We acquire 32 \gls{DWI} equally spaced $q$-values in two directions perpendicular (XY) and in one parallel (Z) direction with respect to the main {\gls{SC}} axis. To achieve the maximum possible gradient strength on our scanner we exploit the combination of parallel gradient amplifiers in our scanner, which each can generate a maximum \gls{gstr} of 62mT/m in the along the major axes of the scanner bore. Assuming axial symmetry of the axons along the long axis of the spinal cord, we modify the scanner software to drive multiple gradient amplifiers in two orthogonal directions perpendicular to major SC fibre direction (see Figure~\ref{fig:chapter5_exp2_overplus_cartoon} for illustration). This allows us to generate a guaranteed maximum \gls{gstr} of $\sqrt{2} * 62mT/m = 87mT/m$ in XY direction.  In Z direction we use a maximum \gls{gstr} of 62 $mT/m$. We use the same $q$-values in this experiment as described in \citet{Farrell:2008}. However the increase in \gls{gstr} allows us to reduce the gradient duration from 50ms to 11.4ms in XY direction (16ms in Z). The full protocol is given in Table~\ref{tab:chapter6 QSI protocol}.
+
+
+\begin{figure}
+  \pgfimage[width=\textwidth]{chapter5+6/figs/overplus_cartoon.pdf}
+  \caption{Cartoon of our implemented gradient strength modification method.}
+  \label{fig:chapter5_exp2_overplus_cartoon}
+\end{figure}
+
+\begin{table}
+      \centering
+     \caption{QSI protocol displaying: Gradient strength (G), q-value (q) and b-value (b) for each of the 32 DWI volumes.}
+     \subfloat[Protocol for X and Y direction]{
+         \begin{tabular}{rrr}
+            \addlinespace
+                \multicolumn{3}{l}{}\\
+            \toprule
+                G $[mT/m]$ & q $[cm^{-1}]$ & b $[s/mm^2]$ \\
+                \cmidrule(r){1-1}\cmidrule(lr){2-2}\cmidrule(l){3-3}
+                0.0   & 0.0   & 0 \\
+                5.8   & 66.2  & 22 \\
+                11.7  & 132.8 & 90 \\
+                17.5  & 198.6 & 200 \\
+                23.3  & 264.5 & 355 \\
+                29.1  & 330.3 & 554 \\
+                35.0  & 397.3 & 802 \\
+                40.8  & 463.1 & 1089 \\
+                46.6  & 528.9 & 1421 \\
+                52.5  & 595.9 & 1803 \\
+                58.3  & 661.7 & 2224 \\
+                64.1  & 727.5 & 2688 \\
+                69.9  & 793.4 & 3197 \\
+                75.8  & 860.3 & 3759 \\
+                81.6  & 926.2 & 4357 \\
+                87.4  & 992.0 & 4998 \\
+                \bottomrule
+            \end{tabular}%
+            \hspace{0.2cm}%
+            \begin{tabular}{rrr}
+            \addlinespace
+                \multicolumn{3}{l}{\textit{... continued}}\\
+            \toprule
+                G $[mT/m]$ & q $[cm^{-1}]$ & b $[s/mm^2]$ \\
+                \cmidrule(r){1-1}\cmidrule(lr){2-2}\cmidrule(l){3-3}
+                0.0  & 0.0  & 0 \\
+                2.9  & 33.0  & 6 \\
+                8.7  & 99.2  & 50 \\
+                14.6  & 165.7 & 139 \\
+                20.4  & 231.5 & 272 \\
+                26.2  & 297.4 & 449 \\
+                32.1  & 364.3 & 674 \\
+                37.9  & 430.2 & 940 \\
+                43.7  & 496.0 & 1250 \\
+                49.5  & 561.8 & 1603 \\
+                55.4  & 628.8 & 2008 \\
+                61.2  & 694.6 & 2451 \\
+                67    & 760.5 & 2937 \\
+                72.9  & 827.4 & 3477 \\
+                78.7  & 893.2 & 4053 \\
+                84.5  & 959.1 & 4672 \\
+                \bottomrule
+            \end{tabular}%
+     }\\[1cm]
+            \subfloat[Protocol for Z direction]{
+         \begin{tabular}{rrr}
+            \addlinespace
+                \multicolumn{3}{l}{}\\
+            \toprule
+                G $[mT/m]$ & q $[cm^{-1}]$ & b $[s/mm^2]$ \\
+                \cmidrule(r){1-1}\cmidrule(lr){2-2}\cmidrule(l){3-3}
+                0.0   & 0.0   & 0 \\
+                4.1   & 46.9  & 11 \\
+                8.3   & 94.2  & 45 \\
+                12.4  & 140.9 & 101 \\
+                16.5  & 187.6 & 179 \\
+                20.6  & 234.2 & 279 \\
+                24.8  & 281.7 & 403 \\
+                28.9  & 328.4 & 548 \\
+                33.0  & 375.1 & 715 \\
+                37.2  & 422.6 & 907 \\
+                41.3  & 469.3 & 1119 \\
+                45.5  & 516.0 & 1352 \\
+                49.6  & 562.7 & 1608 \\
+                53.8  & 610.2 & 1891 \\
+                57.9  & 656.9 & 2191 \\
+                62.0  & 703.5 & 2514 \\
+                \bottomrule
+            \end{tabular}%
+            \hspace{0.2cm}%
+            \begin{tabular}{rrr}
+            \addlinespace
+                \multicolumn{3}{l}{\textit{... continued}}\\
+            \toprule
+                G $[mT/m]$ & q $[cm^{-1}]$ & b $[s/mm^2]$ \\
+                \cmidrule(r){1-1}\cmidrule(lr){2-2}\cmidrule(l){3-3}
+                0.0   & 0.0   & 0 \\
+                2.1   & 23.4  & 3 \\
+                6.2   & 70.4  & 25 \\
+                10.4  & 117.5 & 70 \\
+                14.5  & 164.2 & 137 \\
+                18.6  & 210.9 & 226 \\
+                22.8  & 258.4 & 339 \\
+                26.9  & 305.1 & 473 \\
+                31.0  & 351.8 & 629 \\
+                35.1  & 398.5 & 806 \\
+                39.3  & 446.0 & 1010 \\
+                43.4  & 492.6 & 1233 \\
+                47.5  & 539.3 & 1477 \\
+                51.7  & 586.8 & 1749 \\
+                55.8  & 633.5 & 2038 \\
+                59.9  & 680.2 & 2350 \\
+                \bottomrule
+            \end{tabular}%
+     }
+     \label{tab:chapter6 QSI protocol}
+\end{table}
+
+
+
+\subsection*{Data processing \& analysis}
+We apply the same data processing pipeline as in the previous experiment (see Section~\ref{sec:chapter 5 exp1 methods}) with the exception of the linear regridding of acquired q-values, which is not necessary in this data set. We segment the whole cervical {\gls{SC}} and place \glspl{ROI} in the lateral columns and the anterior and posterior tracts between level C1/2 and C3 in all subjects (refer to Figure~\ref{fig:chapter5 exp1 ROIs} for an illustration of the drawn ROIs).
+
+\subsection*{Statistical processing} We derive the same statistics from this dataset as in the previous chapter. We present the absolute difference and relative difference in ADC and \gls{QSI} parameters over the defined \glspl{ROI} in the scan/re-scan cases. Further we show results of t-tests between different tracts for individual metrics and the multivariate Hotelling-T$^2$ test for combination of parameters. We also investigate voxel-wise correlations between the six metrics using Pearson correlation coefficient.
+
+
+\section{Results}
+\subsection*{Scan/Rescan reproducibility}
+\label{par:chapter6 reproducibility}
+Table~\ref{tab:chapter6 scan rescan} shows the intra-subject variability for ADC and QSI metrics in all five subjects. In both ADC and QSI and all \glspl{ROI}, the observed COV values are lower in Z compared to the XY direction. We also observe that QSI metrics are generally more reproducible than ADC values. The small relative change between scan/rescan values for QSI metrics suggest very good reproducibility in both XY (less than 10\%) and Z (less than 5\%), while the intra-subject variation of ADC values is considerably higher with 26\% in XY and 7\% in Z. All investigated \glspl{ROI} show similar scan/rescan reproducibility over all the studied ADC and QSI parameters.
+
+\begin{table}
+    \caption{Absolute and relative change (in percent) between scan and rescan of ADC and QSI in 4 healthy volunteers}
+    \footnotesize
+    \centering
+    \subfloat[]
+        {
+			\begin{minipage}{\linewidth}
+            \begin{tabular}{rrrrrrr}
+	            \addlinespace
+				\multicolumn{6}{c}{\textbf{ADC$_{xy}$ $\times$ $10^{-9}m^2/s$}}\\
+				\toprule
+	            subject& rLT   & lLT   & AT    & PT    & GM  \\
+                \midrule
+                1     & 0.02 (7.6\%) & 0.04 (11.5\%) & 0.01 (1.9\%) & 0.03 (9.5\%) & 0.01 (1.0\%) \\
+                2     & 0.03 (10.1\%) & 0.10 (34.9\%) & 0.07 (15.0\%) & 0.21 (47.3\%) & 0.01 (3.0\%) \\
+                3     & 0.02 (6.5\%) & 0.09 (24.4\%) & 0.09 (18.6\%) & 0.13 (37.5\%) & 0.08 (14.8\%) \\
+                4     & 0.11 (29.8\%) & 0.06 (16.4\%) & 0.17 (32.1\%) & 0.03 (10.4\%) & 0.03 (5.3\%) \\
+                      &       &       &       &       &         \\
+                mean  & 0.05 (13.5\%) & 0.07 (21.8\%) & 0.08 (16.9\%) & 0.10 (26.2\%) & 0.03 (6.0\%) \\
+                \bottomrule
+            \end{tabular}%
+			\\[0.5ex]
+            \begin{tabular}{rrrrrrr}
+				\addlinespace
+				\multicolumn{6}{c}{\textbf{ADC$_{z}$ $\times$ $10^{-9}m^2/s$}}\\
+				\toprule
+                subject & rLT   & lLT   & AT    & PT    & GM\\
+                \midrule
+                1     & 0.22 (10.9\%) & 0.07 (3.4\%) & 0.23 (12.3\%) & 0.24 (11.9\%) & 0.31 (19.9\%)\\
+                2     & 0.33 (17.4\%) & 0.12 (5.9\%) & 0.23 (14.0\%) & 0.32 (14.3\%) & 0.34 (17.6\%) \\
+                3     & 0.18 (9.3\%) & 0.01 (0.4\%) & 0.05 (2.6\%) & 0.03 (1.3\%) & 0.04 (2.1\%) \\
+                4     & 0.19 (9.5\%) & 0.05 (2.7\%) & 0.01 (0.6\%) & 0.12 (5.6\%) & 0.13 (7.4\%) \\
+                      &       &       &       &       &        \\
+                mean  & 0.23 (11.8\%) & 0.06 (3.1\%) & 0.13 (7.4\%) & 0.18 (8.3\%) & 0.21 (11.8\%) \\
+                \bottomrule
+            \end{tabular}%
+			\end{minipage}%
+			\label{tab:chapter6 scan rescan adc}
+        }\\
+        \subfloat[]
+        {
+			\begin{minipage}{\linewidth}
+            \begin{tabular}{rrrrrrr}
+            \addlinespace
+			\multicolumn{6}{c}{\textbf{P0$_{xy}$}}\\
+			\toprule
+            subject & rLT   & lLT   & AT    & PT    & GM    \\
+            \midrule
+            1     & 0.00 (0.0\%) & 0.04 (18.4\%) & 0.02 (8.6\%) & 0.00 (1.8\%) & 0.00 (2.5\%) \\
+            2     & 0.00 (0.0\%) & 0.03 (11.1\%) & 0.01 (4.4\%) & 0.03 (15.8\%) & 0.01 (3.2\%)\\
+            3     & 0.01 (5.7\%) & 0.00 (0.0\%) & 0.01 (4.7\%) & 0.02 (10.6\%) & 0.02 (10.9\%) \\
+            4     & 0.01 (3.8\%) & 0.01 (3.4\%) & 0.00 (2.2\%) & 0.00 (0.0\%) & 0.01 (4.0\%)  \\
+                  &       &       &       &       &        \\
+            mean  & 0.01 (0.0\%) & 0.02 (0.0\%) & 0.01 (0.0\%) & 0.01 (0.0\%) & 0.01 (0.0\%)  \\
+            \bottomrule
+            \end{tabular}%
+			\\[0.5ex]
+			\begin{tabular}{rrrrrrr}
+	        \addlinespace
+			\multicolumn{6}{c}{\textbf{FWHM$_{xy}$}}\\		
+	        \toprule
+            subject & rLT   & lLT   & AT    & PT    & GM    \\
+            \midrule
+            1     & 0.00 (0.0\%) & 3.00 (14.6\%) & 1.60 (7.1\%) & 0.40 (1.9\%) & 0.70 (2.5\%) \\
+            2     & 0.20 (0.9\%) & 1.90 (9.4\%) & 1.00 (4.0\%) & 3.20 (13.6\%) & 1.00 (4.7\%) \\
+            3     & 1.20 (5.9\%) & 0.30 (1.4\%) & 0.50 (2.1\%) & 2.00 (9.3\%) & 1.90 (7.6\%) \\
+            4     & 0.40 (1.8\%) & 0.10 (0.4\%) & 0.10 (0.4\%) & 0.40 (1.8\%) & 0.80 (3.1\%)  \\
+                  &       &       &       &       &       \\
+            mean  & 0.45 (2.2\%) & 1.33 (6.5\%) & 0.80 (3.4\%) & 1.50 (6.7\%) & 1.10 (4.5\%) \\
+            \bottomrule
+            \end{tabular}%
+			\\[0.5ex]
+            \begin{tabular}{rrrrrrr}
+            \addlinespace
+			\multicolumn{6}{c}{\textbf{P0$_{z}$}}\\
+			\toprule
+            subject & rLT   & lLT   & AT    & PT    & GM   \\
+            \midrule
+            1     & 0.01 (4.8\%) & 0.00 (2.9\%) & 0.01 (4.6\%) & 0.01 (7.5\%) & 0.01 (10.1\%)\\
+            2     & 0.01 (11.1\%) & 0.00 (2.0\%) & 0.01 (7.0\%) & 0.01 (5.8\%) & 0.01 (10.9\%) \\
+            3     & 0.01 (5.7\%) & 0.00 (1.2\%) & 0.00 (1.9\%) & 0.00 (0.4\%) & 0.00 (1.0\%)  \\
+            4     & 0.01 (5.9\%) & 0.00 (0.0\%) & 0.00 (0.9\%) & 0.00 (3.1\%) & 0.00 (3.6\%) \\
+                  &       &       &       &       &       \\
+            mean  & 0.01 (6.9\%) & 0.00 (1.5\%) & 0.00 (3.6\%) & 0.00 (4.2\%) & 0.01 (6.4\%)  \\
+            \bottomrule
+            \end{tabular}%
+			\\[0.5ex]
+            \begin{tabular}{rrrrrrr}
+	        \addlinespace
+			\multicolumn{6}{c}{\textbf{FWHM$_{z}$}}\\			
+	        \toprule
+            subject & rLT   & lLT   & AT    & PT    & GM  \\
+            \midrule
+            1     & 1.80 (3.0\%) & 1.00 (1.6\%) & 3.00 (5.3\%) & 5.40 (8.8\%) & 4.40 (8.4\%) \\
+            2     & 6.10 (10.4\%) & 0.80 (1.3\%) & 3.50 (6.4\%) & 4.30 (6.5\%) & 8.50 (14.1\%) \\
+            3     & 4.20 (7.1\%) & 1.20 (1.8\%) & 1.60 (2.7\%) & 0.40 (0.6\%) & 1.60 (2.6\%) \\
+            4     & 3.50 (5.6\%) & 1.00 (1.7\%) & 0.50 (0.9\%) & 0.00 (0.0\%) & 1.60 (2.8\%) \\
+                  &       &       &       &       &   & \\
+            mean  & 3.90 (6.5\%) & 1.00 (1.6\%) & 2.15 (3.8\%) & 2.53 (4.0\%) & 4.03 (7.0\%) \\
+            \bottomrule
+            \end{tabular}%
+			\end{minipage}
+			\label{tab:chapter6 scan rescan qsi}
+        }
+\label{tab:chapter6 scan rescan}
+\end{table}
+\subsection*{Differences between tract-specific ROI measurements}
+\label{par:chapter6 tract specific}
+\paragraph{Comparing XY and Z parameters }
+Figure~\ref{fig:chapter6 ADC and QSI vals} shows mean and standard deviation of both \gls{ADC} and \gls{QSI} values over all 10 healthy subjects in each \gls{ROI}. In all ROIs, ADC$_{xy}$ values are significantly lower than ADC$_{z}$. Similarly, in XY we also observe small FWHM and larger P0 compared to Z parameters. Both ADC and QSI findings support our assumption of restricted diffusion predominantly in XY direction.
+
+\paragraph{Difference between WM and GM }
+Table~\ref{tab:chapter6 single ttest} presents the results of pairwise t-tests between all GM and WM \glspl{ROI}, testing for for statistically significant differences in individual ADC and QSI metrics. The most significant differences are found between both the lateral tracts and GM region, as well as the posterior tract and GM. In both ADC and QSI, the XY measurements distinguish WM and GM regions better than the Z parameters. All the XY parameters, i.e. ADC$_{xy}$, P0$_{xy}$ and FWHM$_{xy}$, show similar p-values in detecting the differences between GM and the WM regions. In contrast, neither of the parameters is able to discriminate AT from GM.
+
+\paragraph{Differences between WM regions}
+No statistical difference is observed between left and right LT in neither ADC or QSI values. However, we detect differences between the PT and both LTs with ADC and QSI (p<0.05). The $P-values$ between PT and LTs are consistently smaller in P0$_{xy}$ and FWHM$_{xy}$ compared to ADC$_{xy}$. None of these tracts show significant differences in any of the XY metrics. AT appears different from all the other WM regions with  most ADC/QSI parameters in XY and Z.
+
+\paragraph*{Multi-variate differences between tract-specific ROI measurements }
+Table~\ref{tab:chapter6 hotelling} shows the results of the multivariate test for statistical differences between \glspl{ROI} for various combinations of ADC$_{xy}$, ADC$_{z}$, and P0 and FWHM metrics in XY and Z. As expected from single parameter t-test results, either tested combination is sensitive to differences between WM (except AT) and GM. However, including any of the QSI$_z$ parameters noticably reduced the significance of the found differences.
+
+Between WM regions, the combination of ADC$_{xy}$ and ADC$_{z}$) good discrimination between the left and right LTs and the PT. In contrast, neither combinations of QSI metrics in XY is significantly different between any pair of WM regions. However, the combined QSI$_z$ metrics (P0$_z$,FWHM$_z$) revealed differences between PT and rLT and PT and AT that are not found in XY. The full combination of both QSI$_{xy}$ and QSI$_{z}$ revealed the least differences between any tracts.
+
+
+\begin{figure}
+      \centering
+      \subfloat[ADC$_{xy}$\& ADC$_{z}$]
+	  {
+		  \begin{minipage}{\linewidth}
+			  \input{chapter5+6/figs/exp2_adcvals.tex}
+		  \end{minipage}%
+	      \label{fig:chapter6 ADC vals}
+	  }
+	  \\
+	  \subfloat[QSI$_{xy}$\& QSI$_{z}$ metrics]
+	  {
+		  \begin{minipage}{\linewidth}
+	      	\input{chapter5+6/figs/exp2_qspacevals.tex}
+		  \end{minipage}%
+	  }
+	  \caption{Mean and standard deviation of ADC and QSI parameters over all 10 healthy controls for each SC tracts.}
+      \label{fig:chapter6 ADC and QSI vals}
+\end{figure}%
+
+\begin{table}
+    \footnotesize
+    \centering
+    \caption{Pair-wise t-test results between SC tracts in ADC and QSI parameters. Statiscally different values are marked \textbf{bold} for p<0.05, \textbf{\textit{bold-italic}} for p<0.01.}
+    \subfloat[ADC$_{xy}$\& ADC$_{z}$]{
+	  	 \begin{minipage}{\linewidth}
+				\begin{tabular}{rrrrr}
+		            \addlinespace
+					\multicolumn{5}{c}{\textbf{ADC$_{xy}$}}\\
+		            \toprule
+		                  & lLT   & AT    & PT    & GM \\
+		            \midrule
+		            rLT   & 0.51  & \textbf{\emph{<0.01}}  & 0.53  & \textbf{\emph{<0.01}} \\
+		            lLT   &       & \textbf{\emph{<0.01}}  & 0.60  & \textbf{\emph{<0.01}} \\
+		            AT    &       &       & \textbf{0.03}  & 0.73 \\
+		            PT    &       &       &       & \textbf{0.02} \\
+		            \bottomrule
+	            \end{tabular}%
+				\hspace{0.5cm}
+        	  \begin{tabular}{rrrrr}
+	        	\addlinespace
+				\multicolumn{5}{c}{\textbf{ADC$_{z}$}}\\
+	        	\toprule
+	              & lLT   & AT    & PT    & GM \\
+	        	\midrule
+		        rLT   & 0.83  & 0.06  & \textbf{0.03}  & \textbf{0.02} \\
+		        lLT   &       & \textbf{0.01}  & 0.06  & \textbf{\emph{<0.01}} \\
+		        AT    &       &       & \textbf{\emph{<0.01}}  & 0.44 \\
+		        PT    &       &       &       & \textbf{\emph{<0.01}} \\
+		        \bottomrule
+	        \end{tabular}%
+	\end{minipage}		
+	\label{tab:chap5exp2_adc single ttest}%
+    }\\
+	\subfloat[QSI$_{xy}$\& QSI$_{z}$ metrics]
+	{
+	   \begin{minipage}{\linewidth}
+	        \begin{tabular}{rrrrr}
+            \addlinespace
+			\multicolumn{5}{c}{\textbf{P0$_{xy}$}}\\
+			\toprule	
+	              & lLT   & AT    & PT    & GM \\
+		    \midrule
+	        rLT   & 0.96  & \textbf{\emph{<0.01}}  & 0.82  & \textbf{\emph{<0.01}} \\
+	        lLT   &       & \textbf{\emph{<0.01}}  & 0.83  & \textbf{\emph{<0.01}} \\
+	        AT    &       &       & \textbf{\emph{<0.01}}  & 0.36 \\
+	        PT    &       &       &       & \textbf{0.01} \\
+	        \bottomrule
+	        \end{tabular}%
+			\hspace{0.5cm}
+	        \begin{tabular}{rrrrr}
+		        \addlinespace
+				\multicolumn{5}{c}{\textbf{FWHM$_{xy}$}}\\
+		        \toprule
+		              & lLT   & AT    & PT    & GM \\
+		        \midrule
+		        rLT   & 0.50  & \textbf{\emph{<0.01}}  & 0.58  & \textbf{\emph{<0.01}} \\
+		        lLT   &       & \textbf{\emph{<0.01}}  & 0.91  & \textbf{\emph{<0.01}} \\
+		        AT    &       &       & \textbf{\emph{<0.01}}  & 0.24 \\
+		        PT    &       &       &       & \textbf{\emph{<0.01}} \\
+		        \bottomrule
+		        \end{tabular}%
+				\\[0.5ex]
+		        \begin{tabular}{rrrrr}
+		        \addlinespace
+				\multicolumn{5}{c}{\textbf{P0$_{z}$}}\\
+				\toprule
+		              & lLT   & AT    & PT    & GM \\
+		        \midrule
+		        rLT   & 0.93  & 0.06  & \textbf{0.02}  & 0.05 \\
+		        lLT   &       & \textbf{\emph{<0.01}}  & 0.05  & \textbf{0.01} \\
+		        AT    &       &       & \textbf{\emph{<0.01}}  & 0.74 \\
+		        PT    &       &       &       & \textbf{\emph{<0.01}} \\
+		        \bottomrule
+		        \end{tabular}%
+                \hspace{0.5cm}
+		        \begin{tabular}{rrrrr}
+		        \addlinespace
+				\multicolumn{5}{c}{\textbf{FWHM$_{z}$}}\\
+				\toprule
+		              & lLT   & AT    & PT    & GM \\
+		        \midrule
+		        rLT   & 0.46  & 0.12  & \textbf{\emph{<0.01}}  & 0.19 \\
+		        lLT   &       & \textbf{0.01}  & \textbf{0.03}  & \textbf{0.04} \\
+		        AT    &       &       & \textbf{\emph{<0.01}}  & 0.85 \\
+		        PT    &       &       &       & \textbf{\emph{<0.01}} \\
+		        \bottomrule
+		        \end{tabular}%
+	 \end{minipage}%
+	 \label{tab:chap5exp2_qsi single ttest}%			
+  }
+  \label{tab:chapter6 single ttest}%			
+  \end{table}
+
+\begin{table}
+  \centering
+  \caption{Hotelling's-T$^2$ significance of pair-wise tract-specific differences ADC$_{xy}$+ADC$_{z}$ (confidence interval: 95\%)}
+   \subfloat[ADC$_{xy}$,ADC$_{z}$]
+   {
+        \begin{tabular}{rrrrr}
+        \addlinespace
+        \toprule
+              & lLT   & AT    & PT    & GM \\
+        \midrule
+        rLT   & 0.93  & \textbf{0.04}  & \textbf{0.03}  & \textbf{\emph{<0.01}} \\
+        lLT   &       & 0.09  & 0.22  & \textbf{\emph{<0.01}} \\
+        AT    &       &       & \textbf{\emph{<0.01}}  & 0.81 \\
+        PT    &       &       &       & \textbf{\emph{<0.01}} \\
+        \bottomrule
+        \end{tabular}%
+  \label{tab:chap5exp2_adc hotelling}%
+  }\hspace{0.2cm}
+  \subfloat[Perpendicular QSI (P0$_{xy}$,FWHM$_{xy}$)]
+  {
+        \begin{tabular}{rrrrr}
+        \addlinespace
+        \toprule
+              & lLT   & AT    & PT    & GM \\
+        \midrule
+        rLT   & 0.44  & 0.10  & 0.60  & \textbf{\emph{<0.01}} \\
+        lLT   &       & 0.19  & 0.92  & \textbf{0.01} \\
+        AT    &       &       & 0.23  & 0.43 \\
+        PT    &       &       &       & \textbf{0.01} \\
+        \bottomrule
+        \end{tabular}%
+      \label{tab:chap5exp2_qsix hotelling}%
+  }\\
+  \subfloat[Parallel QSI parameters (P0$_{z}$,FWHM$_{z}$)]
+  {
+        \begin{tabular}{rrrrr}
+        \addlinespace
+        \toprule
+              & lLT   & AT    & PT    & GM \\
+        \midrule
+        rLT   & 0.57  & 0.08  & \textbf{0.02}  & \textbf{0.04} \\
+        lLT   &       & 0.22  & 0.32  & 0.19 \\
+        AT    &       &       & \textbf{\emph{<0.01}}  & 0.63 \\
+        PT    &       &       &       & \textbf{0.01} \\
+        \bottomrule
+        \end{tabular}%
+        \label{tab:chap5exp2_qsiz hotelling}%
+  }\hspace{0.2cm}
+  \subfloat[Both perpendicular and parallel QSI (P0$_{xy}$,FWHM$_{xy}$,P0$_{z}$,FWHM$_{z}$)]
+  {
+        \begin{tabular}{rrrrr}
+        \addlinespace
+        \toprule
+              & lLT   & AT    & PT    & GM \\
+        \midrule
+        rLT   & 0.71  & 0.22  & 0.17  & \textbf{\textbf{0.02}} \\
+        lLT   &       & 0.45  & 0.69  & 0.08 \\
+        AT    &       &       & \textbf{0.03}  & 0.66 \\
+        PT    &       &       &       &\textbf{0.02} \\
+        \bottomrule
+        \end{tabular}%
+    \label{tab:chap5exp2_qsiall hotelling}%
+  }
+  \label{tab:chapter6 hotelling}%
+\end{table}%
+
+\subsection*{Correlation between ADC and QSI}
+\label{par:chapter5 exp2 correlation}
+Table~\ref{tab:chapter5 exp2 correlations} shows the Pearson coefficient and p-value for voxel-wise correlations between the investigated ADC and QSI metrics. We observe a strong correspondence (p<0.01) between ADC measurements and P0 and FWMH QSI metrics in X as well as FWHM in Z. P0$_z$ is the only parameter that does not correlate with any of the other metrics, suggesting additional information that is neither captured in the ADC$_z$ value nor captured with any of the XY measurements.%
+
+\begin{table}
+ \tabcaption{Pearson-correlation coefficient and significance between all ADC and QSI metrics. P-values $<0.01$ are displayed as \textbf{\textit{bold-italic}}.}
+ \centering
+    \begin{tabular}{rrrrrrrr}
+    \addlinespace
+    \toprule
+              &       & ADC$_{xy}$  & ADC$_{z}$  & P0$_{xy}$   & FWHM$_{xy}$   & P0$_{z}$   & FWHM$_{z}$ \\
+    \midrule
+    \multicolumn{1}{c}{\multirow{2}[0]{*}{ADC$_{xy}$}} & rho   & 1.00  & 0.43  & -0.15 & -0.25 & -0.01 & 0.15 \\
+    \multicolumn{1}{c}{} & \textit{p} & \textit{} & \textbf{\textit{<0.01}} & \textbf{\textit{<0.01}} & \textbf{\textit{<0.01}} & \textit{0.60} & \textbf{\textit{<0.01}} \\
+    \multicolumn{1}{c}{\multirow{2}[0]{*}{ADC$_{z}$}} & rho   & 0.43  & 1.00  & -0.46 & -0.30 & 0.00  & 0.21 \\
+    \multicolumn{1}{c}{} & \textit{p} & \textbf{\textit{<0.01}} & \textit{} & \textbf{\textit{<0.01}} & \textbf{\textit{<0.01}} & \textit{0.85} & \textbf{\textit{<0.01}} \\
+    \multicolumn{1}{c}{\multirow{2}[0]{*}{P0$_{xy}$}} & rho   & -0.15 & -0.46 & 1.00  & -0.05 & 0.01  & 0.16 \\
+    \multicolumn{1}{c}{} & \textit{p} & \textbf{\textit{<0.01}} & \textbf{\textit{<0.01}} & \textit{} & \textbf{\textit{<0.01}} & \textit{0.55} & \textbf{\textit{<0.01}} \\
+    \multicolumn{1}{c}{\multirow{2}[0]{*}{FWHM$_{xy}$}} & rho   & -0.25 & -0.30 & -0.05 & 1.00  & 0.00  & -0.80 \\
+    \multicolumn{1}{c}{} & \textit{p} & \textbf{\textit{<0.01}} & \textbf{\textit{<0.01}} & \textbf{\textit{<0.01}} & \textit{} & \textit{0.92} & \textbf{\textit{<0.01}} \\
+    \multicolumn{1}{c}{\multirow{2}[0]{*}{P0$_{z}$}} & rho   & -0.01 & 0.00  & 0.01  & 0.00  & 1.00  & 0.00 \\
+    \multicolumn{1}{c}{} & \textit{p} & \textit{0.60} & \textit{0.85} & \textit{0.55} & \textit{0.92} & \textit{} & \textit{0.84} \\
+    \multicolumn{1}{c}{\multirow{2}[0]{*}{FWHM$_{z}$}} & rho   & 0.15  & 0.21  & 0.16  & -0.80 & 0.00  & 1.00 \\
+    \multicolumn{1}{c}{} & \textit{p} & \textbf{\textit{<0.01}} & \textbf{\textit{<0.01}} & \textbf{\textit{<0.01}} & \textbf{\textit{<0.01}} & \textit{0.84} & \textit{} \\
+    \bottomrule
+    \end{tabular}%
+  \label{tab:chapter5 exp2 correlations}
+\end{table}
+\section{Discussion}
+\subsection*{Reproducibility}
+ We find overall very good reproducibility of our measurements in both XY and Z. We attribute this to the combination of (i) the small FOV imaging protocol (ii) careful positioning  (iii) strong gradient hardware. ADC values are considerably less reproducible than QSI metrics. To some degree this can be explained by the fact that only a subset of the full QSI dataset was used to compute the ADC values. On the other hand, the ADC model is very simple and the number of datapoints we used in this study for ADC fitting should suffice to allow a reliable fit of the mono-exponential decay curve. We assume therefore that the improvement we find in intra-subject reproducibility of QSI over ADC are unlikely just an effect of number of acquisitions alone but rather a feature of the QSI method.
+
+\subsection*{Discrimination of tracts in healthy spinal cord}
+\paragraph{} Both ADC and QSI parameters allow some degree of discrimination between the different ROIs we investigated in this study. In both metrics, GM is most differentiated from all WM regions (except AT). The AT region presents values very similar to those found in the GM region. This can partly be explained by the largest standard deviation of all investigated \glspl{ROI}. However, it must be noted that the AT is the most difficult \gls{ROI} to locate due to it's small size. It's size and location makes it hard to delineate from GM in the studied part of the \gls{SC}. Furthermore, both the AT and GM suffer most from \gls{CSF} contribution from the anterior median fissure (in case of the AT) and the spinal canal (in case of GM). Therefore the resulting measurements in this region might rather be caused by partial volume effects with \gls{CSF} and GM (as shown in Chapter~\ref{chap:chap5 QSI in cord I}) than reflect a difference in underlying microstructure of the WM in the AT.
+
+
+\paragraph{} We did not observe any differences between WM regions in the XY direction with neither ADC nor QSI measurements. This is likely an effect of the relatively low gradient strength we used here,  which does not allow to distinguish the small axon diameters we expect to find in WM tracts. Considering the relatively long gradient pulse duration of $\delta=11ms$ used in this study, the centre-of-mass effect described in Section~\ref{XX} would cause similar contrast for axons smaller than $5\mu m$ (TODO: check!). A further indication of this is the strong correlations between ADC and QSI parameters, which might suggest that the contrast might be governed by the hindered diffusion compartment rather than by differences in restriction.
+
+Interestingly, we found ADC and QSI parameters in Z to be more sensitive to differences between lateral and and posterior tracts. Unlike, XY measurements, diffusion along the long axis of the SC is considered to be predominantly hindered. Henceforth, the observed differences are less likely attributed to differences in axon diameter distributions. Instead, they might inform about other microstructural properties such as the axon packing density or dispersion, which differ between the PT and the LTs. No significant correlation was found between QSI in XY and Z, suggesting that QSI$_z$ provides valuable information on these microstructural properties, which is complementary to the XY measurements.
+
+Finally, we didn't find any advantage of combining multiple QSI parameters in the multi-variate Hotelling-T$^2$ tests. We suggest this is caused by the redundant information provided by P0 and FWHM parameters describing the dPDF in this clinical setup. This is also supported by the correlations we find between P0 and FWHM in both XY and Z.
+
+\subsection*{Comparision to previous study}
+The improved study design and image protocol leads to a much reduced variation in both ADC and QSI metrics compared to the previous study (previously variations were found >40\% in XY and >16\% in Z). Using the better image volume positioning method, we are also more confident in measuring ADC and QSI perpendicular and parallel to the major SC nerve fibres.
+
+Both studies identified significant differences between GM and WM regions. The major difference between the two experiment is the fact that in Experiment 1 we were able to find statistical differences in XY metrics, which we couldn't reproduce in this second study. However, it should be noted that some of those XY findings were suspicious, e.g. showed differences between left and right lateral tract. Although we find less discrimination in XY here, we think the result from this study are more believable. The discrepancies are likely artefactual and stem from different hardware and study designs. Nevertheless, study size is small for both experiments and a larger cohort would be needed to verify the results.
+ 
+ 
+
+\section{Conclusion}
+\label{par:chapter5 exp2 correlation}
+We have performed two experiments to investigate reproducibility of QSI metrics. We compared QSI metrics with conventional ADC analysis and investigated their ability to discriminate individual WM and GM tracts. For the first time, we also report QSI parameters measured parallel to the \gls{SC} long axis. In both studies we found better intra- and inter-subject reproducibility in QSI compared to ADC in all investigates \glspl{ROI}. Furthermore, both QSI and ADC did discriminate GM and WM as well as between some WM \glspl{ROI}, although QSI metrics did not increase the differences significantly. Furthermore, we found that measurements in Z helped to distinguish structural differences of WM tracts with more accuracy, and complemented ADC and QSI values in XY direction.
+
+
+The encouraging initial results described in Chapter\ref{chap:chap5 QSI in cord I} motivated this second study, in which we tackled some of the major limiting factors of the first Experiments, in particular low gradient strength and low spatial resolution. We confirmed the general trends found in intra- and inter-subject reproducibility, although overall reproducibility was reduced in all metrics as an effect of the optimised imaging protocol. However, we were able to confirm in this experiment that ADC and QSI metrics in Z provides useful information about the microstructure parallel to the principle fibre direction. The low standard deviation of QSI in this study makes our QSI protocol attractive for clinical studies, as it would help reducing sample numbers to detect differences e.g. in patient cohort as in \citep{Farrell:2008}.
+
+
+

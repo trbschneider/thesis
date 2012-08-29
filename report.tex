@@ -1,85 +1,1 @@
-\documentclass[a4paper]{scrreprt} 
-\usepackage{amssymb}
-\usepackage{amsmath}
-\usepackage{multirow}
-
-\usepackage{pgf}
-\usepackage{pgfplots}
-\usepackage{ctable}
-\usepackage{subfig} 
-\usepackage{wrapfig}
-
-\usepackage{hyperref}
-
-\usepackage{array}
-\usepackage{booktabs}
-
-\usepackage{polyglossia}
-\setdefaultlanguage[variant=british]{english}
-
-\usepackage{natbib}
-
-\usepackage{xltxtra}
-\usepackage{titlesec}
-\newfontfamily\titlefont[BoldFont={* Bold}, ItalicFont={* Cursive}, Contextuals={WordInitial,WordFinal}]{Electra LT Std}
-
-\usepackage{glossaries}
-
-\setcapindent{1em}
-\renewcommand{\capfont}{\itshape\titlefont}
-\renewcommand{\caplabelfont}{\bfseries\titlefont}
-
-
-\titleformat{\chapter}{\huge\bfseries\titlefont}{\raggedleft\fontsize{55}{72}\selectfont}{0em}{}
-\titleformat{\section}{\Large\bfseries\titlefont}{\thesection}{1em}{}
-\titleformat{\subsection}{\large\bfseries\titlefont}{\thesubsection}{1em}{}
-\titleformat{\subsubsection}{\large\bfseries\titlefont}{\thesubsubsection}{1em}{}
-\titleformat{\paragraph}{\bfseries\titlefont}{\thesubsubsection}{1em}{}
-
-
-
-\setmainfont[Mapping=tex-text]{Bembo Std}
-\setmathrm{Optima}
-\setboldmathrm{Optima Bold}
-
-\newcommand{\SFshort}{SF$_{90}$}
-\newcommand{\SFlong}{SF$_{360}$}
-\newcommand{\OIlong}{OI$_{360}$}
-
-
-
-\newenvironment{tikzfigures}%
-{\noindent\ignorespaces}%
-{\par\noindent%
-\ignorespacesafterend}
-
-\newcommand{\mat}[1]{\ensuremath{\mathbf{#1}}}
-
-\include{acronmys}
-                                                      
-
-\begin{document} 
-\title{Spinal Cord Diffusion Imaging: Challenging Characterization and Prognostic Value} 
-\date{\today} 
-\author{Torben Schneider} 
-\maketitle 
-\chapter{Introduction}
-\label{chap:introduction}
-\input{chap1.tex}
-\chapter{Background}
-\label{chap:background}   
-\input{chap2.tex} 
-\chapter{Project Progress}
-\label{chap:projects}
-\input{chap3-1.tex} 
-\input{chap3-2.tex}
-\input{chap3-3.tex}
-\input{chap3-4.tex}
-\chapter{Discussion and Future Work}
-\label{chap:discussion}
-\input{chap4.tex}
-
-\bibliographystyle{apa-good}
-\bibliography{PhD}
-
-\end{document} 
+\documentclass[a4paper]{scrreprt} \usepackage{amssymb}\usepackage{amsmath}\usepackage{multirow}\usepackage{pgf}\usepackage{pgfplots}\usepackage{ctable}\usepackage{subfig} \usepackage{wrapfig}\usepackage{hyperref}\usepackage{array}\usepackage{booktabs} \usepackage{colortbl}\usepackage{polyglossia}\setdefaultlanguage[variant=british]{english}\usepackage{natbib}\usepackage{xltxtra}\usepackage{titlesec}\newfontfamily\titlefont[BoldFont={* Bold}, ItalicFont={* Cursive}, Contextuals={WordInitial,WordFinal}]{Electra LT Std}\usepackage{glossaries}\setcapindent{1em}\renewcommand{\capfont}{\itshape\titlefont}\renewcommand{\caplabelfont}{\bfseries\titlefont}\titleformat{\chapter}{\huge\bfseries\titlefont}{\raggedleft\fontsize{55}{72}\selectfont}{0em}{}\titleformat{\section}{\Large\bfseries\titlefont}{\thesection}{1em}{}\titleformat{\subsection}{\large\bfseries\titlefont}{\thesubsection}{1em}{}\titleformat{\subsubsection}{\large\bfseries\titlefont}{\thesubsubsection}{1em}{}\titleformat{\paragraph}{\bfseries\titlefont}{\thesubsubsection}{1em}{}\setmainfont[Mapping=tex-text]{Bembo Std}\setmathrm{Optima}\setboldmathrm{Optima Bold}\newcommand{\SFshort}{SF$_{90}$}\newcommand{\SFlong}{SF$_{360}$}\newcommand{\OIlong}{OI$_{360}$}\newenvironment{tikzfigures}%{\noindent\ignorespaces}%{\par\noindent%\ignorespacesafterend}\newcommand{\mat}[1]{\ensuremath{\mathbf{#1}}}%%%% glossary %%%\input{acronyms.tex}\makeglossaries%%%%%%%%%%%%%%%%%                                                       \begin{document}\begin{titlepage}  \vspace*{5cm}  \centering{  	\huge{\titlefont\bfseries Spinal Cord Diffusion Imaging: Challenging Characterization and Prognostic Value}\\[2ex]  	\bigskip  	\huge{\titlefont Torben Schneider}\\[4ex]  	\large{\titlefont \today}\\  	\vspace\fill  	Word count: 10095  }\end{titlepage} %\title{} %\date{28th January 2011} %\author{Torben Schneider} \setcounter{tocdepth}{1}\tableofcontents%\chapter{Introduction}%\label{chap:introduction}%\input{chap1.tex}%\chapter{Background}%\label{chap:background}%\input{chap2.tex}%\chapter{Project Progress}%This chapter describes in detail the progress of the four experiments that were motivated in Chapter~\ref{chap:introduction}.%\label{chap:projects}%\input{chap3-1.tex}%\input{chap3-2.tex}\input{chap3-3.tex}%\input{chap3-4.tex}%\chapter{Discussion and Future Work}%\label{chap:discussion}%\input{chap4.tex}% % %\printglossaries% \bibliographystyle{apa-good}\bibliography{PhD}\end{document} 
