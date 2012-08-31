@@ -1,0 +1,49 @@
+\begin{tikzpicture}
+	\begin{axis}[xmin=0,xmax=5,ymin=0, ymax=15,
+		xtick={1,2,3,4,5},xticklabels={$1\mu m$,$2\mu m$,$5\mu m$,$10\mu m$},
+        width=0.9\textwidth, height=0.6\textwidth, xlabel={True axon radius}, ylabel={Fitted axon radius $[\mu m]$}]
+
+
+		%#1: center, #2: median, #3: 1/4 quartile, #4: 3/4 quartile, #5: -1.5IQ, #6: +1.5IQ
+
+        %\addlegendentry{OInv};
+        %\addlegendentry{OI};
+        %\addlegendentry{DO};
+        %\addlegendentry{FD};
+
+
+        \boxplot{3.70}{9.770}{9.062}{10.124}{0.129}{10.981}{red}
+        \boxplot{0.70}{1.522}{0.227}{2.347}{0.100}{4.754}{red}
+        \boxplot{1.70}{2.008}{0.658}{2.542}{0.101}{4.904}{red}
+        \boxplot{2.70}{4.970}{4.827}{5.076}{0.196}{5.980}{red}
+        \boxplot{3.90}{9.754}{8.717}{10.122}{0.124}{10.777}{green}
+        \boxplot{0.90}{1.579}{0.223}{2.350}{0.100}{4.919}{green}
+        \boxplot{1.90}{2.063}{0.715}{2.569}{0.100}{4.910}{green}
+        \boxplot{2.90}{4.966}{4.762}{5.074}{0.115}{5.970}{green}
+        \boxplot{4.10}{9.762}{6.342}{10.088}{0.760}{19.144}{blue}
+        \boxplot{1.10}{1.281}{0.206}{1.985}{0.100}{4.801}{blue}
+        \boxplot{2.10}{2.025}{1.304}{2.334}{0.101}{4.955}{blue}
+        \boxplot{3.10}{4.992}{4.926}{5.044}{0.186}{6.266}{blue}
+        \boxplot{4.30}{9.856}{9.143}{10.122}{0.272}{12.076}{cyan}
+        \boxplot{1.30}{1.144}{0.215}{1.977}{0.100}{4.962}{cyan}
+        \boxplot{2.30}{2.040}{1.381}{2.354}{0.100}{4.965}{cyan}
+        \boxplot{3.30}{4.992}{4.918}{5.044}{0.119}{6.589}{cyan}
+
+
+
+
+
+
+        \addplot+[only marks, mark=text, text mark={*}, mark options={scale=0.5},draw opacity=50] table[x index=0,y index=1] {figs/OInv_60mT_outliers.dat};
+        \addplot+[ only marks, mark=text, text mark={*}, mark options={scale=0.5},green, draw opacity=50] table[x index=0,y index=1] {figs/OI_60mT_outliers.dat};
+        \addplot+[ only marks, mark=text, text mark={*}, mark options={scale=0.5},blue, draw opacity=50] table[x index=0,y index=1] {figs/DO_60mT_outliers.dat};
+        \addplot+[ only marks, mark=text, text mark={*}, mark options={scale=0.5},cyan, draw opacity=50] table[x index=0,y index=1] {figs/FD_60mT_outliers.dat};
+
+
+        \addplot[black, dashed] coordinates{(0.5,1) (1.5,1)};
+        \addplot[black, dashed] coordinates{(1.5,2) (2.5,2)};
+        \addplot[black, dashed] coordinates{(2.5,5) (3.5,5)};
+        \addplot[black, dashed] coordinates{(3.5,10) (4.5,10)};
+
+	\end{axis}
+\end{tikzpicture}

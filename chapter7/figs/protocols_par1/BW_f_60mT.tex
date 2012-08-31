@@ -1,0 +1,31 @@
+\begin{tikzpicture}
+	\begin{axis}[xmin=0,xmax=5,ymin=0, ymax=1,
+		xtick={1,2,3,4,5},xticklabels={$1$,$2$,$5$,$10$},
+        width=0.9\textwidth]       
+		%#1: center, #2: median, #3: 1/4 quartile, #4: 3/4 quartile, #5: -1.5IQ, #6: +1.5IQ
+\boxplot{3.70}{0.443}{0.331}{0.764}{0.102}{0.967}{1}
+\boxplot{0.70}{0.721}{0.705}{0.748}{0.688}{0.865}{1}
+\boxplot{1.70}{0.711}{0.695}{0.734}{0.677}{0.840}{1}
+\boxplot{2.70}{0.715}{0.675}{0.812}{0.566}{0.905}{1}
+\boxplot{3.90}{0.666}{0.508}{0.715}{0.296}{0.780}{2}
+\boxplot{0.90}{0.704}{0.698}{0.711}{0.687}{0.844}{2}
+\boxplot{1.90}{0.702}{0.696}{0.710}{0.682}{0.846}{2}
+\boxplot{2.90}{0.699}{0.682}{0.708}{0.523}{0.762}{2}
+\boxplot{4.10}{0.405}{0.135}{0.779}{0.009}{0.947}{3}
+\boxplot{1.10}{0.703}{0.697}{0.713}{0.665}{0.851}{3}
+\boxplot{2.10}{0.700}{0.689}{0.711}{0.594}{0.836}{3}
+\boxplot{3.10}{0.692}{0.389}{0.712}{0.053}{0.970}{3}
+\boxplot{4.30}{0.364}{0.159}{0.753}{0.013}{0.926}{4}
+\boxplot{1.30}{0.702}{0.697}{0.713}{0.673}{0.847}{4}
+\boxplot{2.30}{0.700}{0.691}{0.712}{0.631}{0.876}{4}
+\boxplot{3.30}{0.692}{0.545}{0.708}{0.126}{0.828}{4}
+
+%\addplot+[only marks, mark=text, text mark={*}, mark options={scale=0.5},red!30] table[x index=0,y index=1] {chapter7/figs/OInv_outliers_f.dat};
+%\addplot+[only marks, mark=text, text mark={*}, mark options={scale=0.5},green!30] table[x index=0,y index=1] {chapter7/figs/OI_outliers_f.dat};
+%\addplot+[only marks, mark=text, text mark={*}, mark options={scale=0.5},blue!30] table[x index=0,y index=1] {chapter7/figs/DO_outliers_f.dat};
+%\addplot+[only marks, mark=text, text mark={*}, mark options={scale=0.5},cyan!30] table[x index=0,y index=1] {chapter7/figs/FD_outliers_f.dat};
+
+
+
+	\end{axis}
+\end{tikzpicture}

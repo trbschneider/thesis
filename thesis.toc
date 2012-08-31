@@ -1,17 +1,36 @@
 \select@language {english}
-\contentsline {part}{I\hspace {1em}Q-space imaging studies}{3}{part.1}
-\contentsline {chapter}{\numberline {1}QSI of the healthy cord (I)}{5}{chapter.1}
-\contentsline {section}{\numberline {1.1}Methods}{6}{section.1.1}
-\contentsline {section}{\numberline {1.2}Results}{11}{section.1.2}
-\contentsline {section}{\numberline {1.3}Discussion}{15}{section.1.3}
-\contentsline {paragraph}{}{15}{section.1.3}
-\contentsline {chapter}{\numberline {2}QSI of the healthy cord (II)}{17}{chapter.2}
-\contentsline {section}{\numberline {2.1}Methods}{17}{section.2.1}
-\contentsline {section}{\numberline {2.2}Results}{20}{section.2.2}
-\contentsline {paragraph}{Comparing XY and Z parameters }{20}{subtable.2.3.2}
-\contentsline {paragraph}{Difference between WM and GM }{20}{subtable.2.3.2}
-\contentsline {paragraph}{Differences between WM regions}{20}{subtable.2.3.2}
-\contentsline {section}{\numberline {2.3}Discussion}{25}{section.2.3}
-\contentsline {paragraph}{}{25}{section.2.3}
-\contentsline {paragraph}{}{25}{section.2.3}
-\contentsline {section}{\numberline {2.4}Conclusion}{26}{section.2.4}
+\contentsline {part}{I\hspace {1em}ActiveAx}{3}{part.1}
+\contentsline {chapter}{\numberline {1}Diffusion MRI protocols for single fibre structures}{5}{chapter.1}
+\contentsline {paragraph}{}{5}{paragraph*.3}
+\contentsline {paragraph}{}{6}{paragraph*.5}
+\contentsline {section}{\numberline {1.1}Protocol optimisation}{6}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}Tissue model}{7}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}Implementation}{7}{subsection.1.1.2}
+\contentsline {subsection}{\numberline {1.1.3}Optimised protocols}{8}{subsection.1.1.3}
+\contentsline {paragraph}{}{8}{paragraph*.8}
+\contentsline {paragraph}{}{9}{paragraph*.11}
+\contentsline {section}{\numberline {1.2}Experiments}{11}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Synthetic data}{11}{subsection.1.2.1}
+\contentsline {paragraph}{}{11}{paragraph*.13}
+\contentsline {paragraph}{}{11}{paragraph*.15}
+\contentsline {subsection}{\numberline {1.2.2}Feasibility study on fixed monkey spinal cord}{12}{subsection.1.2.2}
+\contentsline {paragraph}{}{12}{paragraph*.18}
+\contentsline {subsection}{\numberline {1.2.3}Model fitting}{12}{subsection.1.2.3}
+\contentsline {section}{\numberline {1.3}Results}{14}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}Accuracy and precision of parameter estimates}{14}{subsection.1.3.1}
+\contentsline {paragraph}{}{15}{paragraph*.20}
+\contentsline {paragraph}{}{16}{paragraph*.22}
+\contentsline {subsection}{\numberline {1.3.2}Variation of fibre direction}{16}{subsection.1.3.2}
+\contentsline {paragraph}{}{17}{paragraph*.24}
+\contentsline {paragraph}{}{17}{paragraph*.25}
+\contentsline {paragraph}{Effect of fibre dispersion: }{17}{paragraph*.27}
+\contentsline {subsection}{\numberline {1.3.3}Proof-of-concept implementation}{17}{subsection.1.3.3}
+\contentsline {section}{\numberline {1.4}Discussion}{20}{section.1.4}
+\contentsline {paragraph}{}{20}{paragraph*.30}
+\contentsline {paragraph}{}{20}{paragraph*.31}
+\contentsline {paragraph}{}{20}{paragraph*.32}
+\contentsline {paragraph}{}{20}{paragraph*.33}
+\contentsline {paragraph}{}{21}{paragraph*.34}
+\contentsline {section}{Appendix \numberline {1.A}Protocols}{23}{section.a.1.A}
+\contentsline {subsection}{\numberline {1.A.1}Protocols optimised for $|G|_{max}$=60mT/m, N=90, M=8}{23}{subsection.a.1.A.1}
+\contentsline {subsection}{\numberline {1.A.2}Pre-clinical scanner (300mT/m), N=30, M=4}{27}{subsection.a.1.A.2}

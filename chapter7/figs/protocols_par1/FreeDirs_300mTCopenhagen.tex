@@ -1,0 +1,85 @@
+%%% protocol m=1 start
+\begin{tikzpicture}
+\node [protocolbox] (box){
+   \begin{minipage}{0.45\textwidth}
+   \vspace{1ex}
+        \centering
+        \raisebox{0.1cm}{\sequencePreclinicalNoWeights{0.013}{0.006}{0.300}{1.000}{0.051}}
+        \begin{tikzpicture}[scale=0.6]
+          \begin{axis}[ xlabel=$x$, ylabel=$y$, zlabel=$z$,xmax=1, xmin=-1, ymax=1, ymin=-1, zmax=1, zmin=0, width=3.0cm, height=3.0cm, grid=major]
+          \addplot3+[only marks] table {chapter7/figs/protocols_par1/SF_FD_300mTCopenhagen003.txt};
+        \end{axis}
+        \end{tikzpicture}
+        \vspace{2ex}
+   \end{minipage}
+};
+\node[protocolheader, right=10pt] at (box.north west) {$\mathbf{m=1}$};
+\node[protocoltext] at (box.south) {\footnotesize{$\delta=6 ms$, $\Delta=13 ms$, $|G|=300 mT/m$}};
+\end{tikzpicture}
+%%% protocol end
+%
+%
+%
+%%% protocol m=2 start
+\begin{tikzpicture}
+\node [protocolbox] (box){
+   \begin{minipage}{0.45\textwidth}
+   \vspace{1ex}
+        \centering
+        \raisebox{0.1cm}{\sequencePreclinicalNoWeights{0.013}{0.007}{0.300}{1.000}{0.051}}
+        \begin{tikzpicture}[scale=0.6]
+          \begin{axis}[ xlabel=$x$, ylabel=$y$, zlabel=$z$,xmax=1, xmin=-1, ymax=1, ymin=-1, zmax=1, zmin=0, width=3.0cm, height=3.0cm, grid=major]
+          \addplot3+[only marks] table {chapter7/figs/protocols_par1/SF_FD_300mTCopenhagen004.txt};
+        \end{axis}
+        \end{tikzpicture}
+        \vspace{2ex}
+   \end{minipage}
+};
+\node[protocolheader, right=10pt] at (box.north west) {$\mathbf{m=2}$};
+\node[protocoltext] at (box.south) {\footnotesize{$\delta=7 ms$, $\Delta=13 ms$, $|G|=300 mT/m$}};
+\end{tikzpicture}
+\\[2ex]
+%%% protocol end
+%
+%
+%
+%%% protocol m=3 start
+\begin{tikzpicture}
+\node [protocolbox] (box){
+   \begin{minipage}{0.45\textwidth}
+   \vspace{1ex}
+        \centering
+        \raisebox{0.1cm}{\sequencePreclinicalNoWeights{0.047}{0.003}{0.300}{1.000}{0.051}}
+        \begin{tikzpicture}[scale=0.6]
+          \begin{axis}[ xlabel=$x$, ylabel=$y$, zlabel=$z$,xmax=1, xmin=-1, ymax=1, ymin=-1, zmax=1, zmin=0, width=3.0cm, height=3.0cm, grid=major]
+          \addplot3+[only marks] table {chapter7/figs/protocols_par1/SF_FD_300mTCopenhagen001.txt};
+        \end{axis}
+        \end{tikzpicture}
+        \vspace{2ex}
+   \end{minipage}
+};
+\node[protocolheader, right=10pt] at (box.north west) {$\mathbf{m=3}$};
+\node[protocoltext] at (box.south) {\footnotesize{$\delta=3 ms$, $\Delta=47 ms$, $|G|=300 mT/m$}};
+\end{tikzpicture}
+%%% protocol end
+%
+%
+%
+%%% protocol m=4 start
+\begin{tikzpicture}
+\node [protocolbox] (box){
+   \begin{minipage}{0.45\textwidth}
+   \vspace{1ex}
+        \centering
+        \raisebox{0.1cm}{\sequencePreclinicalNoWeights{0.041}{0.010}{0.254}{1.000}{0.051}}
+        \begin{tikzpicture}[scale=0.6]
+          \begin{axis}[ xlabel=$x$, ylabel=$y$, zlabel=$z$,xmax=1, xmin=-1, ymax=1, ymin=-1, zmax=1, zmin=0, width=3.0cm, height=3.0cm, grid=major]
+          \addplot3+[only marks] table {chapter7/figs/protocols_par1/SF_FD_300mTCopenhagen002.txt};
+        \end{axis}
+        \end{tikzpicture}
+        \vspace{2ex}
+   \end{minipage}
+};
+\node[protocolheader, right=10pt] at (box.north west) {$\mathbf{m=4}$};
+\node[protocoltext] at (box.south) {\footnotesize{$\delta=10 ms$, $\Delta=41 ms$, $|G|=254 mT/m$}};
+\end{tikzpicture}

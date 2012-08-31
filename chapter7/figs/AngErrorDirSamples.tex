@@ -1,0 +1,18 @@
+\newcommand*{\vcenteredhbox}[1]{\begingroup
+\setbox0=\hbox{#1}\parbox{\wd0}{\box0}\endgroup}
+
+\begin{minipage}{\textwidth}
+    \centering
+    \vcenteredhbox{\begin{tikzpicture}
+        \begin{axis}[width=0.5\textwidth, height=0.5\textwidth,xmax=1, xmin=-1, ymax=1, ymin=-1, zmax=1, zmin=-1, grid=major, xtick={-1,0,1}, ytick={-1,0,1}, ztick={-1,0,1}, xlabel={x}, ylabel={y}, zlabel={z}]
+          \addplot3+[only marks, mark options={scale=0.7}, black] table {chapter7/figs/AngErrorDirSamples.dat};
+        \end{axis}
+    \end{tikzpicture}}
+    \vcenteredhbox{
+        \begin{tikzpicture}
+        \begin{polaraxis}[width=0.42\textwidth, ymin=0, ymax=1, ytick={0,0.5,1}, yticklabels={1,0.5,0}, ytick={-1, -0.5, 0 , 0.5 , 1}, yticklabels={90,45,0,45,90}, xlabel={Polar angle $\phi$}, ylabel={Azimuth angle $\theta$}, yticklabel shift = {-0.6cm}]
+            \addplot+[only marks, mark options={scale=0.7}, data cs=cart, opacity=0.5, black] table[x index=0, y index=1] {chapter7/figs/AngErrorDirSamples.dat};
+    	\end{polaraxis}
+    \end{tikzpicture}}
+\end{minipage}
+

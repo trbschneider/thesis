@@ -1,0 +1,32 @@
+\begin{tikzpicture}	
+	\begin{axis}[
+            title={\textbf{Pre-clinical protocol} $(|G_{max}|=300mT/m)$},
+            ymajorgrids=true,
+	  		xlabel={\#Gradient directions per set},
+			ylabel={CRLB},
+            width=0.9\textwidth,
+            height=0.6\textwidth,
+	  		xtick={15,30,35,45,60,75,90,105,120},
+	  		xticklabels={15,\color{red}{30},\color{red}{35},\color{red}{45},60,75,90,105,120},
+            xmin=0,
+            xmax=120,
+            ymin=0,
+	  		%ytick={0,0.7854,1.5708},
+	  		%yticklabels={0,$\frac{\pi}{4}$,$\frac{\pi}{2}$}				
+	  	]
+	  	\addplot+[very thick, red, mark options={fill=red}] table[x=DIRS,y=nofib] {chapter7/figs/DIRSvsCRLB_300mTCopenhagen.txt};
+		\addplot+[very thick, green, mark options={fill=green}] table[x=DIRS,y=samedir] {chapter7/figs/DIRSvsCRLB_300mTCopenhagen.txt};
+		\addplot+[very thick, blue, mark options={fill=blue}] table[x=DIRS,y=dironly] {chapter7/figs/DIRSvsCRLB_300mTCopenhagen.txt};
+		\addplot+[very thick, cyan, mark options={fill=cyan}] table[x=DIRS,y=free] {chapter7/figs/DIRSvsCRLB_300mTCopenhagen.txt};
+        %75 OI vs FD
+        \addplot[thick,dashed, black,sharp plot,update limits=false] coordinates {(30,0.31) (75,0.31)};
+        \addplot[thick,dashed, black,sharp plot,update limits=false] coordinates {(30,0) (30,0.31)};
+        %90 OI vs FD
+        \addplot[thick,dashed, black,sharp plot,update limits=false] coordinates {(35,0.26) (90,0.26)};
+        \addplot[thick,dashed, black,sharp plot,update limits=false] coordinates {(35,0) (35,0.26)};
+        %120 OI vs FD
+        \addplot[thick,dashed, black,sharp plot,update limits=false] coordinates {(45,0.2) (120,0.2)};
+        \addplot[thick,dashed, black,sharp plot,update limits=false] coordinates {(45,0) (45,0.2)};
+		\legend{\OI, \SD, \DO, \FD};
+	\end{axis}
+\end{tikzpicture}	

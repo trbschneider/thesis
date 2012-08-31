@@ -1,0 +1,25 @@
+\begin{tikzpicture}	
+	\begin{axis}[
+            title={\textbf{Pre-clinical protocol} $(|G_{max}|=300mT/m)$},
+	  		xlabel={SNR},
+			ylabel={CRLB},
+            xmajorgrids=true,
+            ymajorgrids=true,
+            width=0.45\textwidth,
+            %height=0.4\textwidth,
+	  		%xmin=-3.2,
+	  		%xmax=3.2,
+	  		%xtick={-3.1416,-1.5708,0,1.5708,3.1416},
+	  		%xticklabels={$-\pi$,$-\frac{\pi}{2}$,0,$\frac{\pi}{2}$,$\pi$},
+	  		%ymin=0,
+	  		%ymax=1.5708,
+	  		%ytick={0,0.7854,1.5708},
+	  		%yticklabels={0,$\frac{\pi}{4}$,$\frac{\pi}{2}$}				
+	  	]
+	  	\addplot+[red, mark options={fill=red}] table[x=SNR,y=nofib] {chapter7/figs/SNRvsCRLB_300mTCopenhagen.txt};
+		\addplot+[green, mark options={fill=green}] table[x=SNR,y=samedir] {chapter7/figs/SNRvsCRLB_300mTCopenhagen.txt};
+		\addplot+[blue, mark options={fill=blue}] table[x=SNR,y=dironly] {chapter7/figs/SNRvsCRLB_300mTCopenhagen.txt};
+		\addplot+[cyan, mark options={fill=cyan}] table[x=SNR,y=free] {chapter7/figs/SNRvsCRLB_300mTCopenhagen.txt};
+		\legend{\OI, \SD, \DO, \FD};
+	\end{axis}
+\end{tikzpicture}	

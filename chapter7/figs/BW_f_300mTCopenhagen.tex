@@ -1,0 +1,51 @@
+\begin{tikzpicture}
+	\begin{axis}[xmin=0,xmax=5,ymin=0, ymax=1,
+		xtick={1,2,3,4,5},xticklabels={$1\mu m$,$2\mu m$,$5\mu m$,$10\mu m$},
+        width=0.9\textwidth, height=0.6\textwidth, legend columns=6, legend style={at={(0,1.05)}, anchor=south west}, xlabel={True axon radius}, ylabel={Volume fraction}]
+  		%#1: center, #2: median, #3: 1/4 quartile, #4: 3/4 quartile, #5: -1.5IQ, #6: +1.5IQ
+        %%% R=1 first for all to generate the legends
+        \boxplot{3.70}{0.441}{0.327}{0.729}{0.012}{0.991}{red}
+        \boxplot{3.90}{0.413}{0.323}{0.667}{0.017}{0.985}{green}
+        \boxplot{4.10}{0.405}{0.135}{0.779}{0.001}{0.988}{blue}
+        \boxplot{4.30}{0.364}{0.159}{0.753}{0.002}{0.982}{cyan}
+
+        \addlegendentry{\OI}
+        \addlegendentry{\SD}
+        \addlegendentry{\DO}
+        \addlegendentry{\FD}
+
+
+        \addplot[black, dashed] coordinates{(0.5,0.7) (1.5,0.7)};
+        \addlegendentry{ground truth};
+
+
+
+        \boxplot{0.70}{0.706}{0.694}{0.723}{0.624}{0.849}{red}
+        \boxplot{1.70}{0.702}{0.685}{0.720}{0.567}{0.857}{red}
+        \boxplot{2.70}{0.697}{0.672}{0.723}{0.270}{0.992}{red}
+
+        \boxplot{0.90}{0.705}{0.694}{0.721}{0.627}{0.873}{green}
+        \boxplot{1.90}{0.701}{0.684}{0.719}{0.572}{0.874}{green}
+        \boxplot{2.90}{0.697}{0.667}{0.721}{0.229}{0.976}{green}
+
+        \boxplot{1.10}{0.703}{0.697}{0.713}{0.533}{0.911}{blue}
+        \boxplot{2.10}{0.700}{0.689}{0.711}{0.495}{0.914}{blue}
+        \boxplot{3.10}{0.692}{0.389}{0.712}{0.004}{0.989}{blue}
+
+        \boxplot{1.30}{0.702}{0.697}{0.713}{0.548}{0.914}{cyan}
+        \boxplot{2.30}{0.700}{0.691}{0.712}{0.518}{0.989}{cyan}
+        \boxplot{3.30}{0.692}{0.545}{0.708}{0.010}{0.997}{cyan}
+
+
+        \addplot+[only marks, mark=text, text mark={*}, mark options={scale=0.7},red!30] table[x index=0,y index=1] {chapter7/figs/OInv_300mT_outliers_f.dat};
+        \addplot+[only marks, mark=text, text mark={*}, mark options={scale=0.7},green!30] table[x index=0,y index=1] {chapter7/figs/OI_300mT_outliers_f.dat};
+        \addplot+[only marks, mark=text, text mark={*}, mark options={scale=0.7},blue!30] table[x index=0,y index=1] {chapter7/figs/DO_300mT_outliers_f.dat};
+        \addplot+[only marks, mark=text, text mark={*}, mark options={scale=0.7},cyan!30] table[x index=0,y index=1] {chapter7/figs/FD_300mT_outliers_f.dat};
+
+        \addplot[black, dashed] coordinates{(0.5,0.7) (1.5,0.7)};
+        \addplot[black, dashed] coordinates{(1.5,0.7) (2.5,0.7)};
+        \addplot[black, dashed] coordinates{(2.5,0.7) (3.5,0.7)};
+        \addplot[black, dashed] coordinates{(3.5,0.7) (4.5,0.7)};
+
+\end{axis}
+\end{tikzpicture}

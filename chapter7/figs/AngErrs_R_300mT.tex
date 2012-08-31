@@ -1,0 +1,11 @@
+\begin{tikzpicture}[scale=0.65]
+    \begin{axis}[xmin=0,xmax=90,ymin=0, ymax=3,
+        width=0.7\textwidth,  legend columns=3, legend style={at={(0.02,0.98)}, anchor=north west}, xlabel={Polar angle in $[^{\circ}]$},
+        title={\textbf{RMSE of fitted cylinder radius}}]
+        %OInv prot
+        \addplot+[red, mark=*, mark options={fill=red}] table[x index=0, y index=3] {chapter7/figs/AngError_R_300mT.dat};
+        \addplot+[green, mark=square*,,mark options={fill=green}] table[x index=0, y index=6] {chapter7/figs/AngError_R_300mT.dat};
+        \addplot+[blue, mark=*,,mark options={fill=blue}] table[x index=0, y index=9] {chapter7/figs/AngError_R_300mT.dat};
+        \addplot+[cyan, mark=star,mark options={fill=cyan}] table[x index=0, y index=12] {chapter7/figs/AngError_R_300mT.dat};
+	\end{axis}
+\end{tikzpicture}

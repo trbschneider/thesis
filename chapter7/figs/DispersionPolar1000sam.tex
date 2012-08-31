@@ -1,0 +1,157 @@
+\newcommand*{\vcenteredhbox}[1]{\begingroup
+\setbox0=\hbox{#1}\parbox{\wd0}{\box0}\endgroup}
+
+\begin{minipage}{0.32\textwidth}
+    \centering
+    \vcenteredhbox{\begin{tikzpicture}[scale=0.4]
+        \begin{axis}[width=0.707\textwidth, height=0.707\textwidth,xmax=1, xmin=-1, ymax=1, ymin=-1, zmax=1, zmin=-1, grid=major, xtick={-1,0,1}, xticklabels={,,}, ytick={-1,0,1}, yticklabels={,,}, ztick={-1,0,1}, zticklabels={,,}]
+          \addplot3+[only marks, mark options={scale=0.5}, black] table {chapter7/figs/test_S1000_R002_K000001.txt};
+        \end{axis}
+    \end{tikzpicture}}
+    \vcenteredhbox{\begin{tikzpicture}[scale=0.41]
+        \begin{polaraxis}[width=\textwidth, ymin=0, ymax=1, ytick={0,0.5,1}, yticklabels={1,0.5,0}, ytick={0,0.5,1}, yticklabels={,,}]
+            \addplot+[only marks, mark options={scale=0.7}, data cs=cart, opacity=0.5, black] table[x index=0, y index=1] {chapter7/figs/test_S1000_R002_K000001.txt};
+    	\end{polaraxis}
+    \end{tikzpicture}}\\
+    $\kappa=1$
+\end{minipage}\vspace{2ex}
+\begin{minipage}{0.32\textwidth}
+    \centering
+   \vcenteredhbox{\begin{tikzpicture}[scale=0.4]
+        \begin{axis}[width=0.707\textwidth, height=0.707\textwidth,xmax=1, xmin=-1, ymax=1, ymin=-1, zmax=1, zmin=-1, grid=major, xtick={-1,0,1}, xticklabels={,,}, ytick={-1,0,1}, yticklabels={,,}, ztick={-1,0,1}, zticklabels={,,}]
+          \addplot3+[only marks, mark options={scale=0.5}, black] table {chapter7/figs/test_S1000_R002_K000002.txt};
+        \end{axis}
+    \end{tikzpicture}}
+   \vcenteredhbox{\begin{tikzpicture}[scale=0.4]
+        \begin{polaraxis}[width=\textwidth, ymin=0, ymax=1, ytick={0,0.5,1}, yticklabels={1,0.5,0}, ytick={0,0.5,1}, yticklabels={,,}]
+            \addplot+[only marks, mark options={scale=0.7}, data cs=cart, opacity=0.5, black] table[x index=0, y index=1] {chapter7/figs/test_S1000_R002_K000002.txt};
+    	\end{polaraxis}
+    \end{tikzpicture}}\\
+    $\kappa=2$
+\end{minipage}\vspace{2ex}
+\begin{minipage}{0.32\textwidth}
+    \centering
+   \vcenteredhbox{\begin{tikzpicture}[scale=0.4]
+        \begin{axis}[width=0.707\textwidth, height=0.707\textwidth,xmax=1, xmin=-1, ymax=1, ymin=-1, zmax=1, zmin=-1, grid=major, xtick={-1,0,1}, xticklabels={,,}, ytick={-1,0,1}, yticklabels={,,}, ztick={-1,0,1}, zticklabels={,,}]
+          \addplot3+[only marks, mark options={scale=0.5}, black] table {chapter7/figs/test_S1000_R002_K000004.txt};
+        \end{axis}
+    \end{tikzpicture}}
+   \vcenteredhbox{\begin{tikzpicture}[scale=0.4]
+        \begin{polaraxis}[width=\textwidth, ymin=0, ymax=1, ytick={0,0.5,1}, yticklabels={1,0.5,0}, ytick={0,0.5,1}, yticklabels={,,}]
+            \addplot+[only marks, mark options={scale=0.7}, data cs=cart, opacity=0.5, black] table[x index=0, y index=1] {chapter7/figs/test_S1000_R002_K000004.txt};
+    	\end{polaraxis}
+    \end{tikzpicture}}\\
+    $\kappa=4$
+\end{minipage}\vspace{2ex}
+\begin{minipage}{0.32\textwidth}
+    \centering
+   \vcenteredhbox{\begin{tikzpicture}[scale=0.4]
+        \begin{axis}[width=0.707\textwidth, height=0.707\textwidth,xmax=1, xmin=-1, ymax=1, ymin=-1, zmax=1, zmin=-1, grid=major, xtick={-1,0,1}, xticklabels={,,}, ytick={-1,0,1}, yticklabels={,,}, ztick={-1,0,1}, zticklabels={,,}]
+          \addplot3+[only marks, mark options={scale=0.5}, black] table {chapter7/figs/test_S1000_R002_K000008.txt};
+        \end{axis}
+    \end{tikzpicture}}
+   \vcenteredhbox{\begin{tikzpicture}[scale=0.4]
+        \begin{polaraxis}[width=\textwidth, ymin=0, ymax=1, ytick={0,0.5,1}, yticklabels={1,0.5,0}, ytick={0,0.5,1}, yticklabels={,,}]
+            \addplot+[only marks, mark options={scale=0.7}, data cs=cart, opacity=0.5, black] table[x index=0, y index=1] {chapter7/figs/test_S1000_R002_K000008.txt};
+    	\end{polaraxis}
+    \end{tikzpicture}}\\
+    $\kappa=8$
+\end{minipage}\vspace{2ex}
+\begin{minipage}{0.32\textwidth}
+    \centering
+   \vcenteredhbox{\begin{tikzpicture}[scale=0.4]
+        \begin{axis}[width=0.707\textwidth, height=0.707\textwidth,xmax=1, xmin=-1, ymax=1, ymin=-1, zmax=1, zmin=-1, grid=major, xtick={-1,0,1}, xticklabels={,,}, ytick={-1,0,1}, yticklabels={,,}, ztick={-1,0,1}, zticklabels={,,}]
+          \addplot3+[only marks, mark options={scale=0.5}, black] table {chapter7/figs/test_S1000_R002_K000016.txt};
+        \end{axis}
+    \end{tikzpicture}}
+   \vcenteredhbox{\begin{tikzpicture}[scale=0.4]
+        \begin{polaraxis}[width=\textwidth, ymin=0, ymax=1, ytick={0,0.5,1}, yticklabels={1,0.5,0}, ytick={0,0.5,1}, yticklabels={,,}]
+            \addplot+[only marks, mark options={scale=0.7}, data cs=cart, opacity=0.5, black] table[x index=0, y index=1] {chapter7/figs/test_S1000_R002_K000016.txt};
+    	\end{polaraxis}
+    \end{tikzpicture}}\\
+    $\kappa=16$
+\end{minipage}\vspace{2ex}
+\begin{minipage}{0.32\textwidth}
+    \centering
+   \vcenteredhbox{\begin{tikzpicture}[scale=0.4]
+        \begin{axis}[width=0.707\textwidth, height=0.707\textwidth,xmax=1, xmin=-1, ymax=1, ymin=-1, zmax=1, zmin=-1, grid=major, xtick={-1,0,1}, xticklabels={,,}, ytick={-1,0,1}, yticklabels={,,}, ztick={-1,0,1}, zticklabels={,,}]
+          \addplot3+[only marks, mark options={scale=0.5}, black] table {chapter7/figs/test_S1000_R002_K000032.txt};
+        \end{axis}
+    \end{tikzpicture}}
+   \vcenteredhbox{\begin{tikzpicture}[scale=0.4]
+        \begin{polaraxis}[width=\textwidth, ymin=0, ymax=1, ytick={0,0.5,1}, yticklabels={1,0.5,0}, ytick={0,0.5,1}, yticklabels={,,}]
+            \addplot+[only marks, mark options={scale=0.7}, data cs=cart, opacity=0.5, black] table[x index=0, y index=1] {chapter7/figs/test_S1000_R002_K000032.txt};
+    	\end{polaraxis}
+    \end{tikzpicture}}\\
+    $\kappa=32$
+\end{minipage}\vspace{2ex}
+\begin{minipage}{0.32\textwidth}
+    \centering
+   \vcenteredhbox{\begin{tikzpicture}[scale=0.4]
+        \begin{axis}[width=0.707\textwidth, height=0.707\textwidth,xmax=1, xmin=-1, ymax=1, ymin=-1, zmax=1, zmin=-1, grid=major, xtick={-1,0,1}, xticklabels={,,}, ytick={-1,0,1}, yticklabels={,,}, ztick={-1,0,1}, zticklabels={,,}]
+          \addplot3+[only marks, mark options={scale=0.5}, black] table {chapter7/figs/test_S1000_R002_K000064.txt};
+        \end{axis}
+    \end{tikzpicture}}
+   \vcenteredhbox{\begin{tikzpicture}[scale=0.4]
+        \begin{polaraxis}[width=\textwidth, ymin=0, ymax=1, ytick={0,0.5,1}, yticklabels={1,0.5,0}, ytick={0,0.5,1}, yticklabels={,,}]
+            \addplot+[only marks, mark options={scale=0.7}, data cs=cart, opacity=0.5, black] table[x index=0, y index=1] {chapter7/figs/test_S1000_R002_K000064.txt};
+    	\end{polaraxis}
+    \end{tikzpicture}}\\
+    $\kappa=64$
+\end{minipage}\vspace{2ex}
+\begin{minipage}{0.32\textwidth}
+    \centering
+   \vcenteredhbox{\begin{tikzpicture}[scale=0.4]
+        \begin{axis}[width=0.707\textwidth, height=0.707\textwidth,xmax=1, xmin=-1, ymax=1, ymin=-1, zmax=1, zmin=-1, grid=major, xtick={-1,0,1}, xticklabels={,,}, ytick={-1,0,1}, yticklabels={,,}, ztick={-1,0,1}, zticklabels={,,}]
+          \addplot3+[only marks, mark options={scale=0.5}, black] table {chapter7/figs/test_S1000_R002_K000128.txt};
+        \end{axis}
+    \end{tikzpicture}}
+   \vcenteredhbox{\begin{tikzpicture}[scale=0.4]
+        \begin{polaraxis}[width=\textwidth, ymin=0, ymax=1, ytick={0,0.5,1}, yticklabels={1,0.5,0}, ytick={0,0.5,1}, yticklabels={,,}]
+            \addplot+[only marks, mark options={scale=0.7}, data cs=cart, opacity=0.5, black] table[x index=0, y index=1] {chapter7/figs/test_S1000_R002_K000128.txt};
+    	\end{polaraxis}
+    \end{tikzpicture}}\\
+    $\kappa=128$
+\end{minipage}\vspace{2ex}
+\begin{minipage}{0.32\textwidth}
+    \centering
+   \vcenteredhbox{\begin{tikzpicture}[scale=0.4]
+        \begin{axis}[width=0.707\textwidth, height=0.707\textwidth,xmax=1, xmin=-1, ymax=1, ymin=-1, zmax=1, zmin=-1, grid=major, xtick={-1,0,1}, xticklabels={,,}, ytick={-1,0,1}, yticklabels={,,}, ztick={-1,0,1}, zticklabels={,,}]
+          \addplot3+[only marks, mark options={scale=0.5}, black] table {chapter7/figs/test_S1000_R002_K000256.txt};
+        \end{axis}
+    \end{tikzpicture}}
+   \vcenteredhbox{\begin{tikzpicture}[scale=0.4]
+        \begin{polaraxis}[width=\textwidth, ymin=0, ymax=1, ytick={0,0.5,1}, yticklabels={1,0.5,0}, ytick={0,0.5,1}, yticklabels={,,}]
+            \addplot+[only marks, mark options={scale=0.7}, data cs=cart, opacity=0.5, black] table[x index=0, y index=1] {chapter7/figs/test_S1000_R002_K000256.txt};
+    	\end{polaraxis}
+    \end{tikzpicture}}\\
+    $\kappa=256$
+\end{minipage}\vspace{2ex}
+\begin{minipage}{0.32\textwidth}
+    \centering
+   \vcenteredhbox{\begin{tikzpicture}[scale=0.4]
+        \begin{axis}[width=0.707\textwidth, height=0.707\textwidth,xmax=1, xmin=-1, ymax=1, ymin=-1, zmax=1, zmin=-1, grid=major, xtick={-1,0,1}, xticklabels={,,}, ytick={-1,0,1}, yticklabels={,,}, ztick={-1,0,1}, zticklabels={,,}]
+          \addplot3+[only marks, mark options={scale=0.5}, black] table {chapter7/figs/test_S1000_R002_K000512.txt};
+        \end{axis}
+    \end{tikzpicture}}
+   \vcenteredhbox{\begin{tikzpicture}[scale=0.4]
+        \begin{polaraxis}[width=\textwidth, ymin=0, ymax=1, ytick={0,0.5,1}, yticklabels={1,0.5,0}, ytick={0,0.5,1}, yticklabels={,,}]
+            \addplot+[only marks, mark options={scale=0.7}, data cs=cart, opacity=0.5, black] table[x index=0, y index=1] {chapter7/figs/test_S1000_R002_K000512.txt};
+    	\end{polaraxis}
+    \end{tikzpicture}}\\
+    $\kappa=512$
+\end{minipage}\vspace{2ex}
+\begin{minipage}{0.32\textwidth}
+    \centering
+   \vcenteredhbox{\begin{tikzpicture}[scale=0.4]
+        \begin{axis}[width=0.707\textwidth, height=0.707\textwidth,xmax=1, xmin=-1, ymax=1, ymin=-1, zmax=1, zmin=-1, grid=major, xtick={-1,0,1}, xticklabels={,,}, ytick={-1,0,1}, yticklabels={,,}, ztick={-1,0,1}, zticklabels={,,}]
+          \addplot3+[only marks, mark options={scale=0.5}, black] coordinates {(0,0,1)};
+        \end{axis}
+    \end{tikzpicture}}
+   \vcenteredhbox{\begin{tikzpicture}[scale=0.4]
+        \begin{polaraxis}[width=\textwidth, ymin=0, ymax=1, ytick={0,0.5,1}, yticklabels={1,0.5,0}, ytick={0,0.5,1}, yticklabels={0,45,90}, ylabel={Polar angle [$^{\circ}$]}, , xlabel={Azimuth angle [$^{\circ}$]}]
+            \addplot+[only marks, mark options={scale=0.7}, data cs=cart, black] coordinates {(0,0)};
+    	\end{polaraxis}
+    \end{tikzpicture}}\\
+    $\kappa\rightarrow\infty$
+\end{minipage}\vspace{2ex} 
