@@ -1,0 +1,137 @@
+%!TEX root = ../thesis.tex
+\newcommand{\SF}{{\ensuremath{\mathcal{SF}}}}
+\newcommand{\OI}{{\ensuremath{\mathcal{OI}}}}
+\newcommand{\SD}{{\ensuremath{\mathcal{SF}_{pulses}}}}
+\newcommand{\DO}{{\ensuremath{\mathcal{SF}_{dirs}}}}
+\newcommand{\FD}{{\SF}}
+
+\newcommand{\SFshort}{\SF$_{90}$}
+\newcommand{\SFlong}{\SF$_{360}$}
+\newcommand{\OIlong}{\OI$_{360}$}
+
+
+\chapter{In-vivo estimates of axonal characteristics using the single fibre protocols}
+\label{chapter 8}
+\section{Introduction}
+The aim of this chapter is to investigate the clinical feasibility of in-vivo axon diameter and axon density indices. \Citep{Alexander:2010} has shown that such indices can be acquired in-vivo on a standard clinical system, but the long scan time of 1 hour and more makes it difficult to translate to  routine clinical applications. In the previous chapter we have introduced the single fibre \SF{} diffusion MRI protocol optimisation framework designed for unidirectional white matter tracts. We have shown in simulations that the \SF{} protocols allows more accurate estimates of microstrucure indices in such structures compared to the orientational invariant \OI{} approach of \citep{Alexander:2008}. We further demonstrated the feasibility of estimating a biologically reasonable range of axon diameter and axon density indices in a sample of fixed primate spinal cord. Initial results presented in the previous chapter suggest also that \SF{} protocols can produce acceptable estimates of tissue microstrucure indices using a only a moderate number of diffusion weighted acquisitions. 
+
+In this study we compare the original {\OI} approach with the \SF{} method with reduced number of acquistion. We use both Monte-Carlo diffusion simulations to compare both methods and real MRI scan/rescan experiment on two healthy volunteers to investigate the feasibility of estimating microstructural parameters in-vivo under realisitic clinical conditions.
+
+\section{Asymptotic protocol optimisation}
+In the previous experiment, the total number of acquisitions $N$ is chosen and divided in $M$ sets of different {\gls{PGSE}} pulse settings with the gradient scheme being either fixed {\OI} or optimised  for each set {\FD}. Our simulations showed that protocols with optimised gradient schemes consistently outperformed the protocols with fixed gradient scheme. However, in practise the increase in free parameters also increases the computational complexity and thus requires much longer computation times compared to {\OI}. The increased parameter space also means an increased risk for the algorithm to converge to local minima instead of the globally optimal solution. 
+
+
+Furthermore, our observation in the previous chapter have shown that the optimised gradient schemes feature feature predominantly measurements perpendicular to the assumed fibre directions, with a few additional measurments parallel to the given fibre direction. 
+
+
+To reduce the complexity of the optimisation problem we therefore constrain our measurements in the protocol to have gradient direction perpendicular to the fibre bundles, but we include one measurement in the parallel direction for the estimation of diffusivity along the axons. We can then adapt Eq. \ref{eq-optimality} so that:
+\begin{equation}
+	\Omega=diag\{w_1,\cdots,w_M\} \mbox{ with } \sum_{m=1}^{M}w_m=1
+\end{equation}
+The weighting factors $w_m$ reflect how important each measurement is, i.e. how often it should be sampled relative to the other measurements. 
+
+An additional benefit of this approach is that for any given $N$ we can calculate the number of measurements for each element of $\mathcal{P}$ by $N_{m}=w_mN$, hence the resulting protocols are independent of $N$.
+
+\section{Experiments \& Methods}
+\subsection{Model fitting}
+We use the three stage fitting algorithm as described in \citet{Alexander:2010}, to fit the tissue model to the acquired MR signal in each voxel. We increase stability by fixing $d_\parallel$ to $1.7\cdot 10^{-9} m^2s^{-1}$ and $d_I$ is fixed to $3.0\cdot 10^{-9} m^2s^{-1}$\citep{Assaf:2008,Barazany:2009,Alexander:2010}. The objective function is defined as the maximum likelihood of model parameters given the observed MR signals under Rician noise ($\sigma=0.05$). An initial estimation is found using a coarse grid search algorithm over a set of physiologically possible parameters. Then a gradient descent algorithm further refines the parameter estimates. Finally a Markov Chain Monte Carlo (MCMC) algorithm with a burn-in of 2000, 50 samples at an interval of 200 provides posterior distributions of the parameters $f_1$, $f_2$ and the axon radius $r$. An average over the MCMC samples provides the final parameter estimates. We report the axon diameter index $a=2r$ and the axon density index $\rho=4f_1\pi^{-1}r^{-2}$.
+
+\begin{table}
+\centering
+\caption{{\protect\gls{PGSE}} settings of \SFshort{}, \SFlong{} and \OIlong{} protocols. $\perp$ and $\parallel$ mark acquisitions perpendicular and parallel to the fibre bundles.}
+\subfloat[\textit{\SFlong{} and \SFshort{} protocols}]{
+    \begin{tabular}{@{}llb{0.8cm}b{0.8cm}b{1.1cm}b{1.2cm}c@{}}
+    %\multicolumn{6}{c}{}\\
+    \multicolumn{2}{c}{$N_m$} & $\Delta$ $[ms]$   & $\delta$ $[ms]$ & $G$ $[mT/m]$ & $b$ $[s/mm^2]$ &\\ \midrule
+    70 &18 & 0 & 0 & 0 & 0 &\\
+    72 &17 & 33.0  & 14.5 &	36.8 & 550 & $\parallel$\\
+    38 &10 & 22.4 & 15.9& 60.0  & 1114 & $\perp$\\
+    45 &11 & 29.3 & 22.8 & 60.0 & 2908 & $\perp$\\
+    68 &17 & 48.0 & 26.6 & 43.7 & 3666 & $\perp$\\
+    67 &17 & 40.5 & 34.0 & 60.0 & 8692 & $\perp$\\ \bottomrule
+    $360$ & $90$ & & & &
+    \end{tabular}
+    \label{tab:experiment4:sf-protocol}
+}\hspace{0.6cm}
+\subfloat[\textit{\OIlong{} protocol}]{
+    \begin{tabular}{@{}lb{0.8cm}b{0.8cm}b{1.1cm}b{1.2cm}@{}}
+%    \multicolumn{6}{c}{\textit{OI protocol($N=360$)}}\\
+    $N_m$ & $\Delta$ $[ms]$   & $\delta$ $[ms]$ & $G$ $[mT/m]$ & $b$ $[s/mm^2]$\\ \midrule
+    71  & 0 & 0 & 0 & 0 \\
+    101 & 19.2&11.7&60.0 & 540 \\
+    107 & 38.2&12.5&47.8 & 870 \\
+    81  & 29.1&21.6&60.0 & 2634 \\
+    \bottomrule
+    $360$
+    \end{tabular}
+    \label{tab:experiment4:oi-protocol}
+}
+\label{tab:experiment4:protocols}
+\end{table}
+
+\subsection{Protocols}
+We generate optimized protocols for a clinical 3T Philips Achieva scanner with a maximum {\gls{gstr}} strength of $|\vec{G}_{max}|=60mT/m$. We use the asymptotic optimization to generate {\SF} protocols that can be performed in 20 minutes with a total number of acquisitions $N=90$ (\SFshort). For comparison with previous studies, we also generate an OI protocol using $N=360$ (\OIlong) and an SF protocol with the same number of acquisitions (\SFlong). The resulting protocols are presented in table \ref{tab:experiment4:protocols}. For the \SFshort{} and \SFlong{} protocols we set $M=8$ but only sequences with $w>0$ are reported. The \OIlong{} protocol optimisation uses $M=4$ and report the three unique {\gls{PGSE}} parameter settings.
+\subsection{Simulations}
+We use the free diffusion simulation of \citet{Hall:2009}, which performs a Monte Carlo (MC) simulation of water particles in packed cylinders. We use the 44 synthetic white matter substrates from\citet{Alexander:2010} with diameter distributions and packing densities similar to previously reported histology studies \citep{Aboitiz:1992,Graf-von-Keyserlingk:1984,Lamantia:1990}.%%
+We perform the MC simulation with 50000 walkers and 20000 time steps for each protocol. For each substrate we generate 10 sets of noise-free MR signals and add Rician noise of $\sigma=0.05$, resulting in  total of 440 sets of noisy MR signals. For each protocol we apply the model fitting procedure to the 440 sets of MR signals and retrieve the tissue model parameters.
+
+To compare the axon distributions with the estimated axon diameter index $a$ we have to take into consideration that the contribution of each axon to the MR signal depends its volume and is proportional to the square of its diameter. As in \citet{Alexander:2010} we correlate the estimated axon diameter index $a$ with the weighted axon diameter average $\hat{a} = \hat{f} / \int p(\alpha)\alpha^3\mbox{d}\alpha$, where $p$ is the true distribution of axon diameter $\alpha$ and $\hat{f}$ is the intracellular volume fraction $\hat{f} = \int p(\alpha)\alpha^2\mbox{d}\alpha.$
+
+\subsection{MRI experiment}
+The \SFshort{} and \OIlong{} protocols (see table \ref{tab:experiment4:protocols}) are implemented on a 3T Philips Achieva scanner to test the clinical viability of the 20 minute \SFshort{} protocol and compare it to the three times longer \OIlong{} protocol. Diffusion weighted MR images of two healthy volunteers (male 32yo, female 25yo) are acquired using a cardiac-gated EPI sequence with the following imaging parameters: 10 slices, slice thickness=5mm, in-plane resolution=128x128 (FOV=35x35$mm^2$), TR=7RR, TE=125ms/TE=100ms for \SFshort{} and \OIlong{} respectively. We position the centre slice so that it is aligned with the mid-sagittal body of the \gls{CC} to be able to acquire DWI measurements perpendicular and parallel to the fibres of the \gls{CC}. \SFshort{} acquisition is repeated twice on two separate days for each subject to investigate the reproducibility of the estimated parameter maps.
+%
+\section{Results}
+
+
+\begin{figure}
+\centering
+	\input{chapter8/figs/Det360_MC_a.tikz}	\input{chapter8/figs/Det360_MC_f.tikz}\\
+	\input{chapter8/figs/Det90_MC_a.tikz}	\input{chapter8/figs/Det90_MC_f.tikz}\\
+	\input{chapter8/figs/samedir_MC_a.tikz}	 \input{chapter8/figs/samedir_MC_f.tikz}
+  \caption{Scatter plots of estimated tissue model parameters $a$ and $f_1$ (grey) and and mean $a$ and $f_1$ over 10 replications (black) against true $\hat{a}$ and $\hat{f}$ of the MC substrates.}
+  \label{fig:experiment4:mc simulations}
+\end{figure}
+Figure \ref{fig:experiment4:mc simulations} presents the results from fitting the model to the synthetic MC data sets as described above. For all three protocols we plot the fitted axon diameter index $a$ against $\hat{a}$
+and the intra-cellular volume fraction $f_1$ against the true intra-cellular volume fraction $\hat{f}$ for all 440 noisy sets of MR signals. We also compute the mean over the 10 replications for each of the 44
+unique substrates and display them in the same plot. The bottom row of Fig.\ref{fig:experiment4:mc simulations} shows that all protocols estimated the volume fraction accurately with little variance. Further, all protocols
+estimate larger $a$ that agree with $\hat{a}$. The estimated $a$ varies arbitrarily between $0-2\mu m$ for $\hat{a} < 3\mu m$. Thus smaller $\hat{a}$ can be distinguished from larger ones but not accurately
+measured. This is because the limited maximum {\gls{gstr}} that does not attenuate the signal from water inside axons of diameter $<2\mu m$. Despite the limitation, the trends of $a$ agree with the true
+values for $\hat{a}$ and suggest that the index $a$ is a useful discriminator of axon diameter distributions. \SFlong{} estimates both indices more accurately than \OIlong{} and variations among the 10
+estimates in each substrate are smaller. \SFshort{} and \OIlong{} appear to have similiar accuracy and precision in estimating $\hat{a}$ and $\hat{f}$. This suggests that we can reduceby a third by exploiting
+a-priori known fibre orientation while maintaining similar quality of parameter estimates.
+
+
+Figure \ref{fig:experiment4:maps} shows maps of $a$ and $\rho$ in the centre slice of the \gls{CC} for all acquisitions in two volunteers. From previous histological studies \cite{Aboitiz:1992} we expected low axon diameter and high density in the splenium and genu and higher axon diameters with lower density in the body of the \gls{CC}. As predicted by the MC simulations (see also \citet{Alexander:2010}), all protocols overestimated $a$ because of the lack of sensitivity to lower diameters. The high-low-high trend in $a$ and low-high-low trend of $\rho$ can be observed in both subjects in \OIlong{} results but are less apparent in \SFshort{} scans. The worst case is is \SFshort{} of subject 1, which presents very noisy parameter maps. This is likely to be caused by a misalignment with the true fibre direction of the \gls{CC} and the gradient directions, which demonstrates the sensitivity of the SF protocol to accurate positioning. Furthermore, all SF scans consistently produce larger estimates of $a$ than \OIlong{}. Variation in true fibre orientation is again the likely explanation. Unlike the SF protocols, the OI protocol can better compensate for this variation because of the high angular gradient sampling. However, despite the limitations, the results of subject 2 demonstrate reproducible estimates of $a$ and $\rho$. This suggests that with accurate positioning, the 20 minute \SFshort{} protocol is able to produce comparable parameter maps to \OIlong, which requires more than three times the scan time.
+\begin{figure}
+ \centering
+  \pgfimage[width=10cm, height=6.5cm]{chapter8/figs/maps.pdf}
+  \caption{Color coded parameter maps of $a$ and $\rho$ in the centre slice of the CC in two subjects. Scan and rescan results for the \SFshort{} are shown together with results from the \OIlong{} acquisition.}
+  \label{fig:experiment4:maps}
+\end{figure}
+\todo{protocol visualisation}
+\section{Discussion}
+In this work we propose optimised {\gls{DWI}} protocols that use the known fibre orientation in specific structures like the \gls{CC} and allow us to estimate indices of axon diameter and density in the live human brain. We develop a new optimization algorithm that overcomes several limitations of previous approaches and produces DWI protocols that can be acquired in under 20 minutes. While previous protocols were too time consuming for clinical practise, the short acquisition time of our protocols opens the possibility to be included in a variety of studies. Experiments on synthetic data show that our protocols can provide axon diameter and density indices with similar variance to those from longer orientational invariant protocols. In-vivo scans on two healthy volunteers show the potential of our method to produce parameter maps of axon diameter and density that agree with the general histologic trend but also reveal the limitations caused by misalignment and variation in fibre orientation compared to the longer OI protocol. If such protocols are to be used, great care must be taken to align gradient directions with the fibre orientation. Future work aims to account for uncertain or erroneous fibre orientation by incorporating some tolerance for fibre orientation variation in the optimisation.
+
+
+%\newsavebox{\colorb}
+%\savebox{\colorb}{{\color{red}\rule{1in}{1in}}}
+%\usebox{\colorb}
+
+%\begin{table}
+%\begin{adjustbox}{width={\textwidth},totalheight=\textheight,keepaspectratio}
+%% Table generated by Excel2LaTeX from sheet 'Sheet7'
+%\begin{tabular}{rrrrrrrrrrrr}
+%      \toprule
+%       & & \multicolumn{10}{c}{\textit{Individual ROIs}}                                             \\
+%       & \textit{whole CC} & G1    & G2    & G3    & B1    & B2    & B3    & I     & S1    & S2    & S3\\
+%       \cmidrule(lr){2} \cmidrule(lr){3-12}
+%       \addlinespace
+%$a$    & 0.66  & 0.14  & 0.83  & 0.56  & 0.14  & 0.81  & 0.46  & -0.25 & -0.07 & 0.70  & 0.94  \\
+%$\rho$ & 0.79 & 0.74  & 0.77  & 0.78  & 0.44  & 0.59  & 0.34  & 0.79  & -0.14 & 0.34  & 0.73  \\
+%\bottomrule
+%\end{tabular}%
+%\end{adjustbox}
+%\end{table}
+
+%\input{chapter8/figs/exp2_dens_all.tikz}
+

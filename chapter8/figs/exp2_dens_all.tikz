@@ -1,0 +1,14 @@
+\begin{tikzpicture}
+\begin{axis}[%
+    xlabel={ROI}, 
+	ylabel={$\rho$ in $[\mu m^{-2}]$},
+	\pgfplotstableread{chapter8/figs/exp2_dens_all.dat}\tableall
+	\addplot+[only marks,mark options={scale=1.5}] table[x index=0,y index=1] from \tableall;		
+	\addplot+[only marks, mark options={scale=1.5}] table[x index=0,y index=2] from \tableall;		
+	\addplot+[only marks, mark options={scale=1.5}] table[x index=0,y index=3] from \tableall;		
+	\addplot+[only marks, mark options={scale=1.5}] table[x index=0,y index=4] from \tableall;		
+	\addplot+[only marks, mark options={scale=1.5}] table[x index=0,y index=5] from \tableall;		
+	\addplot[] table[x index=0,y index=6] from \tableall;		
+	%\legend{all measurements, mean};
+	\end{axis}
+\end{tikzpicture}	
