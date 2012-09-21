@@ -6,4 +6,9 @@
 *.old
 *.bbl
 .*
+*.glo
+*.ist
+*.out
+*.synctex
+*.synctex.gz
 !/.gitignore
