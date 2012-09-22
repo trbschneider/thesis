@@ -1,0 +1,22 @@
+\begin{tikzpicture}	
+	\begin{axis}[
+            title={\textbf{Clinical protocol} $(|G_{max}|=60mT/m)$},
+            ymajorgrids=true,
+	  		xlabel={\#Gradient directions per set},
+			ylabel={CRLB},
+            width=0.9\textwidth,
+            height=0.5\textwidth,
+	  		xtick={15,30,35,60,75,90,105,120},
+	  		xticklabels={15,30,60,75,90,105,120},
+            xmin=0,
+            xmax=120,
+            ymin=0,
+	  		%ytick={0,0.7854,1.5708},
+	  		%yticklabels={0,$\frac{\pi}{4}$,$\frac{\pi}{2}$},				
+	  	]
+	  	\addplot+[very thick, red, mark options={fill=red}] table[x=DIRS,y=nofib] {chapter8/figs/DIRSvsCRLB_60mT_mod.txt};
+		\addplot+[very thick, cyan, mark options={fill=cyan}] table[x=DIRS,y=free] {chapter8/figs/DIRSvsCRLB_60mT_mod.txt};
+		\addplot+[dashed, very thick, cyan, mark options={fill=cyan}] table[x=DIRS,y=freemod] {chapter8/figs/DIRSvsCRLB_60mT_mod.txt};
+		\legend{\OI, \FD, \FD$_{mod}$};
+	\end{axis}
+\end{tikzpicture}	

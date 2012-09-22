@@ -16,8 +16,6 @@
 \newcommand{\OIlong}{OI$_{360}$}
 
 
-\newcolumntype{x}[1]{ >{\centering\arraybackslash\hspace{0pt}}p{#1}}
-\newcolumntype{y}[1]{ >{\arraybackslash\hspace{0pt}}p{#1}}
 
 
 % Diffusion analysis techniques can be seen as trade-off between model complexity and amount of data needed. In this context, the two techniques we have investigated in the previous chapters DTI and QSI might be regarded as two opposite ends of this trade-off. DTI only requires relatively little amounts of data ( minimum 6 different gradient directions + 1 non-diffusion weighted acquisition), but it's underlying model is based on the assumption that all observed diffusion is Gaussian. Clearly, this is a gross over-simplification of the complex diffusion mechanisms present in biological tissue. QSI on the other end of this spectrum makes no assumption about the diffusion process and can theoretically reveal even the most complex diffusion displacement profiles. As a trade-off for this generality, QSI generally required large quantities of data and requires very strong diffusion gradients. In fact the implementation of true QSI on a clinical systems is impossible, and quasi-QSI type acquisitions are subject to their own approximations and shortcomings (see Chapter XX for discussion). Model-based diffusion imaging techniques are a compromise between the model-free techniques and simple models such as DTI (see Chapter XX). The data requirements for these model range from single shell HARDI (e.g. Ball-and-Stick models) comparable to DTI up to multiple shell HARDI or QSI type protocols. Furthermore, geometrical models offer the potential to discriminate different tissue compartments better than DTI, while its parameters can be more easy to interpret than the PDF derived from QSI.

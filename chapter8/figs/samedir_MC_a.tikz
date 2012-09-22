@@ -1,8 +1,8 @@
-	\begin{tikzpicture}[scale=0.55]
+	\begin{tikzpicture}[scale=0.8]
 	\begin{axis}[
 		title={\large{OI$_{360}$}},
 		xlabel={\large{$a$}}, 
-		%ylabel={\large{$\hat{a}$}},
+		ylabel={\large{$\hat{a}$}},
 		legend style={at={(0.005,0.995)}, anchor=north west},width=7cm]
 		\pgfplotstableread{chapter8/figs/samedir_all.txt}\tableall
 		\pgfplotstableread{chapter8/figs/samedir_mean.txt}\tablemean

@@ -1,4 +1,4 @@
-	\begin{tikzpicture}[scale=0.55]
+	\begin{tikzpicture}[scale=0.8]
 	\begin{axis}[
 		    	title={\large{SF$_{360}$}},
 			xmin=0.5,
@@ -6,13 +6,13 @@
 			width=7cm,
 			xlabel={\large{$f_1$}}, 
 			ylabel=\large{{$\hat{f}$}},
-			legend style={at={(0.005,0.995)}, anchor=north west},
+			%legend style={at={(0.005,0.995)}, anchor=north west},
 		]
 		\pgfplotstableread{chapter8/figs/det360_all.txt}\tableall
 		\pgfplotstableread{chapter8/figs/det360_mean.txt}\tablemean
 		\addplot+[only marks, mark=x, mark options={scale=1.5,fill=none, draw=black!35}] table[x index=2,y index=3] from \tableall;
 		\addplot+[only marks, mark=x, mark options={scale=1.5,draw=black},style=thick] table[x index=2,y index=3] from \tablemean;
 		%\addplot[red] coordinates {(0,0) (1,1)};
-		\legend{all measurements, mean};
+		%\legend{all measurements, mean};
 		\end{axis}
 	\end{tikzpicture}

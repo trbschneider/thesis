@@ -1,4 +1,4 @@
-	\begin{tikzpicture}[scale=0.55]
+	\begin{tikzpicture}[scale=0.8]
 	\begin{axis}[
 		title={\large{SF$_{360}$}},
 		xlabel={\large{$a$}}, 
