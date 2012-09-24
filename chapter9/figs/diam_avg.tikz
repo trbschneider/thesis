@@ -1,0 +1,26 @@
+%!TEX root = ../../thesis.tex
+\begin{tikzpicture}[scale=0.7]
+\begin{axis}[%
+    		xlabel={ROI}, 
+		ylabel={$a$ in $[\mu m]$},
+		ymin=5,
+		ymax=15,
+		width=0.7\textwidth,
+		height=0.6\textwidth,
+		xtick={1,2,3,4,5,6,7,8,9,10},
+		xticklabels={G1,G2,G3,B1,B2,B3,I,S1,S2,S3},		
+		legend to name=leg:chap 9 dens_avg,
+		legend columns=-1,
+		yticklabel style={%
+		        /pgf/number format/.cd,
+		        fixed,
+		        fixed zerofill,
+            		precision=2,
+	        },
+	]
+	\pgfplotstableread{chapter9/figs/diam_all.dat}\tableall
+	\addplot+[blue, mark=*,error bars/.cd, y dir=both, y explicit] table[x=reg,y=avg1, y error = std1] from \tableall;		
+	\addplot+[red, mark=*,error bars/.cd, y dir=both, y explicit] table[x=reg,y=avg2, y error = std2] from \tableall;		
+	\legend{scan,rescan};
+	\end{axis}
+\end{tikzpicture}	

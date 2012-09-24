@@ -1,0 +1,60 @@
+%!TEX root = ../../thesis.tex
+\begin{tikzpicture}[scale=0.7]
+\begin{axis}[%
+    		xlabel={ROI}, 
+		ylabel={$\rho$ in $[\mu m^{-2}]$},
+		ymin=0,
+		ymax=0.05,
+		width=0.7\textwidth,
+		height=0.6\textwidth,
+		xtick={1,2,3,4,5,6,7,8,9,10},
+		xticklabels={G1,G2,G3,B1,B2,B3,I,S1,S2,S3},		
+%		legend to name=leg:chap 9 dens_all,
+%		legend columns=-1,
+		title=Scan,
+		yticklabel style={%
+		        /pgf/number format/.cd,
+		        fixed,
+		        fixed zerofill,
+            		precision=2,
+	        },
+	]
+	\pgfplotstableread{chapter9/figs/dens_all.dat}\tableall
+	\addplot+[only marks,mark options={scale=1.5}] table[x=reg,y=s11] from \tableall;		
+	\addplot+[only marks, mark options={scale=1.5}] table[x=reg,y=s21] from \tableall;		
+	\addplot+[only marks, mark options={scale=1.5}] table[x=reg,y=s31] from \tableall;		
+	\addplot+[only marks, mark options={scale=1.5}] table[x=reg,y=s41] from \tableall;		
+	\addplot+[only marks, mark options={scale=1.5}] table[x=reg,y=s51] from \tableall;		
+	\addplot[dashed, thick] table[x=reg,y=avg1] from \tableall;		
+%	\legend{s1,s2,s3,s4,s5,mean};
+	\end{axis}
+\end{tikzpicture}	
+\begin{tikzpicture}[scale=0.7]
+\begin{axis}[%
+    		xlabel={ROI}, 
+		%ylabel={$a$ in $[\mu m]$},
+		ymin=0,
+		ymax=0.05,
+		width=0.7\textwidth,
+		height=0.6\textwidth,
+		xtick={1,2,3,4,5,6,7,8,9,10},
+		xticklabels={G1,G2,G3,B1,B2,B3,I,S1,S2,S3},		
+		title=Rescan,
+		yticklabel style={%
+		        /pgf/number format/.cd,
+		        fixed,
+		        fixed zerofill,
+            		precision=2,
+	        },
+	]
+	\pgfplotstableread{chapter9/figs/dens_all.dat}\tableall
+	\addplot+[only marks,mark options={scale=1.5}] table[x=reg,y=s12] from \tableall;		
+	\addplot+[only marks, mark options={scale=1.5}] table[x=reg,y=s22] from \tableall;		
+	\addplot+[only marks, mark options={scale=1.5}] table[x=reg,y=s32] from \tableall;		
+	\addplot+[only marks, mark options={scale=1.5}] table[x=reg,y=s42] from \tableall;		
+	\addplot+[only marks, mark options={scale=1.5}] table[x=reg,y=s52] from \tableall;		
+	\addplot[dashed, thick] table[x=reg,y=avg2] from \tableall;		
+%	\legend{s1,s2,s3,s4,s5,mean};
+	\end{axis}
+\end{tikzpicture}
+
