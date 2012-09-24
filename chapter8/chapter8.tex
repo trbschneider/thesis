@@ -5,7 +5,7 @@
 \newcommand{\DO}{{\ensuremath{\mathcal{SF}_{dirs}}}}
 \newcommand{\FD}{{\SF}}
 \newcommand{\FDmod}{{\ensuremath{\FD_{mod}}}}
-\newcommand{\SFasym}{{\ensuremath{\mathcal{aSF}}}}
+\newcommand{\SFasym}{{\ensuremath{a\mathcal{SF}}}}
 
 \newcommand{\SFshort}{\SF$_{90}$}
 \newcommand{\SFlong}{\SF$_{360}$}
@@ -17,9 +17,12 @@
 \chapter{In-vivo estimates of axonal characteristics using the single fibre protocols}
 \label{chapter 8}
 \section{Introduction}
-In the previous chapter we have introduced the single fibre \SF{} diffusion MRI protocol optimisation framework designed for unidirectional white matter tracts. The aim of this chapter is to investigate the clinical feasibility of the \SF{} protocols to estimate axon diameter and axon density indices in-vivo. \Citep{Alexander:2010} has already shown that such indices can be acquired in-vivo on a standard clinical system, but the long scan time of 1 hour is permissive for routine clinical application.  We have shown in simulations that \SF{} protocols allow more accurate estimates of microstrucure indices in such structures compared to the orientational invariant \OI{} approach of \citep{Alexander:2008}. We further demonstrated the feasibility of estimating a biologically reasonable range of axon diameter and axon density indices in a sample of fixed primate spinal cord. Our initial results suggest that \SF{} protocols can produce acceptable estimates of tissue microstrucure indices using a only a moderate number of diffusion weighted acquisitions. 
+In the previous chapter we have introduced the single fibre \SF{} diffusion MRI protocol optimisation framework designed for unidirectional white matter tracts. The aim of this chapter is to investigate the clinical feasibility of the \SF{} protocols to estimate axon diameter and axon density indices in-vivo. \Citep{Alexander:2010} has already shown that such indices can be acquired in-vivo on a standard clinical system, but the long scan time of 1 hour is permissive for routine clinical application.  
 
-Our aim is to produce a \SF{} protocol that can be acquired within 25 minutes, which is comparable scan time to a typical DTI protocol. We achieve this by reducing the total number of diffusion weighted directions (\SF{}) compared to Alexanders's original 1 hour {\OIlong{}} approach. We first compare Monte-Carlo simulations of the \SF{} protocol with with the \OI{} approach. We then evaluate both methods in an MRI scan/rescan experiment on two healthy volunteers to investigate the feasibility of estimating microstructural parameters in-vivo under realisitic clinical conditions.
+
+We have shown in simulations that \SF{} protocols allow more accurate estimates of microstrucure indices in highly coherent WM bundles compared to the orientational invariant \OI{} approach of \citep{Alexander:2008}. We further demonstrated the feasibility of estimating a biologically reasonable range of axon diameter and axon density indices in a sample of fixed primate spinal cord. Our initial results suggest that \SF{} protocols can produce acceptable estimates of tissue microstrucure indices using a only a moderate number of diffusion weighted acquisitions. 
+
+Our aim is to produce a \SF{} protocol that can be acquired within 25 minutes, which is comparable scan time to a typical DTI protocol. We focus here on studying the effect of reducing the total number of diffusion weighted directions (\SF{}) to accomodate the scan time limit. First, we compare our \SF{} protocols with Alexander's \OI{} approach using Monte-Carlo simulations. We then evaluate both methods in an MRI scan/rescan experiment on two healthy volunteers to investigate the feasibility of estimating microstructural parameters in-vivo under realisitic clinical conditions.
 
 \section{Asymptotic protocol optimisation}
 In the previous chapter we have implemented a \SF{} protocol optimisation, given a total number of acquisitions $N$ divided in $M$ sets of different {\gls{PGSE}} pulse settings with the gradient scheme being either fixed {\OI} or optimised  for each set {\FD}. Our simulations showed that protocols with optimised gradient schemes consistently outperformed the protocols with a fixed uniform gradient scheme. While the complete optimisation of all gradient directions offers great flexibility, but is also very computationally demanding. The increase in free parameters increases the computational complexity and thus requires much longer computation times compared to {\OI}. The larger parameter space also causes a higher risk for the algorithm to converge to local minima instead of the global minimum. 
@@ -32,25 +35,26 @@ In the previous chapter we have implemented a \SF{} protocol optimisation, given
 \end{figure}
 
 
-We observed in the previous chapter that the \SF-optimised gradient schemes converged to a trivial arrangement of gradient directions, featuring predominantly perpendicular and parallel measurements to the given fibre direction. In fact, we can hypothesise that the few variations in gradient direction do not reflect the true optimal gradient scheme, but are caused by imperfections in the optimisation algorithm. To test this hypothesis, we can simply use the \FD{} presented e.g. in the previous chapter to produce a modified \FDmod{} protocol with only parallel and perpendicular gradients by aligning each gradient  to the closest perpendicular or parallel gradient direction. Figure~\ref{fig:chapter8 DIRSvsCRLB60mT mod} compares the CRLB values for such a modified \FDmod{} protocol compared to the untouched \FD and \OI protocols for different numbers of gradient directions. Not only does the \FDmod{} protocol achieve a similar improvement of CRLB values to \FD over the \OI method, but it even gives the smallest CRLB values out of the three methods. This suggests that it is sufficient to acquire only in parallel and perpendicular directions.
+We observed in the previous chapter that the \SF-optimised gradient schemes converged to a trivial arrangement of gradient directions, featuring predominantly perpendicular and parallel measurements to the given fibre direction. In fact, we can hypothesise that the few variations in gradient direction do not reflect the true optimal gradient scheme, but are caused by imperfections in the optimisation algorithm. To test this hypothesis, we can simply use the \FD{} presented e.g. in the previous chapter to produce a modified \FDmod{} protocol with only parallel and perpendicular gradients by aligning each gradient  to the closest perpendicular or parallel gradient direction. Figure~\ref{fig:chapter8 DIRSvsCRLB60mT mod} compares the CRLB values for such a modified \FDmod{} protocol compared to the untouched \FD{} and \OI{} protocols for different numbers of gradient directions. We can see that mot only does the \FDmod{} protocol achieve a similar improvement of CRLB values to \FD over the \OI method, but it even gives the smallest CRLB values out of the three methods. We conclude that it suffices to use gradient schemes with only in parallel and perpendicular gradient directions in our optimisation.
  
 
 To reduce the complexity of the optimisation problem we therefore constrain our measurements in the protocol to have gradient directions only perpendicular to the fibre bundles, but we include one measurement in the parallel direction for the estimation of diffusivity along the axons. Such gradient scheme contains exclusively either parallel or perpendicular measurements, and thus can be considered independent of the number of gradient directions $N$ in each set $M$. We can therefore replace the optimisation for each pair of $(N,M)$, with an asymptotic optimisation for $N\rightarrow\infty$ (in the following referred to as \SFasym{}). The \SFasym{} approach allows us to introduce the weighting factors $w_m$ that reflect how important each measurement is, i.e. how often it should be sampled relative to the other measurements. We can then adapt Eq. \ref{eq-optimality} so that:
 \begin{equation}
 	\Omega=diag\{w_1,\cdots,w_M\} \mbox{ with } \sum_{m=1}^{M}w_m=1
 \end{equation}
-For any given desired number of measurements the discrete number $N$ of measurements per set can be simply calculated by $N_{m}=w_mN$. Table~\ref{XX} summarises the optimisation parameters for the asymptotic protocol optimisation in comparision with the \OI{} and \FD{} methods described in the last chapter. Please note that the computational complexity of the \SFasym{} is only dependent on $M$, making it similar to the complexity of \OI{} and significantly less demanding than \FD{}.   
+For any given desired discrete realisation of \SFasym{} for a total number of measurements $N_{total}$, we can simply calculate the number of acquistion per set by $N_{m}=w_mN$. Table~\ref{tab:chapter8 asym parameter overview} summarises the optimisation parameters for the asymptotic protocol optimisation in comparision with the \OI{} and \FD{} methods described in the last chapter. Please note that the computational complexity of the \SFasym{} is only dependent on $M$, making it similar to the complexity of \OI{} and significantly less demanding than \FD{}.   
 
 \begin{table}[th]
-  	\caption{Overview of parameters for the tested protocol optimisation approaches.} \centering \vspace{2ex}
-    \label{tab:chapter7 exp1 opt parameter overview}
-    \begin{adjustbox}{width={\textwidth},totalheight=\textheight,keepaspectratio}
-        	\begin{tabular}{@{}y{0.35\textwidth}x{0.15\textwidth}x{0.15\textwidth}x{0.15\textwidth}@{}}
+  	\caption{Overview of free and fixed parameters for the \SFasym{} protocol optimisation compared to \SF{} and \OI{} protocols.} 
+	\centering \vspace{2ex}
+    	\label{tab:chapter8 asym parameter overview}
+    	\begin{adjustbox}{width={\textwidth},totalheight=\textheight,keepaspectratio}
+        	\begin{tabular}{@{}y{0.30\textwidth}x{0.20\textwidth}x{0.20\textwidth}x{0.20\textwidth}@{}}
                 \toprule
 					& {\SFasym} & {\OI} & {\FD} \\%
-				\cmidrule(rl){2-4}
-				Free parameters & $w_m$,$\delta_m,\Delta_m,G_m$ & $\delta_m,\Delta_m,G_m$ & $\phi_{m,n},\theta_{m,n}$,$\delta_m,\Delta_m,G_m$ \\
-        		Fixed parameters & $\phi_n,\theta_n$ & $\phi_n,\theta_n$ & --  \\[2ex]
+				\cmidrule(rl){2-2}\cmidrule(rl){3-3}	\cmidrule(l){4-4}
+				Free parameters & $w_m$, $\delta_m$, $\Delta_m$, $G_m$ & $\delta_m$, $\Delta_m$, $G_m$ & $\phi_{m,n}$, $\theta_{m,n}$, $\delta_m$, $\Delta_m$, $G_m$ \\[2ex]
+        		Fixed parameters & $\phi_n$,$\theta_n$ & $\phi_n$,$\theta_n$ & --  \\[2ex]
         		Specific fibre direction & yes & no & yes \\[2ex]
         		No. of free parameters & O($M$) &O($M$) & O($M\times N$) \\
         		\bottomrule
@@ -61,7 +65,6 @@ For any given desired number of measurements the discrete number $N$ of measurem
  
 
 \section{Experiments \& Methods}
-.....
 \begin{table}
 \centering
 \caption{{\protect\gls{PGSE}} settings of \SFshort{}, \SFlong{} and \OIlong{} protocols. $\perp$ and $\parallel$ mark acquisitions perpendicular and parallel to the fibre bundles.}
@@ -98,7 +101,7 @@ For any given desired number of measurements the discrete number $N$ of measurem
 \subsection*{Protocols}
 We generate optimized protocols for our 3T Philips Achieva scanner with a maximum {\gls{gstr}} strength of $|\vec{G}_{max}|=60mT/m$. \SFasym{} optimization is performed for the same two-compartment tissue model and parameter range we described in the previous chapter. The asymptotic \SFasym protocol optmisation is performed and we derive a protocol with a total of $90$ diffusion weighted acquisitions (\SFshort), which corresponds to the desired ~25 minutes of scan time on our scanner. For comparison, we also generate an \OI protocol $N=360$ (\OIlong) as used in \citep{Alexander:2010} and an \SFasym protocol with the same number of acquisitions (\SFlong). The three protocols are presented in table \ref{tab:experiment4:protocols}. For the \SFshort{} and \SFlong{} protocols we used $M=8$ but only sequences with $w>0$ are reported. The \OIlong{} protocol optimisation uses $M=4$ and report the three unique {\gls{PGSE}} parameter settings.
 \subsection*{Simulations}
-We use the free diffusion simulation of \citet{Hall:2009}, which performs a Monte Carlo (MC) simulation of water particles in packed cylinders. We use the 44 synthetic white matter substrates from\citet{Alexander:2010} with diameter distributions and packing densities similar to previously reported histology studies \citep{Aboitiz:1992,Graf-von-Keyserlingk:1984,Lamantia:1990}.%%
+We use the free diffusion simulation of \citet{Hall:2009}, which performs a Monte Carlo (MC) simulation of water particles in packed cylinders. We use the 44 synthetic white matter substrates from\citet{Alexander:2010} with diameter distributions and packing densities similar to previously reported histology studies \citep{GrafvonKeyserlingk:1984,LaMantia:1990,Aboitiz:1992}.%%
 We perform the MC simulation with 50000 walkers and 20000 time steps for each protocol. For each substrate we generate 10 sets of noise-free MR signals and add Rician noise of $\sigma=0.05$, resulting in  total of 440 sets of noisy MR signals. For each protocol we apply the model fitting procedure to the 440 sets of MR signals and retrieve the tissue model parameters.
 
 To compare the axon distributions with the estimated axon diameter index $a$ we have to take into consideration that the contribution of each axon to the MR signal depends its volume and is proportional to the square of its diameter. As in \citet{Alexander:2010} we correlate the estimated axon diameter index $a$ with the weighted axon diameter average $\hat{a} = \hat{f} / \int p(\alpha)\alpha^3\mbox{d}\alpha$, where $p$ is the true distribution of axon diameter $\alpha$ and $\hat{f}$ is the intracellular volume fraction $\hat{f} = \int p(\alpha)\alpha^2\mbox{d}\alpha.$
@@ -129,7 +132,6 @@ Figure \ref{fig:experiment4:maps} shows maps of $a$ and $\rho$ in the centre sli
   \caption{Color coded parameter maps of $a$ and $\rho$ in the centre slice of the CC in two subjects. Scan and rescan results for the \SFshort{} are shown together with results from the \OIlong{} acquisition.}
   \label{fig:experiment4:maps}
 \end{figure}
-\todo{protocol visualisation}
 \section{Discussion}
 In this work we propose optimised {\gls{DWI}} protocols that use the known fibre orientation in specific structures like the \gls{CC} and allow us to estimate indices of axon diameter and density in the live human brain. We develop a new optimization algorithm that overcomes several limitations of previous approaches and produces DWI protocols that can be acquired in under 20 minutes. While previous protocols were too time consuming for clinical practise, the short acquisition time of our protocols opens the possibility to be included in a variety of studies. Experiments on synthetic data show that our protocols can provide axon diameter and density indices with similar variance to those from longer orientational invariant protocols. In-vivo scans on two healthy volunteers show the potential of our method to produce parameter maps of axon diameter and density that agree with the general histologic trend but also reveal the limitations caused by misalignment and variation in fibre orientation compared to the longer OI protocol. If such protocols are to be used, great care must be taken to align gradient directions with the fibre orientation. Future work aims to account for uncertain or erroneous fibre orientation by incorporating some tolerance for fibre orientation variation in the optimisation.
 
