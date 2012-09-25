@@ -12,23 +12,6 @@
 
 
 \chapter{Pilot study of scan/rescn reproducibility in the corpus callosum and spinal cord}
-\label{chapter 9}
-\begin{table}[ht]
-\caption{ICC values for whole CC and individual ROIs for $a$ and $\rho$ estimates.}
-\begin{adjustbox}{width={\textwidth},totalheight=\textheight,keepaspectratio}
-\begin{tabular}{rrrrrrrrrrrr}
-      \toprule
-       & & \multicolumn{10}{c}{\textit{Individual ROIs}}                                             \\
-       & \textit{whole CC} & G1    & G2    & G3    & B1    & B2    & B3    & I     & S1    & S2    & S3\\
-       \cmidrule(rl){2-2} \cmidrule(l){3-12}
-       \addlinespace
-$a$    & 0.66~\usebox{\substantialBox} & 0.14~\usebox{\poorBox}  & 0.83~\usebox{\perfectBox} & 0.56~\usebox{\moderateBox}  & 0.14~\usebox{\poorBox}  & 0.81~\usebox{\perfectBox}  & 0.46~\usebox{\moderateBox}  & -0.25~\usebox{\poorBox} & -0.07~\usebox{\poorBox} & 0.70~\usebox{\substantialBox}  & 0.94~\usebox{\perfectBox}  \\
-$\rho$ & 0.79~\usebox{\substantialBox} & 0.74~\usebox{\substantialBox}  & 0.77~\usebox{\substantialBox}  & 0.78~\usebox{\substantialBox}  & 0.44~\usebox{\moderateBox}  & 0.59~\usebox{\moderateBox}  & 0.34~\usebox{\fairBox}  & 0.79~\usebox{\substantialBox}  & -0.14~\usebox{\poorBox} & 0.34~\usebox{\fairBox}  & 0.73~\usebox{\substantialBox}  \\
-\bottomrule
-\end{tabular}
-\end{adjustbox}
-{\footnotesize Guidelines for agreement  \citep{Landis:1977}: \usebox{\poorBox}~$<0.2$: poor,  \usebox{\fairBox}~$0.2–0.4$:~fair,  \usebox{\moderateBox}~$0.4–0.6$:~moderate, \usebox{\substantialBox}~$0.6–0.8$:~substantial,  \usebox{\perfectBox}~$>0.8$:~almost perfect}
-\end{table}
 
 
 \begin{figure}
@@ -83,4 +66,27 @@ $\rho$ & 0.79~\usebox{\substantialBox} & 0.74~\usebox{\substantialBox}  & 0.77~\
 	\label{fig:chap9 scan rescan scatterplots per subject}
 \end{figure}
 
+\begin{figure}
+	\centering
+	\input{chapter9/figs/BMplot.tikz}\ref{leg:chap 9 bland altman}	
+	\caption{XX}
+	\label{fig:chap9 bland altman plot}	
+\end{figure}	
 
+\label{chapter 9}
+\begin{table}[ht]
+\caption{ICC values for whole CC and individual ROIs for $a$ and $\rho$ estimates.}
+\begin{adjustbox}{width={\textwidth},totalheight=\textheight,keepaspectratio}
+\begin{tabular}{rrrrrrrrrrrr}
+      \toprule
+       & & \multicolumn{10}{c}{\textit{Individual ROIs}}                                             \\
+       & \textit{whole CC} & G1    & G2    & G3    & B1    & B2    & B3    & I     & S1    & S2    & S3\\
+       \cmidrule(rl){2-2} \cmidrule(l){3-12}
+       \addlinespace
+$a$    & 0.66~\usebox{\substantialBox} & 0.14~\usebox{\poorBox}  & 0.83~\usebox{\perfectBox} & 0.56~\usebox{\moderateBox}  & 0.14~\usebox{\poorBox}  & 0.81~\usebox{\perfectBox}  & 0.46~\usebox{\moderateBox}  & -0.25~\usebox{\poorBox} & -0.07~\usebox{\poorBox} & 0.70~\usebox{\substantialBox}  & 0.94~\usebox{\perfectBox}  \\
+$\rho$ & 0.79~\usebox{\substantialBox} & 0.74~\usebox{\substantialBox}  & 0.77~\usebox{\substantialBox}  & 0.78~\usebox{\substantialBox}  & 0.44~\usebox{\moderateBox}  & 0.59~\usebox{\moderateBox}  & 0.34~\usebox{\fairBox}  & 0.79~\usebox{\substantialBox}  & -0.14~\usebox{\poorBox} & 0.34~\usebox{\fairBox}  & 0.73~\usebox{\substantialBox}  \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+{\footnotesize Guidelines for agreement  \citep{Landis:1977}: \usebox{\poorBox}~$<0.2$: poor,  \usebox{\fairBox}~$0.2–0.4$:~fair,  \usebox{\moderateBox}~$0.4–0.6$:~moderate, \usebox{\substantialBox}~$0.6–0.8$:~substantial,  \usebox{\perfectBox}~$>0.8$:~almost perfect}
+\end{table}
