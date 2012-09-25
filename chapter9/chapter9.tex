@@ -1,14 +1,14 @@
 %!TEX root = ../thesis.tex
 \newsavebox{\poorBox}
-\savebox{\poorBox}{\textcolor{red}{\rule{0.1in}{0.1in}}}
+\savebox{\poorBox}{\textcolor{red}{\rule{0.05in}{0.05in}}}
 \newsavebox{\fairBox}
-\savebox{\fairBox}{\textcolor{orange}{\rule{0.1in}{0.1in}}}
+\savebox{\fairBox}{\textcolor{orange}{\rule{0.05in}{0.05in}}}
 \newsavebox{\moderateBox}
-\savebox{\moderateBox}{\textcolor{yellow}{\rule{0.1in}{0.1in}}}
+\savebox{\moderateBox}{\textcolor{yellow}{\rule{0.05in}{0.05in}}}
 \newsavebox{\substantialBox}
-\savebox{\substantialBox}{\textcolor{lime}{\rule{0.1in}{0.1in}}}
+\savebox{\substantialBox}{\textcolor{lime}{\rule{0.05in}{0.05in}}}
 \newsavebox{\perfectBox}
-\savebox{\perfectBox}{\textcolor{green}{\rule{0.1in}{0.1in}}}
+\savebox{\perfectBox}{\textcolor{green}{\rule{0.05in}{0.05in}}}
 
 
 \chapter{Pilot study of scan/rescn reproducibility in the corpus callosum and spinal cord}
@@ -33,6 +33,28 @@ $\rho$ & 0.79~\usebox{\substantialBox} & 0.74~\usebox{\substantialBox}  & 0.77~\
 
 \begin{figure}
 	\centering
+	\subfloat[]
+	{
+		\pgfimage[width=\textwidth]{chapter9/figs/diam_per_subj}
+	}
+	\caption{XX}
+	\label{fig:chap9 scan rescan maps per subject}	
+\end{figure}	
+\begin{figure}
+    \ContinuedFloat 
+	\centering
+	\subfloat[]
+	{
+		\pgfimage[width=\textwidth]{chapter9/figs/dens_per_subj}
+	}
+	\ref{leg:chap 9 maps per subj}
+	\caption{XX (continued)}
+	\label{fig:chap9 scan rescan maps per subject}
+\end{figure}
+
+
+\begin{figure}
+	\centering
 	\ref{leg:chap 9 diam_all}
 	\subfloat[Axon diameter index]
 	{
@@ -48,6 +70,7 @@ $\rho$ & 0.79~\usebox{\substantialBox} & 0.74~\usebox{\substantialBox}  & 0.77~\
 
 \begin{figure}
 	\centering
+	\ref{leg:chap 9 dens_avg}\\	
 	\subfloat[Axon diameter index]
 	{
 		\input{chapter9/figs/diam_avg.tikz}
@@ -55,8 +78,7 @@ $\rho$ & 0.79~\usebox{\substantialBox} & 0.74~\usebox{\substantialBox}  & 0.77~\
 	\subfloat[Axon density index]
 	{
 		\input{chapter9/figs/dens_avg.tikz}
-	}\\
-	\ref{leg:chap 9 dens_avg}
+	}
 	\caption{Scatter plots of axon diameter ($a$) and axon density ($\rho$) indices in all 5 subjects in individual ROIs. The dashed line shows the average over all subjects.}
 	\label{fig:chap9 scan rescan scatterplots per subject}
 \end{figure}
