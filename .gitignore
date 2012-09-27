@@ -12,3 +12,7 @@
 *.synctex
 *.synctex.gz
 !/.gitignore
+/thesis.makefile
+/tikz/
+/*.figlist
+/*.*~

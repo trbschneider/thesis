@@ -100,7 +100,8 @@ Scan/rescan reproducibility:  Figure 2 and 3 show good agreement between d and Ï
 	\label{fig:chap9 bland altman plot}	
 \end{figure}	
 
-\label{chapter 9}
+
+
 \begin{table}[ht]
 \caption{ICC values for whole CC and individual ROIs for $a$ and $\rho$ estimates.}
 \begin{adjustbox}{width={\textwidth},totalheight=\textheight,keepaspectratio}
@@ -119,6 +120,32 @@ $\rho$ & 0.79~\usebox{\substantialBox} & 0.74~\usebox{\substantialBox}  & 0.77~\
 \end{table}
 
 \subsection*{Correlation with DTI metrics}
+\begin{figure}[ht]
+	\centering
+		\subfloat[FA]{
+		\begin{adjustbox}{width={0.5\textwidth},totalheight=0.5\textheight,keepaspectratio}
+		\begin{minipage}{0.5\textwidth}
+			\input{chapter9/figs/DIAMvsFAcorr.tex}\\
+			\input{chapter9/figs/DENSvsFAcorr.tex}
+		\end{minipage}
+		\end{adjustbox}
+		}
+		\subfloat[MD]{
+		\begin{adjustbox}{width={0.5\textwidth},totalheight=0.5\textheight,keepaspectratio}
+		\begin{minipage}{0.5\textwidth}
+			\input{chapter9/figs/DIAMvsMDcorr.tex}\\
+			\input{chapter9/figs/DENSvsMDcorr.tex}
+		\end{minipage}
+		\end{adjustbox}
+		}
+%		\subfloat[MD]{
+%			\input{chapter9/figs/DIAMvsMDcorr.tex}\\
+%			\input{chapter9/figs/DENSvsMDcorr.tex}
+%		}
+	\caption{XX}
+	\label{fig:chap 9 DTI correlations}	
+\end{figure}	
+
 \section{Discussion}
 \section{Conclusion}
 
