@@ -43,7 +43,7 @@ Scan/rescan reproducibility:  Figure 2 and 3 show good agreement between d and Ï
 \subsection*{Axon diameter and axon density indices}
 \begin{figure}[ht\textbf{]}
 	\centering
-	\subfloat[]
+	\subfloat[Habla]
 	{
 		\pgfimage[width=\textwidth]{chapter9/figs/diam_per_subj}
 	}
@@ -51,9 +51,9 @@ Scan/rescan reproducibility:  Figure 2 and 3 show good agreement between d and Ï
 	\label{fig:chap9 scan rescan maps per subject}	
 \end{figure}	
 \begin{figure}[ht]
-    \ContinuedFloat 
 	\centering
-	\subfloat[]
+    \ContinuedFloat 
+	\subfloat[Hubla]
 	{
 		\pgfimage[width=\textwidth]{chapter9/figs/dens_per_subj}
 	}
@@ -122,26 +122,54 @@ $\rho$ & 0.79~\usebox{\substantialBox} & 0.74~\usebox{\substantialBox}  & 0.77~\
 \subsection*{Correlation with DTI metrics}
 \begin{figure}[ht]
 	\centering
-		\subfloat[FA]{
-		\begin{adjustbox}{width={0.5\textwidth},totalheight=0.5\textheight,keepaspectratio}
-		\begin{minipage}{0.5\textwidth}
-			\input{chapter9/figs/DIAMvsFAcorr.tex}\\
-			\input{chapter9/figs/DENSvsFAcorr.tex}
-		\end{minipage}
-		\end{adjustbox}
-		}
-		\subfloat[MD]{
-		\begin{adjustbox}{width={0.5\textwidth},totalheight=0.5\textheight,keepaspectratio}
-		\begin{minipage}{0.5\textwidth}
-			\input{chapter9/figs/DIAMvsMDcorr.tex}\\
-			\input{chapter9/figs/DENSvsMDcorr.tex}
-		\end{minipage}
-		\end{adjustbox}
-		}
-%		\subfloat[MD]{
-%			\input{chapter9/figs/DIAMvsMDcorr.tex}\\
-%			\input{chapter9/figs/DENSvsMDcorr.tex}
-%		}
+				\subfloat[FA]{
+					\begin{minipage}{0.5\textwidth}						
+					\begin{adjustbox}{width={\textwidth},totalheight=\textheight,keepaspectratio}
+						\strut
+						\input{chapter9/figs/DIAMvsFAcorr.tex}
+					\end{adjustbox}\\
+					\begin{adjustbox}{width={\textwidth},totalheight=\textheight,keepaspectratio}
+						\strut
+						\input{chapter9/figs/DENSvsFAcorr.tex}
+					\end{adjustbox}
+					\end{minipage}
+					}
+					\subfloat[MD]{
+						\begin{minipage}{0.5\textwidth}						
+						\begin{adjustbox}{width={\textwidth},totalheight=\textheight,keepaspectratio}
+							\strut
+							\input{chapter9/figs/DIAMvsMDcorr.tex}
+						\end{adjustbox}\\
+						\begin{adjustbox}{width={\textwidth},totalheight=\textheight,keepaspectratio}
+							\strut
+							\input{chapter9/figs/DENSvsMDcorr.tex}
+						\end{adjustbox}
+						\end{minipage}
+					}\\
+					\subfloat[AD]{
+						\begin{minipage}{0.5\textwidth}						
+						\begin{adjustbox}{width={\textwidth},totalheight=\textheight,keepaspectratio}
+							\strut
+							\input{chapter9/figs/DIAMvsADcorr.tex}
+						\end{adjustbox}\\
+						\begin{adjustbox}{width={\textwidth},totalheight=\textheight,keepaspectratio}
+							\strut
+							\input{chapter9/figs/DENSvsADcorr.tex}
+						\end{adjustbox}
+						\end{minipage}
+					}
+				\subfloat[RD]{
+					\begin{minipage}{0.5\textwidth}
+					\begin{adjustbox}{width={\textwidth},totalheight=\textheight,keepaspectratio}
+						\strut
+						\input{chapter9/figs/DIAMvsRDcorr.tex}
+					\end{adjustbox}\\
+					\begin{adjustbox}{width={\textwidth},totalheight=\textheight,keepaspectratio}
+						\strut
+						\input{chapter9/figs/DENSvsRDcorr.tex}
+					\end{adjustbox}
+					\end{minipage}
+				}		
 	\caption{XX}
 	\label{fig:chap 9 DTI correlations}	
 \end{figure}	
