@@ -31,15 +31,46 @@ In the previous chapter we have presented a clinical {\SF} ActiveAx protocols th
 
 Based on the experiences in the previous study, we therefore present here an new imaging pipeline, which improves on several key areas of the previous study:(i) the use of a small \gls{FOV} imaging sequence to improve image resolution and SNR  (ii) a fast tractography-based method to align the image volume with the dominant fibre direction of the CC (iii) a further improved \SF{} optimisation algorithm and tissue model to allow the shortest \gls{TE} for individual diffusion acquisitions to improve SNR in low diffusion weighted scans.  We test our approach in 5 healthy volunteers, who were scanned at two different timepoint to assess both intra- and inter-subject reproducibility. 
 \section{Methods \& Experiments}
-Study design: We recruited 5 healthy volunteers to be scanned on a Philips Achieva 3TX scanner. All subjects were recalled for a second scan on a separate occasion to assess the intra-subject reproducibility of the experiment.
+\subsection*{Protocol optimisation}
+We use here a slighly modified version of the \SFasym{} optimisation, which we described detail in Section~\ref{XX}\todo{ref to previous chapter!} of the previous chapter. We adapt the tissue to include here an additional T2 decay factor that accounts for signal loss in the DWI with respect to the \gls{TE}. This modification then allows the use of dynamic \glspl{TE} for different PGSE parameters in the protocol optimisation. Unlike the {\OI} and {\FD} algorithm
+
+
+
+We generate a protocol optimization we assumed a T2 relaxation time of 70ms for white matter (WM) in the CC. We also allow a maximum gradient strength of 87mT/m, which is achievable by combining the perpendicular 62mT/m gradients using our modified scanner firmware (see \ref{XX}\todo{ref to qspace chapter}). Thirdly we have seen in previous simulations and experiments that the \SF protocols often struggle to estimate fibre direction accuratly. We therefore decided to include a standard single shell DTI acquisition (max b=800s/mm2, 1 b=0, 16 uniformly distributed directions) in our protocols to improve fitting and voxel selection (FA thresholds and the like). The full protocol is given in Table \ref{tab:chap9 protocol table}.
+
+\subsection*{Study design}
+We recruited 5 healthy volunteers (3 female, 2 male, mean age=XX +/- YY) to be scanned on a Philips Achieva 3TX scanner. All subjects were recalled for a second scan after apporximately 7 days to assess the intra-subject reproducibility of the experiment.
 Protocol optimisation: We use the SF protocol optimization framework [5] with an additional T2 decay factor that accounts for the varying signal loss in the DWI due to different echo times (TE). For the protocol optimization we assumed a T2 relaxation time of 70ms for white matter (WM) in the CC. We allowed a maximum gradient strength of 87mT/m, which is achievable by combining perpendicular 62mT/m, gradients. We also acquired a standard DTI acquisition (max b=800s/mm2, 1 b=0, 16 uniformly distributed directions). The full protocol is given in Table 1.
-Data acquisition: We acquired the DWI protocol for 10 sagittal slices with high in-plane resolution and centered on the mid-sagittal plane of the CC, perpendicular to the dominant fibre direction of the CC. Acquisition parameters were: voxel size: 1x1x4mm3, FOV=96x96mm2, TR=6000ms, 2 averages, using an outer-volume suppressed ZOOM acquisition [6] to avoid fold-over artifacts.  
-Model fitting: We fitted a single axon diameter model according to [5], based on the minimal model of white matter diffusion [4] (zeppelin-cylinder-ball in the model taxonomy of [7]) with an additional T2 relaxation factor. We computed the posterior distributions of the model parameters using an MCMC method on a voxel-by-voxel basis.  We used mean of the posterior distribution of the axon diameter, d, as the axon diameter index and the volume fraction, f, of the restricted compartment to generate maps of mean $a$ and the axonal density index $\rho$=f/$\pi/a^2$. We also fitted the diffusion tensor to the 16-direction DTI data and derive maps of FA and the principal eigenvector v1. All fitting was performed using the open-source Camino toolkit [8] (camino.org.uk).
+\subsection*{Data aquisition}
+We acquired the DWI protocol for 10 sagittal slices with high in-plane resolution and centered on the mid-sagittal plane of the CC, perpendicular to the dominant fibre direction of the CC. Acquisition parameters were: voxel size: 1x1x4mm3, FOV=96x96mm2, TR=6000ms, 2 averages, using an outer-volume suppressed ZOOM acquisition [6] to avoid fold-over artifacts.  
+\begin{figure}[ht]
+	\centering
+	\begin{minipage}{0.35\textwidth}
+	\subfloat[Sagittal localizer]
+	{
+		\pgfimage[width=\textwidth]{chapter9/figs/sag_pos.pdf}
+	}\\
+	\subfloat[Coronal FA map overlayed with tractography results (cyan lines)]
+	{
+		\pgfimage[width=\textwidth]{chapter9/figs/coronal_overlay.pdf}
+	}	
+	\end{minipage}\hspace{0.05\textwidth}
+	\begin{minipage}{0.53\textwidth}
+	\subfloat[Axial FA map with overlayed tractography results (cyan lines)]
+	{
+		\pgfimage[width=\textwidth]{chapter9/figs/axial_overlay.pdf}
+	}	
+	\end{minipage}
+	
+	\caption{Positioning of small FOV scans in white, overlayed on a sagittal scout image (a) and axial and coronal DTI tractography results (b\&c).}
+	\label{fig:chap9 FOV positioning}	
+\end{figure}
+\subsection*{Data analysis}
+We fitted a single axon diameter model according to [5], based on the minimal model of white matter diffusion [4] (zeppelin-cylinder-ball in the model taxonomy of [7]) with an additional T2 relaxation factor. We computed the posterior distributions of the model parameters using an MCMC method on a voxel-by-voxel basis.  We used mean of the posterior distribution of the axon diameter, d, as the axon diameter index and the volume fraction, f, of the restricted compartment to generate maps of mean $a$ and the axonal density index $\rho$=f/$\pi/a^2$. We also fitted the diffusion tensor to the 16-direction DTI data and derive maps of FA and the principal eigenvector v1. All fitting was performed using the open-source Camino toolkit [8] (camino.org.uk).
 Data analysis: In each subject we defined the mid-sagittal slice of the CC by manually segmenting the CC and excluded voxels where either FA<0.5 or v1 deviated more than 10 degrees from the dominant CC fibre direction. We divided each CC in 10 regions along the anterior-posterior baseline similar to [9]. 
 \section{Results}
 Figure 1 shows an example of the obtained d and ρ maps and the CC subdivision. Figure 2 shows plots of d and ρ over the CC subdivisions for each subject. Figure 3 shows the axon diameter index and standard deviation over all subjects in each CC region for scan and rescan experiments. In all subjects we find the highest values of d (12.5-13.5μm) in regions B1-I and smaller values between 9-11.5μm for d in the anterior genu (G1-G2) and splenium regions (S1-S3).  Similarly we find the highest axonal density in genu and splenium and low density in the mid-body regions. These trends are in excellent agreement with studies of post-mortem CC, which report highest number of large fibres between B1 and I [9] and low fibre density [10] compared to genu and splenium. The high estimates of d compared to reported post-mortem values can be explained by the shrinkage of axons due to histological preparation. Also the limited gradient strength available on the clinical MRI system makes the experiment insensitive to small fibres, as shown e.g. by [11]. Therefore we can postulate that differences between CC regions in our experiment are mainly driven by the presence of larger fibres. 
 Scan/rescan reproducibility:  Figure 2 and 3 show good agreement between d and ρ values in all regions consistently in all subjects. We find the variability of d to be less than 10\% between scan and rescan in each subject, with the largest relative difference found in the genu and splenium (6±5\% variation) and lowest in the mid-body (<3±2\%). As seen in Figure 3, inter-subject variability is below 0.8μm in d and 0.01μm-2 in ρ in both scan and rescan experiments. Standard deviation is lowest in the mid-body (0.3μm) measurement and larger in genu and splenium regions (>0.7μm). Similarly, in ρ we observe low variability in the mid-body (0.001-0.002μm -2) and higher intra-subject variability in the posterior part of the CC, particularly in the splenium (0.005-0.01μm-2). 
-
 \subsection*{Axon diameter and axon density indices}
 \begin{figure}[ht\textbf{]}
 	\centering
@@ -121,7 +152,7 @@ $\rho$ & 0.79~\usebox{\substantialBox} & 0.74~\usebox{\substantialBox}  & 0.77~\
 
 
 \bgroup
-\tikzset{png export} % Will be exported to png for faster comp
+\tikzset{use png} % Will be exported to png for faster comp
 
 \subsection*{Correlation with DTI metrics}
 \begin{figure}[ht]
