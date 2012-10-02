@@ -30,6 +30,8 @@ In the previous chapter we have presented a clinical {\SF} ActiveAx protocols th
 
 
 We therefore present here an new imaging pipeline, which improves on the following key areas study setup from the previous setup: (i) we use of a small \gls{FOV} imaging sequence to increase both image resolution and SNR (ii) be better method to align the image volume with the dominant fibre direction of the CC using fast DTI tractography directly on the scanner console (iii) a further improved \SF{} optimisation algorithm and tissue model to allow the shortest \gls{TE} for individual diffusion acquisitions to improve SNR in low diffusion weighted scans.  We test our approach in 5 healthy volunteers, who were scanned at two different timepoint to assess both intra- and inter-subject reproducibility. 
+
+
 \section{Methods \& Experiments}
 \subsection*{Protocol optimisation}
 We use here a slightly modified version of the \SFasym{} optimisation, which we described detail in Section~\ref{XX} of the previous chapter. We adapt the tissue model to include an additional T2 decay factor that accounts for signal loss in the DWI with respect to the \gls{TE}. For simplicity, we assume here a mono-exponential T2 decay of the signal. Previously, the \gls{TE} was governed by the maximum TE in the whole protocol. This modification now allows the use of dynamic \glspl{TE} for different PGSE parameters in the protocol optimisation. This has the advantage of effectively reducing the \gls{TE} in the low DWI acquisition, which improves the SNR in those acquisitions.
@@ -39,14 +41,9 @@ We use here a slightly modified version of the \SFasym{} optimisation, which we 
 We carry out the optimisation using as before, assuming a T2 decay factor of 70ms typical for white matter (WM) in the CC \cite{cite stanisz relaxation times paper}. We further increase the maximum usable gradient strength to 87mT/m, by combining the perpendicular 62mT/m gradients using our modified scanner firmware (as implemented earlier see \ref{XX}). We further add a single shell DTI acquisition (max b=800s/mm2, 1 b=0, 16 uniformly distributed directions) to our protocols to improve fitting. The full protocol is given in Table \ref{tab:chap9 protocol table}.
 
 \subsection*{Data acquisition}
-We recruited 5 healthy volunteers (3 female, 2 male, mean age=XX +/- YY) to be scanned on a Philips Achieva 3TX scanner. All subjects were recalled for a second scan on adifferent day days to assess the intra-subject reproducibility of the experiment.
-
-
-
-In each scan session we acquire a the optimised \SF{} DWI protocol with following scan parameters: voxel size: 1x1x4mm3, FOV=96x96mm2, TR=6000ms, 2 averages, using an outer-volume suppressed ZOOM acquisition [6] to avoid fold-over artifacts.  
-
+We recruited 5 healthy volunteers (3 female, 2 male, mean age=XX +/- YY) to be scanned on a Philips Achieva 3TX scanner. All subjects were recalled for a second scan on adifferent day days to assess the intra-subject reproducibility of the experiment. In each scan session we acquire a the optimised \SF{} DWI protocol with following scan parameters: voxel size: 1x1x4mm3, FOV=96x96mm2, TR=6000ms, 2 averages, using an outer-volume suppressed ZOOM acquisition [6] to avoid fold-over artifacts.  
 \paragraph{}
-As we have seen in the previous experiments, our \SF{} methods benefits from accurate alignment of the gradient scheme with respect to the dominant fibre direction. However, such information is not available from the standard anatomical scans, which are typically used for scan prescription. Therefore to aid slice positioning, we use here results of tractography derived from a fast DTI scan. We use a DTI protocol with the following parameters: XXXXXXXXXXXXXXx. Tractography is performed directly on the scanner console using the PRIDE tools provided by Philips (cite XXX). We place a ROI in the mid-sagittal slice of the CC and perform FACT tractography on the DTI dataset (FA threshold=0.45, angle threshold=YY). The tracts are then overlayed on the colour-coded FA map, rasterised, and resliced to obtain a new 1x1x1 image volume. The axial and coronal views of the tractography results are then loaded into the scan prescription view to adjust the angulation of the image volume with respect to the observed tracts.  Figure~\ref{fig:chap9 FOV positioning} shows an example of the final slice alignment based on both structural localizer scan and tractography results. 
+The previous experiments have shown that our \SF{} methods benefit from accurate alignment of the gradient scheme with respect to the dominant fibre direction. However, T2w localizers only offer good anatomical reference but no contrast in the WM. To aid slice positioning, we use here the results of tractography derived from a fast DTI scan. We use a DTI protocol with the following parameters: XXXXXXXXXXXXXXx. Tractography is performed directly on the scanner console using the PRIDE tools provided by Philips (cite XXX). We place a ROI in the mid-sagittal slice of the CC and perform FACT tractography on the DTI dataset (FA threshold=0.45, angle threshold=YY). The tracts are then overlayed on the colour-coded FA map, rasterised, and resliced to obtain a new 1x1x1 image volume. The axial and coronal views of the tractography results are then loaded into the scan prescription view to adjust the angulation of the \SF{} image volume with respect to the observed tracts.  Figure~\ref{fig:chap9 FOV positioning} shows an example of the final slice alignment based on both the structural localizer scan and tractography results. 
 
 \begin{figure}[ht]
 	\centering
@@ -73,7 +70,6 @@ As we have seen in the previous experiments, our \SF{} methods benefits from acc
 \subsection*{Post-processing}
 We compensate for motion during the acquisition we align all scan volumes to the first b=0 image by an rigid registration method\cite{XX} as implemented in \cite{niftyreg}. To avoid registration artifacts in the diffusion weighted images, we only register the interleaved b=0 images and apply the estimated transformation matrix to the subsequent intermediate b>0 images.   
 
-
 To ensure anatomical correspondence between scan and rescan, we then register the rescan dataset to the scan dataset (using rigid registration) using the transformation estimates from registering  the first b=0 images of the two datasets. The transformation matrices for intra-scan motion and scan/rescan alignment are combined before applying them to the dataset to avoid unnecessary multiple interpolations. The data is then smoothed using the Unbiased Non-Local Means filter \citep{Aja-Fernandez:2010} with a filter radius of $3x3x1$.
 
 \subsection*{Data analysis}
@@ -83,13 +79,20 @@ We use the same fitting procedure as outlined in the previous chapters. However 
 \end{equation}
 The adjusted signal S' is then used to compute the rician log-likelihood with the observed signal as previously. We computed the posterior distributions of the model parameters using an MCMC method on a voxel-by-voxel basis. From the mean of the posterior distribution we compute the the axon diameter index $a$ and axonal density index $\rho$=f/$\pi/a^2$. In addition we also fitted the diffusion tensor to the 16-direction DTI data and derive the principal eigenvectors $v1$--$v3$ and scalar maps of FA, MD, AD, RD. All fitting are implemented using the open-source Camino toolkit \citep{Cook:2009}.
 \subsection*{ROI analysis} In each subject we manually segmented the rough outline of the CC on the mid-sagittal slice. We then excluded voxels where either FA<0.5 or v1 deviated more than 10 degrees from the dominant CC fibre direction. The CC segmentation is then divided in 10 equidistant regions along the anterior-posterior baseline similar to \cite{Aboitiz}. Figure \ref{XX} shows an example of the CC subdivision in one subject. Mean $a$ and $\rho$ indices are then computed for each CC subdivision in each of the 10 datasets. Scan/rescan agreement is assessed visually as well as it is quantified by computing the \gls{ICC} \citep{Shrout:1979} over the whole CC and in each \gls{ROI}. To investigate the correlation between DTI metrics and $a$ and $\rho$, we pool all values in the CC ROI of all subjects separately for scan and rescan and report the robust correlation coefficient \citep{XX}. All statistical processing was performed using the software R\citep{RCoreTeam:2012} with packages 'ICC'\citep{Wolak:2011} and 'robust'\citep{Wang:2012}.
+\FloatBarrier
 \section{Results}
-Figure 1 shows an example of the obtained d and ρ maps and the CC subdivision. Figure 2 shows plots of d and ρ over the CC subdivisions for each subject. Figure 3 shows the axon diameter index and standard deviation over all subjects in each CC region for scan and rescan experiments. In all subjects we find the highest values of d (12.5-13.5μm) in regions B1-I and smaller values between 9-11.5μm for d in the anterior genu (G1-G2) and splenium regions (S1-S3).  Similarly we find the highest axonal density in genu and splenium and low density in the mid-body regions. These trends are in excellent agreement with studies of post-mortem CC, which report highest number of large fibres between B1 and I [9] and low fibre density [10] compared to genu and splenium. The high estimates of d compared to reported post-mortem values can be explained by the shrinkage of axons due to histological preparation. Also the limited gradient strength available on the clinical MRI system makes the experiment insensitive to small fibres, as shown e.g. by [11]. Therefore we can postulate that differences between CC regions in our experiment are mainly driven by the presence of larger fibres. 
-Scan/rescan reproducibility:  Figure 2 and 3 show good agreement between d and ρ values in all regions consistently in all subjects. We find the variability of d to be less than 10\% between scan and rescan in each subject, with the largest relative difference found in the genu and splenium (6±5\% variation) and lowest in the mid-body (<3±2\%). As seen in Figure 3, inter-subject variability is below 0.8μm in d and 0.01μm-2 in ρ in both scan and rescan experiments. Standard deviation is lowest in the mid-body (0.3μm) measurement and larger in genu and splenium regions (>0.7μm). Similarly, in ρ we observe low variability in the mid-body (0.001-0.002μm -2) and higher intra-subject variability in the posterior part of the CC, particularly in the splenium (0.005-0.01μm-2). 
+%Figure 1 shows an example of the obtained d and ρ maps and the CC subdivision. Figure 2 shows plots of d and ρ over the CC subdivisions for each subject. Figure 3 shows the axon diameter index and standard deviation over all subjects in each CC region for scan and rescan experiments. In all subjects we find the highest values of d (12.5-13.5μm) in regions B1-I and smaller values between 9-11.5μm for d in the anterior genu (G1-G2) and splenium regions (S1-S3).  Similarly we find the highest axonal density in genu and splenium and low density in the mid-body regions. These trends are in excellent agreement with studies of post-mortem CC, which report highest number of large fibres between B1 and I [9] and low fibre density [10] compared to genu and splenium. The high estimates of d compared to reported post-mortem values can be explained by the shrinkage of axons due to histological preparation. Also the limited gradient strength available on the clinical MRI system makes the experiment insensitive to small fibres, as shown e.g. by [11]. Therefore we can postulate that differences between CC regions in our experiment are mainly driven by the presence of larger fibres. 
+%Scan/rescan reproducibility:  Figure 2 and 3 show good agreement between d and ρ values in all regions consistently in all subjects. We find the variability of d to be less than 10\% between scan and rescan in each subject, with the largest relative difference found in the genu and splenium (6±5\% variation) and lowest in the mid-body (<3±2\%). As seen in Figure 3, inter-subject variability is below 0.8μm in d and 0.01μm-2 in ρ in both scan and rescan experiments. Standard deviation is lowest in the mid-body (0.3μm) measurement and larger in genu and splenium regions (>0.7μm). Similarly, in ρ we observe low variability in the mid-body (0.001-0.002μm -2) and higher intra-subject variability in the posterior part of the CC, particularly in the splenium (0.005-0.01μm-2). 
 \subsection*{Axon diameter and axon density indices}
+Figure~\ref{fig:chap9 scan rescan maps per subject} shows side-by-side scan/rescan maps of $a$ and $\rho$ for all five subjects. All subjects show the expected variation along AP we expect from  previous experiment and earlier studies \citep{Alexander:2010}. However, in comparison with those earlier results, our maps appear less noisy and show clear contrast between different CC regions. Consistently with our previous results, we values of $a$ in the range of 5--15$\mu m$. The largest $a$ estimates are found in the midbody of the CC. The smallest $a$ values are found in the splenium <8$\mu m$ and the anterior part of the genu (9--11$\mu m$). Conversely, the axon density index $\rho$ is largest in the anterior genu and posterior splenium regions  (XX--XY) and smallest in the body and isthmus of the CC. 
+
+Previous studies were significantly hampered by the partial volume contamination, particularly proximate to the thin isthmus region (approximately B3--S1). Here, the increased spatial resolution provides a large number of voxels that are completely contained in the CC. In combination with our efforts in increasing SNR, $a$ and $\rho$ maps appear very similar both between scan/rescan as well between subjects.  
+
+\subsection*{Inter- \& Intra-subject reproducibility}
+  Similarly we find the highest axonal density in genu and splenium and low density in the mid-body regions. These trends are in excellent agreement with studies of post-mortem CC, which report highest number of large fibres between B1 and I [9] and low fibre density [10] compared to genu and splenium. The high estimates of d compared to reported post-mortem values can be explained by the shrinkage of axons due to histological preparation. Also the limited gradient strength available on the clinical MRI system makes the experiment insensitive to small fibres, as shown e.g. by [11]. Therefore we can postulate that differences between CC regions in our experiment are mainly driven by the presence of larger fibres.
 \begin{figure}[ht\textbf{]}
 	\centering
-	\subfloat[Habla]
+	\subfloat[]
 	{
 		\pgfimage[width=\textwidth]{chapter9/figs/diam_per_subj}
 	}
@@ -98,8 +101,8 @@ Scan/rescan reproducibility:  Figure 2 and 3 show good agreement between d and �
 \end{figure}	
 \begin{figure}[ht]
 	\centering
-    \ContinuedFloat 
-	\subfloat[Hubla]
+   \ContinuedFloat 
+	\subfloat[]
 	{
 		\pgfimage[width=\textwidth]{chapter9/figs/dens_per_subj}
 	}
@@ -225,7 +228,7 @@ $\rho$ & 0.79~\usebox{\substantialBox} & 0.74~\usebox{\substantialBox}  & 0.77~\
 \end{figure}	
 
 \egroup %png export
-
+\FloatBarrier
 \section{Discussion}
 \section{Conclusion}
 
