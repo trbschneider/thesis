@@ -78,7 +78,7 @@ We use the same fitting procedure as outlined in the previous chapters. However 
 	S' = S * exp(TE/T2).
 \end{equation}
 The adjusted signal S' is then used to compute the rician log-likelihood with the observed signal as previously. We computed the posterior distributions of the model parameters using an MCMC method on a voxel-by-voxel basis. From the mean of the posterior distribution we compute the the axon diameter index $a$ and axonal density index $\rho$=f/$\pi/a^2$. In addition we also fitted the diffusion tensor to the 16-direction DTI data and derive the principal eigenvectors $v1$--$v3$ and scalar maps of FA, MD, AD, RD. All fitting are implemented using the open-source Camino toolkit \citep{Cook:2009}.
-\subsection*{ROI analysis} In each subject we manually segmented the rough outline of the CC on the mid-sagittal slice. We then excluded voxels where either FA<0.5 or v1 deviated more than 10 degrees from the dominant CC fibre direction. The CC segmentation is then divided in 10 equidistant regions along the anterior-posterior baseline similar to \cite{Aboitiz}. Figure \ref{XX} shows an example of the CC subdivision in one subject. Mean $a$ and $\rho$ indices are then computed for each CC subdivision in each of the 10 datasets. Scan/rescan agreement is assessed visually as well as it is quantified by computing the \gls{ICC} \citep{Shrout:1979} over the whole CC and in each \gls{ROI}. To investigate the correlation between DTI metrics and $a$ and $\rho$, we pool all values in the CC ROI of all subjects separately for scan and rescan and report the robust correlation coefficient \citep{XX}. All statistical processing was performed using the software R\citep{RCoreTeam:2012} with packages 'ICC'\citep{Wolak:2011} and 'robust'\citep{Wang:2012}.
+\subsection*{ROI analysis} In each subject we manually segmented roughly the CC on the mid-sagittal slice. We then excluded voxels from the CC mask where either FA<0.5 or v1 deviated more than 10 degrees from the dominant CC fibre direction. The CC segmentation is then divided in 10 equidistant regions along the anterior-posterior baseline similar to \cite{Aboitiz}. Figure \ref{XX} shows an example of the CC subdivision in one subject. Mean $a$ and $\rho$ indices are then computed for each CC subdivision in each of the 10 datasets. Scan/rescan agreement is assessed visually as well as it is quantified by computing the \gls{ICC} \citep{Shrout:1979} over the whole CC and in each \gls{ROI}. To investigate the correlation between DTI metrics and $a$ and $\rho$, we pool all values in the CC ROI of all subjects separately for scan and rescan and report the robust correlation coefficient \citep{XX}. All statistical processing was performed using the software R\citep{RCoreTeam:2012} with packages 'ICC'\citep{Wolak:2011} and 'robust'\citep{Wang:2012}.
 \FloatBarrier
 \section{Results}
 %Figure 1 shows an example of the obtained d and ρ maps and the CC subdivision. Figure 2 shows plots of d and ρ over the CC subdivisions for each subject. Figure 3 shows the axon diameter index and standard deviation over all subjects in each CC region for scan and rescan experiments. In all subjects we find the highest values of d (12.5-13.5μm) in regions B1-I and smaller values between 9-11.5μm for d in the anterior genu (G1-G2) and splenium regions (S1-S3).  Similarly we find the highest axonal density in genu and splenium and low density in the mid-body regions. These trends are in excellent agreement with studies of post-mortem CC, which report highest number of large fibres between B1 and I [9] and low fibre density [10] compared to genu and splenium. The high estimates of d compared to reported post-mortem values can be explained by the shrinkage of axons due to histological preparation. Also the limited gradient strength available on the clinical MRI system makes the experiment insensitive to small fibres, as shown e.g. by [11]. Therefore we can postulate that differences between CC regions in our experiment are mainly driven by the presence of larger fibres. 
@@ -86,29 +86,34 @@ The adjusted signal S' is then used to compute the rician log-likelihood with th
 \subsection*{Axon diameter and axon density indices}
 Figure~\ref{fig:chap9 scan rescan maps per subject} shows side-by-side scan/rescan maps of $a$ and $\rho$ for all five subjects. In all subjects we can clearly see the expected variation along AP we expect from previous experiment and earlier studies \citep{Alexander:2010}. Furthermore, in comparison with those earlier results, our maps appear considerably less noisy and show improved contrast between different CC regions. Consistent with our previous results, we estimate values of $a$ in the range of 5--15$\mu m$. The largest $a$ estimates are found in the midbody of the CC. The smallest $a$ values are found in the splenium <8$\mu m$ and the anterior part of the genu (9--11$\mu m$). The axon density index $\rho$ is reciprocal to the $a$ trends, with $\rho$ being largest in the anterior genu and posterior splenium regions  (XX--XY) and smallest in the body and isthmus of the CC. 
 
-The increased spatial resolution here provides a large number of voxels that are completely contained in the CC. As a consequence, the CC can be easily distinguished from surrounding tissue and parameter estimates are less influenced by CSF contamination, particularly in the thinning part of the CC (B3--S1). This is advantageous especially for subjects with smaller CC such as in s2 \& s3, but is also important in view of future applications in patientss with neurological diseases such as MS or Alzheimers, which often suffer from CC atrophy. 
-\subsection*{Inter- \& Intra-subject reproducibility}
-
-\begin{figure}[ht\textbf{]}
-	\centering
-	\subfloat[]
-	{
-		\pgfimage[width=\textwidth]{chapter9/figs/diam_per_subj}
-	}
-	\caption{XX}
-	\label{fig:chap9 scan rescan maps per subject}	
-\end{figure}	
+Unlike in the previous experiments, the high spatial resolution here provides a large number of voxels that are completely contained in the CC. As a consequence, the CC can be easily distinguished from surrounding tissue and the tissue parameter estimates are less influenced by CSF contamination, particularly in the thinning part of the CC (B3--S1). This is beneficial for subjects with smaller CC such as found in s2 \& s3, but becomes even more important in view of future applications in patients with neurological diseases such as MS or Alzheimers, who often suffer from CC atrophy. 
 \begin{figure}[ht]
 	\centering
-   \ContinuedFloat 
 	\subfloat[]
 	{
-		\pgfimage[width=\textwidth]{chapter9/figs/dens_per_subj}
+		\pgfimage[width=0.49\textwidth]{chapter9/figs/diam_per_subj}
 	}
-	\ref{leg:chap 9 maps per subj}
+% 	\caption{XX}
+% 	\label{fig:chap9 scan rescan maps per subject}	
+% \end{figure}	
+% \begin{figure}[ht]
+% 	\centering
+%    \ContinuedFloat 
+	\subfloat[]
+	{
+		\pgfimage[width=0.49\textwidth]{chapter9/figs/dens_per_subj}
+	}
+ 	\ref{leg:chap 9 maps per subj}
 	\caption{XX (continued)}
 	\label{fig:chap9 scan rescan maps per subject}
 \end{figure}
+
+\subsection*{Inter- \& Intra-subject reproducibility}
+The visual comparision between scan and rescan maps of $a$ and $\rho$ shows little difference between subjects over the whole CC. Figure~\ref{fig:chap9 scan rescan scatterplots per subject} summarizes the mean $a$ and $\rho$ parameters measured in each ROI for all five subjects. In both scan and rescan results, the ROI-wise microstructure estimates are very consistent between the five subjects. Both $a$ and $\rho$ show very little variation from the mean over all subjects. The inter-subject variation is best in the mid-body and the proximal genu regions (G2--G3). Larger variations are more pronounced in the isthmus region, which is the thinnest in all subjects and therefore the average estimates in this region are most prone to outliers and mis-segmentation. The splenium also shows some considerable variation in parameters, especially in subject s2, which might be caused by cardiac pulsation artifacts from the the Arteria Cerebralis Falsi (check name)! 
+
+
+
+To visualise better the scan/rescan agreement, Figure~\ref{} presents the average and standard deviation over the five subjects for $a$ and $\rho$ in all ROIs for both scan and rescan. The result shows very good agreement between the scan and rescan experiment, both in the average trend as well as in the observed standard deviation over all subjects. This is further supported by the the ICC values \gls{ICC} presented in Table~\ref{tab:XXX}. For both $a$ and $\rho$, we find the scan/rescan agreement is 'moderate' or better for both whole CC values and the majority of ROIs. As noted before, low ICC values are found in boundary regions (G1) or in the thin proximal part of the CC, which are most affected by imaging and analysis artifacts, which suggests that estimated values in those ROIs must be interpreted with caution.
 
 \begin{figure}[ht]
 	\centering
@@ -125,7 +130,6 @@ The increased spatial resolution here provides a large number of voxels that are
 	\label{fig:chap9 scan rescan scatterplots per subject}
 \end{figure}
 
-\subsection*{Reproducibility}
 \begin{figure}[ht]
 	\centering
 	\ref{leg:chap 9 dens_avg}\\	
@@ -166,7 +170,6 @@ $\rho$ & 0.79~\usebox{\substantialBox} & 0.74~\usebox{\substantialBox}  & 0.77~\
 \end{adjustbox}
 {\footnotesize Guidelines for agreement  \citep{Landis:1977}: \usebox{\poorBox}~$<0.2$: poor,  \usebox{\fairBox}~$0.2–0.4$:~fair,  \usebox{\moderateBox}~$0.4–0.6$:~moderate, \usebox{\substantialBox}~$0.6–0.8$:~substantial,  \usebox{\perfectBox}~$>0.8$:~almost perfect}
 \end{table}
-
 
 \bgroup
 \tikzset{use png} % Will be exported to png for faster comp
@@ -225,12 +228,12 @@ $\rho$ & 0.79~\usebox{\substantialBox} & 0.74~\usebox{\substantialBox}  & 0.77~\
 	\caption{XX}
 	\label{fig:chap 9 DTI correlations}	
 \end{figure}	
-
+Figure~\ref{fig:chap 9 DTI correlations} presents the correlation between the standard DTI metrics and the $a$ and $\rho$ estimates. The correlations we see here agree with the findings of \citep{Barazany:2009} and \citep{Alexander:2010}. While $MD$ is not correlated either of the microstructure indices, the directional diffusivities $AD$ and $RD$ both show moderate correlations with $a$ and $\rho$. Of course it is not surprising to find $RD$ negatively correlated with $a$ and positively correlated with $\rho$ respectively, as it is know both axonal packing density, and axon diameter all influence $RD$ measurements \citep{Beaulieu:2002}. The observed correlation between $AD$ and $a$ (positive) and $\rho$ (negative) is less intuitively explainable, however consistent with previous findings \citep{Barazany:2009,Alexander:2010}. Alexander et al. speculate that the increase of axon size and decrease of packing density are associated with lower fibre coherency, and thus are causing an increasing amount of diffusion impedance along the dominant diffusion direction. The correlation between AD and the $a$ and $\rho$ indices might also be the result of varying CSF contamination, since the regions high axon diameter are mostly found in the thinner midbody region are more affected by partial volume effects than genu and splenium. Finally, the correlation between $FA$ and $a$ and $\rho$, follows the association between our indices $a$ and $\rho$ with AD and RD.  
 \egroup %png export
 \FloatBarrier
 \section{Discussion}
-\section{Conclusion}
+This work presents a novel imaging and analysis pipeline for measuring axon diameter and density indices in the CC in-vivo, which expands on our \SFasym{} protocol optimisation we introduced in the previous chapter. We combined small FOV imaging and careful optimisation of the MR protocols and post-processing techniques to gain both high spatial resolution while maximising SNR in the diffusion weighted images. As a result we are able to produce axon diameter and axon density of better better quality than previous studies have shown before. We further for the first time present results of a larger subject cohort of 5 subjects, allowing to infer scan and rescan reproducibilty more accurately than before. We are able to show that the $a$ and $\rho$ show very good reproducibility which is consistently over all investigated subjects. 
 
 
 
-
+ We have demonstrated that our microstructure estimates agree with reported post-mortem evaluation of the CC fibre density distribution. Further, we showed good inter- and intra-subject reproducibility. The scan time of the protocol is short enough to be easily incorporated into clinical studies. In future work, we are planning to use this approach in subjects with known altered microstructure of the CC.
