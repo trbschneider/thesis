@@ -1,3 +1,4 @@
+%!TEX root = ../thesis.tex
 \chapter[Diffusion MRI protocols for single fibre structures]{Optimized diffusion MRI protocols for estimating axon diameter with known fibre orientation}
 % Define box and box title style
 \tikzstyle{protocolbox} = [draw=black, thin, rectangle, rounded corners, inner xsep=5pt, outer ysep=0pt] \tikzstyle{protocolheader} = [draw=none, fill=gray!30, rounded corners, inner sep = 5pt] \tikzstyle{protocoltext} = [draw=black, fill=white, rounded corners, inner sep = 5pt]
@@ -22,12 +23,12 @@
 %
 % The protocol optimisation approach of \citep{TODO} provides a computational framework that can automatically determine the optimal set of parameters for a specific model-based imaging approach, also taking into account the technical cornerstones of the MRI setup, i.e., maximum available gradient strength, SNR of the images and available scan time. The optimisation in \citep{TODO} was designed independent of the underlying fibre orientation as it was aimed towards whole brain imaging.
 
-In the previous chapters we have investigated two very different techniques in DTI and QSI. DTI only requires relatively little amounts of data, but it's underlying model is based on the assumption that all observed diffusion is Gaussian. Clearly, this is a gross over-simplification of the complex diffusion mechanisms present in biological tissue. QSI on the other hand makes no assumption about the diffusion process and can theoretically reveal even the most complex diffusion displacement profiles. QSI generally requires large amounts of data and requires very strong diffusion gradients. Henceforth, the implementation of true QSI on a clinical systems is very difficult and the derived parameters are often difficult to interpret (see Chapter \ref{XX}\todo{add reference to next chapter}).
+In the previous chapters we have investigated two very different techniques in \gls{DTI} and \gls{QSI}. \gls{DTI} only requires relatively little amounts of data, but it's underlying model is based on the assumption that all observed diffusion is Gaussian. Clearly, this is a gross over-simplification of the complex diffusion mechanisms present in biological tissue. \gls{QSI} on the other hand makes no assumption about the diffusion process and can theoretically reveal even the most complex diffusion displacement profiles. \gls{QSI} generally requires large amounts of data and requires very strong diffusion gradients. Henceforth, the implementation of true \gls{QSI} on clinical systems is very difficult and the derived parameters are often difficult to interpret (see Chapter \ref{next chap}).
 \paragraph{}
-In the following chapters we will investigate a different model-based diffusion imaging technique, which can be seen as a compromise between the simple model of DTI and the complex QSI approach. Here, our work is heavily based on the ActiveAx approach by \citet{Alexander:2008}, who used a simple compartment tissue model to derive axon diameter and axon density indices in the brain using standard clinical hardware (see Chapter \todo{add chapter ref}).
+In the following chapters we will investigate a different model-based diffusion imaging technique, which can be seen as a compromise between the simple model of \gls{DTI} and the complex \gls{QSI} approach. Here, our work is heavily based on the ActiveAx approach by \citet{Alexander:2008}, who used a simple compartment tissue model to derive axon diameter and axon density indices in the brain using standard clinical hardware (see Chapter\ref{ref}).
 
 
-Alexander's work is designed under the premise of full brain imaging and therefore he presents DWI protocols that work independently of the fibre orientation. We call this the orientation invariant ({\OI}) approach. The {\OI} approach is based on acquiring multiple HARDI shells and requires good angular resolution to retain the orientation invariant features. As a consequence, the {\OI} protocols used e.g. in \citep{Alexander:2010} require scan times of more than 1h, which limits it's transition to clinical practise.
+Alexander's work is designed under the premise of full brain imaging and therefore he presents DWI protocols that work independently of the fibre orientation. We call this the orientation invariant ({\OI}) approach. The {\OI} approach is based on acquiring multiple HARDI shells and requires good angular resolution to retain the orientation invariant features. As a consequence, the {\OI} protocols used e.g. in \citep{Alexander:2010} require scan times of more than 1h, which limits their transition to clinical practise.
 
 
 The main motivation of this work is to reduce the scan time of the ActiveAx protocols to a more clinically applicable limit of 20-30 minutes. The central idea to attain this reduction is to discard the requirement for orientational invariance and focus on structures with a coherent known single fibre orientation. Many studies before have focussed on those single fibre structures (e.g. \gls{CC} or \gls{SC}) as they can be expressed in terms of relatively simple models, without the need to include complex fibre configurations such as multiple fibre crossings, bending or fanning. Furthermore, many single fibre structures such as \gls{CC} and \gls{SC} are of great importance to many developmental and pathological processes. Our approach makes imaging these structures more practicable with a 20-30 minute time frame, where a >1h full-brain protocol might not be feasible.
@@ -35,13 +36,13 @@ The main motivation of this work is to reduce the scan time of the ActiveAx prot
 In this chapter, we present a modification to the existing protocol optimization framework of \cite{Alexander:2008} (see Section~\ref{sec:protocol_optimisation}) that incorporates this \textit{a-priori} information about fibre organisation. We refer to this approach and its resulting protocols as the single-fibre ({\SF}) method. We evaluate different {\SF} implementations and use computer simulations to test and compare the \SF method to the {\OI} approach. By design, the {\SF} is optimised only for a specific predetermined fibre orientation. However, in reality there will always be some variation even in very coherently aligned \gls{WM} tracts. We therefore test how much influence this variation has on our {\SF} approach compared to {\OI}. Finally, we implemented the {\SF} protocol to demonstrate its feasibility within a real biological tissue sample of fixed cervical monkey \gls{SC}. Although this study is motivated by improving in-vivo clinical applicability, we chose to first test our approach on a pre-clinical scanner on a fixed tissue sample to avoid the challenges of in-vivo scanning (e.g. motion and insufficient image resolution) and focus on an initial demonstration of our method. The results and observations made in this chapter form the basis of the subsequent in-vivo implementation we present in the following chapter.
 
 \section{Protocol optimisation}
-This section discusses how we adapt the {\OI} optimisation of \citet{Alexander:2008} to the {\SF} case. The original {\OI} optimisation is designed determine the PGSE pulse parameters (i.e. \gls{gstr}, \gls{smalldel}, \gls{bigdel}) for a fixed number $M$ of shells of each including $N$. Each set of gradient directions is fixed and uniformly distributed over the sphere as in \citep{Cook:2007}. The HARDI-like gradient scheme is necessary to guarantee orientational invariance, i.e. be sensitive to restriction regardless of diffusion direction. In our {\SF} implementation we can assume a known diffusion direction and therefore do not require the uniform angular sampling of the {\OI} approach. This allows us to include the gradient scheme to together with the PGSE pulse setting in the optimisation process. In addition to {\SF}, which optimises gradient scheme and PGSE pulse parameters simultaneously, we are also interested how much the optimisation of the gradient scheme ({\DO}) alone and the PGSE parameters alone ({\SD}) has on the performance of the resulting protocols. In total we tested the four following different variants of \citet{Alexander:2008}'s optimisation framework:
+This section discusses how we adapt the {\OI} optimisation of \citet{Alexander:2008} to the {\SF} case. The original {\OI} optimisation is designed to determine the best PGSE pulse parameters (i.e. \gls{gstr}, \gls{smalldel}, \gls{bigdel}) for a fixed number $M$ of shells, each including a fixed number $N$ of distributed gradient directions. The gradient directions scheme in the \OI{} approach is fixed and uniformly distributed over the sphere as in \citep{Cook:2007}. The HARDI-like gradient scheme is necessary to guarantee orientational invariance, i.e. be sensitive to restriction regardless of diffusion direction. In our {\SF} implementation we can assume a known diffusion direction and therefore do not require the uniform angular sampling of the {\OI} approach. This allows us to include the gradient scheme to together with the PGSE pulse setting in the optimisation process. In addition to {\SF}, which optimises gradient scheme and PGSE pulse parameters simultaneously, we are also interested in how much the optimisation of the gradient scheme ({\DO}) alone and the PGSE parameters alone ({\SD}) has on the performance of the resulting protocols. In total we tested the four following different variants of \citet{Alexander:2008}'s optimisation framework:
 
 \begin{description}
 	\item[\OI:] The orientationally invariant protocol optimisation as described in \citep{Alexander:2008}.
-	\item[\FD:] The adapted algorithm optimises both the PGSE parameters and gradient direction scheme and $M$ sets of PGSE pulse parameters for a single \textit{a-priori} known fibre direction.
-	\item[\SD:] Similar to the {\OI} optimisation approach, but the algorithm optimises for a single \textit{a-priori} known fibre direction instead of a set of \lq worst case\rq  fibre directions.
-	\item[\DO:] This is a two-step optimisation  approach. The {\SD} algorithm is performed to determine the PGSE pulse settings for each set. In a second step the gradient directions in each set are optimised, keeping the PGSE pulse parameters for each set fixed.
+	\item[\FD:] The adapted algorithm optimises both the PGSE parameters and gradient direction scheme for $M$ shells assuming a single \textit{a-priori} known fibre direction.
+	\item[\SD:] Similar to the {\OI} optimisation approach, the algorithm uses a fixed gradient scheme for each of the $M$ shells and only optimises the PGSE pulse parameters. The main difference to \OI{} is that the algorithm optimises for a single \textit{a-priori} known fibre direction instead of a set of \lq worst case\rq fibre directions.
+	\item[\DO:] This is a two-step optimisation approach. The {\SD} algorithm is performed to determine the best $M$ PGSE pulse settings. In a second step the gradient scheme for each of the each $M$ shells are optimised, keeping the PGSE pulse parameters fixed.
 \end{description}
 
 Table~\ref{tab:chapter7 exp1 opt parameter overview} summarises the optimisation parameters for each of the four algorithms. It is important to note that the inclusion of the optimisation of individual gradient directions in {\DO} and {\FD} drastically increases the number of free parameters to be optimised from $O(M)$ to $O(N\cdot M)$ compared to {\OI} and {\SD}.
@@ -50,8 +51,7 @@ Table~\ref{tab:chapter7 exp1 opt parameter overview} summarises the optimisation
     \label{tab:chapter7 exp1 opt parameter overview}
     \begin{adjustbox}{width={\textwidth},totalheight=\textheight,keepaspectratio}
         	\begin{tabular}
-        		{@{}y{0.25
-        		\textwidth}x{0.3\textwidth}x{0.15\textwidth}x{0.15\textwidth}x{0.15\textwidth}x{0.15\textwidth}@{}}
+        		{@{}y{0.35\textwidth}x{0.2\textwidth}x{0.2\textwidth}x{0.2\textwidth}x{0.2\textwidth}x{0.15\textwidth}@{}}
                 \toprule
                 Protocol name & {\OI} & {\FD} & {\SD} & {\DO}  \\%
         		& \footnotesize{(orientation invariant)} & \footnotesize{(pulses + directions)} & \footnotesize{(pulses only)} & \footnotesize{(directions only)} \\%
@@ -66,14 +66,14 @@ Table~\ref{tab:chapter7 exp1 opt parameter overview} summarises the optimisation
 \end{table}
 
 \subsection{Tissue model}
-   Like \citep{Alexander:2008}, we use a simple two-compartment model of white matter tissue, with axons represented as cylinders with a single radius and extra-axonal tissue represented by an axially symmetric diffusion tensor ('ZeppelinCylinder' in the taxonomy of \cite{Panagiotaki:2012}).  We assume values typically found in \emph{in-vivo} human white matter. A full list of the model parameters used in the optimisation is given in Table~\ref{tab: chapter7 exp1 model opt parameters clinical}.
+   Like \citep{Alexander:2008}, we use a simple two-compartment model of white matter tissue, with axons represented as cylinders with a single radius and extra-axonal tissue represented by an axially symmetric diffusion tensor ('ZeppelinCylinder' in the taxonomy of \cite{Panagiotaki:2012}).  For the optimisation we assume tissue diffusion properties typically found in \emph{in-vivo} human white matter. A full list of the model parameters used in the optimisation is given in Table~\ref{tab: chapter7 exp1 model opt parameters clinical}.
 
 \begin{table}[!ht]
 	\caption{Model parameters used for optimisation.}
     \centering
     \vspace{2ex}	
     % Cylinder
-    \begin{tabular}{y{0.1\textwidth}y{0.2\textwidth}}
+    \begin{tabular}{y{0.1\textwidth}y{0.25\textwidth}}
     \addlinespace
     \toprule
     \multicolumn{2}{c}{\textbf{Cylinder}} \\
@@ -88,7 +88,7 @@ Table~\ref{tab:chapter7 exp1 opt parameter overview} summarises the optimisation
     \end{tabular}%
     \hspace{0.15\textwidth}
     %%% Zeppelin
-    \begin{tabular}{y{0.1\textwidth}y{0.2\textwidth}}
+    \begin{tabular}{y{0.1\textwidth}y{0.25\textwidth}}
     \addlinespace
     \toprule
     \multicolumn{2}{c}{\textbf{Axially symmetric tensor}} \\
@@ -129,9 +129,9 @@ Figure~\ref{fig:chapter7 exp1 SNR vs CRLB} shows the CRLB of the four different 
 	\label{fig:chapter7 exp1 DIRS vs CRLB}
 \end{figure}
 \paragraph{}
-Table~\ref{fig:chapter7 exp1 protocol 60mT} shows an example of protocols for obtained for $N=90$ and SNR$=20$. A more comprehensive visualisation of the different protocol parameters can be found in Appendix~\ref{app:chapter7 protocols 60mT}. We deliberately chose a large number of $M$ to reevaluate the optimal number of different PGSE for each protocol. Our findings here confirm the results of \citep{Alexander:2008}, which suggest that a smaller number of $M=4$ suffices to capture all unique combinations of PGSE pulse parameters. We also note that {\OI} and {\SD} protocols are almost identical, which suggest that the choice of diffusion orientation for the {\OI} has little influence on the outcome of the algorithm.
+Table~\ref{fig:chapter7 exp1 protocol 60mT} shows an example of the \OI{} and \SF{} protocols variants we obtain for $N=90$ and SNR$=20$. A more comprehensive visualisation of the different protocol parameters can be found in Appendix~\ref{app:chapter7 protocols 60mT}. We deliberately chose a large number of $M$ to reevaluate the optimal number of different PGSE for each protocol. Our findings here confirm the results of \citep{Alexander:2008}, which suggest that a smaller number of $M=4$ suffices to capture all unique combinations of PGSE pulse parameters. We also note that {\OI} and {\SD} protocols are almost identical, which suggest that the choice of diffusion orientation for the {\OI} has little influence on the outcome of the algorithm.
 \begin{table}[H]
-\caption{Protocol parameters and gradient schemes for $N=90$, $M=8$}
+\caption{Protocol parameters and gradient schemes for $N=90$, $M=8$. The $M$ different gradient direction schemes are coded by different colors. Please note that in the \OI{} and \SD{} protocols all $M$ gradient direction schemes are identical.}
 \label{fig:chapter7 exp1 protocol 60mT}
 \begin{adjustbox}{minipage=\linewidth}
 \subfloat[\OI protocol]
@@ -275,13 +275,13 @@ Table~\ref{fig:chapter7 exp1 protocol 60mT} shows an example of protocols for ob
 
 \section{Experiments}
 \subsection{Synthetic data}
-We the protocols for $N=90$ and $SNR=20$ to generate a synthetic datasets, with which we then test and compare the performance of the different protocol optimisations. The number of gradient directions was chosen rather large to allow sufficient angular resolution for {\OI} and {\DO} protocols.
+From all protocols for $N=90$ and $SNR=20$ we generate synthetic datasets, with which we then test and compare the performance of the different protocol optimisations. The number of gradient directions was chosen rather large to allow sufficient angular resolution for {\OI} and {\DO} protocols.
 \paragraph{}
 \label{sec: chapter 6 fibre distribution perfect}.
- The MR signals are generated from the two compartment model described in section \todo{ref to previous chapter} . We simulate datasets for four different cylinder radii $R={1,2,5,10}\mu m$ as a representation of radii usually found in \emph{in-vivo} white matter tissue. The other model parameters selected as in (Table~\ref{tab: chapter7 exp1 model opt parameters clinical}). To simulate noise in the MR acquisition, we add Rician noise with $SNR=20$ to the simulated noise-free datasets. To concentrate on comparing the estimates of radius and volume fraction between the protocols we assume all cylinders to be perfectly aligned along the $[0,0,1]^T$ as assumed in the optimisation process.
+ The MR signals are generated from the same tissue model and tissue diffusion properties we used for the protocol optimisation (see section \ref{XX} and Table~\ref{XX} for details). We use the Camino software package \citep{Cook:2006} to simulate datasets for four different cylinder radii $R={1,2,5,10}\mu m$ as a representation of radii usually found in \emph{in-vivo} white matter tissue. To simulate noise in the MR acquisition, we add Rician noise with $SNR=20$ to the simulated noise-free datasets. To concentrate on comparing the estimates of radius and volume fraction between the protocols we assume all cylinders to be perfectly aligned along the $[0,0,1]^T$ as assumed in the optimisation process.
 
 \subsubsection*{Effect of principle diffusion direction}
-Even in very coherent structures such as the \gls{CC}, the observed fibre direction is subject to some variation. However the protocols {\FD} and {\DO} contain gradient schemes designed for a fixed principle diffusion direction. To test the effect of potential misalignment between true and assumed and true principal diffusion direction we design the following experiment:
+Even in very coherent structures such as the \gls{CC}, the observed fibre direction is subject to some variation. However the protocols {\FD} and {\DO} contain gradient schemes designed for a fixed principle diffusion direction. To test the effect of potential misalignment between assumed and true principal diffusion direction we design the following experiment:
 \paragraph{}
 We create similar dataset as above, with the exception of varying the principal diffusion direction for each synthetic sample. Using the spherical representation of the cylinder direction, we sample each combination of polar angle $\phi \in \{0..90\}^\circ$ and azimuth angle $\theta \in \{0..180\}^\circ$ in discrete steps of $5^\circ$. In total we simulate 703 unique datasets with different principal diffusion directions (see Figure~\ref{fig:chapter7 exp1 Ang Error dirs} for a plot of the generated diffusion directions).
 
@@ -320,10 +320,46 @@ which is defined for each point $\mathbf{x} \in \mathbb{R}^2$ on the unit sphere
  \end{figure}
 
 \subsection{Feasibility study on fixed monkey spinal cord}
-Scans were performed on an experimental 4.7 Tesla scanner (Varian Inc., Palo Alto, CA, USA) with a maximum gradient strength of $300mT/m$. In order to make best use of the hardware, we carry out the protocol optimisation again as described above but increase $|G|_{max}$ to $300mT/m$. We also account for differences in tissue properties between live and fixed tissue (see modified tissue parameters in Table~\ref{XX}). Scan time in this experiment was limited to 12h only. To retain acceptable image resolution and SNR within the given time frame, we reduced the number of acquisitions to $M=4$ and $N=30$. Furthermore, we only had time to test the {\FD} protocol in this experiment. The resulting protocol is summarised in Table~\ref{XX} and described more comprehensively in Appendix \ref{B}. 
+Scans were performed on an experimental 4.7 Tesla scanner (Varian Inc., Palo Alto, CA, USA) in collaboration with the Danish Research Centre for Magnetic Resonance (DRCMR). To make best use of the hardware, we carry out the protocol optimisation as described above but increase $|G|_{max}$ to $300mT/m$. We also adjust for differences in tissue properties between live and fixed tissue, e.g. decreased diffusivity and shrinkage of axon diameters, based on preliminary DTI analysis of the tissue sample (see modified tissue parameters in Table~\ref{tab: chapter7 exp1 model opt parameters ex-vivo}). Scan time in this experiment was limited to 12h only. To retain acceptable image resolution and SNR within the given time frame, we reduced the number of acquisitions to $M=4$ and $N=30$. Furthermore, we only had time to test the {\FD} protocol in this experiment. The resulting protocol is summarised in Table~\ref{XX} and described more comprehensively in Appendix \ref{app:chapter7 protocols 300mT}. 
 \paragraph{}
 We used a volume coil for transmission and a homemade 20 mm surface coil was used as receive coil. The data was was acquired using a spin-echo sequence with single line readout and a conventional pulsed gradient spin-echo preparation \citep{Stejskal:1965}.  TE/TR were 59/2000 ms, field of view (FoV) was $10\times 10 mm^2$. The matrix size was 64x64 and was 2-D interpolated to 128x128 leading to an axial in-plane resolution of $79 \times 79 \mu m^2$. To support the high in-plane resolution we acquire thick slices of 1.5mm to achieve acceptable \gls{SNR} in our data. The protocol was repeated 4 times with a total imaging time of 13 h. The magnitude images of the four repeated measurements were averaged offline prior to analysis.
 
+\begin{table}[!ht]
+	\caption{Adjusted ex-vivo tissue model parameters used for pre-clinical scan optimisation (changes to in-vivo protocol are displayed in red).}
+    \centering
+    \vspace{2ex}	
+    % Cylinder
+    \begin{tabular}{y{0.1\textwidth}y{0.25\textwidth}}
+    \addlinespace
+    \toprule
+    \multicolumn{2}{c}{\textbf{Cylinder}} \\
+    \multicolumn{2}{c}{(intra-axonal)} \\
+    \midrule
+    $f_{intra}$ & $0.7$ \\
+    $D_{\|}$ & {\color{red}$4\cdot 10^{-10}$ $s/mm^2$} \\
+    $D_{\bot} $ & {\color{red}$2.5\cdot 10^{-10}$ $s/mm^2$} \\
+    dir   & $[0,0,1]^T$ \\
+    R & {\color{red}$\{0.5,1,2\}\mu m$} \\
+    \bottomrule
+    \end{tabular}%
+    \hspace{0.15\textwidth}
+    %%% Zeppelin
+    \begin{tabular}{y{0.1\textwidth}y{0.25\textwidth}}
+    \addlinespace
+    \toprule
+    \multicolumn{2}{c}{\textbf{Axially symmetric tensor}} \\
+    \multicolumn{2}{c}{(extra-axonal)} \\
+    \midrule
+    $f_{extra}$& $0.3$ \\
+    $D_{\parallel}$ & {\color{red}$4\cdot 10^{-10}$ $m^2/s$} \\
+    $D_{\bot} $ & {\color{red}$2.5\cdot 10^{-10}$ $s/m^2/s$} \\
+    dir & $[0,0,1]^T$ \\
+    \bottomrule
+    & \\ %empty line to level tables
+    \end{tabular}%
+    \label{tab: chapter7 exp1 model opt parameters ex-vivo}
+    \vspace{2ex}	
+\end{table}
 
 \subsection{Model fitting}
 A voxel-wise fit of the MR signal is performed using a fitting method similar to \citep{Alexander:2010}. We define the objective function as the maximum likelihood of model parameters given the observed MR signals under Rician noise ($\sigma=0.05$). We use the multi-run fitting routine of \citep{Panagiotaki:2012} to find an initial parameters, which determines the best parameter estimates from multiple gradient-descend runs with pertubed starting points (n=20 in our case). Based on the initial parameter estimates, we then perform a \gls{MCMC} algorithm to determine the posterior distributions of the model parameters. To ensure convergence, we used the following, rather conservative setting for the \gls{MCMC} algorithm: burn-in of 5000, sample interval of 1000, 5\% parameter pertubations with uniform, uninformative priors.
@@ -337,13 +373,15 @@ $$
 For {\DO} and {\FD}, we also found our method to be very unstable with respect to determining the correct principal diffusion direction of the model, even when the fibre direction was close to $[0,0,1]^T$. This likely stems from the fact that the initial guess of the direction is computed from the \gls{DT} model. While this method works fine for \OI and \SD protocols, it fails when using the optimised gradient direction sets of \DO and \FD. We therefore fix the principal fibre direction to $[0,0,1]^T$ in all experiments, unless stated otherwise.
 
 \subsubsection*{Fixed tissue}
-We chose to scan a sample of fixed monkey cervical spinal cord to test our protocol in a realistic imaging setup. The details of the sample preparation are described in \citep{Lundell:2011}. For the fixed tissue we use a slightly modified fitting routine to account for the differences between fixed and live tissue. Here we fix $D_{par}$ to $0.45\mu m/mm^2$. The volume fraction of the restricted compartment f was constrained to be in the range of $[0.5, 1.0]$. We then In each voxel, the mean of the posterior distribution of $R$ and $f_{intra}$ are calculated. For consistency with indices derived from histological examination and also previous imaging studies e.g. \citep{Alexander:2010}, maps of the axon diameter index $D=2\cdot R$ and the axonal density index $\rho=f_{intra}/\pi/R^2$ are reported.
+We chose to scan a sample of fixed monkey cervical spinal cord to test our protocol in a real biological system. The details of the sample preparation are described in \citep{Lundell:2011}. For the fixed tissue we use a slightly modified fitting routine to account for the differences between fixed and live tissue. Here we fix $D_{par}$ to $0.45\mu m/mm^2$. The volume fraction of the restricted compartment f was constrained to be in the range of $[0.5, 1.0]$. We then In each voxel, the mean of the posterior distribution of $R$ and $f_{intra}$ are calculated. For consistency with indices derived from histological examination and also previous imaging studies e.g. \citep{Alexander:2010}, maps of the axon diameter index $D=2\cdot R$ and the axonal density index $\rho=f_{intra}/\pi/R^2$ are reported.
 
 \FloatBarrier
 
 \section{Results}
 \subsection{Accuracy and precision of parameter estimates}
 Figure~\ref{fig:chapter7 exp1 boxplots 60mT} shows box plots of the fitted volume fraction $f_{intra}$ and $R$ for different cylinder radii.
+
+definition
 \begin{figure}[H]
 	\centering
 	\input{chapter7/figs/BW_f_60mT.tex}
@@ -351,6 +389,7 @@ Figure~\ref{fig:chapter7 exp1 boxplots 60mT} shows box plots of the fitted volum
 	\caption{Boxplots of estimated $f_{intra}$ and $R$ for different cylinder radii.}
 	\label{fig:chapter7 exp1 boxplots 60mT}
 \end{figure}
+
 
 \paragraph{} All protocols can successfully recover the correct value for $f_{intra}$ for all radii 1, 2 and 5 $\mu m$ with the posterior distributions being centred around the true value $f_{intra}=0.7$ with little variance. $R=10\mu m$ significantly more variance in the estimates is observed for in all protocols. Further we find also find the estimates to be less accurate, mainly in {\SF} and {\SD}, which overestimate of $f_{intra}$ slightly.
 
@@ -363,7 +402,7 @@ Figure~\ref{fig:chapter7 exp1 boxplots 60mT} shows box plots of the fitted volum
 
 \paragraph{} Compared to $f_{intra}$ results, we observe more variance in the posterior distributions of $R$ estimates for all protocols. Over all $R$ {\DO} and {\FD} appear to achieve better results than {\OI} and {\SD} protocols. To illustrate this better, Figure~\ref{fig:chapter7 exp1 histograms 60mT} shows the posterior distributions of $R$ for each protocol in more detail.
 
-All protocols perform the best for $R=5\mu m$ with tight posterior distributions centred around the ground truth. While generally all protocols show very good accuracy in estimating $R$, {\DO} and {\FD} have the advantage in terms of precision as their distributions are considerably tighter than for {\OI} and {\SD}. Compared to $R=5\mu m$, $R=10\mu m$ estimates generally are broader and with a notiable  negative skew, particularily for {\OI} and {\SD} protocols.  As for $5\mu m$, {\DO} and {\FD} produce more sharp parameter distributions than {\OI} and {\SD}, although the difference is less obvious. The broader distributions for $R=10\mu m$ might be explained by the long diffusion, which are necessary to estimate large radii accurately.  We assume a typical T2 signal decay of 70ms in this experiment. As shown in \citep{Alexander:STEAM} \todo{Danny or Gary steam paper}, in this regime long diffusion times can not be reached with acceptable SNR. As a consequence, for $R=10\u m$ a greater proportion of the signal will appear unrestricted and causes the underestimation of $f_{intra}$ and larger variation in radius estimates in our results.
+All protocols perform the best for $R=5\mu m$ with tight posterior distributions centred around the ground truth. While generally all protocols show very good accuracy in estimating $R$, {\DO} and {\FD} have the advantage in terms of precision as their distributions are considerably tighter than for {\OI} and {\SD}. Compared to $R=5\mu m$, $R=10\mu m$ estimates generally are broader and with a notiable  negative skew, particularily for {\OI} and {\SD} protocols.  As for $5\mu m$, {\DO} and {\FD} produce more sharp parameter distributions than {\OI} and {\SD}, although the difference is less obvious. The broader distributions for $R=10\mu m$ might be explained by the long diffusion, which are necessary to estimate large radii accurately.  We assume a typical T2 signal decay of 70ms in this experiment. As shown in \citep{Alexander:STEAM}, in this regime long diffusion times can not be reached with acceptable SNR. As a consequence, for $R=10\u m$ a greater proportion of the signal will appear unrestricted and causes the underestimation of $f_{intra}$ and larger variation in radius estimates in our results.
 
 Smaller radii $R=1\mu m$ and $R=2\mu m $ less well distinguished from each other in all protocols, with posterior distributions showing significant overlap as expected from limited gradient strength used in this experiment \citep{Alexander:2008,Alexander:2010,Siow:2012}. For small radii the \gls{COM} effect on small radii prohibits any contrast between different $R$, which we find reflected in our posterior distributions (see Chapter~\ref{TODO} for a detailed explanation). However, {\FD} suffers least from this and clearly outperforms the other protocols as it allows much better distinction between the small radii.
 
@@ -406,20 +445,22 @@ Bigger differences between the protocols can be seen in the $R$ estimation error
 \end{figure}
 
 
-\paragraph{Effect of fibre dispersion: } Figure~\ref{fig:chapter7 exp1 angular vals 60mT} shows the fitted $f_{intra}$ and $R$ estimates different degrees of intra-voxel dispersion of fibre orientations. For small $\kappa$, i.e. high degrees of dispersion, we observe large errors in estimates of both $f_{intra}$ and $R$, as expected e.g. from \citep{Zhang:2011}. However, for $\kappa \ge 64$, the fitted parameters converge to their respective ground truth, despite a considerable degree of dispersion still present in those datasets. With increasing $\kappa$, there appears to be no noticable difference between the four protocols.
+\paragraph{Effect of fibre dispersion: } Figure~\ref{fig:chapter7 exp1 dispersion 60mT} shows the fitted $f_{intra}$ and $R$ estimates different degrees of intra-voxel dispersion of fibre orientations. For small $\kappa$, i.e. high degrees of dispersion, we observe large errors in estimates of both $f_{intra}$ and $R$, as expected e.g. from \citep{Zhang:2011}. However, for $\kappa \ge 64$, the fitted parameters converge to their respective ground truth, despite a considerable degree of dispersion still present in those datasets. With increasing $\kappa$, there appears to be no noticable difference between the four protocols.
 
-\begin{figure}[h!]
+%\tikzset{external/export=false}
+\begin{figure}[ht]
 	\centering
 	\input{chapter7/figs/BW_Dispersion_f_300mT.tex}
 	\input{chapter7/figs/BW_Dispersion_R_300mT.tex}
 	\caption{Mean and standard deviation of posterior distribution for fitted volume fraction and radius for different $\kappa$ values.}
-	\label{fig:chapter7 exp1 boxplots 60mT}
+	\label{fig:chapter7 exp1 dispersion 60mT}
 \end{figure}
+%\tikzset{external/export=false}
 
 \subsection{Proof-of-concept implementation}
-Figure~\ref{fig:chapter7 exp1 monkey data} presents maps of axon diameter $D$ and axonal density $\rho$ in the upper cervical spinal cord obtained from the {\FD} protocol. We clearly observe left-right symmetry of axon diameter and density in all tracts, which corresponds with the known structure of the SC. Parameters are also consistent along the SC within the limits of anatomical variation. Further we can discriminate axon diameter and axonal density between anatomically different white matter tracts. Dorsal and lateral sensory tracts show small axons diameters between 1-4$\mu m$ and a density of 0.03-0.08$\mu m^{-2}$. The smallest axon calibers (<1.5$\mu m$) are observed in the dorsal columns (DC) while mean axon size in the anterolateral column (ALC) is 1.5-2.5$\mu m$. The largest axons (3-4$\mu m$) are found in the corticospinal tract (CST) together with low density of 0.01-0.02$\mu m^{-2}$.
+Figure~\ref{fig:chapter7 exp1 monkey data} presents maps of axon diameter $D$ and axonal density $\rho$ in the upper cervical spinal cord obtained from the {\FD} protocol. We can discriminate well differences in axon diameter and axonal density indices between anatomically different white matter tracts. Dorsal and lateral sensory tracts show small axons diameters between 1--4$\mu m$ and a density of 0.03--0.08$\mu m^{-2}$. The smallest axon calibers (<1.5$\mu m$) are observed in the dorsal columns (DC) while mean axon size in the anterolateral column (ALC) is 1.5--2.5$\mu m$. The largest axons (3--4$\mu m$) are found in the corticospinal tracts (CST) together with low density of 0.01--0.02$\mu m^{-2}$. Overall, we clearly observe left-right symmetry of axon diameter and density in all tracts, which corresponds well with the known anatomical organisation of the the SC. Parameters are also consistent along the SC within the limits of anatomical variation and are in the range of values reported in previous histological evaluation of the cord \citep{GrafvonKeyserlingk:1984,Golabchi:2010}. 
 
-\begin{figure}[h!]
+\begin{figure}[ht]
 	\centering
 	\subfloat[Axon diameter index $D$]
 	{
@@ -446,31 +487,31 @@ Figure~\ref{fig:chapter7 exp1 monkey data} presents maps of axon diameter $D$ an
 	\label{fig:chapter7 exp1 monkey data}
 \end{figure}
 
-\FloatBarrier
-
 \section{Discussion}
 We presented here a novel method that provides optimal diffusion weightings and gradient directions for estimating of axonal diameter by exploiting the single fibre orientation of structures like the corpus callosum or spinal cord. We demonstrated that the {\SF} approach reduces the required amount of data by 60--75\%, while achieving similar performance to {\OI}. This translates into a considerable reduction in scan time from >1h for {\OI} to less than 20-25 minutes, which makes routine clinical implementation much more viable.  
 
 \paragraph{}
-Our results suggest that a dedicated optimisation of gradient directions is clearly beneficial over the orientation invariant \OI approach, both in terms of CRLB and simulated noisy data. We find that the optimisation routine deliberately diminishes angular resolution in favour of measuring diffusion only in the most informative directions (predominantly parallel and perpendicular to the WM tracts). We noticed that our optimised gradient scheme pick out predominantly gradient directions parallel and perpendicular to the cylinder compartment, presumably to maximise sensitivity to restricted diffusion. In that respect our automatically optimised gradient schemes agree with other many other studies e.g. \citep{Stanisz:1997,Avram:2008,Assaf:2008,Panagiotaki:2012}, which only chose parallel and perdendicular measurements to maximise sensitive to restricted diffusion. Our results to confirm that these directions give the most information about the tissue, and one should focus on those directions when the fibre configuration is known \textit{a-priori}. 
+Our results suggest that a dedicated optimisation of gradient directions is clearly beneficial over the orientation invariant \OI{} approach, both in terms of CRLB and simulated noisy data when the fibre direction is known a-priori. We find that the optimisation routine deliberately diminishes angular resolution in favour of measuring diffusion only in the most informative directions (predominantly parallel and perpendicular to the WM tracts). We noticed that our optimised gradient scheme pick out predominantly gradient directions parallel and perpendicular to the cylinder compartment, presumably to maximise sensitivity to restricted diffusion. In that respect our automatically optimised gradient schemes agree with other many other studies e.g. \citep{Stanisz:1997,Avram:2008,Assaf:2008,Panagiotaki:2012}, which only chose parallel and perdendicular measurements to maximise sensitive to restricted diffusion. Our results confirm that these directions give the most information about the tissue, and one should focus on those directions when the fibre configuration is known \textit{a-priori}. 
 
 
-We furthermore observe that our {\FD} protocols contain slightly stronger diffusion weighting factors compared to the other protocols. We can attribute this to the custom gradient scheme, which translates to more measurements in the perpendicular direction and hence profits more from stronger diffusion attenuation than {\OI}. The simulation results show this the combination of stronger diffusion weighting and custom gradient scheme shows is superior in estimating the cylinder radius, especially when $R$ is very small.
+We furthermore observe that our {\FD} protocols contain slightly stronger diffusion weighting factors compared to the other protocols. We can attribute this to the custom gradient scheme, which translates to more measurements in the perpendicular direction and hence profits more from stronger diffusion attenuation than {\OI}. The simulation results show the combination of stronger diffusion weighting and custom gradient scheme is superior in estimating the cylinder radius, especially when $R$ is very small.
 
 \paragraph{}
-Considering the few number of distinct gradient directions, it comes to no surprise that we found the optimised gradient schemes in {\FD} and {\DO} more prone to error when the true fibre orientation differs from the one assumed in the optimisation process. However, when the misalignment was small (as expected in coherent WM structures) the impact was neglible. We are confident that with careful positioning, the {\SF} gradient scheme can be aligned to the dominant fibre directions in CC and SC with little error without diminishing the performance of the {\SF} protocols.
+Considering the few number of distinct gradient directions, it comes to no surprise that we found the optimised gradient schemes in {\FD} and {\DO} more prone to error when the true fibre orientation differs from the one assumed in the optimisation process. However, when the misalignment was less than 15$^\circ$ (as expected in coherent WM structures) the impact was neglible. We are confident that with careful positioning, the {\SF} gradient scheme can be aligned to the dominant fibre directions in CC and SC with little error without diminishing the performance of the {\SF} protocols.
 \paragraph{}
-Finally, the feasibility study on our post-mortem SC sample demonstrates that we can estimate a reasonable range of axon diameters and densities under realistic imaging conditions, while retaining a high image resolution. Furthermore we were able to distinguish different WM tract of the SC by both axon diameter and axon density.
+Finally, the feasibility study on our post-mortem SC sample demonstrates that we can estimate a reasonable range of axon diameters and densities under realistic imaging conditions, while retaining a high image resolution. Furthermore we were able to distinguish different WM tracts of the SC by both axon diameter and axon density.
 \paragraph{}
 There are some limiting factors to our study. Firstly, we only optimise and fit a very simple tissue model, which only allows a crude approximation of the real tissue properties. Other, more complex, models might be a better representation of the real tissue microstructure, e.g. modelling explicitly a distribution of axon radii \citep{Barazany:2009} or including more extra-axonal tissue compartments \citep{Stanisz:1997,Wang:2011,Panagiotaki:2012}.  While these models might arguably be more accurate, they also require many more acquisitions and therefore do not agree with the aim of this study to reduce the scan time to less than 30 minutes. The choice of a simpler model offers a compromise of manageable data requirements and informative model parameters.
 \paragraph{}
-Secondly, the spinal cord sample we used in this study was not available for histological processing. Despite the lack of independent validation, the differences between WM tracts agree with previous results in \citep{Golabchi:2010}. It should be noted that our results were obtained with a significantly smaller number of diffusion weighted directions and b-factors compared to other studies \citep{Assaf:2008,Barazany:2009,Panagiotaki:2012}, making it more comparable to conditions found in in-vivo scanning.  Although the findings in this experiment might not be directly transferable to the clinical scanner, the observations made here in this study enabled us to implement an improved in-vivo protocol, which we present in the next chapter.
+Secondly, the spinal cord sample we used in this study was not available for histological processing. Despite the lack of independent validation, the differences between WM tracts agree with previous results in \citep{Golabchi:2010}. It should be noted that our results were obtained with a significantly smaller number of diffusion weighted directions and b-factors compared to other studies \citep{Assaf:2008,Barazany:2009,Panagiotaki:2012}, making it more comparable to conditions found in in-vivo scanning. Nevertheless, in many this pre-clinical setup here has many advantages over the in-vivo situation, as it profits from long scan times, high SNR and an absence of motion artefacts. Although the findings in this experiment might therefore not be directly transferable to clinical practise, the results are encouraging enough to pursue the \SF{} approach in clinical practise. In the next two chapters we will therefore focus on moving the \SF{} approach to towards a feasible in-vivo implementation on standard clinical hardware.
+
+
 
 \FloatBarrier
 \begin{subappendices}
 
 \section{Protocols}
-
+%\tikzset{external/export=false}
 \ifdraft
 {
    Appendix here
@@ -496,6 +537,7 @@ Secondly, the spinal cord sample we used in this study was not available for his
     \end{figure}
 
     \subsection{Pre-clinical scanner (300mT/m), N=30, M=4}
+    \label{app:chapter7 protocols 300mT}	
     %\begin{figure}
     %	[H] \centering \input{chapter7/figs/protocols_par1/OInvariant_300mTCopenhagen.tex} \caption{OI protocol optimised for pre-clinical animal scanner} \label{fig:chapter7 exp1 INVARIANT_300mT}
     %\end{figure}
@@ -509,4 +551,5 @@ Secondly, the spinal cord sample we used in this study was not available for his
     	[H] \centering \input{chapter7/figs/protocols_par1/FreeDirs_300mTCopenhagen.tex} \caption{\SF protocol optimised for pre-clinical scanner and fixed tissue.} \label{fig:chapter7 exp1 FREEDIRS_300mT}
     \end{figure}
 }
+%\tikzset{external/export=true}
 \end{subappendices}
