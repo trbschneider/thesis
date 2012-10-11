@@ -25,7 +25,7 @@ Tracts descending to the {\gls{SC}} as illustrated in Figure~\ref{fig:chapter 2 
 \subsubsection*{White matter pathologies in the spinal cord}
 XXXX
 
-\section{Principles of {\protect\acrlong{MRI}}}
+\section{Principles of MRI}
 \Gls{MRI} is a non-invasive imaging method widely used in medicine. Since \gls{MRI} is free of gamma-radiation (unlike CT or X-ray methods) it is one of the major tools for neuroimaging. \Gls{MRI} can describe tissue in terms of many different properties such as relaxation, density, and diffusion. Specifically, in this work we are interested mainly in the ability of MRI phenomena such as molecular motion and variation in the local magnetic fields. In this work we are mainly using the sensitivty of MRI to the molecular motion of water molecules experiments to infer information about the microscopic tissue morphology. A full account of MRI theory is beyond the scope of this work chapter and can be found elsewhere \citep{MRI Books}. However, a brief overview about the principles of \gls{MRI} is given below.
 \subsection*{Magnetic resonance}
 The MR signal arises from the intrinsic magnetic moment and spin of certain nuclei. The hydrogen atom is most commonly used in MRI due to its abundance in the
@@ -42,29 +42,201 @@ Both T1 and T2 are specific to the macromolecular environment of the protons and
 
 
 IMAGE!
+\subsection*{Signal and Image formation}
+The MR signal is collected during relaxation, and it is the moving transverse magnetisation $\textbf{M}_{xy}$, generated while the spins return to their original states. The MR signal we detect is called the Free Induction Decay or FID signal and is a signal which decays according to the $T_{2}$ relaxation. The signal is
+\begin{equation}
+S(t)= \textbf{M}_{0}\exp(\frac{-t}{T_{2}})
+\label{TET2}
+\end{equation}
+where $\textbf{M}_{0}$ is the steady-state magnetisation before any $T_{2}$ decay.
 
-\subsection*{Magnetic resonance imaging}
-To encode for spatial information, a magnetic field gradient field is applied in addition to B0 and the Larmor frequency then becomes spatially dependent. When the gradient is turned on and off, spins at different spatial locations will have accrued different phases. Therefore, the phase of a spin will represent its spatial location. A multi-dimensional (>1 dimensional) encoding can be achieved by combining gradients in orthogonal directions. Most commonly, the frequency domain (k-space) is measured in 2 dimensions by varying the frequency (read-domain) and phase (phase-domain) of the FID. The 2D Fourier Transform is then used to transform the encoded image to the spatial domain. 
+To generate an image we first choose a slice by exciting a selection of spins, usually in the $z$ direction. Within the slice we encode spatial information.  To achieve that we need a gradient field $\textbf{G}=(G_{x},G_{y},G_{z})$. A gradient magnetic field is a small spatially varying magnetic field superimposed on $\textbf{B}_{0}$. The gradient $G_{z}$ causes protons at different locations along the gradient direction to precess at different frequencies, and only protons precessing with frequencies belonging to the range of the RF pulse sequence will be excited
+
+\begin{equation}
+\omega_{0}= \gamma (\textbf{B}_{0} + \textbf{G}(t)\textbf{R}(t))
+\end{equation}
+
+where $\textbf{R}$ is the position of the spin at time $t$. The gradients $G_{x}$ and $G_{y}$ allows for spatial encoding within the slice.  Thus, each $x,y,$ pixel possesses  a unique frequency which encode the spatial location of the pixel in the image. The signal is then received in frequency space, or k-space. The frequency information is then reconstructed into an image using a Fourier Transform \cite{liang2000principles}.
+%\subsection*{Magnetic resonance imaging}
+%To encode for spatial information, a magnetic field gradient field is applied in addition to B0 and the Larmor frequency then becomes spatially dependent. When the gradient is turned on and off, spins at different spatial locations will have accrued different phases. Therefore, the phase of a spin will represent its spatial location. A multi-dimensional (>1 dimensional) encoding can be achieved by combining gradients in orthogonal directions. Most commonly, the frequency domain (k-space) is measured in 2 dimensions by varying the frequency (read-domain) and phase (phase-domain) of the FID. The 2D Fourier Transform is then used to transform the encoded image to the spatial domain. 
 
 \subsection*{Spin-echo MRI}
 The simple {\gls{SE}} sequence is the building block of all MRI techniques we discuss in this thesis. Figure \ref{fig:chap2 SE sequence} shows the layout of a simple \gls{SE} imaging sequence. The \gls{SE} sequence starts with a 90 (P90) RF-pulse that flips magnetization in the transverse plane, followed by a 180° RF pulse (P180) after time TE/2 and the signal readout after another TE/2, producing an echo at time TE. The P180 inversion pulse will reverse the demagnetization by field inhomogeneties so that the contrast is mainly driven by spin-spin relaxation (T2 weighting) when TE is sufficiently small compared to the spin-lattice relaxation time T1 of the sample, normally taken care by long repetitions times ($TR>5\times T1 $). 
 
-\section{Diffusion MRI}
-{\gls{DWI}} is an MRI technique that is sensitive to the random motion of water molecules. The most commonn diffusion MRI pulse sequence is the {\gls{PGSE}} sequence introduced by \cite{Stejskal:1965}, which is based on the simple \gls{SE} experiment. 
 
-In the {\gls{PGSE}} sequence, a pair of identical diffusion weighting gradients are added to the SE sequence (see Figure \ref{fig:pgse_diagram}) to make the sequence sensitive to the diffusion of water molecules. The first diffusion gradient adds a phase offset dependent on each molecules's position. If the molecule's position doesn't change, the second diffusion gradient will reverse the phase offset. However, in the case of motion due to diffusion, the individual positions will differ between the first and second diffusion gradient, resulting in a reduced signal amplitude. The degree of signal loss is dependent on the rate of diffusion in the tissue but is also controlled by the parameters of the {\gls{PGSE}} sequence (see Figure~\ref{fig:erosion_se_effect}):
+expand!
+
+
+\section{Diffusion MRI}
+Diffusion MRI is a relatively recent field of research with a history of more or less twenty years. Diffusion MRI is of growing interest because it helps understand functional coupling between cortical regions of the brain, which is useful in characterization of neuro-degenerative diseases, in surgical planning and in other medical applications. The great success of diffusion MRI comes from its capability to describe the geometry of the underlying microstructure. To do so, diffusion MRI captures the average diffusion of water molecules, which probes the structure of the biological tissue at scales much smaller than the imaging resolution. The diffusion of water molecules is Brownian under normal unhindered conditions, but in fibrous structure such as white matter, water molecules tend to diffusion along fibers. Due to this physical phenomenon, diffusion MRI is able to obtain information about the neural architecture in vivo. It is also the only imaging modality so non-invasively. We now review the basics physical principles of diffusion MRI.
+
+\subsection{Brownian motion}
+At a microscopic scale, water molecules freely move and collide with each other in an isotropic medium according to Brownian motion [Brown (1828)]. At a macroscopic scale, this phenomenon yields a diffusion process. In a typical diffusion MRI experiment the spatial dimension of the prescribed voxel is several magnitudes bigger than the length scale of diffusion motion. Hence it is useful to consider the average displacement probability density function (dPDF) (often referred to as the “average propagator” (Kärger and Heink, 1983)), describing the ensemble average probability of a particle moving the distance  during diffusion time  independent of starting position  within a sample. In the simplest case of pure molecules motion in the absence of any impeding barriers, the diffusion process can be simply be characterised by the diffusion coefficient D\citep{Fick}. In an isotropic medium, the diffusion coefficient D was related by Einstein [Einstein (1956)] to the root mean square of the diffusion distance as
+\begin{equation}
+	EINSTEIN
+\end{equation}
+where $\tau$ is the diffusion time, $<...>$ denotes the ensemble average and $R = r − r0$ is the net displacement vector between the original position $r_0$ of a particle and the position $r$ after the time $\tau$. 
+
+\subsection[Types of diffusion]{Free, hindered and restricted diffusion in biological tissue}
+Diffusion in nervous tissue can deviate significantly from simple Gaussian behavior in the presence of cell membranes and structures that hinder or restrict diffusion of water molecules (Bihan, 1995). 
+
+In the simplest case, free diffusion (or unrestricted diffusion) describes the pure Brownian motion of water, i.e. molecules diffusing freely in all directions without in the absence of any boundaries. In reality, free diffusion is rarely encountered in a biological tissue sample. Instead, the presence of restricting barriers, such as cell walls, membranes or axonal myelin sheaths impede the motion of the water molecules and alters their displacement pattern. In this case, the diffusion pattern is not only influenced by the diffusivity of the medium but more importantly informs about the characteristics of the surrounding environment on the scale of the mean displacement. 
+
+The observed effects on the diffusion MR signal can be quite diverse, depending on type and location of barriers within the sample. It is helpful to further distinguish between restricted and hindered diffusion (see Figure 1 for illustration). Restricted diffusion is observed if the movement of water molecules is confined in closed spaces, such as impermeable cells wall. Those molecules experience restricted diffusion in that the molecules cannot displace farther than the confines of the cell. In hindered diffusion, the water movement of molecules is impeded however not confined within a limited space. Hindered diffusion best describes water motion in the space between densely packed cells or axons. 
+
+\subsection*{The Stejskal-Tanner PGSE experiment}
+By using a certain pulse sequence the MRI signal can be made sensitive to the molecular motion of the water molecules within the tissue, providing contrast about the molecular motion on a voxel scale. The most commonly used pulse sequence is {\gls{PGSE}} sequence, introduced by \citep{Stejskal:1966}. The {\gls{PGSE}} is based on the standard SE sequence described above with an addtional pair of identical diffusion weighting gradients, which make the sequence sensitive to the diffusion of water molecules (see Figure \ref{fig:pgse_diagram}). The first diffusion gradient adds a phase offset dependent on each molecules's position. If the molecule's position doesn't change, the second diffusion gradient will reverse the phase offset. However, in the case of motion due to diffusion, the individual positions will differ between the first and second diffusion gradient, resulting in a reduced signal amplitude. The degree of signal loss is dependent on the rate of diffusion in the tissue but is also controlled by the parameters of the {\gls{PGSE}} sequence (see Figure~\ref{fig:erosion_se_effect}):
 \begin{itemize}
 	\item the {\gls{gstr}} and {\gls{gdir}},
 	\item the {\gls{smalldel}},
 	\item the {\gls{bigdel}} between both gradient pulses.
 \end{itemize}
 
-The combination of those parameters is often summarised in terms of the diffusion weighting factor {\gls{bvalue}}. For the {\gls{PGSE}} sequence, the {\gls{bvalue}} is defined as:
+In the literature the combination of those PGSE parameters is often summarised in terms of the diffusion weighting factor {\gls{bvalue}}, which is defined as:
 \begin{equation}
 	b = \gamma^2|G|^2\delta^2(\Delta-\frac{\delta}{3}),
     \label{eq:bvalue}
 \end{equation}
 where $\gamma$ is the gyromagnetic ratio.
+
+\paragraph{}
+Cleveland \citep{Cleveland:XXX} was the first to detect anisotropic diffusion in excised skeletal muscle, with diffusion MR. It was not until 1990 however that images of diffusion anisotropy were obtained in vivo by Moseley in the cat spinal cord (37) and Doran and Chenevert in cerebral white matter (38, 39). The introduction of the diffusion tensor model gave rise to the systematic analysis of the diffusion MRI signal. In the following we will discuss some of the most common diffusion MRI methods, with particular focus on those techniques that were used in this dissertation. 
+
+\subsection*{Analysis of diffusion MRI}
+Over the last two decades many ways of diffusion MRI analysis have been proposed. With increasing amounts of data there is a need for a mathematical description of the diffusion signal that can be referred back to the tissue properties. We can break any such model-based analysis of the diffusion data down in the following main building blocks: 
+
+\paragraph{Acquisition:} A set of actual diffusion MR measurements. Any quantitative analysis of the diffusion MRI signal usually requires of many different samples of the PGSE parameter space. We formally define such a combined set of $n$ singular PGSE acquisitions as a protocol (\prot):
+\begin{equation}
+	\mathcal{P} = \{(\vec{g}_1,|G|_1,\delta_1,\Delta_1),\cdots,(\vec{g}_n,|G|_n,\delta_n,\Delta_n)\},
+\end{equation}
+or alternatively using the shortcut term $b$ as:
+\begin{equation*}		
+	\mathcal{P} = \{(\vec{g}_1,b_1),\cdots,(\vec{g}_n,b_n)\}.
+\end{equation*}
+\paragraph{Diffusion model:} The diffusion model is a mathematical approximation of the diffusion process. The diffusion model usually is controlled by a set of feature parameters $p$, which can be (directly or indirectly) related back to the sample environment of the diffusion process. The diffusion model is usually associated closely with a mathematical formulation of the predicted diffusion MR signal for a given acquisition and set of diffusion model parameters.
+\paragraph{Fitting:} The fitting procedure links the observed signals from the acquisition to the diffusion model, with the aim to infer about the tissue properties of the scanner sample. In most case, a forward-modelling approach is applied, i.e., the acquired signal is fitted to a model that has been determined a-priori to find the particular set of model parameters that explains the acquired data best.  
+
+\subsection*{Models for diffusion}
+In the following section we will explain a selection of different models, with particular focus on the techniques used in this dissertation. 
+\subsubsection{Short gradient approximation and the q-space formalism}
+\label{SGP}
+In this section we introduce a common approximation of the relationship between the signal and the underlying distribution of particle displacements, the Short Gradient Pulse (SGP) approximation. This approximation assumes that
+there is a well-defined start and end position of the displacement of the molecules \cite{EncSurface}. This can be achieved by letting the gradient pulse be described by a delta function (i.e. $\delta \rightarrow 0 $ and $ |\textbf{G}| \rightarrow \infty$, while the product $ |\textbf{G}|\delta$ remains finite), thus the effect of motion during the gradient pulses is ignored. Experimentally, this assumption is justified when $\delta \ll \Delta$. So the effect of the gradient, neglecting the effect of the static field, on a spin in position $\textbf{R}$,  is now :
+
+\begin{equation}
+\Phi(\textbf{R}) = \gamma\delta \textbf{G}\textbf{R}
+\label{phasesgp}
+\end{equation}
+
+In the SGP approximation we assume that the pulse is so short that $\textbf{R}$ does not vary, and therefore we can ignore motion during the gradient pulse, i.e. we ignore the dependence of  $\textbf{R}$ on $t$. If a spin moves from  $\textbf{r}_{0}$ to  $\textbf{r}$ between pulses its phase change is
+
+\begin{equation}
+\Delta\Phi(\textbf{r}-\textbf{r}_{0}) = \gamma\delta \textbf{G}(\textbf{r}-\textbf{r}_{0}),
+\label{deltaphasesgp}
+\end{equation}
+
+so the final magnetisation is
+   \begin{equation}
+   \textbf{M}_{0} = \exp\Big(i \gamma \textbf{G} \delta (\textbf{r}-\textbf{r}_{0})\Big).
+   \end{equation}
+
+   The total signal is the sum of all magnetisations \cite{Price1}
+\begin{equation}
+S(\delta,\Delta,\textbf{G})/S_{0}(TE) = \iint \rho(\textbf{r}_{0})P(\textbf{r}_{0},\textbf{r},\Delta)\exp\Big(i \gamma \textbf{G} \delta (\textbf{r}-\textbf{r}_{0}) \Big)\,d\textbf{r} d\textbf{r}_{0}
+\label{onedim}
+\end{equation}
+
+where $S_{0}(TE)$ is the  signal with no diffusion-weighting gradients at time TE, $\rho(\textbf{r}_{0})$ is the initial spin density (the distribution function of the spins during the first gradient pulse)
+and $P(\textbf{r}_{0},\textbf{r},\Delta)$ is the probability density for a displacement of a spin from a starting position $\textbf{r}_{0}$ to a position $\textbf{r}$ during the
+time interval $\Delta$. From now on we will ignore the dependence on the constant $S_{0}(TE)$ and assume that $S$ is the normalised signal.
+
+If we write the particle displacement $\textbf{x} = \textbf{r}-\textbf{r}_{0}$, the probability density function for particle  displacements  $P(\textbf{x},\Delta)$ is
+\begin{equation}
+P(\textbf{x},\Delta) = \int\rho(\textbf{r}_{0})\rho(\textbf{r}_{0},\textbf{r}_{0} + \textbf{x}, \Delta)\,d\textbf{r}_{0}.      %CHECK
+\end{equation}
+
+In the SGP approximation the diffusion signal $S$ relates to $P$ via the Fourier Transform. The signal $S$ is
+
+\begin{equation}
+S(\textbf{q},\Delta)=\int_{\Re^3}P(\textbf{x},\Delta)\exp(-i\textbf{q}\cdot(\textbf{x}))\,d\textbf{x},
+\label{fourier}
+\end{equation}
+
+where $\textbf{q}$ is the wavenumber that depends on the strength and the direction of the magnetic gradient $\textbf{G}$ and the duration of the magnetic gradient $\delta$, used in the acquisition. In general the wavenumber is written as
+
+\begin{equation}
+\textbf{q}=\frac{\gamma}{2\pi}\int^\delta_0 \textbf{G}\,dt.
+\label{q}
+\end{equation}
+
+However for the SGP approximation  \cite{Price1}, it is
+
+ \begin{equation}
+\textbf{q}=\frac{\gamma \textbf{G}\delta}{2\pi}.
+\label{qsgp}
+\end{equation}
+
+
+In the case of free diffusion , $P(\textbf{r}_{0},\textbf{r},\Delta)$ is a Gaussian function
+\begin{equation}
+P(\textbf{r}_{0},\textbf{r},\Delta) =  \frac{1}{\sqrt{(4\pi
+dt)^3}}\exp\bigg(-\frac{|\textbf{r}-\textbf{r}_{0}|^{2}}{4dt}\bigg)
+\label{Gaussian}
+\end{equation}
+where $t$ is the diffusion time and $d$ is the diffusion coefficient.
+
+ The literature contains analytic models for $P$ within simple restricting geometries such as spheres, cylinders and parallel planes \cite{Callaghan,olle,Neuman}. For example, Neuman  \cite{Neuman} derives $P$ for  diffusion between planes, within a cylinder and within a sphere. The expressions  for the probabilities, $P$, are obtained from the solution of the diffusion equation with the appropriate boundary conditions
+\begin{equation}
+\frac{\partial P}{\partial t} = d\nabla^{2}P
+\label{difneuman}
+\end{equation}
+where $t$ is the diffusion time and $d$ is the diffusion coefficient \cite{fourier}.
+
+For example, for the case of diffusion bounded by planes separated by distance $l$ the solution of the Equation \ref{difneuman} is
+\begin{equation}
+P(x',x;t'-t) = (1/l) + \sum_{m>1}(2/l)\cos(m\pi x'/l)\cos(m\pi x/l)\exp[-(dm^{2}\pi^{2}/l^{2})(t'-t)]
+\label{plane}
+\end{equation}
+here $P(x',x;t'-t)$ is the probability of a spin moving from position $x$ to $x'$ in time $t'-t$ and $m \in \mathbb{Z}$. So, using the SGP approximation the signal from particles trapped between planes is
+\begin{equation}
+\ln S = - \frac{8\gamma^{2}\textbf{G}^{2}l^{4}}{d\pi^{6}}\sum_{n=0}^{\infty}\frac{1}{(2n+1)^{6}}\left(2\tau - \frac{3-4\exp(-d(2n+1)^{2}\pi^{2}\tau/l^{2})+\exp(-d(2n+1)^{2}\pi^{2}2\tau/l^{2})}{d(2n+1)^{2}\pi^{2}/l^{2}}\right)
+\label{signalPlane}
+\end{equation} which comes from substituting Equation \ref{plane} in Equation \ref{q}. For Equation \ref{signalPlane}  the echo time is $2\tau$ and $d$ is the diffusion coefficient.
+\subsubsection{Apparent diffusion coefficient}
+The \gls{ADC} model of diffusion signal is one of simplest models to analyse the diffusion data. It is based on the assumption that the diffusion is completely free, in which case the PDF can be expressed as a simple Gaussian probability distribution. The substitution of the general q-space formalism in Equation~\ref{} yields the following closed form solution of for the diffusion signal $S$:
+\begin{equation}
+	ADC formula
+\end{equation}
+
+\subsubsection{Diffusion Tensor}
+\subsubsection{Models for restriction}
+\subsubsection{Compartment models}
+
+\subsection*{Active Imaging}
+\subsubsection{Apparent diffusion coefficient}
+\subsubsection{Diffusion Tensor}
+\subsubsection{Compartment models}
+
+\subsection*{Application in the cord}
+
+ of different \gls{PGSE} settings and gradient direction one can infer about the directionality of molecule movement with in the tissue. 
+
+
+\subsection*{Model-based diffusion analysis} 
+The purpose of any model-based diffusion analysis is to explain the measured diffusion signal as a function of the acquisition parameters. Usually a forward model-based approach is used. This means given an a-priori model of diffusion process, the aim is to find the best set of model parameters that agree best with the measured signal given the acquisition protocol \prot{}.   
+\begin{itemize}
+	\item Model of diffusion $M(p)$ that predicts the molecular motion of water. The parameter vector $p$ can be interpreted as a mathematical description of the surrounding matter. 
+	\item A diffusion signal model $S_{M}(p;\prot)$ that predicts the MRI signal vector from the diffusion model, given the acquisition protocol \prot{} and the model parameters $p$. 
+	\item An optimality criterion $f_{obj}(S_{M},\hat{S})$ that compares the predicted $S_{M}$ and the actual measured $\hat{S}$. 
+\end{itemize}
+The actual analysis of acquired diffusion MRI signal usually requires to find the best set of model parameters (in terms of $f_{obj}$) in every voxel. With an adequate choice of the model and acquisition protocol, the fitted parameters $p$ providing meaningful information about the characteristics of the imaged sample. In the following we will discuss some of the most common model-based diffusion analyis methods with particular focus on the techniques that are used in this dissertation. 
+
+
+
+
+
+
+able to do {\gls{DWI}} is an MRI technique that is sensitive to the random motion of water molecules. The most commonn diffusion MRI pulse sequence is the {\gls{PGSE}} sequence introduced by \cite{Stejskal:1965}, which is based on the simple \gls{SE} experiment. 
 
 \begin{figure}
  \centering
@@ -83,18 +255,6 @@ or alternatively using the shortcut term $b$ as:
 \end{equation*} 
 
 
-\subsection*{Analysis of diffusion MRI}
-Unlike T1w and T2w image modalities, the produced contrast from DWI is dependent on the orientation of the applied diffusion gradient as well as the applied diffusion pulse parameters. By sampling the diffusion signal decay curve using a variation of different \gls{PGSE} settings and gradient direction one can infer about the directionality of molecule movement with in the tissue. Cleveland \citep{Cleveland:XXX} was the first to detect anisotropic diffusion in  excised skeletal muscle, with diffusion MR. It was not until 1990 however that images of diffusion anisotropy were obtained in vivo by Moseley in the cat spinal cord (37) and Doran and Chenevert in cerebral white matter (38, 39). The introduction of the diffusion tensor model gave rise to the systematic study of the diffusion signal. In the following we will discuss some of the most common diffusion MRI analysis methods, with particular focus on those techniques that were used in this dissertation. Before going into detail we will introduce here some common definitions and conventions that are used over in the remainder of this work. 
-
-
-\subsection*{Model-based diffusion analysis} 
-The purpose of any model-based diffusion analysis is to explain the measured diffusion signal as a function of the acquisition parameters. Usually a forward model-based approach is used. This means given an a-priori model of diffusion process, the aim is to find the best set of model parameters that agree best with the measured signal given the acquisition protocol \prot{}. We can break down the main building blocks of any model-based approach as follows:  
-\begin{itemize}
-	\item Model of diffusion $M(p)$ that predicts the molecular motion of water. The parameter vector $p$ can be interpreted as a mathematical description of the surrounding matter. 
-	\item A diffusion signal model $S_{M}(p;\prot)$ that predicts the MRI signal vector from the diffusion model, given the acquisition protocol \prot{} and the model parameters $p$. 
-	\item An optimality criterion $f_{obj}(S_{M},\hat{S})$ that compares the predicted $S_{M}$ and the actual measured $\hat{S}$. 
-\end{itemize}
-The actual analysis of acquired diffusion MRI signal usually requires to find the best set of model parameters (in terms of $f_{obj}$) in every voxel. With an adequate choice of the model and acquisition protocol, the fitted parameters $p$ providing meaningful information about the characteristics of the imaged sample. In the following we will discuss some of the most common model-based diffusion analyis methods with particular focus on the techniques that are used in this dissertation. 
 
 \subsection*{Gaussian diffusion}
 In any sense, if no physical concentration gradients are assumed in this condition we must describe the concentration of water protons in terms of the probability of their displacement across both space and time,  , where ro is the initial position of the water protons. Assuming the probability displacement function follows a Gaussian distribution, which is the simple solution using random walks, such Einstein’s equation for mean displacement applies [1, 2],  
