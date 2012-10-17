@@ -67,7 +67,7 @@ The simple {\gls{SE}} sequence is the building block of all MRI techniques we di
 expand!
 
 
-\section{Diffusion MRI}
+\section{Principles of Diffusion MRI}
 Diffusion MRI is a relatively recent field of research with a history of more or less twenty years. Diffusion MRI is of growing interest because it helps understand functional coupling between cortical regions of the brain, which is useful in characterization of neuro-degenerative diseases, in surgical planning and in other medical applications. The great success of diffusion MRI comes from its capability to describe the geometry of the underlying microstructure. To do so, diffusion MRI captures the average diffusion of water molecules, which probes the structure of the biological tissue at scales much smaller than the imaging resolution. The diffusion of water molecules is Brownian under normal unhindered conditions, but in fibrous structure such as white matter, water molecules tend to diffusion along fibers. Due to this physical phenomenon, diffusion MRI is able to obtain information about the neural architecture in vivo. It is also the only imaging modality so non-invasively. We now review the basics physical principles of diffusion MRI.
 
 \subsection{Brownian motion}
@@ -99,13 +99,13 @@ In the literature the combination of those PGSE parameters is often summarised i
 \end{equation}
 where $\gamma$ is the gyromagnetic ratio.
 
-\paragraph{}
+\section{Analysis of Diffusion MRI}
 Cleveland \citep{Cleveland:XXX} was the first to detect anisotropic diffusion in excised skeletal muscle, with diffusion MR. It was not until 1990 however that images of diffusion anisotropy were obtained in vivo by Moseley in the cat spinal cord (37) and Doran and Chenevert in cerebral white matter (38, 39). The introduction of the diffusion tensor model gave rise to the systematic analysis of the diffusion MRI signal. In the following we will discuss some of the most common diffusion MRI methods, with particular focus on those techniques that were used in this dissertation. 
 
-\section{Analysis of Diffusion MRI}
-Over the last two decades many ways of diffusion MRI analysis have been proposed. With increasing amounts of data there is a need for a mathematical description of the diffusion signal that can be referred back to the tissue properties. We can break any such model-based analysis of the diffusion data down in the following main building blocks: 
+\paragraph{}
+Most commonly, diffusion MRI is processed in terms of a model-based analysis, i.e. using a mathematical description of the diffusion signal that can be referred back to the tissue properties. It makes sense to describe any such model-based analysis pipeline with regard to its main building blocks: 
 
-\paragraph{Acquisition:} A set of actual diffusion MR measurements. Any quantitative analysis of the diffusion MRI signal usually requires of many different samples of the PGSE parameter space. We formally define such a combined set of $n$ singular PGSE acquisitions as a protocol (\prot):
+\paragraph{Acquisition:} The set of actual diffusion MR measurements. Any quantitative analysis of the diffusion MRI signal usually needs of many samples of different PGSE parameters, e.g. many different gradient encoding directions and/or \gls{gstr},\gls{smalldel}, \gls{bigdel} combinations. We formally define such a combined set of $n$ singular PGSE acquisitions as a protocol (\prot):
 \begin{equation}
 	\mathcal{P} = \{(\vec{g}_1,|G|_1,\delta_1,\Delta_1),\cdots,(\vec{g}_n,|G|_n,\delta_n,\Delta_n)\},
 \end{equation}
@@ -113,6 +113,13 @@ or alternatively using the shortcut term $b$ as:
 \begin{equation*}		
 	\mathcal{P} = \{(\vec{g}_1,b_1),\cdots,(\vec{g}_n,b_n)\}.
 \end{equation*}
+Several other terms are often found to describe selected properties of a acquisition protocol. A gradient scheme usually describes a set of diffusion gradient directions only without specifying PGSE pulse parameters or $b$-values. The term \gls{HARDI} describes a special case of gradient scheme with a high number diffusion directions (>60), which are uniformely sampled over the unit sphere (e.g. like Cook, Jones). A \textit{shell} in the context of diffusion MRI refers to a protocol or subset of a protocol with several different gradient directions acquired at the same $b$-value. 
+
+
+
+Different analysis methods have different requirements on the acquisition protocol. While it suffices for some methods to acquire few samples of the PGSE parameter space, other methods require one or more HARDI shells with different b-values and/or many different $(\vec{g},|G|,\delta,\Delta)$ combinations.  
+
+
 \paragraph{Diffusion model:} The diffusion model is a mathematical approximation of the diffusion process. The diffusion model usually is controlled by a set of feature parameters $p$, which can be (directly or indirectly) related back to the sample environment of the diffusion process. The diffusion model is usually associated closely with a mathematical formulation of the predicted diffusion MR signal for a given acquisition and set of diffusion model parameters.
 \paragraph{Fitting:} The fitting procedure links the observed signals from the acquisition to the diffusion model, with the aim to infer about the tissue properties of the scanner sample. In most case, a forward-modelling approach is applied, i.e., the acquired signal is fitted to a model that has been determined a-priori to find the particular set of model parameters that explains the acquired data best.  
 
@@ -302,6 +309,18 @@ Recently, \citet{Assaf:2005} developed the CHARMED model of cylindrical axons wi
 To reduce the number of free parameters in the model, $d_\perp$ can be expressed by using the tortuosity formulation of \citet{Szafer:1995}.
 
 \subsection*{Active Imaging}
+\label{sec:protocol_optimisation}
+More complex models usually require  {\gls{DWI}}  acquisitions with several different diffusion weightings at various diffusion times. For example \citet{Barazany:2009} perform approx. 900 different combinations of $0\le|G|\le 0.3mT$, $0\le {\gls{smalldel}} \le 0.03ms$ and $0\le \Delta \le 0.30ms$ to estimate the axon diameter distribution of live rat brain. This extensive sampling of the \gls{PGSE} parameter space requires long acquisition times (between hours and days) and is infeasible for in-vivo clinical scanning. 
+
+The principle of the ``Active Imaging" protocol optimisation framework of \cite{Alexander:2008} is to find the protocol $\mathcal{P}$, that allows the most accurate estimation of the tissue model parameters under given hardware and time constraints. The Fisher information matrix (FIM) provides a lower bound on the inverse covariance matrix of parameter estimates, i.e., the $\mathcal{P}$ that maximizes the FIM will maximize the precision of those estimates. He uses the d-optimality criterion \citep{OBrien:2003}, which is defined as the determinant of the inverse FIM of protocol $\mathcal{P}$ and tissue model parameters $\phi$:
+\begin{equation}
+	D(\phi,\mathcal{P})=\det[(\mat{J}^T\Omega\mat{J})^{-1}], 
+	\label{eq-optimality}
+\end{equation}
+where $\mat{J}$ is the $N\times \mbox{size}(\phi)$ Jacobian matrix with the $ij$st element $\partial S(\vec{g}_i,\delta_i,\Delta_i) / \partial \phi_j$. In the original approach $\Omega=diag\{1,\cdots,1\}$. \citet{Alexander:2008} uses a stochastic optimization algorithm \citep{Zelinka:2010} that returns $\mathcal{P}'$ with minimal $D$ among all possible $\mathcal{P}$ with respect to the given scanner hardware limits.
+
+The optimisation framework was used in \citet{Alexander:2010} to estimate the parameters of the \gls{MMWMD}, described in section \ref{par:alexanders_model} using a standard clinical Philips 3T scanner with maximum {\gls{gstr}} of $60mT/m$ and a maximum scan time of one hour (total number of acquisitions $N=360$). To achieve estimates independent of fibre orientation, the $N$ acquisition are divided in $M$ sets of different PGSE settings with gradient directions in each set being fixed and uniformly distributed over the sphere as in \cite{Jones:2004a}. They performed in-vivo scans of the corpus callosum and compared their axon diameter and density indices with high resolution scans of ex-vivo monkey brain and previously published histology studies. They found that the trends in diameter and density agreed with both ex-vivo scans and histology, although the axon diameter was over-estimated. This is mainly an effect of limited gradient strength as has been shown in \cite{Dyrby:2010}.  
+
 
 \subsection*{Application in the cord}
 
