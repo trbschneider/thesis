@@ -30,18 +30,32 @@ XXXX
 \subsection*{Magnetic resonance}
 The MR signal arises from the intrinsic magnetic moment and spin of certain nuclei. The hydrogen atom is most commonly used in MRI due to its abundance in the
 human body. When a hydrogen nucleus is placed in a magnetic field, its nuclear spin will begin to precess with a frequency governed by
-$$
-ω =γB0 (1.1) 
-$$
-where ω is the Larmor frequency, γ is the nucleus specific gyromagnetic ratio, and B0 is the magnetic field strength. When a radio-frequency \gls{RF} pulse is applied perpendicular to the B0 field, with a frequency equal to the Larmor frequency (i.e. the resonance frequency) the magnetic proton spins tilt towards the transverse plane. Once the RF signal is removed, the nuclei realign themselves again parallel to the static B0 field. In MR terms the application of the \gls{RF} pulse is called excitation and the following return to equilibrium is referred to as relaxation. The relaxation process is accompanied a loss of energy by the protons, which can be picked up by a receiving RF coil. This signal is referred to as the \gls{FID} signal. The \gls{FID}, is characterized by two tissue specific time constants:  
+\begin{equation}
+\omega =\gamma \cdot B0 
+\end{equation}
+where $\omega$ is the Larmor frequency, $\gamma$ is the nucleus specific gyromagnetic ratio, and $B0$ is the magnetic field strength. When a \gls{RF} pulse is applied perpendicular to the B0 field, with a frequency equal to the Larmor frequency (i.e. the resonance frequency) the magnetic proton spins tilt towards the transverse plane. Once the RF signal is removed, the nuclei realign themselves again parallel to the static B0 field. In MR terms the application of the \gls{RF} pulse is called excitation and the following return to equilibrium is referred to as relaxation. The relaxation process is accompanied a loss of energy by the protons, which can be picked up by a receiving RF coil. This signal is referred to as the \gls{FID} signal. Figure~\ref{fig:chapter2 spin FIDs} illustrates this process. The \gls{FID}, is characterized by two tissue specific time constants:  
 \begin{itemize}
-	\item longitudinal relaxation (T1) is the time takes for the net magnetisation returns to the longitudinal equilibrium
-	\item transverse relaxation (T2) is the time that it takes for FID response signal to decay
+	\item T1 is the The longitudinal relaxation time defined as the time it takes for the net magnetisation returns to the longitudinal equilibrium.
+	\item T2 is the transverse relaxation time,i.e. the time that it takes for FID signal to decay due to randomly fluctuating internal magnetic fields caused by spin-spin interactions in the substance. This causes the spins to get out of phase and the transverse magnetization (and induced signal) is lost exponentially. In a non-idealized magnetic field, transverse magnetisation is also lost due to inhomogeneities in the B0 field, causing additional signal loss. The signal loss due to both spin-spin interference and B0 inhomogeneities is characterised by the time constant T2$^*$.
 \end{itemize}
-Both T1 and T2 are specific to the macromolecular environment of the protons and therefore are specific for different types of tissue, e.g. for different tissue types with the brain (GM T1/T2 = 950/100 ms, WM T1/T2 = 600/80 ms (17) and CSF XXXX). Furthermore, diseases such as cancer can alter the T1 and T2 of the tissue, and thus, T1 and T2 can be used to detect tissue affected by pathology. TE/TR explain
+Usually the transverse magnetization decays more rapidly than it takes for the magnetisation to return to the longitudinal equilibrium. Both T1 and T2 are specific to the macromolecular environment of the protons and therefore are specific for different types of tissue, e.g. for different tissue types with the brain (GM T1/T2 = 950/100 ms, WM T1/T2 = 600/80 ms (17) and CSF XXXX). Furthermore, diseases such as cancer can alter the T1 and T2 of the tissue, and thus, T1 and T2 can be used to detect tissue affected by pathology.
+\begin{figure}[ht]
+\centering
+\pgfimage[width=0.9\textwidth]{chapter2/figs/spins.pdf}
+\caption{Simplified illustration of spins during different steps of the FID signal formation after a 90$^\circ$ RF pulse is applied. Some figures were created using the SpinBench software \citep{Overall:2007}.}
+\label{fig:chapter2 spin FIDs}
+\end{figure}
+\subsection*{Spin-echo sequence}
+The simple {\gls{SE}} sequence is the central pulse sequence of all experiments that are discussed in this dissertation. Figure \ref{fig:chap2 SE sequence} shows the layout of a simple \gls{SE} experiment. The \gls{SE} sequence starts with a 90 (P90) RF-pulse that flips magnetization in the transverse plane, followed by a 180° RF pulse (P180) after time TE/2 and the signal readout after another TE/2, producing an echo at time TE. The P180 inversion pulse will reverse the demagnetization by field inhomogeneities so that the contrast is mainly driven by spin-spin relaxation (T2). When TE is sufficiently small compared to the spin-lattice relaxation time T1 of the sample, normally taken care by long repetitions times ($TR>5\times T1 $), the obtained signal is called T2-weighted (T2w). 
+
+\begin{figure}[ht]
+\centering
+\pgfimage[width=0.9\textwidth]{chapter2/figs/spinecho.pdf}
+\caption{Simplified illustration of spins during different steps of the FID signal formation after a 90$^\circ$ RF pulse is applied. Some figures were created using the SpinBench software \citep{Overall:2007}.}
+\label{fig:chap2 SE sequence}
+\end{figure}
 
 
-IMAGE!
 \subsection*{Signal and Image formation}
 The MR signal is collected during relaxation, and it is the moving transverse magnetisation $\textbf{M}_{xy}$, generated while the spins return to their original states. The MR signal we detect is called the Free Induction Decay or FID signal and is a signal which decays according to the $T_{2}$ relaxation. The signal is
 \begin{equation}
@@ -59,13 +73,6 @@ To generate an image we first choose a slice by exciting a selection of spins, u
 where $\textbf{R}$ is the position of the spin at time $t$. The gradients $G_{x}$ and $G_{y}$ allows for spatial encoding within the slice.  Thus, each $x,y,$ pixel possesses  a unique frequency which encode the spatial location of the pixel in the image. The signal is then received in frequency space, or k-space. The frequency information is then reconstructed into an image using a Fourier Transform \cite{liang2000principles}.
 %\subsection*{Magnetic resonance imaging}
 %To encode for spatial information, a magnetic field gradient field is applied in addition to B0 and the Larmor frequency then becomes spatially dependent. When the gradient is turned on and off, spins at different spatial locations will have accrued different phases. Therefore, the phase of a spin will represent its spatial location. A multi-dimensional (>1 dimensional) encoding can be achieved by combining gradients in orthogonal directions. Most commonly, the frequency domain (k-space) is measured in 2 dimensions by varying the frequency (read-domain) and phase (phase-domain) of the FID. The 2D Fourier Transform is then used to transform the encoded image to the spatial domain. 
-
-\subsection*{Spin-echo MRI}
-The simple {\gls{SE}} sequence is the building block of all MRI techniques we discuss in this thesis. Figure \ref{fig:chap2 SE sequence} shows the layout of a simple \gls{SE} imaging sequence. The \gls{SE} sequence starts with a 90 (P90) RF-pulse that flips magnetization in the transverse plane, followed by a 180° RF pulse (P180) after time TE/2 and the signal readout after another TE/2, producing an echo at time TE. The P180 inversion pulse will reverse the demagnetization by field inhomogeneties so that the contrast is mainly driven by spin-spin relaxation (T2 weighting) when TE is sufficiently small compared to the spin-lattice relaxation time T1 of the sample, normally taken care by long repetitions times ($TR>5\times T1 $). 
-
-
-expand!
-
 
 \section{Principles of Diffusion MRI}
 Diffusion MRI is a relatively recent field of research with a history of more or less twenty years. Diffusion MRI is of growing interest because it helps understand functional coupling between cortical regions of the brain, which is useful in characterization of neuro-degenerative diseases, in surgical planning and in other medical applications. The great success of diffusion MRI comes from its capability to describe the geometry of the underlying microstructure. To do so, diffusion MRI captures the average diffusion of water molecules, which probes the structure of the biological tissue at scales much smaller than the imaging resolution. The diffusion of water molecules is Brownian under normal unhindered conditions, but in fibrous structure such as white matter, water molecules tend to diffusion along fibers. Due to this physical phenomenon, diffusion MRI is able to obtain information about the neural architecture in vivo. It is also the only imaging modality so non-invasively. We now review the basics physical principles of diffusion MRI.
@@ -85,7 +92,14 @@ In the simplest case, free diffusion (or unrestricted diffusion) describes the p
 The observed effects on the diffusion MR signal can be quite diverse, depending on type and location of barriers within the sample. It is helpful to further distinguish between restricted and hindered diffusion (see Figure 1 for illustration). Restricted diffusion is observed if the movement of water molecules is confined in closed spaces, such as impermeable cells wall. Those molecules experience restricted diffusion in that the molecules cannot displace farther than the confines of the cell. In hindered diffusion, the water movement of molecules is impeded however not confined within a limited space. Hindered diffusion best describes water motion in the space between densely packed cells or axons. 
 
 \subsection*{The Stejskal-Tanner PGSE experiment}
-By using a certain pulse sequence the MRI signal can be made sensitive to the molecular motion of the water molecules within the tissue, providing contrast about the molecular motion on a voxel scale. The most commonly used pulse sequence is {\gls{PGSE}} sequence, introduced by \citep{Stejskal:1966}. The {\gls{PGSE}} is based on the standard SE sequence described above with an addtional pair of identical diffusion weighting gradients, which make the sequence sensitive to the diffusion of water molecules (see Figure \ref{fig:pgse_diagram}). The first diffusion gradient adds a phase offset dependent on each molecules's position. If the molecule's position doesn't change, the second diffusion gradient will reverse the phase offset. However, in the case of motion due to diffusion, the individual positions will differ between the first and second diffusion gradient, resulting in a reduced signal amplitude. The degree of signal loss is dependent on the rate of diffusion in the tissue but is also controlled by the parameters of the {\gls{PGSE}} sequence (see Figure~\ref{fig:erosion_se_effect}):
+\begin{figure}[ht]
+\centering
+\pgfimage[width=0.5\textwidth]{chapter2/figs/PGSEdiagram.pdf}
+\caption{Pulse sequence diagram of PGSE sequence. Imaging and acquisition gradients are omitted for clarity.}
+\label{fig:chapter2 pgse_diagram}
+\end{figure}
+
+By using a certain pulse sequence the MRI signal can be made sensitive to the molecular motion of the water molecules within the tissue, providing contrast about the molecular motion on a voxel scale. The most commonly used pulse sequence is {\gls{PGSE}} sequence, introduced by \citep{Stejskal:1966}. The {\gls{PGSE}} is based on the standard SE sequence described above with an addtional pair of identical diffusion weighting gradients, which make the sequence sensitive to the diffusion of water molecules (see Figure \ref{fig:chapter2 pgse_diagram}). Figure~\ref{fig:chap2 diffusion illustration} illustrates the principle of diffusion encoding using the PGSE sequence. The first diffusion gradient adds a phase offset dependent on each molecules's position. If the molecule's position doesn't change, the second diffusion gradient will reverse the phase offset (see Figure~\ref{fig:chap2 diffusion illustration nodiffusion}). However, in the case of motion due to diffusion, the individual positions will differ between the first and second diffusion gradient, resulting in a reduced signal amplitude	(see Figure~\ref{fig:chap2 diffusion illustration diffusion}). The degree of signal loss is dependent on the rate of diffusion in the tissue but is also controlled by the parameters of the {\gls{PGSE}} sequence, namely:
 \begin{itemize}
 	\item the {\gls{gstr}} and {\gls{gdir}},
 	\item the {\gls{smalldel}},
@@ -98,6 +112,22 @@ In the literature the combination of those PGSE parameters is often summarised i
     \label{eq:bvalue}
 \end{equation}
 where $\gamma$ is the gyromagnetic ratio.
+
+\begin{figure}[H]
+\centering
+\subfloat[Spin phase distribution in case of no molecule motion. The phase dispersion introduced by the first diffusion gradient is completely reversed by the second diffusion gradient.]
+{
+	\pgfimage[width=0.85\textwidth]{chapter2/figs/PGSEnomotion.pdf}
+	\label{fig:chap2 diffusion illustration nodiffusion}
+}\\
+\subfloat[Spin phase distribution in case of diffusing molecules during the diffusion time $\Delta$. Because of motion, the individual molecules experience different phase offsets at the first and second diffusion gradients. As a result, there remains some phase incoherence after the second diffusion gradient, which culminates into an attenuation of the total spin echo response.]
+{
+	\pgfimage[width=0.85\textwidth]{chapter2/figs/PGSEmotion.pdf}
+	\label{fig:chap2 diffusion illustration diffusion}
+}
+\caption{Cartoon of the principle of diffusion encoding in the PGSE experiment. The diagrams present the spin development over the course of the sequence in the case of: (a) no diffusion or (b) diffusing molecules.}
+\label{fig:chap2 diffusion illustration}
+\end{figure}
 
 \section{Analysis of Diffusion MRI}
 Cleveland \citep{Cleveland:XXX} was the first to detect anisotropic diffusion in excised skeletal muscle, with diffusion MR. It was not until 1990 however that images of diffusion anisotropy were obtained in vivo by Moseley in the cat spinal cord (37) and Doran and Chenevert in cerebral white matter (38, 39). The introduction of the diffusion tensor model gave rise to the systematic analysis of the diffusion MRI signal. In the following we will discuss some of the most common diffusion MRI methods, with particular focus on those techniques that were used in this dissertation. 
@@ -126,40 +156,32 @@ Different analysis methods have different requirements on the acquisition protoc
 
 In the following section we will explain a selection of different models, with particular focus on the techniques used in this dissertation. 
 \subsection{Short gradient approximation and the q-space formalism}
-The \gls{dPDF} $P(r|\prime{r},t)$ as the conditional displacement probability of water, i.e. expressing the probability of a water molecule diffusing from position $r$ to $\prime{r}'$ over the time period t. If we assume the diffusion gradient pulse $\delta$ suffiently short, multiple times smaller than the diffusion time $\Delta$, any motion of water molecules during the diffusion encoding gradient time can be neglected. When this short gradient pulse (SGP) condition is fullfilled, we can ignore the molecule motion during the diffusion gradient pulse and express the signal exclusively as a function of diffusion time $\Delta$ and gradient strength $G$\citep{Callaghan:1991}:
+If we assume the diffusion gradient pulse $\delta$ suffiently short, multiple times smaller than the diffusion time $\Delta$, any motion of water molecules during the diffusion encoding gradient time can be neglected. In the SGP regime, the diffusion echo attenuation $S(|G|,\delta,\Delta)$ for a specific PGSE acquisition with parameters $|G|,\delta,\Delta$  can be expressed as the integral of the net phase shifts over all water over all molecule positions (r) weighted by the conditional probability P(r|r') of the molecules movement from position $r$ to $r'$\citep{Callaghan:1991}:
 \begin{equation}
-S(\delta,\Delta,\textbf{G})/S_{0}(TE) = \iint \rho(\textbf{r}_{0})P(\textbf{r}_{0},\textbf{r},\Delta)\exp\Big(i \gamma \textbf{G} \delta (\textbf{r}-\textbf{r}_{0}) \Big)\,d\textbf{r} d\textbf{r}_{0}
-\label{eq:chapter2 signal in sgp}
+	S(|G|,\delta,\Delta)=\int \int P(r)P(r|r',\Delta)\exp[-i\cdot \gamma \delta |G|\cdot (r'-r))] dr'dr,
+	\label{eq:chapter2 signal in sgp}
+\end{equation}
+with $\gamma$ the gyromagnetic ratio of protons. We can now describe ensemble molecule motion pattern over one voxel by the average \gls{dPDF} (often referred to as the average propagator\citep{Karger:1983}) as the ensemble average probability of a particle moving the distance $R$ independent of its starting position:
+\begin{equation}
+	\overline{P}(R,t)=\int P(r)P(r|r+R,t)dr.
+	\label{eq:chapter2 dpdf}
 \end{equation}
 
-where $\rho(\textbf{r}_{0})$ is the initial spin density (the distribution function of the spins during the first gradient pulse)
-and $P(\textbf{r}_{0},\textbf{r},\Delta)$ is the probability density for a displacement of a spin from a starting position $\textbf{r}_{0}$ to a position $\textbf{r}$ during the time interval $\Delta$. 
-
-If we write the particle displacement $\textbf{x} = \textbf{r}-\textbf{r}_{0}$, the probability density function for particle  displacements  $P(\textbf{x},\Delta)$ is
+We can now use the \gls{dPDF} definition to express the diffusion signal attenuation by substituting Equation~\ref{eq:chapter2 dpdf} in the Equation~\ref{eq:chapter2 signal in sgp} as such:
 \begin{equation}
-P(\textbf{x},\Delta) = \int\rho(\textbf{r}_{0})\rho(\textbf{r}_{0},\textbf{r}_{0} + \textbf{x}, \Delta)\,d\textbf{r}_{0}.      %CHECK
+		S(|G|,\delta,\Delta)=\int \overline{P}(R,t) exp[-i\cdot \gamma \delta |G|\cdot R] dR,
 \end{equation}
-
-In the SGP approximation the diffusion signal $S$ relates to $P$ via the Fourier Transform. The signal $S$ is
-
-\begin{equation}
-S(\textbf{q},\Delta)=\int_{\Re^3}P(\textbf{x},\Delta)\exp(-i\textbf{q}\cdot(\textbf{x}))\,d\textbf{x},
-\label{fourier}
-\end{equation}
-
-where $\textbf{q}$ is the wavenumber that depends on the strength and the direction of the magnetic gradient $\textbf{G}$ and the duration of the magnetic gradient $\delta$, used in the acquisition. In general the wavenumber is written as
-
-\begin{equation}
-\textbf{q}=\frac{\gamma}{2\pi}\int^\delta_0 \textbf{G}\,dt.
-\label{q}
-\end{equation}
-
-However for the SGP approximation  \cite{Price1}, it is
-
+If we introduce the $\textbf{q}$-value (or wavenumber) as
  \begin{equation}
 \textbf{q}=\frac{\gamma \textbf{G}\delta}{2\pi}.
-\label{qsgp}
+\label{eq: chapter 2 q value definition}
 \end{equation}
+the signal equation can be written as:
+\begin{equation}
+		S(q,\Delta)=\int \overline{P}(R,t) \exp[2\pi i \cdot q\cdot R] dR.
+\label{eq:chapter 2 qspace formula}
+\end{equation}
+It is easy to see that the Equation~\ref{eq:chapter 2 qspace formula} presents a simple Fourier relationship between the signal $S$ and the \gls{dPDF}. This relationship can be exploited in q-space analysis, where the diffusion signal is measured with many different q-values at a certain fixed diffusion time. The inverse Fourier transformation of the measured signal will then directly give the \gls{dPDF} without the need to impose any constraints on its characteristics.
 
 \subsection{Q-space imaging}
 \label{sec:qspace}
