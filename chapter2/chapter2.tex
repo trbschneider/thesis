@@ -23,7 +23,7 @@ Tracts descending to the {\gls{SC}} as illustrated in Figure~\ref{fig:chapter 2 
   \label{fig:chapter 2 spinal_cord_anatomy}
 \end{figure}
 \subsubsection*{White matter pathologies in the spinal cord}
-XXXX
+XXX
 
 \section{Principles of MRI}
 \Gls{MRI} is a non-invasive imaging method widely used in medicine. Since \gls{MRI} is free of gamma-radiation (unlike CT or X-ray methods) it is one of the major tools for neuroimaging. \Gls{MRI} can describe tissue in terms of many different properties such as relaxation, density, and diffusion. Specifically, in this work we are interested mainly in the ability of MRI phenomena such as molecular motion and variation in the local magnetic fields. In this work we are mainly using the sensitivty of MRI to the molecular motion of water molecules experiments to infer information about the microscopic tissue morphology. A full account of MRI theory is beyond the scope of this work chapter and can be found elsewhere \citep{MRI Books}. However, a brief overview about the principles of \gls{MRI} is given below.
@@ -90,6 +90,20 @@ Diffusion in nervous tissue can deviate significantly from simple Gaussian behav
 In the simplest case, free diffusion (or unrestricted diffusion) describes the pure Brownian motion of water, i.e. molecules diffusing freely in all directions without in the absence of any boundaries. In reality, free diffusion is rarely encountered in a biological tissue sample. Instead, the presence of restricting barriers, such as cell walls, membranes or axonal myelin sheaths impede the motion of the water molecules and alters their displacement pattern. In this case, the diffusion pattern is not only influenced by the diffusivity of the medium but more importantly informs about the characteristics of the surrounding environment on the scale of the mean displacement. 
 
 The observed effects on the diffusion MR signal can be quite diverse, depending on type and location of barriers within the sample. It is helpful to further distinguish between restricted and hindered diffusion (see Figure 1 for illustration). Restricted diffusion is observed if the movement of water molecules is confined in closed spaces, such as impermeable cells wall. Those molecules experience restricted diffusion in that the molecules cannot displace farther than the confines of the cell. In hindered diffusion, the water movement of molecules is impeded however not confined within a limited space. Hindered diffusion best describes water motion in the space between densely packed cells or axons. 
+
+\begin{figure}
+ \centering
+  \subfloat[Illustration of molecule movement in different tissue environments]
+  {
+	\pgfimage[height=0.35\textwidth]{chapter2/figs/diff_types.pdf}
+  }\hspace*{1cm}
+  \subfloat[Root-mean-squared displacement over prolonged diffusion time for different tissue environments.]
+  {
+	\pgfimage[height=0.35\textwidth]{chapter2/figs/rms_types.pdf}
+  }
+  \caption{Free, hindered and restricted,  diffusion patterns and root-mean-squared displacement over different diffusion times.}
+  \label{fig:chapter 2 types of diffusion}
+\end{figure}
 
 \subsection*{The Stejskal-Tanner PGSE experiment}
 \begin{figure}[ht]
@@ -189,6 +203,13 @@ The combination of q-space analysis with MR imaging methods is called q-space im
 
 The P0 and FWHM parameter describe the height and width of the displacement profile. Generally, high P0 and low FWHM can be interpreted as indicators of restricted diffusion; low P0 and wide FWHM are related to more free or hindered diffusion. The FWHM is of particular theoretical interest as it can be directly related to the size of the restricted compartment in simple geometries via the autocorrelation function (Cory, 1990; Kuchel et al., 1997). Some studies report the root mean square displacement (RMS) instead of FWHM. (Cory and Garroway, 1990) suggest the conversion between FWHM and RMS as $RMS = 1.443 \cdot FWHM$. However, the equality is only true if the diffusion profile is truly Gaussian.
 
+\begin{figure}
+ \centering
+ \pgfimage[width=0.99\textwidth]{chapter2/figs/qsi_processing.pdf}
+ \caption{QSI analysis pipeline and example parameter maps.}
+ \label{fig:chapter 2 QSI analysis}
+\end{figure}
+
 
 The kurtosis parameter (here defined as the excess kurtosis (Kenney and Keeping, 1957))  describe how much a distribution differs from the normal distribution. Kurtosis is defined as the standardised fourth central moment of a distribution minus 3 (to make the kurtosis of the normal distribution equal to zero). For a finite sample of n datapoints the kurtosis K is computed as:
 \begin{equation}
@@ -198,6 +219,14 @@ with $\bar{x}$ being the sample mean. A high kurtosis distribution has a narrowe
 
 \subsubsection*{Limitations of QSI}
 QSI parameters measured in nervous tissue are often interpreted as a direct indicator of axonal architecture, such as the mean axon diameter (MAD).  Early studies have demonstrated that q-space analysis can indeed provide exact estimates of the geometry in simple samples, e.g. yeast cells (Cory and Garroway, 1990) or blood cells (Kuchel et al., 1997). However, experiments on real nervous tissue have shown that the interpretation of q-space parameters in axonal tissue is more complicated (King et al., 1994; Assaf and Cohen, 2000; Assaf et al., 2000; Bar-Shir and Cohen, 2008). (Assaf and Cohen, 2000) were first to demonstrate that the displacement profile of nervous can be expressed as a combination of at least two compartments exhibiting hindered and restricted diffusion. A recent study of QSI in the in-vivo human brain by (Nilsson et al., 2009) confirmed that the FWHM perpendicular to white matter fibres did not change with diffusion time. Parallel FWHM increased linearly with the square root of diffusion time, restricted and hindered diffusion, respectively, as expected from theory (Figure REF). The two compartments are often attributed to intra-cellular (IC) and extra-cellular (EC) water, although there is an ongoing debate over the interpretation of these results (see e.g. (Kiselev and Il'yasov, 2007; Mulkern et al., 2009)).
+
+\begin{figure}
+ \centering
+ \pgfimage[width=0.9\textwidth]{chapter2/figs/com.pdf}
+ \caption{Illustration of the centre-of-mass effect on observed molecule displacement introduced by the violation of the SGP condition.}
+ \label{fig:chapter 2 COM}
+\end{figure}
+
 
 Since q-space analysis provides the average displacement probability over the whole voxel, the q-space measurement is affected by both IC and EC compartments as well as by the amount of exchange between the two. As a result, the displacement PDF may be broader than the actual MAD would suggest, due to the addition of displacements from hindered diffusion in the EC compartments. Other factors such as the distribution of sizes and variety of shapes further complicate the interpretation of q-space parameters to infer the real axon diameter distributions. 
 
