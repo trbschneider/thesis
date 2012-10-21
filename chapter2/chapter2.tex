@@ -11,7 +11,7 @@ The white matter of the {\gls{SC}} consists mostly of longitudinally running axo
 
 \subsubsection*{Ascending tracts}
 \label{sec:chap2:ascendingtracts}
-Figure \ref{fig:spinal_cord_anatomy} illustrates the location of the major ascending pathways in the {\gls{SC}}. These sensory tracts, arise either from cells of spinal ganglia in the white matter of the {\gls{SC}} or from intrinsic neurons within the gray matter that receive primary sensory input. The dorsal column hold the largest ascending tracts and are associated with tactile, pressure, and kinesthetic sense connecting with sensory areas of the cerebral cortex. Fibres of the spinothalamic tracts ascend in the lateral ventral part of the cord and convey signals related to pain and thermal sense. The anterior spinothalamic tract arises ascends more anteriorly in the {\gls{SC}}; conveying impulses related to light touch. At brain level the two spinothalamic tracts tend to merge and cannot be distinguished as separate entities. Anterior and posterior spinocerebellar tracts are involved in automatic muscle tone regulation. These tracts ascend peripherally in the dorsal and ventral margins of the cord.
+Figure \ref{fig:chapter 2 spinal_cord_anatomy} illustrates the location of the major ascending pathways in the {\gls{SC}}. These sensory tracts, arise either from cells of spinal ganglia in the white matter of the {\gls{SC}} or from intrinsic neurons within the gray matter that receive primary sensory input. The dorsal column hold the largest ascending tracts and are associated with tactile, pressure, and kinesthetic sense connecting with sensory areas of the cerebral cortex. Fibres of the spinothalamic tracts ascend in the lateral ventral part of the cord and convey signals related to pain and thermal sense. The anterior spinothalamic tract arises ascends more anteriorly in the {\gls{SC}}; conveying impulses related to light touch. At brain level the two spinothalamic tracts tend to merge and cannot be distinguished as separate entities. Anterior and posterior spinocerebellar tracts are involved in automatic muscle tone regulation. These tracts ascend peripherally in the dorsal and ventral margins of the cord.
 
 \subsubsection*{Descending tracts}
 \label{sec:chap2:descendingtracts}
@@ -22,22 +22,16 @@ Tracts descending to the {\gls{SC}} as illustrated in Figure~\ref{fig:chapter 2 
   \caption{Illustration of the major ascending and descending fibre pathways of the {\protect\gls{SC}} (adapted from \url{http://en.wikipedia.org/wiki/Spinal_cord}).}
   \label{fig:chapter 2 spinal_cord_anatomy}
 \end{figure}
-\subsubsection*{White matter pathologies in the spinal cord}
-Axon morphology plays an important role for normal signal conduction. Damage to axon or myelin integrity will compromise signal transmission and can lead to a variety of symptoms. It is not the purpose to describe WM pathology in general here, but rather to provide a description of the common changes that occur to axon morphology under pathologic conditions. The hallmarks of WM pathology are axon loss and demyelination and their causes include various diseases and trauma. Axon loss is the disappearance of axons. These axons may or may not reappear.
-The loss of axons leads to abnormal disconnections between neurons and will cause 9 interruptions in neural signaling. Demyelination is the partial or full loss of myelin surrounding an axon. As described above, myelin acts as an insulator to promote efficient signal conduction. Demyelination will therefore disrupt neural signaling as electric impulses may not travel as fast or as far along the same axon. Depending on the root cause, axon loss and demyelination may be localized within a lesion or occur diffusely
-throughout WM tissue.
-
-Brief descriptions of how disease and trauma affects axon morphology are given below. The most common WM disease is multiple sclerosis (MS) which afflicts 2.5 million individuals world-wide (14). MS is an inflammatory disease in which the immune system attacks WM, leading to axon loss and demyelination. It is this WM damage that is the primary cause of clinical disability. Trauma can be any mechanical force applied to the CNS and can lead to tearing or even transection of axons (15). These injuries can cutoff nutrient transport within the axon, leading to degeneration of the axon distal to the injury site. This type of axon loss is known as Wallerian degeneration.
 
 \section{Principles of MRI}
-\Gls{MRI} is a non-invasive imaging method widely used in medicine. Since \gls{MRI} is free of gamma-radiation (unlike CT or X-ray methods) it is one of the major tools for neuroimaging. \Gls{MRI} can describe tissue in terms of many different properties such as relaxation, density, and diffusion. Specifically, in this work we are interested mainly in the ability of MRI phenomena such as molecular motion and variation in the local magnetic fields. In this work we are mainly using the sensitivty of MRI to the molecular motion of water molecules experiments to infer information about the microscopic tissue morphology. A full account of MRI theory is beyond the scope of this work chapter and can be found elsewhere \citep{MRI Books}. However, a brief overview about the principles of \gls{MRI} is given below.
+\Gls{MRI} is a non-invasive imaging method widely used in medicine. \gls{MRI} is free of gamma-radiation (unlike CT or X-ray methods), which makes is one of the major tools for application in neuroimaging. \Gls{MRI} can describe tissue in terms of many different properties such as relaxation, density, and diffusion. Specifically, in this thesis our main interest is in the sensitivity of MRI to the molecular motion of water molecules experiments to infer information about the microscopic tissue morphology. A full account of MRI theory is beyond the scope of this work chapter and can be found elsewhere (see e.g. in \cite{McRobbie:2002,Bernstein:2004}). However, a brief overview about the principles of magnetic resonance and \gls{MRI} is given below.
+
 \subsection*{Magnetic resonance}
-The MR signal arises from the intrinsic magnetic moment and spin of certain nuclei. The hydrogen atom is most commonly used in MRI due to its abundance in the
-human body. When a hydrogen nucleus is placed in a magnetic field, its nuclear spin will begin to precess with a frequency governed by
+Nuclear magnetic resonance is a phenomenon that occurs when an elements with a non-zero magnetic moment (possessing an odd number of electrons or neutrons) reacts with an external magnetic field. Hydrogen ($^1$H) is such an element, and is most commonly used in MRI due to its abundance in the human body. When such an element is placed in a magnetic field, its nuclear spin will begin to precess with a frequency governed by the equation:
 \begin{equation}
 \omega =\gamma \cdot B0 
 \end{equation}
-where $\omega$ is the Larmor frequency, $\gamma$ is the nucleus specific gyromagnetic ratio, and $B0$ is the magnetic field strength. When a \gls{RF} pulse is applied perpendicular to the B0 field, with a frequency equal to the Larmor frequency (i.e. the resonance frequency) the magnetic proton spins tilt towards the transverse plane. Once the RF signal is removed, the nuclei realign themselves again parallel to the static B0 field. In MR terms the application of the \gls{RF} pulse is called excitation and the following return to equilibrium is referred to as relaxation. The relaxation process is accompanied a loss of energy by the protons, which can be picked up by a receiving RF coil. This signal is referred to as the \gls{FID} signal. Figure~\ref{fig:chapter2 spin FIDs} illustrates this process. 
+where $\omega$ is the Larmor frequency, $\gamma$ is the nucleus specific gyromagnetic ratio, and $B0$ is the magnetic field strength. When a \gls{RF} pulse is applied perpendicular to the B0 field, with a frequency equal to the Larmor frequency (i.e. the resonance frequency) the magnetic proton spins tilt towards the transverse plane. Once the \gls{RF} pulse is removed, the nuclei realign themselves again parallel to the main magnetic field. In MR terms the application of the \gls{RF} pulse is called excitation and the following return to equilibrium is referred to as relaxation. The relaxation process is accompanied a loss of energy by the protons, which can be picked up by a receiving RF coil. The received signal is referred to as the \gls{FID} signal. Figure~\ref{fig:chapter2 spin FIDs} illustrates this process. 
 
 \begin{figure}[H]
 \centering
@@ -46,21 +40,21 @@ where $\omega$ is the Larmor frequency, $\gamma$ is the nucleus specific gyromag
 \label{fig:chapter2 spin FIDs}
 \end{figure}
 
-The development of the net magnetisation is characterized by two tissue specific time constants:  
+The development of the net magnetisation vector is characterized by two time constants T1 and T2 that are defined as:  
 \begin{itemize}
-	\item T1 is the the longitudinal relaxation time, which is describes how long it takes for the net magnetisation to return to the longitudinal equilibrium. Formally, the T1 constant relates to the longitudinal component of the magnetisation $M_z(t)$ at time $t$ after excitation by the formula:
+	\item T1 is the the longitudinal relaxation time, which describes how long it takes for the net magnetisation to return to the longitudinal equilibrium. Formally, the T1 constant relates to the longitudinal component of the magnetisation $M_z(t)$ at time $t$ after excitation by the formula:
 	\begin{equation}
 		M_z(t) = M_0 \cdot (1-\exp(-t/T1)),
 	\end{equation} 
-	with $M_0$ (the proton density) being the total magentisation, which is proportional to the total number of excited spins. 
+	with $M_0$ (the proton density) being the total magnetisation, which is proportional to the total number of excited spins. 
 	\item T2 is the transverse relaxation time,i.e. it describes the time it takes for the FID signal to decay due to randomly fluctuating internal magnetic fields caused by spin-spin interactions in the substance. This causes the spins to get out of phase and the transverse magnetization (and induced signal) is lost exponentially. Formally, the signal development of the transverse magentisation $M_{xy}(t)$ at time $t$ after excitation is described by:
 	\begin{equation}
 		M_{xy}(t) = M_0 \cdot \exp(-t/T2),
 	\end{equation} 	
-	In a non-idealized magnetic field, transverse magnetisation is also lost due to inhomogeneities in the B0 field, causing additional signal loss. In this case we distinguish between the T2 effect as the spin-spin interactions alone, and the T2$^*$ effect as the signal loss due both spin-spin relaxation and B0 inhomogeneities.
+	In a non-ideal magnetic field, transverse magnetisation is also lost due to inhomogeneities in the B0 field, causing additional signal loss. In this case we distinguish between the T2 effect as the spin-spin interactions alone, and the T2$^*$ effect as the signal loss due both spin-spin relaxation and B0 inhomogeneities.
 \end{itemize}
 
-Usually the transverse magnetization decays more rapidly than it takes for the magnetisation to return to the longitudinal equilibrium. Both T1 and T2 are specific to the macromolecular environment of the protons and therefore are specific for different types of tissue, e.g. for different tissue types with the brain (GM T1/T2 = 950/100 ms, WM T1/T2 = 600/80 ms (17) and CSF XXXX). Furthermore, diseases such as cancer can alter the T1 and T2 of the tissue, and thus, T1 and T2 can be used to detect tissue affected by pathology.
+Usually the transverse magnetization decays more rapidly than it takes for the magnetisation to return to the longitudinal equilibrium. Both T1 and T2 are specific to the macromolecular environment of the protons and therefore are specific for different types of tissue, e.g. for different tissue types within the live human brain (\gls{GM} T1/T2 = 2000/100 ms, \gls{WM} T1/T2 = 1100/70 ms at 3T magnetic field strength \citep{Stanisz:2005}).
 \subsection*{Spin-echo sequence}
 The {\gls{SE}} sequence is the central pulse sequence that is used in all experiments we present in this dissertation. Figure \ref{fig:chap2 SE sequence} illustrates the layout and signal development of the \gls{SE} experiment. The \gls{SE} sequence starts with a 90°(P90) excitation pulse that flips magnetization in the transverse plane, followed by a 180°RF pulse (P180) after time TE/2 and the signal readout after another TE/2, producing an echo at time TE. The P180 inversion pulse will reverse the demagnetization by field inhomogeneities so that the contrast is mainly driven by spin-spin relaxation (T2). When TE is sufficiently small compared to the transverse relaxation time T1 of the sample, normally taken care by long repetitions times ($TR>5\times T1 $), the obtained signal is only dependent on T2 and is called T2-weighted (T2w). 
 
@@ -79,76 +73,61 @@ A magnetic gradient field $\textbf{G}=(G_{x},G_{y},G_{z})$ is a small spatially 
 \end{equation}
 
 
-Most fundamentally, gradient fields are used to spatially encode the signal to allow the formation of an image. As an example we will discuss here the most common 2D slice encoded spin-echo imaging sequence, which is used in all our experiments. Figure\ref{XX} shows the pulse diagram of this pulse sequence. First, the slice selection gradient $G_slice$ is applied during the excitation RF pulse, which results in only the excitation of protons that precess with frequencies within the range of the excitation RF pulse. 
+Most fundamentally, gradient fields are used to spatially encode the signal to allow the formation of an image. As an example we will discuss here the most common 2D slice encoded spin-echo imaging sequence, which is used in all our experiments. Figure~\ref{fig:chapter2 SE imaging sequence} illustrates such a simple imaging SE pulse sequence. First, the slice selection gradient $G_slice$ is applied during the excitation RF pulse, which results in only the excitation of protons that precess with frequencies within the range of the excitation RF pulse. 
 
-The two gradients $G_{read}$ and $G_{phase}$ are orthogonal to $G_{slice}$ and provides the spatial encoding within the excited slice. The phase encoding gradient $G_{phase}$ adds a phase shift to the spin frequency of the slice-selected magnetization, which encodes location in the  direction. During the spin echo at TE, the $G_{read}$ gradient is applied, making the resonant frequency of the nuclear magnetization vary with its location in the X direction. The signal is sampled $k_x$ times (typically between 128 and 512 $k_x$ samples are taken).
-After the repetition time TR, the whole sequence is repeated with a different phase-encoding gradient. After $k_y$ phase encoding steps, the data is completely spatially encoded by means of frequency and phase. The frequency information is then reconstructed into an image using the Fourier Transform \cite{Liang:2000}.
-
-\subsection*{The Stejskal-Tanner PGSE experiment}
+The two gradients $G_{read}$ and $G_{phase}$ are orthogonal to $G_{slice}$ and provides the spatial encoding within the excited slice. The phase encoding gradient $G_{phase}$ adds a phase shift to the spin frequency of the slice-selected magnetization, which encodes location in the  direction. During the spin echo at TE, the $G_{read}$ gradient is applied, making the resonant frequency of the nuclear magnetization vary with its location in the read-out direction. The signal is sampled $k_x$ times (typically between 128 and 512 $k_x$ samples are taken).
+After waiting the \gls{TR} for the longitudinal magnetisation to restore, the whole sequence is repeated with a different phase-encoding gradient. After $k_y$ phase encoding steps, the data is completely spatially encoded by means of frequency and phase. Typically also between 128 and 512 $k_y$ encoding steps are acquired. This 2-dimensional $k_x\times k_y$ frequency matrix is then reconstructed into an image using the Fourier Transform \citep{Ljunggren:1983,Twieg:1983}.
 \begin{figure}[ht]
 \centering
-\pgfimage[width=0.5\textwidth]{chapter2/figs/imaging.pdf}
-\caption{Pulse sequence diagram of PGSE sequence. Imaging and acquisition gradients are omitted for clarity.}
-\label{fig:chapter2 pgse_diagram}
+\pgfimage[width=0.95\textwidth]{chapter2/figs/imaging.pdf}
+\caption{Spatial encoding by different gradient pulses during a 2D spin echo sequence.}
+\label{fig:chapter2 SE imaging sequence}
 \end{figure}
 
 
 \section{Principles of Diffusion MRI}
-Diffusion MRI captures the average diffusion of water molecules, which probes the structure of the biological tissue at scales much smaller than the imaging resolution. The diffusion of water molecules is Brownian under normal unhindered conditions, but in fibrous structure such as white matter, water molecules tend to diffusion along fibers. Due to this physical phenomenon, diffusion MRI is able to obtain information about the neural architecture in vivo. It is also the only imaging modality so non-invasively. We now review the basics physical principles of diffusion MRI.
+Diffusion MRI captures the average diffusion of water molecules, which probes the structure of the biological tissue at scales much smaller than the imaging resolution. The diffusion of water molecules is Brownian under normal unhindered conditions, but in fibrous structure such as white matter, water molecules tend to diffusion along fibers. Due to this physical phenomenon, diffusion MRI is able to obtain information about the neural architecture \textit{in-vivo}. In the following section we will briefly review the principles of diffusion and its effect on the MRI signal.
 
 \subsection{Brownian motion}
-At a microscopic scale, water molecules freely move and collide with each other in an homogeneuous medium according to Brownian motion [Brown (1828)]. At a macroscopic scale, this phenomenon yields a diffusion process. In the simplest case of pure molecules motion in the absence of any impeding barriers, the diffusion process can be simply be characterised by the diffusion coefficient D\citep{Fick}. In an isotropic homogenous medium,  the mean displacement after a given time $t$ is simply related to the diffusion coefficent $d$ by Einstein's formula: 
+At a microscopic scale, water molecules freely move and collide with each other in an homogeneous medium according to Brownian motion \citep{Brown:1828}. At a macroscopic scale, this phenomenon yields a diffusion process. In the simplest case of pure molecules motion in the absence of any impeding barriers, the diffusion process can be simply be characterised by the diffusion coefficient $d$ \citep{Fick:1855}. In an isotropic and homogeneous medium, the mean displacement after a given time $t$ is simply related to the diffusion coefficient $d$ by Einstein's formula, which in 3-d space, is: 
 \begin{equation}
-	EINSTEIN
+	 d = 6 \cdot \langle R^2 \rangle \cdot t
+	\label{eq:chapter2 einsteins formula}
 \end{equation}
-where, $<\dots>$ denotes the ensemble average and $R = r - r_0$ is the displacement vector between the original position $r_0$ of a particle and the position $r$ after the diffusion time $t$. 
+where, $\langle\dots\rangle$ denotes the ensemble average and $R = r - r_0$ is the displacement vector between the original position $r_0$ of a particle and the position $r$ after the diffusion time $t$. 
 
 \subsection[Types of diffusion]{Free, hindered and restricted diffusion in biological tissue}
 In the simplest case, free diffusion (or unrestricted diffusion) is exactly described by the pure Brownian motion of water, i.e. molecules diffusing freely in all directions in the absence of any boundaries. In reality, free diffusion is rarely encountered in a biological tissue sample. Instead, the presence of restricting barriers, such as cell walls, membranes or axonal myelin sheaths impede the motion of the water molecules and alters their displacement pattern. In this case, the diffusion pattern is not only influenced by the diffusivity of the medium but more importantly informs about the characteristics of the surrounding environment on the scale of the mean displacement. 
 
-The observed effects on the diffusion MR signal can be quite diverse, depending on type and location of barriers within the sample. It is helpful to further distinguish between restricted and hindered diffusion. Figure~\ref{fig:chapter 2 types of diffusion} shows an example of different diffusion environments and their effect on the displacement of molecules. Restricted diffusion is seen if the movement of water molecules is confined in closed spaces, such as impermeable cells wall. Those molecules experience restricted diffusion in that the molecules cannot displace farther than the confines of the cell. In hindered diffusion, the water movement of molecules is impeded however not confined within a limited space. Hindered diffusion best describes water motion in the space between densely packed cells or axons. 
+The observed effects on the diffusion MR signal can be quite diverse, depending on type and location of barriers within the sample. Figure~\ref{fig:chapter 2 types of diffusion} illustrates different diffusion environments and their effect on the \gls{RMSD} of molecules. It is helpful to further distinguish two different motion pattern in the presence of barriers as restricted and hindered diffusion.  Restricted diffusion is seen if the movement of water molecules is confined in closed spaces, such as impermeable cells wall. Those molecules experience restricted diffusion in that the molecules cannot displace farther than the confines of the cell. In hindered diffusion, the water movement of molecules is impeded however not confined within a limited space. Hindered diffusion best describes water motion in the space between densely packed cells or axons. The aim of diffusion MRI is to characterise the diffusion motion and thus infer some characteristics of the tissue non-invasively.
 
-\begin{figure}
+
+\begin{figure}[ht]
  \centering
   \subfloat[Illustration of molecule movement in different tissue environments]
   {
-	\pgfimage[height=0.35\textwidth]{chapter2/figs/diff_types.pdf}
-  }\hspace*{1cm}
+	\pgfimage[height=0.4\textwidth]{chapter2/figs/diff_types.pdf}
+  }\hspace*{0.15\textwidth}
   \subfloat[Root-mean-squared displacement over prolonged diffusion time for different tissue environments.]
   {
-	\pgfimage[height=0.35\textwidth]{chapter2/figs/rms_types.pdf}
+	\pgfimage[height=0.4\textwidth]{chapter2/figs/rms_types.pdf}
   }
   \caption{Free, hindered and restricted,  diffusion patterns and root-mean-squared displacement over different diffusion times.}
   \label{fig:chapter 2 types of diffusion}
 \end{figure}
 
-\subsection*{The Stejskal-Tanner PGSE experiment}
+\subsection{The Stejskal-Tanner PGSE experiment}
 \begin{figure}[ht]
 \centering
-\pgfimage[width=0.5\textwidth]{chapter2/figs/PGSEdiagram.pdf}
+\pgfimage[width=0.6\textwidth]{chapter2/figs/PGSEdiagram.pdf}
 \caption{Pulse sequence diagram of PGSE sequence. Imaging and acquisition gradients are omitted for clarity.}
 \label{fig:chapter2 pgse_diagram}
 \end{figure}
 
-The MRI signal can be made sensitive to the molecular motion of the water molecules within the tissue, providing contrast about the molecular motion on a voxel scale. The most commonly used pulse sequence is {\gls{PGSE}} sequence, introduced by \citep{Stejskal:1966}. The {\gls{PGSE}}, presented in Figure \ref{fig:chapter2 pgse_diagram}), is based on the standard SE sequence with an additional pair of identical diffusion weighting gradients, which make the sequence sensitive to the diffusion of water molecules 
+The MRI signal can be made sensitive to the molecular motion of the water molecules within the tissue, providing contrast about the molecular motion on a voxel scale. by far the most commonly used method for diffusion MRI is the {\gls{PGSE}} sequence, introduced by \citep{Stejskal:1965}. The {\gls{PGSE}}, presented in Figure \ref{fig:chapter2 pgse_diagram}), is based on the standard SE sequence with an additional pair of identical diffusion weighting gradients, which make the sequence sensitive to the diffusion of water molecules. 
 
 
-
-Figure~\ref{fig:chap2 diffusion illustration} illustrates the principle of diffusion encoding using the PGSE sequence. The first diffusion gradient adds a phase offset dependent on each molecules's position. If the molecule's position doesn't change, the second diffusion gradient will reverse the phase offset (see Figure~\ref{fig:chap2 diffusion illustration nodiffusion}). However, in the case of motion due to diffusion, the individual positions will differ between the first and second diffusion gradient, resulting in a reduced signal amplitude	(see Figure~\ref{fig:chap2 diffusion illustration diffusion}). The degree of signal loss is dependent on the rate of diffusion in the tissue but is also controlled by the parameters of the {\gls{PGSE}} sequence, namely:
-\begin{itemize}
-	\item the {\gls{gstr}} and {\gls{gdir}},
-	\item the {\gls{smalldel}},
-	\item the {\gls{bigdel}} between both gradient pulses.
-\end{itemize}
-
-In the literature the combination of those PGSE parameters is often summarised in terms of the diffusion weighting factor {\gls{bvalue}}, which is defined as:
-\begin{equation}
-	b = \gamma^2|G|^2\delta^2(\Delta-\frac{\delta}{3}),
-    \label{eq:bvalue}
-\end{equation}
-where $\gamma$ is the gyromagnetic ratio.
-
-\begin{figure}[H]
+\begin{figure}[phtb]
 \centering
 \subfloat[Spin phase distribution in case of no molecule motion. The phase dispersion introduced by the first diffusion gradient is completely reversed by the second diffusion gradient.]
 {
@@ -164,12 +143,27 @@ where $\gamma$ is the gyromagnetic ratio.
 \label{fig:chap2 diffusion illustration}
 \end{figure}
 
+
+Figure~\ref{fig:chap2 diffusion illustration} illustrates the principle of diffusion encoding using the PGSE sequence. The first diffusion gradient adds a phase offset dependent on each molecules's position. If the molecule's position doesn't change, the second diffusion gradient will reverse the phase offset (illustrated in Figure~\ref{fig:chap2 diffusion illustration nodiffusion}). However, in the case of motion due to diffusion, the individual positions will differ between the first and second diffusion gradient, resulting in a reduced signal amplitude	(illustrated in Figure~\ref{fig:chap2 diffusion illustration diffusion}). The degree of signal loss is dependent on the rate of diffusion in the tissue but is also controlled by the parameters of the {\gls{PGSE}} sequence, namely:
+
+\begin{itemize}
+	\item the {\gls{gstr}} and {\gls{gdir}},
+	\item the {\gls{smalldel}},
+	\item the {\gls{bigdel}} between both gradient pulses.
+\end{itemize}
+
+In the literature the combination of those PGSE parameters is often summarised in terms of the diffusion weighting factor {\gls{bvalue}}\citep{LeBihan:1986}, which is defined as:
+\begin{equation}
+	b = \gamma^2|G|^2\delta^2(\Delta-\frac{\delta}{3}),
+    \label{eq:bvalue}
+\end{equation}
+where $\gamma$ is the gyromagnetic ratio. The theoretical background of the b-value formula will be explained shortly in Section~\ref{sec:chapter 2GPD}.
+
 \section{Analysis of Diffusion MRI Data}
-Cleveland \citep{Cleveland:XXX} was the first to detect anisotropic diffusion in excised skeletal muscle, with diffusion MR. It was not until 1990 however that images of diffusion anisotropy were obtained in vivo by Moseley in the cat spinal cord (37) and Doran and Chenevert in cerebral white matter (38, 39). The introduction of the diffusion tensor model gave rise to the systematic analysis of the diffusion MRI signal. In the following we will discuss some of the most common diffusion MRI methods, with particular focus on those techniques that were used in this dissertation. 
+Unlike T1- or T2-weighted MRI, diffusion MRI is used very little as a qualitative imaging method. Its predominant use lies in the quantification of tissue. However, this demands a systematic analysis of the acquired signal samples, especially in view of the inherently low SNR and large number of acquisition protocol parameters of diffusion MRI.
 
-\paragraph{}
-Most commonly, diffusion MRI is processed in terms of a model-based analysis, i.e. using a mathematical description of the diffusion signal that can be referred back to the tissue properties. It makes sense to describe any such model-based analysis pipeline with regard to its main building blocks: 
 
+Most commonly, diffusion MRI is processed in terms of a model-based analysis, i.e. using a mathematical description of the diffusion signal that can be referred back to the tissue properties. We can break down the model-based analysis pipeline in its main building blocks: 
 \paragraph{Acquisition:} The set of actual diffusion MR measurements. Any quantitative analysis of the diffusion MRI signal usually needs of many samples of different PGSE parameters, e.g. many different gradient encoding directions and/or \gls{gstr},\gls{smalldel}, \gls{bigdel} combinations. We formally define such a combined set of $n$ singular PGSE acquisitions as a protocol (\prot):
 \begin{equation}
 	\mathcal{P} = \{(\vec{g}_1,|G|_1,\delta_1,\Delta_1),\cdots,(\vec{g}_n,|G|_n,\delta_n,\Delta_n)\},
@@ -181,34 +175,32 @@ or alternatively using the shortcut term $b$ as:
 Several other terms are often found to describe selected properties of a acquisition protocol. A gradient scheme usually describes a set of diffusion gradient directions only without specifying PGSE pulse parameters or $b$-values. The term \gls{HARDI} describes a special case of gradient scheme with a high number diffusion directions (>60), which are uniformely sampled over the unit sphere (e.g. like Cook, Jones). A \textit{shell} in the context of diffusion MRI refers to a protocol or subset of a protocol with several different gradient directions acquired at the same $b$-value. 
 
 
-
-Different analysis methods have different requirements on the acquisition protocol. While it suffices for some methods to acquire few samples of the PGSE parameter space, other methods require one or more HARDI shells with different b-values and/or many different $(\vec{g},|G|,\delta,\Delta)$ combinations.  
-
-
-\paragraph{Diffusion model:} The diffusion model is a mathematical approximation of the diffusion process. The diffusion model usually is controlled by a set of feature parameters $p$, which can be (directly or indirectly) related back to the sample environment of the diffusion process. The diffusion model is usually associated closely with a mathematical formulation of the predicted diffusion MR signal for a given acquisition and set of diffusion model parameters.
-\paragraph{Fitting:} The fitting procedure links the observed signals from the acquisition to the diffusion model, with the aim to infer about the tissue properties of the scanner sample. In most case, a forward-modelling approach is applied, i.e., the acquired signal is fitted to a model that has been determined a-priori to find the particular set of model parameters that explains the acquired data best.  
+Different analysis methods have different requirements on the acquisition protocol. While it suffices for some methods to acquire few samples of the PGSE parameter space, other methods require one or more HARDI shells with different b-values and/or many different $(\vec{g},|G|,\delta,\Delta)$ combinations. 
 
 
-In the following section we will explain a selection of different models, with particular focus on the techniques used in this dissertation. 
+\paragraph{Diffusion model:} The diffusion model is a mathematical approximation of the diffusion process. The diffusion model usually is controlled by a set of feature parameters $\Phi$, which can be (directly or indirectly) related back to the sample environment of the diffusion process. The diffusion model is usually associated closely with a mathematical formulation $S(\Phi;\prot_i)$ of the predicted diffusion MR signal for a given acquisition $\prot_i \in \prot$ and set of diffusion model parameters $\Phi$.
+\paragraph{Fitting:} The fitting procedure links the observed signals from the acquisition to the diffusion model. The aim to infer about the tissue properties of the scanner sample. In most case, a forward-modelling approach is applied, i.e., the acquired signal is fitted to a model via the signal model $S(\Phi;\prot_i)$ that has been determined a-priori to find the particular $\Phi$ that explains the acquired data best.  
+\paragraph{}
+In the remainder of this section we will discuss some of the most common models and analysis methods, with particular focus on the techniques that were used in this dissertation. 
 \subsection{Short gradient approximation and the q-space formalism}
-If we assume the diffusion gradient pulse $\delta$ suffiently short, multiple times smaller than the diffusion time $\Delta$, any motion of water molecules during the diffusion encoding gradient time can be neglected. In the SGP regime, the diffusion echo attenuation $S(|G|,\delta,\Delta)$ for a specific PGSE acquisition with parameters $|G|,\delta,\Delta$  can be expressed as the integral of the net phase shifts over all water over all molecule positions (r) weighted by the conditional probability P(r|r') of the molecules movement from position $r$ to $r'$\citep{Callaghan:1991}:
+If we assume the diffusion gradient pulse $\delta$ sufficiently short, multiple times smaller than the diffusion time $\Delta$, any motion of water molecules during the diffusion encoding gradient time can be neglected. In the so-called \gls{SGP} regime ($\delta \ll \Delta$), the diffusion echo attenuation $S$ for a specific PGSE acquisition can be expressed as the integral of the net phase shifts over all water over all molecule positions ($r$) weighted by the conditional probability $P(r|r')$ of the molecules movement from position $r$ to $r'$\citep{Callaghan:1991}:
 \begin{equation}
-	S(|G|,\delta,\Delta)=\int \int P(r)P(r|r',\Delta)\exp[-i\cdot \gamma \delta |G|\cdot (r'-r))] dr'dr,
+	S(|G|,\delta,\Delta)=\iint P(r)P(r|r',\Delta)\exp[-i\cdot \gamma \delta |G|\cdot (r'-r))] dr'dr.
 	\label{eq:chapter2 signal in sgp}
 \end{equation}
-with $\gamma$ the gyromagnetic ratio of protons. We can now describe ensemble molecule motion pattern over one voxel by the average \gls{dPDF} (often referred to as the average propagator\citep{Karger:1983}) as the ensemble average probability of a particle moving the distance $R$ independent of its starting position:
+We can now describe ensemble molecule motion pattern over one voxel by the average \gls{dPDF} (often referred to as the average propagator\citep{Kaerger:1983}) as the average probability of all particles moving the distance $R$ independent of their starting position:
 \begin{equation}
 	\overline{P}(R,t)=\int P(r)P(r|r+R,t)dr.
 	\label{eq:chapter2 dpdf}
 \end{equation}
 
-We can now use the \gls{dPDF} definition to express the diffusion signal attenuation by substituting Equation~\ref{eq:chapter2 dpdf} in the Equation~\ref{eq:chapter2 signal in sgp} as such:
+When Equation~\ref{eq:chapter2 dpdf} is substituted in the signal Equation~\ref{eq:chapter2 signal in sgp}, we obtain:
 \begin{equation}
-		S(|G|,\delta,\Delta)=\int \overline{P}(R,t) exp[-i\cdot \gamma \delta |G|\cdot R] dR,
+		S(|G|,\delta,\Delta)=\int \overline{P}(R,t) \exp[-i\cdot \gamma \delta |G|\cdot R] dR,
 \end{equation}
-If we introduce the $\textbf{q}$-value (or wavenumber) as
+If we further introduce the $\textbf{q}$-value (or wavenumber) as
  \begin{equation}
-\textbf{q}=\frac{\gamma \textbf{G}\delta}{2\pi}.
+\textbf{q}=\frac{\gamma \textbf{G}\delta}{2\pi},
 \label{eq: chapter 2 q value definition}
 \end{equation}
 the signal equation can be written as:
@@ -216,40 +208,42 @@ the signal equation can be written as:
 		S(q,\Delta)=\int \overline{P}(R,t) \exp[2\pi i \cdot q\cdot R] dR.
 \label{eq:chapter 2 qspace formula}
 \end{equation}
-It is easy to see that the Equation~\ref{eq:chapter 2 qspace formula} presents a simple Fourier relationship between the signal $S$ and the \gls{dPDF}. This relationship can be exploited in q-space analysis, where the diffusion signal is measured with many different q-values at a certain fixed diffusion time. The inverse Fourier transformation of the measured signal will then directly give the \gls{dPDF} without the need to impose any constraints on its characteristics.
+It is easy to see that the Equation~\ref{eq:chapter 2 qspace formula} presents a simple Fourier relationship between the signal $S$ and the \gls{dPDF}. This relationship can be exploited in q-space analysis, where the diffusion signal is measured with many different q-values at a certain fixed diffusion time. The inverse Fourier transformation of the measured signal will then directly give the \gls{dPDF} without the need to impose any constraints on its shape.
 
 \subsection{Q-space imaging}
 \label{sec:qspace}
-The combination of q-space analysis with MR imaging methods is called q-space imaging \gls{QSI} (Callaghan, 1991; Assaf et al., 2000). \gls{QSI} provides the full displacement probability profile in each voxel of the imaged volume. However, the visualization and quantification of the full displacement profile in each voxel is usually impracticable. Instead, it is more common to derive parameters from the dPDF that summarise the features of the displacement profile. The most widely used parameters are: zero displacement probability (P0), full width of half maximum (FWHM) and the kurtosis (K). Figure~\ref{fig:chapter 2 QSI analysis and maps} illustrates the QSI analysis steps and resulting P0, FWHM and K parameter maps.
-
-The P0 and FWHM parameter describe the height and width of the displacement profile. Generally, high P0 and low FWHM can be interpreted as indicators of restricted diffusion; low P0 and wide FWHM are related to more free or hindered diffusion. The FWHM is of particular theoretical interest as it can be directly related to the size of the restricted compartment in simple geometries via the autocorrelation function (Cory, 1990; Kuchel et al., 1997). Some studies report the root mean square displacement (RMS) instead of FWHM. (Cory and Garroway, 1990) suggest the conversion between FWHM and RMS as $RMS = 1.443 \cdot FWHM$. However, the equality is only true if the diffusion profile is truly Gaussian.
-
-\begin{figure}
+The combination of q-space analysis with MR imaging methods is called \gls{QSI}\citep{Callaghan:1991,Assaf:2000}. \Gls{QSI} provides the full displacement probability profile in each voxel of the imaged volume. However, the visualization and quantification of the full displacement profile in each voxel is usually impracticable. Instead, it is more common to derive parameters from the \gls{dPDF} that summarise the features of the displacement profile. The most widely used parameters are: 
+\begin{itemize}
+\item zero displacement probability (P0)
+\item full width of half maximum (FWHM)
+\item kurtosis (K)
+\end{itemize}
+Figure~\ref{fig:chapter 2 QSI analysis} illustrates the QSI analysis performed steps and gives examples of P0, FWHM and K parameter maps in the spinal cord.
+\begin{figure}[htbp]
  \centering
  \pgfimage[width=0.99\textwidth]{chapter2/figs/qsi_processing.pdf}
  \caption{QSI analysis pipeline and example parameter maps.}
  \label{fig:chapter 2 QSI analysis}
 \end{figure}
-
-
-The kurtosis parameter (here defined as the excess kurtosis (Kenney and Keeping, 1957))  describe how much a distribution differs from the normal distribution. Kurtosis is defined as the standardised fourth central moment of a distribution minus 3 (to make the kurtosis of the normal distribution equal to zero). For a finite sample of n datapoints the kurtosis K is computed as:
+\paragraph{}
+The P0 and FWHM parameter describe the height and width of the displacement profile. Generally, high P0 and low FWHM can be interpreted as indicators of restricted diffusion; low P0 and wide FWHM are related to more free or hindered diffusion. The FWHM is of particular theoretical interest as it can be directly related to the size of the restricted compartment in simple geometries via the autocorrelation function \citep{Cory:1990,Kuchel:1997}. Sometimes the \gls{RMSD} of Einstein's formula (see Equation~\ref{eq:chapter2 einsteins formula}) is reported instead of FWHM. A simple conversion factor between FWHM and RMSD was suggested by \citet{Cory:1990} as:
 \begin{equation}
-	K=\frac{1}{n} \sum_{i=1}^{n} [(x_i-x^4)/(1/n ∑_{i=1}^(x_i-x^2)^2-3
+	\mbox{RMSD} = 1.443 \cdot \mbox{FWHM},
 \end{equation}
-with $\bar{x}$ being the sample mean. A high kurtosis distribution has a narrower peak and long, fat tail compared to a normal distribution. A low kurtosis distribution has a more rounded peak and a shorter, thinner tail. In the context of diffusion analysis, the kurtosis parameter can be used to quantify how much the dPDF differs from a Gaussian displacement distribution (Jensen and Helpern, 2010). High K values can therefore be interpreted as an indicator of restricted diffusion in a sample.
+although the equality is only true if the diffusion profile is truly Gaussian.
+\paragraph{}
+The kurtosis parameter, here defined as the excess kurtosis \citep{Kenney:1957}, describes how much a distribution differs from the normal distribution. Kurtosis is defined as the standardised fourth central moment of a distribution minus 3 (to make the kurtosis of the normal distribution equal to zero). For a finite sample of n datapoints the kurtosis K is computed as:
+\begin{equation}
+	K=\frac{\tfrac{1}{n} \sum_{i=1}^n (x_i - \overline{x})^4}{\left(\tfrac{1}{n} \sum_{i=1}^n (x_i - \overline{x})^2\right)^2} - 3 
+\end{equation}
+with $\bar{x}$ being the sample mean. A high kurtosis distribution has a narrower peak and long, fat tail compared to a normal distribution. A low kurtosis distribution has a more rounded peak and a shorter, thinner tail. In the context of diffusion analysis, the kurtosis parameter can be used to quantify how much the dPDF differs from a Gaussian displacement distribution \citep{Jensen:2010}. High K values can therefore be interpreted as an indicator of restricted diffusion in a sample.
 
 \subsubsection*{Limitations of QSI}
-QSI parameters measured in nervous tissue are often interpreted as a direct indicator of axonal architecture, such as the mean axon diameter (MAD).  Early studies have demonstrated that q-space analysis can indeed provide exact estimates of the geometry in simple samples, e.g. yeast cells (Cory and Garroway, 1990) or blood cells (Kuchel et al., 1997). However, experiments on real nervous tissue have shown that the interpretation of q-space parameters in axonal tissue is more complicated (King et al., 1994; Assaf and Cohen, 2000; Assaf et al., 2000; Bar-Shir and Cohen, 2008). (Assaf and Cohen, 2000) were first to demonstrate that the displacement profile of nervous can be expressed as a combination of at least two compartments exhibiting hindered and restricted diffusion. A recent study of QSI in the in-vivo human brain by (Nilsson et al., 2009) confirmed that the FWHM perpendicular to white matter fibres did not change with diffusion time. Parallel FWHM increased linearly with the square root of diffusion time, restricted and hindered diffusion, respectively, as expected from theory (Figure REF). The two compartments are often attributed to intra-cellular (IC) and extra-cellular (EC) water, although there is an ongoing debate over the interpretation of these results (see e.g. (Kiselev and Il'yasov, 2007; Mulkern et al., 2009)).
-
-\begin{figure}
- \centering
- \pgfimage[width=0.9\textwidth]{chapter2/figs/com.pdf}
- \caption{Illustration of the centre-of-mass effect on observed molecule displacement introduced by the violation of the SGP condition.}
- \label{fig:chapter 2 COM}
-\end{figure}
+\Gls{QSI} parameters measured in nervous tissue are often interpreted as a direct indicator of axonal architecture, such as the \gls{MAD}.  Early studies have demonstrated that q-space analysis can indeed provide exact estimates of the geometry in simple samples, e.g. yeast cells \citep{Cory:1990} or blood cells \citep{Kuchel:1997}. However, experiments on real nervous tissue have shown that the interpretation of q-space parameters in axonal tissue is more complicated \citep{King:1994,Assaf:2000,Assaf:2000a,Bar-Shir:2008}. Assaf and Cohen were first to demonstrate that the displacement profile of nervous can be expressed as a combination of at least two compartments exhibiting hindered and restricted diffusion. A recent study of QSI in the in-vivo human brain by \citet{Nilsson:2009} confirmed that the FWHM perpendicular to white matter fibres did not change with diffusion time. Parallel FWHM increased linearly with the square root of diffusion time, restricted and hindered diffusion, respectively, as expected (see Figure~\ref{fig:chapter 2 types of diffusion}). The two compartments are often attributed to intra-cellular (IC) and extra-cellular (EC) water, although there is an ongoing debate over the interpretation of these results (see e.g. \citep{Kiselev:2007, Mulkern:2009}).
 
 
-Since q-space analysis provides the average displacement probability over the whole voxel, the q-space measurement is affected by both IC and EC compartments as well as by the amount of exchange between the two. As a result, the displacement PDF may be broader than the actual MAD would suggest, due to the addition of displacements from hindered diffusion in the EC compartments. Other factors such as the distribution of sizes and variety of shapes further complicate the interpretation of q-space parameters to infer the real axon diameter distributions. 
+Since q-space analysis provides the average displacement probability over the whole voxel, the q-space measurement is affected by both IC and EC compartments as well as by the amount of exchange between the two. As a result, the \gls{dPDF} may be broader than the actual \gls{MAD} would suggest, due to the addition of displacements from hindered diffusion in the EC compartments. Other factors such as the distribution of sizes and variety of shapes further complicate the interpretation of q-space parameters to infer the real axon diameter distributions. 
+
 
 \subsection{Apparent diffusion coefficient}
 \label{subsec:adc}
@@ -259,28 +253,28 @@ P(\textbf{r}_{0},\textbf{r},\Delta) =  \frac{1}{\sqrt{(4\pi dt)^3}}\exp\bigg(-\f
 \label{Gaussian PDF}
 \end{equation}
 
-This closed form solution for the dPDF can be substituted in the general q-space formalism given in Equation~\ref{fourier}, simplifying it to:
+This closed form solution for the dPDF can be substituted in the general q-space formalism given in Equation~\ref{eq:chapter 2 qspace formula}, simplifying it to:
 \begin{equation}
-	S(\delta,\Delta,G) = S_0 \cdot \exp(-(2\pi\gamma\delta)^2\Delta \cdot d),
+	S(s_0,d;\delta,\Delta,G) = s_0 \cdot \exp(-(2\pi\gamma\delta)^2\Delta \cdot d),
 \end{equation}
-with model parameters being the $d$ the diffusion coefficient and $S_0$ the baseline, i.e., the non-diffusion weighted T2w signal. It is often more convenient to rewrite above equation terms of the b-value as: 
+with model parameters being the diffusion coefficient $d$ and the baseline signal $s_0$, i.e., the non-diffusion weighted T2w signal. It is often more convenient to rewrite above equation terms of the b-value as: 
 \begin{equation}
-	S(b) = S_0 \cdot \exp(-b \cdot D)\\
-		\mbox{ with } b = -(2\pi\gamma\delta)^2\Delta) \mbox{ using the SGP approximation } \Delta >> \delta.
+	S(s_0,d;b) = s_0 \cdot \exp(-b \cdot d),
 \end{equation}
-
+with $b  \approx -(2\pi\gamma\delta)^2\Delta$ under the \gls{SGP} assumption of $\delta \ll \Delta$.
+\paragraph{}
 In true free diffusion, $d$ is simply the diffusion coefficient of the medium and the signal equation above is exact. However, in real biological tissue, virtually all molecules will have interacted with their environment within the timescale of a typical diffusion MR experiment. In this case the above expression is just an approximation of the underlying true dPDF and $d$ above is not only related to the diffusivity of the medium but also informs about the diffusion impedance caused by molecules interacting with the environment. To highlight the difference to the classical definition of the diffusion coefficient, we refer to $d$ as the \gls{ADC}.
 
-The model parameters $S_0$ and \gls{ADC} are tissue dependent and can be estimated by acquiring a minimum of two diffusion weighted images with different {\glspl{bvalue}} (usually $b=0$ and $b=800-1200mm/s^2$ for in-vivo nervous tissue). Typically a simple log-transformation of Equation \label{eq:chapter 2 adc} is used to obtain a linear equation:
+The model parameters $s_0$ and the \gls{ADC} are tissue dependent and can be estimated by acquiring a minimum of two diffusion weighted images with different {\glspl{bvalue}} (usually $b=0$ and $b=800-1200mm/s^2$ for in-vivo nervous tissue). Typically a simple log-transformation of Equation \label{eq:chapter 2 adc} is used to obtain a linear equation:
 \begin{equation}
-	log(S(\delta,\Delta)) = log(S_{0}) - (b\cdot ADC)),
+	log(S(s_0,ADC;\prot_i)) = log(s_{0}) - (b\cdot ADC),
     \label{eq:chapter 2 adc}
 \end{equation}
-for each acquisition within the protocol \prot{}. The linear equation system can then solved efficiently, e.g. using a least squares approach, to obtain maps of $S_0$ and $ADC$ values.
+for each measurement $\prot_i$ of the acquisition \prot{}. The linear equation system can then solved efficiently, e.g. using a least squares approach, to obtain maps of $s_0$ and $ADC$ values.
 
 \subsection{Diffusion Tensor}
 \label{subsec:dti}
-In ordered tissue like white matter the diffusion will be directonal, i.e., the \gls{ADC} will depend on the direction {\gls{gdir}} of the applied gradient. In order to reflect the directionality, Equation~\label{eq:chapter 2 adc} can be extended to represent diffusivity by a $d$ 3-dimensional co-variance matrix\citep{Basses:1994}, obtaining the the {\gls{DT}} formulation:
+In ordered tissue like white matter the diffusion will be directonal, i.e., the \gls{ADC} will depend on the direction {\gls{gdir}} of the applied gradient. In order to reflect the directionality, Equation~\ref{eq:chapter 2 adc} can be extended from the scalar representation of the diffusion coefficient $d$ to reflect the complete 3-dimensional diffusion co-variance matrix\citep{Basser:1994}, obtaining the the {\gls{DT}} formulation:
 \begin{equation}
 	S(b,\vec{G}) = S_{0}\exp(-b\vec{g}^T \mat{D}\vec{g}) \mbox{ with } \mat{D} = 
 	\left[
@@ -291,7 +285,7 @@ In ordered tissue like white matter the diffusion will be directonal, i.e., the 
 	\end{array} \right].	
     \label{eq:dti}
 \end{equation}
-The model parameters of the {\gls{DT}} models are the $S_0$ non-diffusion weighted signal baseline and the positive symmetric $DT$. The parameters can be estimates in a similar fashion to the ADC model using the log-transformation of the signal and a system of linear equations. In addition to the ADC model, the accurate estimation of all the directional $DT$ components requires a minimum of 6 different diffusion weighted measurements with non-coplanar gradient directions. However, we usually acquire more signals to overdetermine the solution, add noise control and increase directional resolution \citep{Jones:2004a}.
+As before, the parameters of this {\gls{DT}} model are the $s_0$ non-diffusion weighted signal baseline and the diffusivity $d$, now being a positive symmetric $3\times3$ co-variance matrix. The parameters can be estimates in a similar fashion to the ADC model using the log-transformation of the signal and a system of linear equations. In addition to the ADC model, the accurate estimation of all the directional $DT$ components requires a minimum of 6 different diffusion weighted measurements with non-coplanar gradient directions. However, we usually acquire more signals to overdetermine the solution, add noise control and increase directional resolution \citep{Jones:2004a}.
 
 
 By an Eigen decomposition of the {\gls{DT}} we obtain the three eigenvectors $\vec{v}_1, \vec{v}_3, \vec{v}_3$ and their corresponding eigenvalues $\lambda_1\ge\lambda_2\ge\lambda_3$. The first eigenvector can be interpreted as the principal diffusion directions with $\lambda_1$ being the principal diffusivity. Usually $\lambda_1$ is also referred to as the {\gls{AD}} as it corresponds with the diffusivity parallel to white matter axons\citep{Basser:1996}. Other commonly used {\gls{DT}}metrics are:
@@ -312,18 +306,25 @@ By an Eigen decomposition of the {\gls{DT}} we obtain the three eigenvectors $\v
 \end{itemize}
 
 \subsection{Limitations of the SGP approximation}
-Unlike modern NMR spectrometers and pre-clinical small bore scanners, most clinical MRI systems are only equipped with limited maximal gradient strength (usually 40-60 mT/m). On these systems the necessary high q-values, e.g., needed for q-space analysis cannot be achieved without prolonged diffusion gradient pulse durations. (Mitra and Halperin, 1995) showed that the effective molecule displacement measured with a finite diffusion pulse δ is equivalent to the distance between the centre of mass (COM) of the molecule trajectories occurring while the diffusion gradients are applied. If the SGP condition $ \delta << \Delta$ is fulfilled, the observed distance between the COMs of the trajectories is approximately the same as the true displacement of the molecule. However, if $\delta$ is long, molecules movement will occur during the diffusion gradient pulses and only the displacement between the COMs will be observed. As illustrated in Figure 3, in the case of restricted diffusion, this increase in gradient pulse duration will cause the underestimation of the true displacement. 
-When implementing QSI protocols on a clinical scanner, one has to be wary of the effect of the finite gradient pulse duration and its implications. Usually, clinical studies of QSI have to violate the SGP condition to achieve sufficiently high q-values. As expected from the COM effect, this causes an artifactual reduction of the RMD. This has been confirmed in simulation (Linse and Soderman, 1995; Lätt et al., 2007b) and various experimental studies in phantoms (Avram et al., 2004; Lätt et al., 2007a), excised tissue (Malmborg et al., 2006; Bar-Shir et al., 2008)   and even in in-vivo human scans (Nilsson et al., 2009). As a consequence, the estimated displacement profile has to be interpreted with caution as is will not reflect the true displacement in the tissue. The SGP violation is a fundamental problem in the above models and can only be avoided with an increase of the maximum gradient strength. As an additional advantage of stronger gradients, EPI read-outs can be shortened thereby decreasing the echo time and yielding gains in SNR and reducing susceptibility distortions.
+Unlike modern NMR spectrometers and pre-clinical small bore scanners, most clinical MRI systems are only equipped with limited maximal gradient strength (usually 40-60 mT/m). On these systems the necessary high q-values, e.g., needed for q-space analysis cannot be achieved without prolonged diffusion gradient pulse durations. \citep{Mitra:1995} showed that the effective molecule displacement measured with a finite diffusion pulse $\delta$ is equivalent to the distance between the \gls{COM} of the molecule trajectories occurring while the diffusion gradients are applied. If the \gls{SGP} condition $ \delta \ll \Delta$ is fulfilled, the observed distance between the \glspl{COM} of the trajectories is approximately the same as the true displacement of the molecule. However, if $\delta$ is long, molecules movement will occur during the diffusion gradient pulses and only the displacement between the \gls{COM}s will be observed. As illustrated in Figure~\ref{fig:chapter2 com effect}, in the case of restricted diffusion, this increase in gradient pulse duration will cause the underestimation of the true displacement. 
+When implementing QSI protocols on a clinical scanner, one has to be wary of the effect of the finite gradient pulse duration and its implications. Usually, clinical studies of QSI have to violate the \gls{SGP} condition to achieve sufficiently high q-values. As expected from the \gls{COM} effect, this causes an artifactual reduction of the \gls{RMSD}. This has been confirmed in simulation \citep{Linse:1995,Laett:2007a} and various experimental studies in phantoms \citep{Avram:2004,Laett:2007}, excised tissue \citep{Malmborg:2006,Bar-Shir:2008} and even in in-vivo human scans \citep{Nilsson:2009}. As a consequence, the estimated displacement profile has to be interpreted with caution as is will not reflect the true displacement in the tissue. The \gls{SGP} violation is a fundamental problem in the above models and can only be avoided with an increase of the maximum gradient strength. 
 
-Some experimental clinical scanners are already equipped with gradients systems capable of generating up to 300mT/m (Toga et al., 2012). However, those dedicated system are designed for a specific research project and the general availability of those strong whole body gradients in the future is doubtful due to their high costs. Economic feasibility aside, the use of higher gradient strengths and shorter pulse width also increases the risk of peripheral nerve stimulation (PNS) (REF) and might cause more discomfort for the subjects. 
+\begin{figure}[htbp]
+	\centering
+	\pgfimage[width=0.8\textwidth]{chapter2/figs/com}
+	\caption{Illustration of the centre-of-mass effect on the apparent molecules displacement for different gradient pulse durations.}
+	\label{fig:chapter2 com effect}
+\end{figure}
+
+Some experimental clinical scanners are already equipped with gradients systems capable of generating up to 300mT/m \citep{Toga:2012}. However, those dedicated system are designed for a specific research project and the general availability of those strong whole body gradients in the future is doubtful due to their high costs. Economic feasibility aside, the use of higher gradient strengths and shorter pulse width also increases the risk of peripheral nerve stimulation (PNS) and might cause more discomfort for the subjects. 
 
 \subsection{Gaussian phase approximation}
-\label{GPD}
-As discussed above, the SGP approximation is often impossible to fulfill on typical clinical scanners. An alternative model of the diffusion process is given by the \gls{GPD}. In contrast to the SGP, the \gls{GPD} offers a description of the diffusion MR signal in the presence of finite $\delta$ under the assumption that the phases of the spins due to the magnetic field gradients are Gaussian distributed.
+\label{sec:chapter 2GPD}
+As discussed above, the SGP approximation is often impossible to fulfil on typical clinical scanners. An alternative model of the diffusion process is given by the \gls{GPD}. In contrast to the \gls{SGP}, the \gls{GPD} offers a description of the diffusion MR signal in the presence of finite $\delta$ under the assumption that the phases of the spins due to the magnetic field gradients are Gaussian distributed.
 
 In the SGP approximation we use the probability density function of spin displacements, whereas the GPD approximation considers the distribution function of spin phases $P(\phi,\Delta)$ at the echo time TE  having phase $\phi$. The total signal in terms of $P(\phi,\Delta)$ is
 \begin{equation}
-S(\delta,\Delta,\textbf{G})  = \int_{-\infty}^{+\infty}P(\phi,\Delta)\cos\phi d\phi.
+S(\delta,\Delta,\textbf{G})  = \int P(\phi,\Delta)\cos\phi d\phi.
 \end{equation}
 
 For molecules undergoing free diffusion, characterised by a single diffusion coefficient $d$,  $P$ is Gaussian so that the signal is
@@ -331,43 +332,36 @@ For molecules undergoing free diffusion, characterised by a single diffusion coe
 S(\delta,\Delta,\textbf{G})  =  \exp\Big(- \gamma^{2} |\textbf{G}|^{2} \delta^{2} (\Delta - \delta/3) d\Big).
 \label{freediff}
 \end{equation}
-This equation provides the theoretical underpinning of the definition of the popular $b$-value introduced in Equation~\ref{eq:bvalue}\citep{LeBihan:1986}. Please note in the case of free diffusion the SGP approximation becomes a special case of the GPD approximation:
+This equation provides the theoretical underpinning of the definition of the popular $b$-value introduced in Equation~\ref{eq:bvalue}. Please note in the case of free diffusion the SGP approximation becomes a special case of the \gls{GPD} approximation:
 \begin{align}
-S(\delta,\Delta,\textbf{G})  &  =  S_0\exp(-\gamma^{2} |\textbf{G}|^{2} \delta^{2} (\Delta - \delta/3) D) & \Leftrightarrow \\
-S(\delta,\Delta,\textbf{G})  & =  S_0\exp(-\gamma^{2} |\textbf{G}|^{2} \delta^{2} \Delta D) \mbox{ when } \frac{\delta}{\Delta}\to 0 &
+				   & S(\delta,\Delta,\textbf{G})   =  S_0\exp(-\gamma^{2} |\textbf{G}|^{2} \delta^{2} (\Delta - \delta/3) D) & \\ 
+\Leftrightarrow & S(\delta,\Delta,\textbf{G})   =  S_0\exp(-\gamma^{2} |\textbf{G}|^{2} \delta^{2} \Delta D)	& \mbox{ if }\frac{\delta}{\Delta}\to 0 
 \label{eq: chapter2 GPD vs SGP free diff}
 \end{align}
-
-
-
 \subsection{Models of restriction}
-The above analytic models are all based on the assumption that the diffusion pattern can be described well with a diffusion process. However, many studies have shown that those models inadequately describe restricted diffusion, which is observed, e.g. in coherent white matter tracts. Over the years, various analytic solutions have presented for simple restricting geometries such spheres, parallel planes \citep{Balinov:1993, Linse:1995, Callaghan:1996} under either SGP or GPD approximation.
+The above analytic models are all based on the assumption that the diffusion pattern can be described well with a diffusion process. However, many studies have shown that those models inadequately describe restricted diffusion, which is observed, e.g. in coherent white matter tracts. Over the years, various analytic solutions have presented for simple restricting geometries such spheres, parallel planes under either SGP or GPD approximation \citep{Balinov:1993, Linse:1995, Callaghan:1996}.
 
-Among the geometric models, the cylinder model is the most intruiging, as is a good approximation of mylelinated axons, where diffusion is mainly restricted perpendicular and unrestricted parallel to the mylein barriers. 
-
-Using the GPD approximation, Stepisnik \cite{stepisnik1993time} presented an analytic solutions for the diffusion MR signal in cylinders from PGSE with finite gradient pulses. The equation for the signal from particles diffusing within the cylinder of radius $R$ is
+The cylinder geometry is particularily well suited to approximate of diffusion within mylelinated axons, where diffusion is mainly restricted perpendicular and unrestricted parallel to the myelin barriers. We present here the analytic solutions for the diffusion MR signal in cylinders from PGSE with finite gradient pulses \citep{Stepisnik:1993}. The equation for the signal from particles diffusing within the cylinder of radius $R$ is
 \begin{equation}
 \ln S = -2\gamma^{2}\textbf{G}^{2}\sum_{m=1}^{\infty}\frac{2da_{m}^{2}\delta-2+2e^{-da_{m}^{2}\delta}+2e^{-da_{m}^{2}\Delta}- e^{-da_{m}^{2}(\Delta-\delta)} -e^{-da_{m}^{2}(\Delta+\delta)}}{d^{2}a_{m}^{6}(R^{2}a_{m}^{2}- 1)}
 \label{biganal}
 \end{equation}
-where  $a_{m}$ is the $m$th root of equation  $J'_{1}(a_{m}R)= 0$ and $J'_{1}$ is the derivative of the Bessel function of the first kind, order one. We note that this expression is often attributed to Van Gelderen \cite{Gelderen}.
+where  $a_{m}$ is the $m$th root of equation  $J'_{1}(a_{m}R)= 0$ and $J'_{1}$ is the derivative of the Bessel function of the first kind, order one. Please note that in the literature this model might also be attributed to \citet{VanGelderen:1994}.
 
 \subsection{Compartment models}
 \label{sec:multicompartment_modeling}
-Using a-priori information about the microstructure of the investigated sample, the diffusion signal can be approximated by a combination of these simple geometric compartments. Each of the $n$ different compartments possesses the model parameters $\phi_{i}$ from which the signal $S_i$ is computed. Each compartment is assigned a volume fraction $f_i$ with $0 \le f_i \le 1$ for all $1 \le i \le n$. The total signal for the model under the combined model parameter set $\phi=\phi_{1}\cup\dots\cup\phi_{n}$ is then given by:
+Using a-priori information about the microstructure of the investigated sample, the diffusion signal can be approximated by a combination of these simple geometric compartments. Each of the $n$ different compartments possesses the model parameters $\Phi_{i}$ from which the signal $S_i$ is computed. Each compartment is assigned a volume fraction $f_i$ with $0 \le f_i \le 1$ for all $1 \le i \le n$. For an acquisition protocol \prot{}, the signal model under the combined model parameter set $\Phi=\Phi_{1}\cup\dots\cup\Phi_{n}$ is then given by:
 \begin{equation}
-	S(\phi)=\sum_{i=0}^{n}f_i\cdot S_i(\phi_i).
+	S(\Phi;\prot)=\sum_{i=0}^{n}f_i\cdot S_i(\phi_i;\prot).
 \end{equation}
-The model parameters $\phi$ can be fitted to the measured diffusion signals. When the model is chosen carefully, the microstructural properties of the tissue  can be inferred directly from the fitted parameters.
-
 
 \subsubsection*{Bi-exponential model}
-One of the simplest compartment models is the bi-exponential model, expressing diffusion as the summation of two separate mono-exponential decay curves (see Equation \ref{eq:adc}) with two different diffusion coefficients (usually named \gls{ADC}$_{slow}$ and \gls{ADC}$_{fast}$):
+One of the simplest compartment models is the bi-exponential model, expressing diffusion as the summation of two separate mono-exponential decay curves (see Equation \ref{eq:chapter 2 adc}) with two different diffusion coefficients (usually named \gls{ADC}$_{slow}$ and \gls{ADC}$_{fast}$):
 \begin{equation}
-	S_{biexp}(b) = f_{slow} exp(-b\cdot ADC_{slow}) + f_{fast} exp(-b\cdot ADC_{fast}).
+	S_{biexp}(b) = f_{slow} \exp(-b\cdot ADC_{slow}) + f_{fast} \exp(-b\cdot ADC_{fast}).
 \end{equation}
 Experiments by \citet{Clark:2002} in in-vivo brain data demonstrate good agreement between measurements and fitted signal curves over a range of $b$-values. However, the biophysical interpretation of the two compartments is still in debate and the relation between the compartments and the microstructural properties of white matter remains unclear. 
-\subsection*{Multi compartment models of nervous tissue}
+\subsection*{Geometric multi-compartment models of nervous tissue}
 \paragraph*{Stanisz' model}
 \cite{Stanisz:1997} were the first to propose a model that reflects the underlying micro-anatomy of nervous tissue. They introduced a model of restricted diffusion in bovine optic nerve using a three-compartment model. In their model, prolate ellipsoids represented axons, glial cells are represented by spheres represented and Gaussian diffusion was assumed in a homogeneous extra-cellular medium surrounded by partially permeable membranes. Experimental data was in agreement with the signal predicted by their model and showed significant departure of the {\gls{DWI}} signal from the simple Gaussian model. However, the complexity of this models requires very high quality measurements, typically only achievable in NMR spectroscopy rather than MRI.
 \paragraph*{The CHARMED model} 
@@ -377,15 +371,14 @@ Recently, \citet{Assaf:2005} developed the CHARMED model of cylindrical axons wi
 \label{par:alexanders_model}
 \citet{Alexander:2010} uses a simplified CHARMED model to demonstrate measurements of axon diameter and density in excised monkey brain and live human brain on a standard clinical scanner with multi shell \gls{HARDI}. The \gls{MMWMD} expresses diffusion in a white matter voxel as a combination of water particles trapped inside three different compartments: 
 \begin{enumerate}
-  \item Intra-axonal water experiencing diffusion restricted inside cylindrical axons with equal radius $R$ as developed by \citet{Gelderen:1994}
+  \item Intra-axonal water experiencing diffusion restricted inside cylindrical axons with equal radius $R$ as developed by \citet{VanGelderen:1994}
   \item Extra-axonal water that is hindered due to the presence of adjacent axons. Diffusion is approximated by a diffusion tensor, with parallel diffusion coefficent $d_\parallel$ in the direction of the cylinders and symmetric diffusion $d_\perp$ in the perpendicular directions.
   \item Water that experiences unhindered diffusion, e.g., in the {\gls{CSF}}, modeled by an isotropic Gaussian distribution of displacements with diffusion coefficient $d_{I}$.
   \item Non-diffusing water, e.g., trapped in membranes (no parameters).
 \end{enumerate}
-  
-To reduce the number of free parameters in the model, $d_\perp$ can be expressed by using the tortuosity formulation of \citet{Szafer:1995}.
+To reduce the number of free model parameters in this model is reduced by expressing $d_\perp$ using the tortuosity formulation of \citet{Szafer:1995}.
 
-\subsection*{Active Imaging}
+\subsection{Active Imaging}
 \label{sec:protocol_optimisation}
 More complex models usually require  {\gls{DWI}}  acquisitions with several different diffusion weightings at various diffusion times. For example \citet{Barazany:2009} perform approx. 900 different combinations of $0\le|G|\le 0.3mT$, $0\le {\gls{smalldel}} \le 0.03ms$ and $0\le \Delta \le 0.30ms$ to estimate the axon diameter distribution of live rat brain. This extensive sampling of the \gls{PGSE} parameter space requires long acquisition times (between hours and days) and is infeasible for in-vivo clinical scanning. 
 
@@ -399,165 +392,29 @@ where $\mat{J}$ is the $N\times \mbox{size}(\phi)$ Jacobian matrix with the $ij$
 The optimisation framework was used in \citet{Alexander:2010} to estimate the parameters of the \gls{MMWMD}, described in section \ref{par:alexanders_model} using a standard clinical Philips 3T scanner with maximum {\gls{gstr}} of $60mT/m$ and a maximum scan time of one hour (total number of acquisitions $N=360$). To achieve estimates independent of fibre orientation, the $N$ acquisition are divided in $M$ sets of different PGSE settings with gradient directions in each set being fixed and uniformly distributed over the sphere as in \cite{Jones:2004a}. They performed in-vivo scans of the corpus callosum and compared their axon diameter and density indices with high resolution scans of ex-vivo monkey brain and previously published histology studies. They found that the trends in diameter and density agreed with both ex-vivo scans and histology, although the axon diameter was over-estimated. This is mainly an effect of limited gradient strength as has been shown in \cite{Dyrby:2010}.  
 
 
-\section{Diffusion MRI application in white matter and spinal cord}
-\subsection{Diffusion in healthy WM}
-Water diffusivity in the WM is highly anisotropic, i.e., diffusion occurs preferentially in a particular direction. In highly coherent WM structures such as the WM, diffusion anisotropy is usually seen as caused by restricted diffusion by the axon membrane, myelin sheath, neurofilaments and microtubules, resulting reduced transverse diffusivity ($d_perp$) compared to the longitudinal diffusivity $d_par$ along the WM tracts. Schwartz et al. [198] showed a significant correlation between cellular morphometric parameters and ADCs using combined histological analyses and high resolution ex vivo DTI.  This study confirmed the results of previous numerical simulations\citep{Ford}, showing a reduction in $d_perp$ for axons with a smaller diameter for both myelinated and unmyleniated axons. On the other hand $d_par$ has shown to be inversely correlated with both neurofilament and microtubule density as demonstrated in the rat optic nerve [199], implying hindered diffusion caused by neurofilaments and microtubules longitudinal to the axon orientation. 
-
-The extracellular tissue environment also contributes to diffusion characteristics within the CNS. Alternatively, if axons are tightly packed or if the extracellular matrix has a high degree of fibrosis or collagen infiltration the ADC is lower.  In the rat cervical spinal cord, regions with larger axonal spacing and extracellular volume fraction have larger transverse and longitudinal ADCs and conversely, a higher axon density has shown to result in smaller transverse and longitudinal ADCs [198]. In the human spinal cord, lADC typically ranges from 1.0 x 10-3 mm2/s to 2.3 x 10-3 mm2/s and tADC typically ranges from 0.1 x 10-3 mm2/s to 1.0 x 10-3 mm2/s. The observed range in ADCs are highly dependent on the specific microstructure of the tissue under investigation, but also depend on pulse sequence parameters such as diffusion time (b-value) and echo time (TE). Despite differences in pulse sequences, if signal attenuation is plotted versus the degree of diffusion weighting (i.e. b-value) for the human studies, a mean ADC in the human cervical spinal cord of approximately 1 x 10-3 mm2/s [200, 201].
-
-\subsection{Diffusion MRI in SCI}
+%\section{Diffusion MRI application in white matter and spinal cord}
+%\subsection{Diffusion in healthy WM}
+%Water diffusivity in the WM is highly anisotropic, i.e., diffusion occurs preferentially in a particular direction. In highly coherent WM structures such as the WM, diffusion anisotropy is usually seen as caused by restricted diffusion by the axon membrane, myelin sheath, neurofilaments and microtubules, resulting reduced transverse diffusivity ($d_perp$) compared to the longitudinal diffusivity $d_par$ along the WM tracts. Schwartz et al. [198] showed a significant correlation between cellular morphometric parameters and ADCs using combined histological analyses and high resolution ex vivo DTI.  This study confirmed the results of previous numerical simulations\citep{Ford}, showing a reduction in $d_perp$ for axons with a smaller diameter for both myelinated and unmyleniated axons. On the other hand $d_par$ has shown to be inversely correlated with both neurofilament and microtubule density as demonstrated in the rat optic nerve [199], implying hindered diffusion caused by neurofilaments and microtubules longitudinal to the axon orientation. 
+%
+%The extracellular tissue environment also contributes to diffusion characteristics within the CNS. Alternatively, if axons are tightly packed or if the extracellular matrix has a high degree of fibrosis or collagen infiltration the ADC is lower.  In the rat cervical spinal cord, regions with larger axonal spacing and extracellular volume fraction have larger transverse and longitudinal ADCs and conversely, a higher axon density has shown to result in smaller transverse and longitudinal ADCs [198]. In the human spinal cord, lADC typically ranges from 1.0 x 10-3 mm2/s to 2.3 x 10-3 mm2/s and tADC typically ranges from 0.1 x 10-3 mm2/s to 1.0 x 10-3 mm2/s. The observed range in ADCs are highly dependent on the specific microstructure of the tissue under investigation, but also depend on pulse sequence parameters such as diffusion time (b-value) and echo time (TE). Despite differences in pulse sequences, if signal attenuation is plotted versus the degree of diffusion weighting (i.e. b-value) for the human studies, a mean ADC in the human cervical spinal cord of approximately 1 x 10-3 mm2/s [200, 201].
+%
+%\subsection{Diffusion MRI in SCI}
 % Trauma to the spinal cord, and changes occurring during healing, result in alterations of tissue microstructure that are measurable via diffusion MRI.  has the potential to noninvasively provide information about the location and severity of an injury that might prove useful in the diagnosis and prognosis of a spinal injury.  Further, DTI measures could be used as an indicator of neural degeneration and healing.  Because of the changes in tissue structure during inflammation and healing, DTI measures are likely to depend on the stage of injury, varying from the acute to chronic stages.  
-In the acute stages of SC trauma, the mechanical disruption of neural tissue structure results in immediate death of cells in the region of the injury. The cell death and disruption of the cell membranes can be detected, e.g., by increased ADC in animal studies [207, 208], with diffusivity as high as a double the diffusion measurements in healthy cord. Sagiuchi et al. [220], Bammer et al. [221], Mamata et al. [222], and Küker et al. [223] all report a decrease in the measured ADC in the early onset of spinal stroke, indicative of the ischemic events following infarction.  Bammer et al. [221] and Demir et al. A possible explaination for high ADC during ischemia is the cell swelling, Currently, DTI is being used routinely in the clinical assessment of ischemic and hypoxic injuries in the CNS. Edema also occurs in the first moments of traumatic SCI primarily resulting from mechanical disruption of axon cell membranes, damage to local blood vessels and electrolytic imbalances [232, 233].  This damage to cell membranes would be expected to contribute to the increase in the transverse component of the ADC observed in acute SCI [207, 208]. As a result, axons are spaced further apart and water molecules can diffuse larger distances before barriers are encountered. In addition to an increase in transverse diffusion, DTI in acute spinal trauma often exhibits a decrease in lADC, resulting in an overall decrease in diffusion anisotropy in the lesion sites during the period of severe edema and hemorrhage [207].  This decrease in the lADC has been largely attributed to metabolic dysfunction as opposed to specific changes in axon morphology [234]. 
+%In the acute stages of SC trauma, the mechanical disruption of neural tissue structure results in immediate death of cells in the region of the injury. The cell death and disruption of the cell membranes can be detected, e.g., by increased ADC in animal studies [207, 208], with diffusivity as high as a double the diffusion measurements in healthy cord. Sagiuchi et al. [220], Bammer et al. [221], Mamata et al. [222], and Küker et al. [223] all report a decrease in the measured ADC in the early onset of spinal stroke, indicative of the ischemic events following infarction.  Bammer et al. [221] and Demir et al. A possible explaination for high ADC during ischemia is the cell swelling, Currently, DTI is being used routinely in the clinical assessment of ischemic and hypoxic injuries in the CNS. Edema also occurs in the first moments of traumatic SCI primarily resulting from mechanical disruption of axon cell membranes, damage to local blood vessels and electrolytic imbalances [232, 233].  This damage to cell membranes would be expected to contribute to the increase in the transverse component of the ADC observed in acute SCI [207, 208]. As a result, axons are spaced further apart and water molecules can diffuse larger distances before barriers are encountered. In addition to an increase in transverse diffusion, DTI in acute spinal trauma often exhibits a decrease in lADC, resulting in an overall decrease in diffusion anisotropy in the lesion sites during the period of severe edema and hemorrhage [207].  This decrease in the lADC has been largely attributed to metabolic dysfunction as opposed to specific changes in axon morphology [234]. 
+%
+%x.1.2. Subacute SCI
+%
+%Following the initial response to spinal trauma there is infiltration of inflammatory cells from both the CNS and periphery.  Activated microglia and astroglia, originating in the CNS, are present after nearly every spinal insult.  Activated microglia have an increase in number of processes [235] and their infiltration and concentration is highly dependent on the severity of the injury, spreading from the lesion epicenter only slightly into adjacent gray and white matter [236].  Conversely, activated astrocytes proliferate and undergo hypertrophy upon injury [237] and unlike the microglia, extend into gray and white matter adjacent to the injury epicenter for longer distances from the initial insult [238].  In human SCI, astrocytes begin to line the edge of the lesion within the first week and make up the cavity boundary seen in chronic SCI.  In addition to the activation of cells originating in the CNS, inflammatory cells also infiltrate the spinal cord in the subacute stages of injury, primarily consisting of polymorphonuclear granulocytes and macrophages [232]; however, there is evidence that Schwann cells, meningeal cells, and fibroblasts also invade the spinal cord [239] although it is unclear if they affect diffusion characteristics of the injured spinal cord because their relative size and influence on degeneration is limited. 
+%It is unclear how these reactive cell types influence diffusion measurements in the injured spinal cord.  Reactive cells, such as glia, produce collagenous scar tissue that is expected to have a relatively high impact on tissue diffusivity.  Schwartz et al. [240] demonstrated that glial scar orientation can even be identified through the use of DTI tractography.  Consequently, DTI eigenvector orientations show sensitivity to glial cell orientations, although only if they are in sufficient numbers to significantly affect the overall orientation of the particular voxel microstructure.  Thus, in the subacute stage of SCI, astrocytes may only have an influence on DTI measurements close to the injury epicenter, or in relatively close proximity to the forming lesion cavity.  The influx of high numbers of astrocytes, microglia, and macrophages are also predicted to decrease the extracellular volume, which could decrease the overall apparent diffusion coefficient, counteracting the initial increase associated with edema. 
+%Degeneration of axons following injury, termed Wallerian degeneration [241], contribute to changes in diffusivity even at locations distant from the injury site.  Axon degeneration first manifests as disintegration of the myelin sheath and cytoskeletal proteins including microtubules and neurofilaments.  If the distal portion of the axon is not reconnected in a functional pathway, it may eventually die, resulting in complete anterograde degeneration.  The proximal ends of the damaged axons produce a retraction bulb, effectively cleaving off the leaking axoplasm [242].  Although the extent of retrograde degeneration in humans is controversial, experimental data suggests extensive retrograde degeneration following injury [243-245], resulting from both apoptosis and necrosis [246].  In particular, the cell bodies of damaged axons swell [232], the nucleus moves to an eccentric position, and biochemical processes may occur which result in eventual cell death [247, 248].  With the loss of target cells, presynaptic cells might also undergo retrograde degeneration.  The end result of this degenerative process is total or partial dysfunction of spinal pathways. 
+%During the degeneration process, tADC is typically elevated above baseline levels [32, 208].  The primary explanation for the increase in tADC lies in the tissue structural changes that occur during degeneration along with direct effects on the intra- and extracellular space.  Anterograde degeneration results in rapid degeneration of both the axonal membrane and myelin sheath, decreasing the number and extent of transverse diffusion boundaries.  This is expected to contribute to a higher transverse diffusion coefficient.  Retrograde degeneration also shows a similar, but slightly larger, increase in tADC in experimental animal models [208].  This significant increase in tADC is most likely due to axon swelling and the subsequent increase in intracellular space [232]. 
+%
+%
+%x.1.3. Chronic SCI
+%
+%The late phase of SCI, defined months to years after the initial injury, differences in tissue morphology in chronic injury likely impact DTI measurements.  Although most of the degenerative processes are stabilized by the chronic stage, there is evidence to suggest degeneration even long after the injury.  For example, progressive demyelination can occur even during chronic injury [254-256].  Remyelination, if it occurs, results in significantly decreased myelin sheath thickness [254, 257-259], resulting in an altered white matter structure in chronic injury.  Preferential loss of large diameter axons also occurs in chronic injury [258] resulting in predominantly small, unmyelinated axons in damaged axonal tracts.  Further, extensive longitudinal spreading of lesions following spinal cord injury has also been documented [260], resulting in drastic and widespread changes in the spinal cord morphology including cystic formation and necrosis.  Finally, significant atrophy of the spinal cord also occurs in late stages of spinal cord injury causing the remaining axons to be compressed and tightly packed, as illustrated in Fig. 6E. These structural changes are all expected to contribute to differences in water diffusivity in chronic injury.
+%Diffusion characteristics in chronic injury have not been thoroughly explored, however preliminary evidence of gross morphological changes and atrophy have been illustrated using DTI in the human spinal cord [261-264].  These studies demonstrate significant changes in diffusion distributions in chronic injury, indicative of expected changes in the spinal cord microstructure.  Specifically, the white matter tADCs are lower than uninjured controls and demonstrate a kurtosis (or flattening) of the diffusion distribution. Because tADC is dependent on axon diameter [195], a shift in the mean transverse diffusion may correspond to preferential loss of larger diameter axons.  Kurtosis in the distribution is consistent with a greater heterogeneity of the white matter tissue. Results from these studies support the use of DTI for monitoring the status of the spinal cord after injury, though more research is needed to document the progression of changes in diffusion characteristics and to verify the precise morphological changes responsible for differences in diffusivity. 
 
-x.1.2. Subacute SCI
-
-Following the initial response to spinal trauma there is infiltration of inflammatory cells from both the CNS and periphery.  Activated microglia and astroglia, originating in the CNS, are present after nearly every spinal insult.  Activated microglia have an increase in number of processes [235] and their infiltration and concentration is highly dependent on the severity of the injury, spreading from the lesion epicenter only slightly into adjacent gray and white matter [236].  Conversely, activated astrocytes proliferate and undergo hypertrophy upon injury [237] and unlike the microglia, extend into gray and white matter adjacent to the injury epicenter for longer distances from the initial insult [238].  In human SCI, astrocytes begin to line the edge of the lesion within the first week and make up the cavity boundary seen in chronic SCI.  In addition to the activation of cells originating in the CNS, inflammatory cells also infiltrate the spinal cord in the subacute stages of injury, primarily consisting of polymorphonuclear granulocytes and macrophages [232]; however, there is evidence that Schwann cells, meningeal cells, and fibroblasts also invade the spinal cord [239] although it is unclear if they affect diffusion characteristics of the injured spinal cord because their relative size and influence on degeneration is limited. 
-It is unclear how these reactive cell types influence diffusion measurements in the injured spinal cord.  Reactive cells, such as glia, produce collagenous scar tissue that is expected to have a relatively high impact on tissue diffusivity.  Schwartz et al. [240] demonstrated that glial scar orientation can even be identified through the use of DTI tractography.  Consequently, DTI eigenvector orientations show sensitivity to glial cell orientations, although only if they are in sufficient numbers to significantly affect the overall orientation of the particular voxel microstructure.  Thus, in the subacute stage of SCI, astrocytes may only have an influence on DTI measurements close to the injury epicenter, or in relatively close proximity to the forming lesion cavity.  The influx of high numbers of astrocytes, microglia, and macrophages are also predicted to decrease the extracellular volume, which could decrease the overall apparent diffusion coefficient, counteracting the initial increase associated with edema. 
-Degeneration of axons following injury, termed Wallerian degeneration [241], contribute to changes in diffusivity even at locations distant from the injury site.  Axon degeneration first manifests as disintegration of the myelin sheath and cytoskeletal proteins including microtubules and neurofilaments.  If the distal portion of the axon is not reconnected in a functional pathway, it may eventually die, resulting in complete anterograde degeneration.  The proximal ends of the damaged axons produce a retraction bulb, effectively cleaving off the leaking axoplasm [242].  Although the extent of retrograde degeneration in humans is controversial, experimental data suggests extensive retrograde degeneration following injury [243-245], resulting from both apoptosis and necrosis [246].  In particular, the cell bodies of damaged axons swell [232], the nucleus moves to an eccentric position, and biochemical processes may occur which result in eventual cell death [247, 248].  With the loss of target cells, presynaptic cells might also undergo retrograde degeneration.  The end result of this degenerative process is total or partial dysfunction of spinal pathways. 
-During the degeneration process, tADC is typically elevated above baseline levels [32, 208].  The primary explanation for the increase in tADC lies in the tissue structural changes that occur during degeneration along with direct effects on the intra- and extracellular space.  Anterograde degeneration results in rapid degeneration of both the axonal membrane and myelin sheath, decreasing the number and extent of transverse diffusion boundaries.  This is expected to contribute to a higher transverse diffusion coefficient.  Retrograde degeneration also shows a similar, but slightly larger, increase in tADC in experimental animal models [208].  This significant increase in tADC is most likely due to axon swelling and the subsequent increase in intracellular space [232]. 
-
-
-x.1.3. Chronic SCI
-
-The late phase of SCI, defined months to years after the initial injury, differences in tissue morphology in chronic injury likely impact DTI measurements.  Although most of the degenerative processes are stabilized by the chronic stage, there is evidence to suggest degeneration even long after the injury.  For example, progressive demyelination can occur even during chronic injury [254-256].  Remyelination, if it occurs, results in significantly decreased myelin sheath thickness [254, 257-259], resulting in an altered white matter structure in chronic injury.  Preferential loss of large diameter axons also occurs in chronic injury [258] resulting in predominantly small, unmyelinated axons in damaged axonal tracts.  Further, extensive longitudinal spreading of lesions following spinal cord injury has also been documented [260], resulting in drastic and widespread changes in the spinal cord morphology including cystic formation and necrosis.  Finally, significant atrophy of the spinal cord also occurs in late stages of spinal cord injury causing the remaining axons to be compressed and tightly packed, as illustrated in Fig. 6E. These structural changes are all expected to contribute to differences in water diffusivity in chronic injury.
-Diffusion characteristics in chronic injury have not been thoroughly explored, however preliminary evidence of gross morphological changes and atrophy have been illustrated using DTI in the human spinal cord [261-264].  These studies demonstrate significant changes in diffusion distributions in chronic injury, indicative of expected changes in the spinal cord microstructure.  Specifically, the white matter tADCs are lower than uninjured controls and demonstrate a kurtosis (or flattening) of the diffusion distribution. Because tADC is dependent on axon diameter [195], a shift in the mean transverse diffusion may correspond to preferential loss of larger diameter axons.  Kurtosis in the distribution is consistent with a greater heterogeneity of the white matter tissue. Results from these studies support the use of DTI for monitoring the status of the spinal cord after injury, though more research is needed to document the progression of changes in diffusion characteristics and to verify the precise morphological changes responsible for differences in diffusivity. 
-
-
-% 
-% \subsection*{Model-based diffusion analysis} 
-% The purpose of any model-based diffusion analysis is to explain the measured diffusion signal as a function of the acquisition parameters. Usually a forward model-based approach is used. This means given an a-priori model of diffusion process, the aim is to find the best set of model parameters that agree best with the measured signal given the acquisition protocol \prot{}.   
-% \begin{itemize}
-% 	\item Model of diffusion $M(p)$ that predicts the molecular motion of water. The parameter vector $p$ can be interpreted as a mathematical description of the surrounding matter. 
-% 	\item A diffusion signal model $S_{M}(p;\prot)$ that predicts the MRI signal vector from the diffusion model, given the acquisition protocol \prot{} and the model parameters $p$. 
-% 	\item An optimality criterion $f_{obj}(S_{M},\hat{S})$ that compares the predicted $S_{M}$ and the actual measured $\hat{S}$. 
-% \end{itemize}
-% The actual analysis of acquired diffusion MRI signal usually requires to find the best set of model parameters (in terms of $f_{obj}$) in every voxel. With an adequate choice of the model and acquisition protocol, the fitted parameters $p$ providing meaningful information about the characteristics of the imaged sample. In the following we will discuss some of the most common model-based diffusion analyis methods with particular focus on the techniques that are used in this dissertation. 
-% 
-% 
-% 
-% 
-% 
-% 
-% able to do {\gls{DWI}} is an MRI technique that is sensitive to the random motion of water molecules. The most commonn diffusion MRI pulse sequence is the {\gls{PGSE}} sequence introduced by \cite{Stejskal:1965}, which is based on the simple \gls{SE} experiment. 
-% 
-% \begin{figure}
-%  \centering
-%   \pgfimage[width=0.8\textwidth]{chapter2/figs/PGSEdiagram.pdf}
-%   \caption{Diagram of the Stejskal-Tanner {\protect\gls{PGSE}} pulse sequence. Imaging and read-out gradients are omitted in for clarity.}
-%   \label{fig:chapter 2 pgse_diagram}
-% \end{figure}
-% 
-% \paragraph{Diffusion MRI protocol: } The quantitative analysis of the diffusion MRI signal usually requires the acquisition of many different samples of the PGSE parameter space. We formally define a combined set of $n$ singular PGSE acquisitions as a protocol (\prot):
-% \begin{equation}
-% 	\mathcal{P} = \{(\vec{g}_1,|G|_1,\delta_1,\Delta_1),\cdots,(\vec{g}_n,|G|_n,\delta_n,\Delta_n)\},
-% \end{equation}
-% or alternatively using the shortcut term $b$ as:
-% \begin{equation*}		
-% 	\mathcal{P} = \{(\vec{g}_1,b_1),\cdots,(\vec{g}_n,b_n)\}.
-% \end{equation*} 
-% 
-% 
-% 
-% \subsection*{Gaussian diffusion}
-% In any sense, if no physical concentration gradients are assumed in this condition we must describe the concentration of water protons in terms of the probability of their displacement across both space and time,  , where ro is the initial position of the water protons. Assuming the probability displacement function follows a Gaussian distribution, which is the simple solution using random walks, such Einstein’s equation for mean displacement applies [1, 2],  
-%  									[3]
-% results in the solution:
-%  							[4]
-% 
-% The application of this Gaussian probability distribution of water protons to the Bloch equations is the basis of conventional diffusion weighted MRI. 
-% 
-% 
-% \label{sec:gaussian_diffusion}
-% \subsubsection*{Apparent diffusion coefficient}
-% \label{subsec:adc}
-% The \gls{ADC} analysis of the diffusion signal is one of simplest and the historically earliest analysis methods found in literature \citep{ADC citations}.  When $p(r)$ is assumed to be Gaussian, the diffusion weighted signal $S$ is given by:
-% \begin{equation}
-% 	S(b) = S_{0}\exp(-b\cdot ADC),
-%     \label{eq:chapter 2 adc}
-% \end{equation}
-% with $b$ being the {\gls{bvalue}}, $S_{0}$ the non-diffusion weighted signal ($b=0$) and \gls{ADC}. The parameters $S_0$ and \gls{ADC} are properties of the examined sample and can be estimated by acquiring a minimum of two diffusion weighted images with different {\glspl{bvalue}} (usually $b=0$ and $b=800-1200mm/s^2$ for in-vivo tissue). 
-% \subsection*{{\protect\acrlong{DTI}}}
-% 
-% 
-% \section{Q-space imaging}
-% \label{sec:qspace}
-% In the previous section diffusion was described under the assumption of Gaussian  {\gls{dpdf}}. However, it has been shown that in the presence of hindering structures, such as cell membranes or axon myelin sheaths, the  {\gls{dpdf}} can become non-Gaussian as demonstrated by \citet{Callaghan:1996} and \citet{Liu:2005}. \gls{QSI} can estimate the  {\gls{dpdf}} directly by exploiting the Fourier relation between the signal $S(q)$ and $p(r)$ at fixed diffusion time $\Delta$ \citep{Callaghan:1994}:
-% \begin{equation}
-% 	\label{eq:qspaceft}
-% 	S(q)=\mbox{F}\left[p(\Delta r)\right] \mbox{ with } q = \gamma|G|\delta. 
-% \end{equation}
-% \paragraph*{Estimation of compartment size}
-% By sampling the diffusion decay over a large range of $q$-values we can directly compute the  {\gls{dpdf}} by applying an inverse Fourier transformation to the acquired signals. We then obtain the  {\gls{dpdf}} in each voxel. For easier interpretation, the  {\gls{dpdf}}s are often described by their two shape parameters:
-% \begin{itemize}
-% 	\item zero-displacement probability (\gls{P0}), being the maximum height of the  {\gls{dpdf}}
-% 	\item full width of half maximum (\gls{FWHM}) of the displacement profile.
-% \end{itemize}
-% In the case of Gaussian  {\gls{dpdf}}, the \gls{FWHM} is proportional to the root mean squared displacement (RMSD) as shown by \citet{Cory:1990} and can be expressed as:
-% \begin{equation}
-% 	RMSD = \frac{FWHM}{2\sqrt{2\mbox{ln}2}}.
-% \end{equation}
-% At sufficiently large diffusion times and simple restricted structures (e.g. cylinders, spheres), the diffraction pattern of the signal decay curve can be directly related to the size and shape of the compartment in which the diffusion occurs. In highly ordered structures, e.g, in porous materials the diffusion restriction can be already seen in the diffraction peaks of the signal decay \citep{Callaghan:1996}. The smallest detectable compartment size $a$ relates to the diffusion time $\Delta$ and diffusivity $d$ by:
-% \begin{equation}
-% 	\Delta \ge \frac{a^2}{2}.
-% \end{equation}   
-% In heterogenous tissue, the diffraction pattern cannot be distinguished as clearly. However, \citet{Cory:1990} showed that the compartment size can still be estimated from the reconstructed  {\gls{dpdf}} using the Fourier relationship in Equation \ref{eq:qspaceft}). 
-% \paragraph*{Technical limitations}
-% It has to be noted that the Fourier relationship between signal and  {\gls{dpdf}} only holds when the {\gls{smalldel}} is short (short gradient pulse (SGP) condition), i.e., the gradient pulse can be approximated by a delta function ($\delta\rightarrow 0$). Therefore, to achieve high $q$-values, \gls{gstr} must be very high. This can often not be fulfilled on clinical systems and longer gradients pulses must be used to achieve high $q$-value measurements. Violation of the short gradient pulse condition will compromise the accuracy of estimation of small size structures as demonstrated by \cite{Linse:1995, Latt:2007}. Despite the limitations, \gls{QSI} has been used successfully in various white matter pathologies in animal models \citep{Ong:2008} and also in human brain \citep{Assaf:2002} and spinal {\gls{SC}} \citep{Assaf:2000, Farrell:2008}.
-% 
-% \section{Multi compartment models}
-% \label{sec:multicompartment_modeling}
-% In addition to the simple Gaussian diffusion model, discussed in section \ref{sec:gaussian_diffusion}, various analytic solutions were developed for the diffusion signal in simple geometries such spheres, parallel planes \citep{Balinov:1993, Linse:1995, Callaghan:1996} or cylinders \citep{Gelderen:1994}. Using a-priori information about the microstructure of the investigated sample, the diffusion signal can be approximated by a combination of these simple geometric compartments. Each of the $n$ different compartments possesses the model parameters $\phi_{i}$ from which the signal $S_i$ is computed. Each compartment is assigned a volume fraction $f_i$ with $0 \le f_i \le 1$ for all $1 \le i \le n$. The total signal for the model under the combined model parameter set $\phi=\phi_{1}\cup\dots\cup\phi_{n}$ is then given by:
-% \begin{equation}
-% 	S(\phi)=\sum_{i=0}^{n}f_i\cdot S_i(\phi_i).
-% \end{equation}
-% The model parameters $\phi$ can be fitted to the measured diffusion signals. When the model is chosen carefully, the microstructural properties of the tissue  can be inferred directly from the fitted parameters.
-% 
-% 
-% \subsection*{Bi-exponential model}
-% One of the simplest compartment models is the bi-exponential model, expressing diffusion as the summation of two separate mono-exponential decay curves (see Equation \ref{eq:adc}) with two different diffusion coefficients (usually named \gls{ADC}$_{slow}$ and \gls{ADC}$_{fast}$):
-% \begin{equation}
-% 	S_{biexp}(b) = f_{slow} exp(-b\cdot ADC_{slow}) + f_{fast} exp(-b\cdot ADC_{fast}).
-% \end{equation}
-% Experiments by \citet{Clark:2002} in in-vivo brain data demonstrate good agreement between measurements and fitted signal curves over a range of $b$-values. However, the biophysical interpretation of the two compartments is still in debate and the relation between the compartments and the microstructural properties of white matter remains unclear. 
-% \subsection*{Models of nervous tissue}
-% \paragraph*{Stanisz' model}
-% \cite{Stanisz:1997} were the first to propose a model that reflects the underlying micro-anatomy of nervous tissue. They introduced a model of restricted diffusion in bovine optic nerve using a three-compartment model. In their model, prolate ellipsoids represented axons, glial cells are represented by spheres represented and Gaussian diffusion was assumed in a homogeneous extra-cellular medium surrounded by partially permeable membranes. Experimental data was in agreement with the signal predicted by their model and showed significant departure of the {\gls{DWI}} signal from the simple Gaussian model. However, the complexity of this models requires very high quality measurements, typically only achievable in NMR spectroscopy rather than MRI.
-% \paragraph*{The CHARMED model} 
-% Recently, \citet{Assaf:2005} developed the CHARMED model of cylindrical axons with gamma distributed radii to estimate axon diameter distributions in white matter tissue. The CHARMED model assumes two compartments, representing diffusion in intra-axonal and extra-axonal space. The intra-axonal compartment is modeled by parallel cylinders, with the size of radii following a gamma-distribution. The extra-cellular compartment is modeled by a {\gls{DT}} with the principal diffusion direction $\vec{v}_1$ aligned with the long cylinder axis. \citet{Alexander:2008} validated the model in in-vitro optic and sciatic nerve samples and estimated parameters show good correlation with corresponding histology. In later work, \citet{Barazany:2009} extended the CHARMED model by an isotropic diffusion compartment to account for partial volume effects and contributions from areas of {\gls{CSF}}. They apply their model to image axon size distributions in the corpus callosum of live rat brain. However, in both experiments, scan times are long and the high 7T magnetic field and maximum {\gls{gstr}} (400 mT/m) are impossible to achieve on a live human scanners, typically operating at 1.5-3T with maximum {\gls{gstr}} between 30-60 mT/m.
-% 
-% \paragraph*{Alexander's minimal model of white matter diffusion} 
-% \label{par:alexanders_model}
-% \citet{Alexander:2010} uses a simplified CHARMED model to demonstrate measurements of axon diameter and density in excised monkey brain and live human brain on a standard clinical scanner with multi shell high angular resolution diffusion imaging (HARDI). The \gls{MMWMD} expresses diffusion in a white matter voxel as a combination of water particles trapped inside three different compartments: 
-% \begin{enumerate}
-%   \item Intra-axonal water experiencing diffusion restricted inside cylindrical axons with equal radius $R$ as developed by \citet{Gelderen:1994}
-%   \item Extra-axonal water that is hindered due to the presence of adjacent axons. Diffusion is approximated by a diffusion tensor, with parallel diffusion coefficent $d_\parallel$ in the direction of the cylinders and symmetric diffusion $d_\perp$ in the perpendicular directions.
-%   \item Water that experiences unhindered diffusion, e.g., in the {\gls{CSF}}, modeled by an isotropic Gaussian distribution of displacements with diffusion coefficient $d_{I}$.
-%   \item Non-diffusing water, e.g., trapped in membranes (no parameters).
-% \end{enumerate}
-%   
-% To reduce the number of free parameters in the model, $d_\perp$ can be expressed by using the tortuosity formulation of \citet{Szafer:1995}.
-% 
-% \section{Protocol optimisation}
-% \label{sec:protocol_optimisation}
-% More complex models usually require  {\gls{DWI}}  acquisitions with several different diffusion weightings at various diffusion times. For example \citet{Barazany:2009} perform approx. 900 different combinations of $0\le|G|\le 0.3mT$, $0\le {\gls{smalldel}} \le 0.03ms$ and $0\le \Delta \le 0.30ms$ to estimate the axon diameter distribution of live rat brain. This extensive sampling of the \gls{PGSE} parameter space requires long acquisition times (between hours and days) and is infeasible for in-vivo clinical scanning. 
-% 
-% The principle of the ``Active Imaging" protocol optimisation framework of \cite{Alexander:2008} is to find the protocol $\mathcal{P}$, that allows the most accurate estimation of the tissue model parameters under given hardware and time constraints. The Fisher information matrix (FIM) provides a lower bound on the inverse covariance matrix of parameter estimates, i.e., the $\mathcal{P}$ that maximizes the FIM will maximize the precision of those estimates. He uses the d-optimality criterion \citep{OBrien:2003}, which is defined as the determinant of the inverse FIM of protocol $\mathcal{P}$ and tissue model parameters $\phi$:
-% \begin{equation}
-% 	D(\phi,\mathcal{P})=\det[(\mat{J}^T\Omega\mat{J})^{-1}], 
-% 	\label{eq-optimality}
-% \end{equation}
-% where $\mat{J}$ is the $N\times \mbox{size}(\phi)$ Jacobian matrix with the $ij$st element $\partial S(\vec{g}_i,\delta_i,\Delta_i) / \partial \phi_j$. In the original approach $\Omega=diag\{1,\cdots,1\}$. \citet{Alexander:2008} uses a stochastic optimization algorithm \citep{Zelinka:2010} that returns $\mathcal{P}'$ with minimal $d$ among all possible $\mathcal{P}$ with respect to the given scanner hardware limits.
-% 
-% The optimisation framework was used in \citet{Alexander:2010} to estimate the parameters of the \gls{MMWMD}, described in section \ref{par:alexanders_model} using a standard clinical Philips 3T scanner with maximum {\gls{gstr}} of $60mT/m$ and a maximum scan time of one hour (total number of acquisitions $N=360$). To achieve estimates independent of fibre orientation, the $N$ acquisition are divided in $M$ sets of different PGSE settings with gradient directions in each set being fixed and uniformly distributed over the sphere as in \cite{Jones:2004a}. They performed in-vivo scans of the corpus callosum and compared their axon diameter and density indices with high resolution scans of ex-vivo monkey brain and previously published histology studies. They found that the trends in diameter and density agreed with both ex-vivo scans and histology, although the axon diameter was over-estimated. This is mainly an effect of limited gradient strength as has been shown in \cite{Dyrby:2010}.  
-% 
-%     
-% 
-% %\subsection*{Diffusion MRI in the {\protect\acrlong{SC}}}
-% %\begin{itemize}
-% %	\item problems (size, movement, partial voluming, FOV and aliasing)
-% %	\item common techniques (cardiac gating, small FOV imaging)
-% %\end{itemize}
-% 
  
 \section{Summary}
 We have discussed ways of inferring microstructual information from  {\gls{DWI}} , ranging from simple methods such as \gls{ADC} or \gls{DTI} to sophisticated multi-compartment modelling. \gls{ADC} and \gls{DTI} are easy to obtain but the simplistic underlying assumptions of Gaussian  {\gls{dpdf}} is often inaccurate. As a result, different microstructural changed pathologies can have the same effect on those metrics and therefore cannot be told apart by \gls{DTI} alone. At least in theory, \gls{QSI} has the potential to overcome this limitation but requires both very strong diffusion gradients and long acquisition times. Furthermore, \gls{QSI} derived parameters  {\gls{dpdf}} measures only relates indirectly to white matter structure and must be carefully interpreted if the SGP is violated.
