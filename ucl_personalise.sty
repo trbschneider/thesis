@@ -1,0 +1,117 @@
+%%
+%% This is file `ucl_personalise.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% ucl_personalise.dst 
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% For the copyright see the source file.
+%% 
+%% You are *not* allowed to modify this file.
+%% 
+%% You are *not* allowed to distribute this file.
+%% For distribution of the original source see the terms
+%% for copying and modification in the file ucl_personalise.dst.
+%% 
+%%  A LaTeX2e package to handle the personalisation features used in
+%%  UCL letters, faxes and documents.
+%%
+%%  Copyright (c) 1995, Russel Winder.
+%%
+\def \fileversion{v1.1}
+\def \filedate{1995/11/01}
+\def \docdate{1995/11/01}
+\ifx \documentclass \undefined
+    \wlog{LaTeX Package `UCL Personalisation' \fileversion\space<\filedate>}
+\else
+    \NeedsTeXFormat{LaTeX2e}
+    \ProvidesPackage{ucl_personalise}[\filedate\space\fileversion\space UCL Personalise]
+\fi
+\RequirePackage{ifthen}
+\newboolean{@personnamedefined}
+\newboolean{@persontitledefined}
+\newboolean{@personroledefined}
+\newboolean{@persontelephonedefined}
+\newboolean{@personemaildefined}
+\newboolean{@personurldefined}
+\newboolean{@personpostnominaldefined}
+\newboolean{personnamewanted}
+\setboolean{personnamewanted}{true}
+\newboolean{persontitlewanted}
+\setboolean{persontitlewanted}{true}
+\newboolean{personrolewanted}
+\setboolean{personrolewanted}{true}
+\newboolean{persontelephonewanted}
+\setboolean{persontelephonewanted}{true}
+\newboolean{personemailwanted}
+\setboolean{personemailwanted}{true}
+\newboolean{personurlwanted}
+\setboolean{personurlwanted}{true}
+\newboolean{personpostnominalwanted}
+\setboolean{personpostnominalwanted}{true}
+\newlength{\@boxlength}
+\newcommand \personname[1]{%
+    \settowidth{\@boxlength}{#1}%
+    \ifdim \@boxlength > \z@%
+        \setboolean{@personnamedefined}{true}%
+        \gdef \thepersonname{#1}%
+    \fi%
+}
+\newcommand \persontitle[1]{%
+    \settowidth{\@boxlength}{#1}%
+    \ifdim \@boxlength > \z@%
+        \setboolean{@persontitledefined}{true}%
+        \gdef \thepersontitle{#1}%
+    \fi%
+}
+\newcommand \personrole[1]{%
+    \settowidth{\@boxlength}{#1}%
+    \ifdim \@boxlength > \z@%
+        \setboolean{@personroledefined}{true}%%
+        \gdef \thepersonrole{#1}%
+    \fi%
+}
+\newcommand \persontelephone[1]{%
+    \settowidth{\@boxlength}{#1}%
+    \ifdim \@boxlength > \z@%
+        \setboolean{@persontelephonedefined}{true}%%
+        \gdef \thepersontelephone{#1}%
+    \fi%
+}
+\newcommand \personemail[1]{%
+    \settowidth{\@boxlength}{#1}%
+    \ifdim \@boxlength > \z@%
+        \setboolean{@personemaildefined}{true}%%
+        \gdef \thepersonemail{#1}%
+    \fi%
+}
+\newcommand \personurl[1]{%
+    \settowidth{\@boxlength}{#1}%
+    \ifdim \@boxlength > \z@%
+        \setboolean{@personurldefined}{true}%
+        \gdef \thepersonurl{http:#1}%
+    \fi%
+}
+\newcommand \personpostnominal[1]{%
+    \settowidth{\@boxlength}{#1}%
+    \ifdim \@boxlength > \z@%
+        \setboolean{@personpostnominaldefined}{true}%
+        \gdef \thepersonpostnominal{#1}%
+    \fi%
+}
+\newcommand \dopersonfield[2]{%
+    \ifthenelse{\boolean{@person#1defined}}%
+{\hbox{#2\csname theperson#1\endcsname}}%
+        {\typeout{^^JError: \string\person#1 macro not called but was required.^^J}}%
+}
+\newcommand \trypersonfield[2]{%
+    \ifthenelse{\boolean{person#1wanted}}%
+        {\dopersonfield{#1}{#2}}%
+        {}%
+}
+\endinput
+%%
+%% End of file `ucl_personalise.sty'.

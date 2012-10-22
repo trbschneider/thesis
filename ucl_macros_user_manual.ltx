@@ -1,0 +1,492 @@
+\documentclass[in]{ucl_document}
+
+\title[\noexpand \LaTeXe\ Macros for Constructing UCL
+Documents]{\LaTeXe\ Macros for Constructing UCL Documents}
+
+\author{Dr Russel Winder}
+
+\personname{Dr Russel Winder}
+\persontitle{Reader in Software Engineering}
+\personrole{ex Research Student Tutor}
+\persontelephone{+44 (0)171 380 7293}
+\personemail{R.Winder@cs.ucl.ac.uk}
+\personurl{//www.cs.ucl.ac.uk/staff/R.Winder/}
+\personpostnominal{MInstP, CPhys, FBCS, CEng}
+\setboolean{personrolewanted}{false}
+
+\documentnumber{95/XX}
+
+\newcommand \acronym[1]{{\small #1}}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This document should provide sufficient information for people to use
+the \texttt{ucl\_letter}, \texttt{ucl\_fax}, \texttt{ucl\_memo},
+\texttt{ucl\_document}, \texttt{ucl\_thesis} and \texttt{ucl\_exam}
+classes.
+
+It should be noted that these classes have been used quite extensively
+by the author but have not been extensively tested beyond normal use
+by the author.  This means that there are likely to be a few bugs
+resulting in interesting behaviour in some circumstances of use that
+the author does not himself employ.
+
+If you find any such situations or if you find any other errors or
+omissions in either the macros or this document, please contact the
+author.
+\end{abstract}
+
+\section{Introduction}
+
+The Department of Computer Science at \acronym{UCL} has a standard
+format for letters, faxes, memos, documents --- internal notes
+(\acronym{IN}), research notes (\acronym{RN}) and technical reports
+(\acronym{TR}) --- and exam papers.  The standard is implemented in
+\LaTeXe, psroff and Word, which are the 3 formatting mechanisms most
+popular in the department.  At some stage FrameMaker templates may
+also be produced.
+
+This document covers how to use the \LaTeXe\ classes.  Separate
+documents cover the other formatting systems.
+
+\section{The Basic Structure}
+
+The \acronym{UCL} macros are not complete classes in themselves but
+are extension of the \LaTeXe\ standard classes; the classes inherit
+directly from standard ones.  \texttt{ucl\_letter} and
+\texttt{ucl\_memo} inherit from \texttt{letter}; \texttt{ucl\_fax}
+inherits from \texttt{ucl\_letter} and hence is also a
+\texttt{letter}; \texttt{ucl\_thesis} inherits from \texttt{book}; and
+\texttt{ucl\_document} and \texttt{ucl\_exam} inherit from
+\texttt{article}.  Access to \textit{\LaTeX\ A Document Preparation
+System}, 2nd edition by Leslie Lamport (or something equivalent) is
+therefore required since this document deals only with the extensions
+provided by the \texttt{ucl\_*} classes.
+
+Letter, faxes and documents come in two guises, general and
+personalized.  The general guise produces a format with general
+departmental information and requires no extra information about the
+user.  The personalized forms require the user to have predefined a
+package, with certain macro calls inside, included into the document
+using \verb+\usepackage+ (or to include the macro calls directly in
+the document source, of course) in order to prepare the personal
+information in the right form.
+
+In fact, there is a command
+\texttt{/opt/tex/lib/texmf/tex/ucl/preparesignature} which will
+prepare the basics of such a file from the information stored in
+\texttt{/cs/docs/research/deptlist.awk}.  This is the file containing
+the official information held about people in the central user
+database.
+
+\section{The Personal Signature File}
+\label{sec:personalize}
+
+The information required in a personal signature file is best
+demonstrated via an example.  The following is the result of running
+the \texttt{preparesignature} file for myself:
+\begin{quote}
+\begin{verbatim}
+\personname{Dr Russel Winder}
+\persontitle{Reader in Software Engineering}
+\personrole{ex Research Student Tutor}
+\persontelephone{+44 (0)171 380 7293}
+\personemail{R.Winder@cs.ucl.ac.uk}
+\personurl{//www.cs.ucl.ac.uk/staff/R.Winder/}
+\personpostnominal{MInstP, CPhys, FBCS, CEng}
+\end{verbatim}
+\end{quote}
+
+By default the classes use all the fields one way or another.  It is
+sometimes required that some of the fields are not used.  The
+printing, or not, of a field is controlled by a Boolean,
+\texttt{person*wanted}, where \texttt{*} is one of \texttt{title},
+\texttt{role}, \texttt{telephone}, \texttt{mail}, \texttt{url} and
+\texttt{postnominal}.  A line such as:
+\begin{quote}
+\begin{verbatim}
+\setboolean{personrolewanted}{false}
+\end{verbatim}
+\end{quote}
+causes the class not to use the role field.
+
+This information could in principle be included directly in the
+\LaTeXe\ source document (as it is in fact with this document) but
+more usually it will reside in a file with a \texttt{.sty} extension
+and be included into the document as a package, i.e.\ with a line such
+as:
+\begin{quote}
+\begin{verbatim}
+\usepackage{rlw_signature}
+\end{verbatim}
+\end{quote}
+in the source file.
+
+\section{UCL Letters, Faxes and Memos}
+
+\acronym{UCL} letters are letters with a special letterhead which may
+or may not be personalized.  A start line of:
+\begin{quote}
+\begin{verbatim}
+\documentclass{ucl_letter}
+\end{verbatim}
+\end{quote}
+sets everything up for a general \acronym{UCL} letter, whereas using
+the option \texttt{personalisehead} uses the personalized form of the
+letterhead:
+\begin{quote}
+\begin{verbatim}
+\documentclass[personalisehead]{ucl_letter}
+\end{verbatim}
+\end{quote}
+Everything else about a letter is as Standard \LaTeXe\ letter class
+and environment.
+
+Faxes are no different from letters except that one extra field is
+required the fax number to send to.  An extra command is introduce:
+\begin{quote}
+\begin{verbatim}
+\tofax{...}
+\end{verbatim}
+\end{quote}
+which appears in the preamble.
+
+A memo is a letter with a simpler letterhead.  It is accessed using
+the class \verb+ucl_memo+.  However, it requires a subject field so a
+call to:
+\begin{quote}
+\begin{verbatim}
+\subject{...}
+\end{verbatim}
+\end{quote}
+is required to set the field.
+
+\section{UCL Documents}
+
+\acronym{UCL} documents include \acronym{IN}s, \acronym{RN}s and
+\acronym{TR}s which are simply variations on a theme, the
+\acronym{UCL} document.  Thus, \texttt{in}, \texttt{rn}, and
+\texttt{tr} are simply options to the \texttt{ucl\_document} class.
+Thus for example the start line might be:
+\begin{quote}
+\begin{verbatim}
+\documentclass[rn]{ucl_document}
+\end{verbatim}
+\end{quote}
+This class can use the personalization data as described in
+Section~\ref{sec:personalize}.  If you use this facility then the
+\verb+\author+ macro does not need to be used in the document to get
+the name on the front cover.  If you choose not to use this facility
+then not only must \verb+\author+ be used but a call of the following
+ilke must appear to deal with all contact details:
+\begin{quote}
+\begin{verbatim}
+\contactdetails{%
+    \mbox{\emph{Telephone}: +44 (0)171 380 7293}\\%
+    \mbox{\emph{Fax}: +44 (0)171 387 1397}\\%
+    \mbox{\emph{Electronic Mail}: R.Winder@cs.ucl.ac.uk}\\%
+    \mbox{\emph{URL}: http://www.cs.ucl.ac.uk/staff/R,Winder/}\\%
+}
+\end{verbatim}
+\end{quote}
+
+Two extra commands are introduced over and above those required by the
+\texttt{article} class and they are:
+\begin{quote}
+\begin{verbatim}
+\documentnumber{...}
+\keywords{...}
+\end{verbatim}
+\end{quote}
+\verb+\documentnumber+  should contain the correct document number as
+assigned by the department assigner, currently Tessa Rickards, and
+\verb+\keywords+ should contain the list of keywords to appear on the
+cover of the document.
+
+Apart from the above a \acronym{UCL} document is the same as an
+\texttt{article}.
+
+Will except that the \verb+\title+ and \verb+\author+ have been
+redefined to admit an optional parameter enabling easy specification
+of separate title page title/author and running head title/author.
+Thus, these macros can appear like:
+\begin{quote}
+\begin{verbatim}
+\title[Short title]{An Extremely Long Title that is Fine on the Title
+Page but would be Useless as a Running Head}
+\author[Bloggs et al.][J Bloggs, U Persson, Z Beeblebrox, J
+Doe, T Jig}
+\end{verbatim}
+\end{quote}
+
+Because of the way these redefined versions of \verb+\title+ and
+\verb+\author+ work there are minor difficulties using macros in
+titles and author lists.  The cure is quite straightforward but
+irritating.  I am trying to find a more elegant solution.  An example,
+the use of \verb+\title+ for this document, shows the solution, which
+is to use the full form of the macro (despite the repetition) and to
+disallow early expansion of the macro in the troublesome place:
+\begin{quote}
+\begin{verbatim}
+\title[\noexpand \LaTeXe\ Macros for Constructing UCL
+Documents]{\LaTeXe\ Macros for Constructing UCL Documents}
+\end{verbatim}
+\end{quote}
+
+\section{UCL Theses}
+
+MRes, MPhil and PhD theses have to be typeset to certain rules as laid
+down by University of London.  These rules are (more or less)
+encapsulated in the \texttt{ucl\_thesis} class, which inherits from
+\texttt{book}.
+
+The University regulations on margins, spacing etc.\ are:
+\begin{itemize}
+\item
+Margin at binding edge = 40mm.
+\item
+Margin at all other edges = 20mm.
+\item
+Inter-line spacing = 1.5.
+\item
+Pages must be numbered in one continuous sequence from title page
+to the last page of type in arabic numerals.
+\end{itemize}
+
+As a thesis is a book, use can be made of \verb+\frontmatter+,
+\verb+\mainmatter+ and \verb+\backmatter+ if that is desired but this
+would be a variation of the thesis standard since \verb+\frontmatter+
+causes roman page numbering and the standard states that numbering is
+arabic throughout starting with the title page as page 1.  Despite
+this, no thesis has been rejected for being non-standard on this
+point, so it is a choice.
+
+Other components of the style are:
+\begin{itemize}
+\item
+\emph{Contents:}  No deeper than subsections.
+\item
+\emph{Equations, figures, tables and other numbered objects:}  These are
+numbered by chapter and item number within chapter.  For example, the
+first equation in chapter 1 will be equation 1.1.
+\item
+\emph{Section headings:}  There is no italic type in chapter, section,
+subsection and subsubsection headings.  Bold font at different font
+sizes is used.  Subsubsections are not numbered.
+\item
+\emph{Paragraph style:}  The default should be indented paragraphs with a
+supported option for blocked paragraphs.
+\item
+\emph{Fonts:}  Times Roman is a font that has been consistently used over a
+long period of time, and for that reason is preferable to any other
+font.  Although the default font is a 10pt one, 11pt font is preferred
+(12pt could even be used) so it is usual to put the 11pt option in the
+\verb+\documentclass+ statement.
+\item
+\emph{References:}  References should be all at the end of the thesis and in
+alphabetical order.  There is no default on the style of references,
+this is left to the author.
+\end{itemize}
+
+It is expected that acknowledgements appear between the abstract and
+the table of contents.  An environment is provided for
+acknowledgements.
+
+The paradigm of a \LaTeX\ \acronym{UCL} Thesis file is:
+\begin{quote}
+\begin{verbatim}
+\documentclass{ucl_thesis}
+\title{<The Thesis Title>}
+\author{<The Author>}
+\date{<The Year>}
+\begin{document}
+\maketitle
+\begin{abstract}
+<Words comprising the abstract.>
+\end{abstract}
+\begin{acknowledgements}
+<Words comprising the acknowledgements.>
+\end{acknowledgements}
+\tableofcontents
+\listoffigures
+\listoftables
+<... The thesis ...>
+\end{document}
+\end{verbatim}
+\end{quote}
+
+Whilst, the entire thesis could reside in a single file, it is far
+more likely that the above will reside in one file with the thesis
+content being a set of \verb+\include+ or \verb+input+ calls, perhaps
+each chapter being a separate file.
+
+It is strongly advised that Bib\TeX\ be used for handling the
+references.  The \verb+\bibliographystyle+ call comes in the document
+body, not in the preamble.  The \verb+\bibliography+ call should be
+exactly where the bibliography is to appear.  It is strongly
+recommended that either \texttt{plain} (essentially Vancouver) or
+Harvard citation style are used.  There are a large number of
+different implementations of Harvard and derivatives.  I have settled
+on one:  \texttt{rnmdt} (mostly because I constructed it!).
+\begin{quote}
+\begin{verbatim}
+\documentclass{ucl_thesis}
+\usepackage{rnmdt}
+\title{<The Thesis Title>}
+\author{<The Author>}
+\date{<The Year>}
+\begin{document}
+\bibliographystyle{rnmdt}
+\maketitle
+\begin{abstract}
+<Words comprising the abstract.>
+\end{abstract}
+\begin{acknowledgements}
+<Words comprising the acknowledgements.>
+\end{acknowledgements}
+\tableofcontents
+\listoffigures
+\listoftables
+<... The thesis ...>
+\bibliography{...}
+\end{document}
+\end{verbatim}
+\end{quote}
+
+This provides a set of \verb+\cite+ macros beyond that specified in
+the various books on \LaTeXe.
+
+In the text, one is likely to use the standard \verb+\cite{...}+ quite
+a lot.  This produces `(namelist, date)' in the text.  As this is a
+name--date style, we often want `namelist (date)'.  For this use
+\verb+\citeasnoun{...}+.  \dots\ here represents a label that labels
+an item in the Bib\TeX\ database.  Note that whilst
+\verb+\cite{label1,label2}+ make sense,
+\verb+\citeasnoun{label1,label2}+ is an error.
+
+Possesiveness is sometimes required and this can be a difficulty if
+the name is being used as a noun, e.g.\ Winder's (1994) \dots. In this
+situation \verb+\citeasposnoun{...}+ can come in handy.  Also
+\verb+\citeasplposnoun{...}+ which deals with situation where an s
+ends the name and the apostrophe is the last character.
+
+Unfortunately, we sometimes have to do the formatting entirely by
+hand.  For example, Winder (1994; 1995; Wernick~\& Winder, 1994)
+cannot be handled by any of the above so use:
+
+\begin{quote}
+  \verb+\unfcite+ --- produce the `name, date' with no parentheses.\\
+  \verb+\unfshcite+ --- produce only `date' with no parentheses.
+\end{quote}
+
+These should, however, only be used in this sort of case, they are not
+intended for general use.
+
+Finally, there are some circumstances where \verb+\cite+ just cannot
+be used without some difficulty.  A citation within a \verb+\caption+
+is an example.  In such circumstances, please ensure that you protect
+the macro, e.g.\ \verb+\caption{Problem \protect\cite{Winder1994}}+.
+
+\section{On Typefaces}
+
+The department uses Helvetica (or Ariel) and Times (or Times New
+Roman) as its standard typefaces and these are the defaults for all
+the \acronym{UCL} classes.  People clearly can but
+\textbf{\emph{should not}} use different typefaces.
+
+\section{UCL Exam Papers}
+
+This class is used for constructing exam papers according to the rules
+laid down by Registrar's Division.  Answers can be included in the
+same file and printed or not, to produce the final exam paper.
+
+An exam paper is a 12pt Times-Roman, two-sided, one-column,
+space-and-a-half, A4 article comprising questions, subquestions and
+subsubquestions each one of which may have an answer and a mark
+associated with it.
+
+The cover sheet of an examination paper is provided centrally and
+details the usual material: heading, title, course, date, time,
+copyright, etc.  It is treated as unnumbered material.  Thus, the exam
+paper starts on page~1 with the rubric for the paper.
+
+Style requires that marks should be put for each question or sub-part
+thereof with a total at the end.  There is no separate macro for doing
+totals, so these must be added manually.
+
+Model answers can (indeed should) be provided within the same file as
+the questions.  It is usually best to place the answer directly below
+the (sub-)$^2_0$question to which it refers but there is no
+requirement that this is so.
+
+All features of an exam paper are provided as environments.  The
+source will look something like:
+\begin{quote}
+\begin{verbatim}
+  \begin{rubric}
+    ...
+  \end{rubric}
+  \begin{question}
+  \begin{subquestion}
+    ...
+  \marks{10}
+  \begin{answer}
+    ...
+  \end{answer}
+  \end{subquestion}
+  \begin{subquestion}
+    ...
+  \marks{15}
+  \begin{answer}
+    ...
+  \end{answer}
+  \marks{Total 25}
+  \end{subquestion}
+  \end{question}
+  \begin{question}
+    ...
+  \end{question}
+\end{verbatim}
+\end{quote}
+The \verb+\end{...}\begin{...}+ combination happens so often in
+questions, subquestions and subsubquestions that a shorthand is
+available,
+\verb+\further{...}+.  Thus a real paper might look like:
+\begin{quote}
+\begin{verbatim}
+  \begin{rubric}
+    ...
+  \end{rubric}
+  \begin{question}
+  \begin{subquestion}
+    ...
+  \marks{10}
+  \begin{answer}
+    ...
+  \end{answer}
+  \further{subquestion}
+    ...
+  \marks{15}
+  \begin{answer}
+    ...
+  \end{answer}
+  \marks{Total 25}
+  \end{subquestion}
+  \further{question}
+    ...
+  \end{question}
+\end{verbatim}
+\end{quote}
+
+The decision of whether to print the answers (which are typeset in the
+associated sans serif typeface --- Helvetica when using Times-Roman,
+which is what should be used) or not rests with the Boolean
+\verb+\ifanswersrequired+, whose default is false --- NB the use of a
+primitive \TeX\ Boolean here.  To print answers, the call
+\verb+\answersrequiredtrue+ should appear somewhere at the start of
+the file, usually in the preamble.
+
+\end{document}

@@ -1,0 +1,71 @@
+%!
+%%Creator: Soren-Aksel Sorensen, Dept Computer Science, UCL
+%%Title: University College London Logo
+/UCL_line { 3 1 roll lineto { rlineto } repeat } def
+
+/UCL_mline  { 3 1 roll moveto { rlineto } repeat } def
+
+/UCL_mcline { 3 1 roll moveto { rlineto } repeat closepath } def
+
+/UCL_box { 2 index exch 2 index exch dup 6 index exch
+	         moveto 3 { lineto } repeat closepath stroke newpath } def
+
+/UCL_leftdome { 216 355 85 180 130 arcn 196 446 175 528 10 arcto
+		 4 { pop } repeat 202 456 8 191 110 arcn
+		 17 20 -6 0 0 30 202 466 3 UCL_line
+		 7 0 0 9 211 518 2 UCL_line stroke newpath } def
+ 
+/UCL_rightdome { 216 355 85 0 50 arc 236 446 257 528 10 arcto
+		 4 { pop } repeat 230 456 8 349 70 arc
+		 -17 20 6 0 0 30 230 466 3 UCL_line
+		 -7 0 0 9 221 518 2 UCL_line stroke newpath } def
+
+/UCL_support { 0 0 432 28 UCL_box 16 42 416 68 UCL_box
+                 2 26 378 0 2 -26 23 261 3 UCL_mline
+                 -2 -10 197 -42 197 42 -2 10 19 261 4 UCL_mcline
+                 0 -18  4 -4  0 -26  10 -16  184 0  10 16  0 26 
+                 4 4  0 18  110 289 9 UCL_mline  
+                 204 0 114 333 1 UCL_mline stroke newpath } def
+ 
+/UCL_domebars { 88 0 172 428 1 UCL_mline 0 75 216 353 1 UCL_mline
+		stroke newpath 301 347 144 177 146 arcn stroke newpath
+		386 353 200 180 158 arcn stroke newpath 46 353 200 22 0 arcn
+		stroke newpath 131 347 144 34 3 arcn stroke newpath } def
+
+/UCL_LargeU { newpath 6 setlinewidth 0 setgray 58 213 moveto
+		63 213 63 150 9 arcto 4 { pop } repeat 63 123 lineto
+		63 80 150 80 150 123 curveto 150 209 167 211 9 arcto
+		4 { pop } repeat 165 211 lineto 165 212 1 270 90 arc
+		127 213 lineto 127 212 1 90 270 arc 145 209 145 150 9 arcto
+		4 { pop } repeat 145 128 lineto 145 85 75 85 75 128 curveto
+		75 209 93 211 9 arcto 4 { pop } repeat 91 211 lineto
+		91 212 1 270 90 arc closepath gsave fill grestore stroke
+		newpath 58 213 moveto 31 213 lineto 31 212 1 90 270 arc
+		47 209 47 150 9 arcto 4 { pop } repeat 47 128 lineto
+		47 80 150 80 150 123 curveto stroke } def
+
+/UCL_LargeC { newpath 251 216 moveto 213 216 187 190 187 150 curveto
+		187 121 209 92 250 92 curveto 271 92 277 98 283 102 curveto
+		284 108 288 113 288 124 curveto 287 124 1 0 170 arc
+		281 110 266 96 250 96 curveto 218 96 201 115 201 155 curveto
+		201 190 218 211 254 211 curveto 266 211 275 205 285 191 curveto
+		286 191 1 200 0 arc 286 196 285 205 282 210 curveto
+		268 216 258 216 251 216 curveto closepath gsave fill grestore
+		stroke newpath 251 216 moveto 198 216 172 190 171 150 curveto
+		171 125 183 92 250 92 curveto stroke newpath } def
+
+/UCL_LargeL { 318 213 moveto 339 213 339 150 11 arcto
+		4 { pop } repeat 339 94 318 94 14 arcto 4 { pop } repeat
+		401 94 lineto 403 100 404 110 405 121 curveto
+		404 121 1 0 170 arc 390 98 308 98 42 arcto 4 { pop } repeat
+		350 98 350 210 12 arcto 4 { pop } repeat
+		350 209 366 211 11 arcto 4 { pop } repeat 366 211 lineto
+		366 212 1 270 90 arc closepath gsave fill grestore stroke
+		newpath 318 213 moveto 307 213 lineto 307 212 1 90 270 arc
+		323 209 323 150 9 arcto 4 { pop } repeat 323 98 307 96 10 arcto
+		4 { pop } repeat 307 96 lineto 307 95 1 90 270 arc
+		404 94 lineto stroke newpath } def
+
+/UCL_logo { 4 setlinewidth UCL_leftdome UCL_rightdome UCL_domebars UCL_support
+	    UCL_LargeU UCL_LargeC UCL_LargeL } def
+

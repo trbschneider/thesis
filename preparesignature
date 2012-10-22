@@ -1,0 +1,91 @@
+#! /opt/ucl/bin/perl
+
+#  A PERL script to construct a LaTeX2e package containing the required
+#  macro calls in order to be able to make use of the personalisation
+#  features in the ucl_* classes.
+#
+#  This program searches the SG people database for the person named in
+#  the command line, default to the currently logged on user, and constructs
+#  the relevant file which output onto the standard output.
+#
+#  The database of people is in a file called $peoplefile (see below for the
+#  current value) and is structured as a record of fields.  Each record is a
+#  single line and each field is colon separated.  Note Bene:  The file is
+#  generated automatically from the user database each night.  The fields
+#  (which may be empty, especially personal title and departmental role) are:
+#
+#       Login name (e.g. russel)
+#	Name as displayed (e.g. Dr Russel Winder)
+#	Personal title (e.g. Reader in Software Engineering)
+#	Departmental role (e.g. Director of Research Studies)
+#	Phone number (e.g. +44 (0)171 380 7293)
+#	Extension number (e.g. 7293)
+#	Email address (e.g. R.Winder@cs.ucl.ac.uk)
+#	URL (e.g. //www.cs.ucl.ac.uk/staff/russel/russel.html)
+#       Room number (e.g. G19)
+#	Group (e.g. csacstaff)
+#	Name as will actually appear inclusive of LaTeX escapes (e.g. Dr S{\o}ren S{\o}rensen)
+#       Post-nominal letters (e.g. MInstP, CPhys, FBCS, CEng)
+#
+#  Copyright (c) 1997, Russel Winder.
+
+#### Variables ##########################################################
+
+#  The name of the file with all the data in.
+
+$peoplefile = "/cs/docs/research/deptlist.awk" ;
+
+# process the -p (suppress postnominals flag
+
+if ( ($#ARGV > 0) && ($ARGV[0] eq "-p" ) )
+{
+        $suppressPostnoms++ ;
+        shift ;
+}
+
+#  Give the parameters names to make things easier to understand.
+
+$parameterCount = $#ARGV + 1 ;
+$name = $ARGV[0] ;
+
+#### Functions ##########################################################
+
+#  We may need to remind the user of how to use this program.
+
+sub usageMessage
+{
+    print "Usage: preparesignature {<name>}\n" ;
+}
+
+sub output
+{
+    open(peoplefile) || die "do: Cannot open the file $peoplefile.\n" ;
+    while (<peoplefile>)
+    {
+        ($loginid, $dummyname, $title, $role, $phone, $extension, $email, $url, $room, $group, $fullname, $fullpostnominal, $postnominal) = split(/[:\n]/, $_) ;
+        $postnominal = "" if ($suppressPostnoms > 0) ;
+	# JC 07-07-97 this next line was bad news... given a login, it might
+	# match on part of someone's name!  Make it do what it claims to do
+	# if (($loginid =~ /$name/) || ($dummyname =~ /$name/) || ($fullname =~ /$name/))
+	if ($loginid =~ /^$name$/)
+	{
+	    print "\\personname{$fullname}\n" ,
+                  "\\persontitle{$title}\n" ,
+                  "\\personrole{$role}\n" ,
+                  "\\persontelephone{$phone}\n" ,
+                  "\\personemail{$email}\n" ,
+                  "\\personurl{$url}\n" ,
+                  "\\personpostnominal{$postnominal}\n" ;
+	    last ;	# only want one match!  JC 07-07-97
+	}
+    }
+}
+
+#### The Main Sequence ##################################################
+
+if ($parameterCount < 1)
+{
+    $name = $ENV{'USER'} ;
+}
+
+do output() ;

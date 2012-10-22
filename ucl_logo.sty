@@ -1,0 +1,48 @@
+%%
+%% This is file `ucl_logo.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% ucl_logo.dst 
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% For the copyright see the source file.
+%% 
+%% You are *not* allowed to modify this file.
+%% 
+%% You are *not* allowed to distribute this file.
+%% For distribution of the original source see the terms
+%% for copying and modification in the file ucl_logo.dst.
+%% 
+%%  A LaTeX2e package to handle the UCL logo.
+%%
+%%  Copyright (c) 1995, Russel Winder.
+%%
+\def \fileversion{v1.0}
+\def \filedate{1995/02/28}
+\def \docdate{1995/02/28}
+\ifx \documentclass \undefined
+    \wlog{LaTeX Package `UCL Logo' \fileversion\space<\filedate>}
+\else
+    \NeedsTeXFormat{LaTeX2e}
+    \ProvidesPackage{ucl_logo}[\filedate\space\fileversion\space UCL Logo]
+\fi
+\special{header = /opt/tex/lib/texmf/tex/ucl/ucl_logo.ps}
+\newdimen \UCL@logowidth
+\UCL@logowidth = 154mm
+\newdimen \UCL@logoheight
+\UCL@logoheight = 188mm
+\def \UCLlogo#1{%
+    \vbox to #1\UCL@logoheight{%
+        \vfill%
+        \hbox to #1\UCL@logowidth{%
+            \special{"#1 #1 scale UCL_logo}%
+            \hfill%
+        }%
+    }%
+}
+\endinput
+%%
+%% End of file `ucl_logo.sty'.
