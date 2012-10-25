@@ -1,11 +1,19 @@
 %!TEX root = ../thesis.tex
-Axon morphology plays an important role for normal signal conduction. Damage to axon or myelin integrity will compromise signal transmission and can lead to a variety of symptoms. The hallmarks of WM pathology are axon loss and demyelination and their causes include various diseases and trauma. Axon loss is the disappearance of axons. These axons may or may not reappear. The loss of axons leads to abnormal disconnections between neurons and will cause 9 interruptions in neural signaling. The most common WM disease is multiple sclerosis (MS) which afflicts 2.5 million individuals world-wide (14). MS is an inflammatory disease in which the immune system attacks WM, leading to axon loss and demyelination. It is this WM damage that is the primary cause of clinical disability. Trauma can be any mechanical force applied to the CNS and can lead to tearing or even transection of axons (15). These injuries can cutoff nutrient transport within the axon, leading to degeneration of the axon distal to the injury site. This type of axon loss is known as Wallerian degeneration
+Axon morphology plays an important role for normal signal conduction. Damage to axon or myelin integrity will compromise signal transmission and can cause severe neurological symptoms. Damage to the spinal cord axonal tissue results particularily dangerous as it results in a loss of function such as mobility or feeling. Frequent causes of damage are trauma (car accident, gunshot,  falls, etc.) or disease (polio, spina bifida, Friedreich's Ataxia, etc.). 
 
-\Gls{MRI} represents a non-invasive clinical method to assess anatomical changes in the spinal cord after injury. The introduction of \gls{MRI} to the clinical practise has vastly improved the diagnosis and treatment monitoring of spinal cord pathologies such as \gls{SCI} and \gls{MS}. 
+\Gls{MRI} represents a non-invasive clinical method to assess anatomical changes in the spinal cord after injury. The introduction of \gls{MRI} to the clinical practise has vastly improved the diagnosis and treatment monitoring of spinal cord pathologies such as \gls{SCI} and \gls{MS}. While routine \gls{MRI} scans are aiding the detection of macroscopic changes in the cord, they have a limited prognostic value because of their qualitative nature and because of their lack of specificity in terms of underlying microstructure changes. 
 
-Routine \gls{MRI} scans are often aiding the detection of macroscopic changes in the cord, but they have a limited prognostic value because of their qualitative nature and because of their lack of specificity in terms of underlying mechanisms such as inflammation, axonal loss and gliosis. The sensitivity of {\gls{DWI}} to the diffusion of water molecules in the tissue in vivo has been exploited for more than 20 years to characterise the white matter tissue structure of the brain. Thanks to technological advances such as multi-channel coils for parallel imaging methods and 3T scanners, the past couple of years have seen emerging application of \gls{DWI} in the {\gls{SC}}. As a result, diffusion imaging techniques are emerging as useful clinical for methods for visualization and quantification of spinal cord damage as a result of trauma or during progressive degenerative diseases. 
+The sensitivity of {\gls{DWI}} to the diffusion of water molecules in the tissue in vivo has been exploited for more than 20 years to characterise the white matter tissue structure of the brain. Thanks to technological advances such as multi-channel coils for parallel imaging methods and 3T scanners, the past couple of years have made their application of \gls{DWI} in the {\gls{SC}} feasible \citep{CWK,Ellingson}. As a result, diffusion imaging techniques are emerging as useful clinical for methods for visualization and quantification of spinal cord damage as a result of trauma or during progressive degenerative diseases. 
 
-There is the need for in-vivo imaging biomarkers for human {\gls{SC}} examinations, which are sensitive to tissue changes and which are capable of quantifying underlying structural and functional changes.
+Despite encouraging initial results, much works need still to be done bring \gls{DWI} in the cord to clinical practise. Specifically there is the need for in-vivo imaging biomarkers for human {\gls{SC}} examinations, which are sensitive to underlying tissue changes and which are capable of quantifying structural and functional pathologies.
+
+
+%\begin{figure}[htbp]
+%	\centering
+%	\pgfimage[width=0.7\textwidth]{chapter1/figs/sc_injury}
+%	\caption{Illustration of tissue damage after spinal cord injury in the acute, chronic and treatment stages of the disease.}
+%\end{figure}
+
 
 
 %{\Gls{SCI}} can have devastating effects on the life of people affected by it. Thanks to innovative treatment strategies, {\gls{SCI}} patients can now hope in the concrete possibility of new therapies leading to recovery of feeling and motor functions, with a dramatic repercussion on their future quality of life.
@@ -14,12 +22,12 @@ There is the need for in-vivo imaging biomarkers for human {\gls{SC}} examinatio
 \section{Problem statement}
 Despite some development work on \gls{DWI} for \gls{SC}, the following problems are mainly unresolved 
 \begin{enumerate}
-\item Current state-of-the-art\gls{DWI} analysis methods, such as \gls{DTI}, are unspecific to individual microstructural changes and therefore only have limited value in the evaluation of treatment and recovery in spinal cord pathology. Research on more advanced \gls{DWI} techniques is usually focussed on the only the brain in mind and is often not directly applicable to the \gls{SC} in the same manner.
+\item Current state-of-the-art \gls{DWI} analysis methods, such as \gls{DTI}, are unspecific to individual microstructural changes and therefore only have limited value in the evaluation of treatment and recovery in spinal cord pathology. Research on more advanced \gls{DWI} techniques is usually focussed on the only the brain in mind and is often not directly applicable to the \gls{SC} in the same manner.
 \item \gls{DWI} acquisition itself is well established in the brain, but much less so in the \gls{SC}. The \gls{SC} is a more challenging structure to study because of several problems: the breathing motion, the artefacts arising from the surrounding bones, the pulsation of the {\gls{CSF}} and last but not least its limited size that requires high resolution.  
 \end{enumerate} 
 The key motivation of this work is to overcome the challenges above by optimising the whole process from the acquisition design to the analysis methods, based on known \gls{SC} tissue properties and to develop imaging biomarkers can provide insight in underlying mechanisms of tissue damage and functional recovery.
 
-\section{Project aims}
+\section{Aims}
 \begin{enumerate}
   \item Investigate existing \gls{DWI} methods and identify suitable metrics for \gls{SC} characterisation
   \item Optimise existing acquisition protocols and analysis methods to improve sensitivity to \gls{SC} pathologies
