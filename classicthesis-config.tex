@@ -104,7 +104,10 @@
 
 %library & glossaries
 \usepackage{natbib}
-\usepackage{glossaries}
+\usepackage[nomain,acronym,nonumberlist,section=chapter]{glossaries}
+\glossarystyle{listdotted}
+\setlength{\glslistdottedwidth}{12em}
+
 
 
 
@@ -242,19 +245,12 @@ pdfproducer={LaTeX}
 %----------------------------------------------------------------------------------------
 
 \usepackage[math]{anttor}
+%\usepackage{cmbright}
 
 \usepackage{xltxtra}
 \defaultfontfeatures{Mapping=tex-text}
-%\setmainfont[
-%	Path = ./fonts/ ,
-%	Extension = .otf ,
-%	UprightFont = ElectraLTStd-Regular,
-%	BoldFont = ElectraLTStd-Bold,
-%	ItalicFont = ElectraLTStd-Cursive,
-%	BoldItalicFont = ElectraLTStd-BoldCursive,
-%]{electra}
 
-%\setmainfont[
+%\newfontfamily\electra[
 %	Path = ./fonts/ ,
 %	Extension = .otf ,
 %	UprightFont = *-Regular,
@@ -262,6 +258,7 @@ pdfproducer={LaTeX}
 %	ItalicFont = *-Cursive,
 %	BoldItalicFont = *-BoldCursive,
 %]{ElectraLTStd}
+%\newcommand*{\textel}[1]{{\electra #1}}
 
 %\setmainfont[
 %	Path = ./fonts/ ,
@@ -298,7 +295,7 @@ pdfproducer={LaTeX}
 %	BoldFont = *B,
 %	ItalicFont = *I,
 %	BoldItalicFont = *BI,
-%]{GenBkBas}% Gentium Basic Book
+%]{GenBas}% Gentium Basic Book
 
 %\setmainfont[
 %	Path = ./fonts/ ,
@@ -341,9 +338,9 @@ pdfproducer={LaTeX}
 %\setmainfont[
 %	Path = ./fonts/ ,
 %	Extension = .ttf ,
-%	UprightFont = *_Rg,
+%	UprightFont = *_Lt,
 %	BoldFont = *_Bd,
-%	ItalicFont = *_It,
+%	ItalicFont = *_LtIt,
 %	BoldItalicFont = *_BdIt,
 %]{Aller}
 
@@ -365,10 +362,51 @@ pdfproducer={LaTeX}
 %	BoldItalicFont = *_BI_46b,
 %]{FontinSans_Cyrillic}
 
+\newfontfamily\sans[
+	Path=./fonts/,
+	UprightFont = AlegreyaSC-Regular.otf,
+	BoldFont = *-Bold.ttf,
+	ItalicFont = *-Italic.ttf,
+	BoldItalicFont = *-BoldItalic.ttf,
+]{Vollkorn}
+
+\newcommand*{\textsans}[1]{{\sans #1}}
+
+\titleformat{\chapter}[display]
+        {\relax}{\mbox{}\oldmarginpar{\vspace*{-3\baselineskip}\color{halfgray}\chapterNumber\thechapter}}{0pt}%
+        {\Large\sans}[\vspace*{.0\baselineskip}\titlerule]%   
+
+
+%\setmainfont[
+%	Path = ./fonts/ ,
+%	Extension = .otf ,
+%	UprightFont = *_Light,
+%	BoldFont = *_Bold,
+%	ItalicFont = *_Italic_Light,
+%	BoldItalicFont = *_Italic_Bold,
+%]{Midiet_Sans}
 
 
 %----------------------------------------------------------------------------------------
 %	USEFUL COMMANDS
 %----------------------------------------------------------------------------------------
+%%%%% USEFUL COMMANDS %%%%%%%%%%
+\newcommand{\SF}{{\ensuremath{\mathcal{SF}}}}
+\newcommand{\OI}{{\ensuremath{\mathcal{OI}}}}
+\newcommand{\SD}{{\ensuremath{\mathcal{SF}_{pulses}}}}
+\newcommand{\DO}{{\ensuremath{\mathcal{SF}_{dirs}}}}
+\newcommand{\FD}{{\SF}}
+
+\newcommand{\SFshort}{\SF$_{90}$}
+\newcommand{\SFlong}{\SF$_{360}$}
+\newcommand{\OIlong}{\OI$_{360}$}
+
+\newcommand{\FDmod}{{\ensuremath{\FD_{mod}}}}
+\newcommand{\SFasym}{{\ensuremath{a\mathcal{SF}}}}
+
+% spaces for figure list and table list
+%\usepackage{etoolbox}
+%\newcommand{\killdeactivateaddvspace}{\let\deactivateaddvspace\relax}
+%\AtEndPreamble{\addtocontents{lof}{\protect\killdeactivateaddvspace}}
 
 %\usepackage{arsclassica} 

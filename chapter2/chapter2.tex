@@ -152,7 +152,7 @@ Figure~\ref{fig:chap2 diffusion illustration} illustrates the principle of diffu
 	\item the {\gls{bigdel}} between both gradient pulses.
 \end{itemize}
 
-In the literature the combination of those PGSE parameters is often summarised in terms of the diffusion weighting factor {\gls{bvalue}}\citep{LeBihan:1986}, which is defined as:
+In the literature the combination of those PGSE parameters is often summarised in terms of the diffusion weighting factor $b$-value \citep{LeBihan:1986}, which is defined as:
 \begin{equation}
 	b = \gamma^2|G|^2\delta^2(\Delta-\frac{\delta}{3}),
     \label{eq:bvalue}
@@ -265,7 +265,7 @@ with $b  \approx -(2\pi\gamma\delta)^2\Delta$ under the \gls{SGP} assumption of 
 \paragraph{}
 In true free diffusion, $d$ is simply the diffusion coefficient of the medium and the signal equation above is exact. However, in real biological tissue, virtually all molecules will have interacted with their environment within the timescale of a typical diffusion MR experiment. In this case the above expression is just an approximation of the underlying true dPDF and $d$ above is not only related to the diffusivity of the medium but also informs about the diffusion impedance caused by molecules interacting with the environment. To highlight the difference to the classical definition of the diffusion coefficient, we refer to $d$ as the \gls{ADC}.
 
-The model parameters $s_0$ and the \gls{ADC} are tissue dependent and can be estimated by acquiring a minimum of two diffusion weighted images with different {\glspl{bvalue}} (usually $b=0$ and $b=800-1200mm/s^2$ for in-vivo nervous tissue). Typically a simple log-transformation of Equation \label{eq:chapter 2 adc} is used to obtain a linear equation:
+The model parameters $s_0$ and the \gls{ADC} are tissue dependent and can be estimated by acquiring a minimum of two diffusion weighted images with different $b$-value (usually $b=0$ and $b=800-1200mm/s^2$ for in-vivo nervous tissue). Typically a simple log-transformation of Equation \label{eq:chapter 2 adc} is used to obtain a linear equation:
 \begin{equation}
 	log(S(s_0,ADC;\prot_i)) = log(s_{0}) - (b\cdot ADC),
     \label{eq:chapter 2 adc}

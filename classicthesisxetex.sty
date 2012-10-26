@@ -337,9 +337,8 @@
                 \sodef\allcapsspacing{\upshape}{0.15em}{0.65em}{0.6em}%
                 \sodef\lowsmallcapsspacing{\scshape}{0.075em}{0.5em}{0.6em}%   
                 \DeclareRobustCommand{\spacedallcaps}[1]{\MakeTextUppercase{\allcapsspacing{#1}}}%   
-	             %\DeclareRobustCommand{\spacedlowsmallcaps}[1]{\MakeTextLowercase{\textsc{\lowsmallcapsspacing{#1}}}}%\protect
-	             \DeclareRobustCommand{\spacedlowsmallcaps}[1]{#1}%\protect
-
+	             \DeclareRobustCommand{\spacedlowsmallcaps}[1]{\MakeTextLowercase{\textsc{\lowsmallcapsspacing{#1}}}}%\protect
+	             %\DeclareRobustCommand{\spacedlowsmallcaps}[1]{#1}%\protect
         }%
     }
 
@@ -464,7 +463,7 @@
       \ifthenelse{\boolean{@dottedtoc}}{\relax}%
       {%
       	\renewcommand{\cftpartleader}{\hspace{1.5em}}% 
-      	\renewcommand{\cftpartafterpnum}{\cftparfillskip}%
+      	\renewcommand{\cftpartafterpnum}{\cftparfillskip\hline}%
       }%        
       \setlength{\cftbeforepartskip}{1em}%
       \setlength{\cftbeforechapskip}{.1em}%

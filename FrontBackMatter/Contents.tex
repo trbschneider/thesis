@@ -5,9 +5,9 @@
 
 \pdfbookmark[1]{\contentsname}{tableofcontents} % Bookmark name visible in a PDF viewer
 
-\setcounter{tocdepth}{2} % Depth of sections to include in the table of contents - currently up to subsections
+\setcounter{tocdepth}{1} % Depth of sections to include in the table of contents - currently up to subsections
 
-\setcounter{secnumdepth}{3} % Depth of sections to number in the text itself - currently up to subsubsections
+\setcounter{secnumdepth}{2} % Depth of sections to number in the text itself - currently up to subsubsections
 
 \manualmark
 \markboth{\spacedlowsmallcaps{\contentsname}}{\spacedlowsmallcaps{\contentsname}}
@@ -53,14 +53,14 @@
 %	List of Listings
 %---------------------------------------------------------------------------------------- 
 
-\refstepcounter{dummy}
-%\addcontentsline{toc}{chapter}{\lstlistlistingname} % Uncomment if you would like the list of listings to appear in the table of contents
-\pdfbookmark[1]{\lstlistlistingname}{lol} % Bookmark name visible in a PDF viewer
-
-\lstlistoflistings 
-
-\vspace*{8ex}
-\newpage
+%\refstepcounter{dummy}
+%%\addcontentsline{toc}{chapter}{\lstlistlistingname} % Uncomment if you would like the list of listings to appear in the table of contents
+%\pdfbookmark[1]{\lstlistlistingname}{lol} % Bookmark name visible in a PDF viewer
+%
+%\lstlistoflistings 
+%
+%\vspace*{8ex}
+%\newpage
        
 %----------------------------------------------------------------------------------------
 %	Acronyms
@@ -68,13 +68,17 @@
 
 \refstepcounter{dummy}
 %\addcontentsline{toc}{chapter}{Acronyms} % Uncomment if you would like the acronyms to appear in the table of contents
-\pdfbookmark[1]{Acronyms}{acronyms} % Bookmark name visible in a PDF viewer
-
+%\renewcommand{\glossarymark}[1]{\markboth{\spacedlowsmallcaps{#1}}{\spacedlowsmallcaps{#1}}}
+%
 \markboth{\spacedlowsmallcaps{Acronyms}}{\spacedlowsmallcaps{Acronyms}}
+\renewcommand{\glossarymark}[1]{}
+\renewcommand*{\glossarysection}[2][]{%
+  \chapter*{Acronyms}%
+  \glossarymark{\glossarytoctitle}%
+}
+\printglossaries
 
-\chapter*{Acronyms}
 
-%\printglossaries
                    
 \endgroup
 
