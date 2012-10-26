@@ -1,11 +1,9 @@
 %!TEX root = ../thesis.tex
-Axon morphology plays an important role for normal signal conduction. Damage to axon or myelin integrity will compromise signal transmission and can cause severe neurological symptoms. Damage to the spinal cord axonal tissue results particularily dangerous as it results in a loss of function such as mobility or feeling. Frequent causes of damage are trauma (car accident, gunshot,  falls, etc.) or disease (polio, spina bifida, Friedreich's Ataxia, etc.). 
+The spinal cord is a vital part of the human \gls{CNS}, relaying information to and from the brain and controlling the motor function in the rest of the body. Damage to the spinal cord tissue will compromise signal transmission and can cause severe neurological symptoms, often resulting in a loss of mobility or feeling. \Gls{SCI} is often caused by trauma, i.e., a mechanical injury of the cord tissue during an accident, fall, etc. However, \gls{SCI} can also have non-traumatic causes, such as tumours, infectious diseases or degenerative pathologies of the \gls{CNS} like \gls{MS}.
+\paragraph{}
+The introduction of \gls{MRI} to the clinical practise has vastly improved the diagnosis and treatment monitoring of \gls{SCI} as it offers a non-invasive way to assess anatomical changes in the spinal cord after injury. While routine \gls{MRI} scans are aiding the detection of macroscopic changes in the cord, they have a limited prognostic value because of their qualitative nature and because of their lack of specificity in terms of underlying microstructure changes. 
 
-\Gls{MRI} represents a non-invasive clinical method to assess anatomical changes in the spinal cord after injury. The introduction of \gls{MRI} to the clinical practise has vastly improved the diagnosis and treatment monitoring of spinal cord pathologies such as \gls{SCI} and \gls{MS}. While routine \gls{MRI} scans are aiding the detection of macroscopic changes in the cord, they have a limited prognostic value because of their qualitative nature and because of their lack of specificity in terms of underlying microstructure changes. 
-
-The sensitivity of {\gls{DWI}} to the diffusion of water molecules in the tissue in vivo has been exploited for more than 20 years to characterise the white matter tissue structure of the brain. Thanks to technological advances such as multi-channel coils for parallel imaging methods and 3T scanners, the past couple of years have made their application of \gls{DWI} in the {\gls{SC}} feasible \citep{CWK,Ellingson}. As a result, diffusion imaging techniques are emerging as useful clinical for methods for visualization and quantification of spinal cord damage as a result of trauma or during progressive degenerative diseases. 
-
-Despite encouraging initial results, much works need still to be done bring \gls{DWI} in the cord to clinical practise. Specifically there is the need for in-vivo imaging biomarkers for human {\gls{SC}} examinations, which are sensitive to underlying tissue changes and which are capable of quantifying structural and functional pathologies.
+The sensitivity of {\gls{DWI}} to the diffusion of water molecules in the tissue in vivo has been exploited for more than 20 years to characterise the white matter tissue structure of the brain. Thanks to technological advances such as multi-channel coils for parallel imaging methods and 3T scanners, the past couple of years have made their application of \gls{DWI} in the {\gls{SC}} more feasible. As a result, diffusion imaging techniques are emerging as useful clinical for methods for visualization and quantification of spinal cord damage. Despite encouraging initial results, much work need still to be done to bring \gls{DWI} in the cord to clinical practise. Specifically there is the need for in-vivo imaging biomarkers for human {\gls{SC}} examinations, which are sensitive to underlying tissue changes and which are capable of quantifying structural and functional pathologies.
 
 
 %\begin{figure}[htbp]
@@ -35,13 +33,29 @@ The key motivation of this work is to overcome the challenges above by optimisin
 \end{enumerate}
 
 \section{Summary of contributions}
-The work presented in this report is divided in four different experiment that each contributes towards the aims described above.
-\begin{itemize}
-  \item In Section~\ref{sec:chap3:experiment1} we describe and test an imaging protocol to visualise and quantify the presence of collateral sprouting fibres at different levels of the \gls{SC}. This experiment contributes towards project aim 1 and 2 as we investigate two different \gls{DWI} metrics from existing literature and focus on the optimisation of the acquisition protocol.
-  \item In Section~\ref{sec:chap3:experiment2} we develop a novel post-processing method that corrects average \gls{DTI} metrics for partial volume effects. This experiment contributes towards project aim 2, as we aim to improve reliability and reduce inter-subject variability for \gls{DTI} acquisitions and measurements that are widely used in clinical studies.
-  \item In Section~\ref{sec:chap3:experiment3} we present a reliability study of the \gls{QSI} method, applied to \gls{SC}. This experiment contributes towards project aim 1  as it investigates the use of \gls{QSI} metrics for the investigation of \gls{SC} microstructure. The experiment also contributes to project aim 3 as it looks for the first time into \gls{QSI} parallel to the major fibre direction as an additional imaging marker.
-  \item In Section~\ref{sec:chap3:experiment4} we work towards project aim 3 by developing \gls{DWI} protocols that allow direct estimation of axon diameter and density of SC white matter tissue. Our method is an extension of the ``Active Imaging'' framework by \citet{Alexander:2010}. We modify the existing method to be able to exploit the characteristic a-priori know single major fibre orientation in structures like the \gls{SC}. 
-\end{itemize}
+The work presented in this dissertation is divided in three parts, comprising 8 different experiments in total. Each part contributes towards the aims described above as follows: 
+
+\paragraph{Part~\ref{part1}} shows two studies that use the well established \gls{DTI} method. 
+
+
+Chapter~\ref{chapter3} devises a novel imaging protocol to visualise and quantify the presence of collateral sprouting fibres at different levels of the \gls{SC}. This experiment contributes towards project aim 1 and 2 as we investigate two different \gls{DWI} metrics from existing literature and focus on the optimisation of the acquisition protocol.
+
+In Chapter~\ref{chapter4} we develop a novel post-processing method that corrects average \gls{DTI} metrics for partial volume effects. This experiment contributes towards project aim 2, as we aim to improve reliability and reduce inter-subject variability for \gls{DTI} acquisitions and measurements that are widely used in clinical studies. 
+
+\paragraph{Part~\ref{part2}} presents two studies which implement the less commonly used \gls{QSI} method in the cord. The aim is to test whether is is possible to distinguish different parts of the healthy human cord by their \gls{QSI} parameters. The two  experiments contributes towards project aim 1 as they test the use of \gls{QSI} metrics for the investigation of \gls{SC} microstructure. The experiments also contribute to project aim 3 as they look for the first time into \gls{QSI} parallel to the major fibre direction as an additional imaging marker.
+
+Chapter~\ref{chapter5} presents data that was analysed retroactively on already acquired QSI-data. This dataset data revealed interesting results, but was put in question by technical limitations of the acquisition and analysis method. 
+
+Chapter~\ref{chapter6} presents our effort to reproduce the results of Chapter~\ref{chapter5} on our newly installed 3T scanner, which allowed us more control over the scan parameters than before. 
+
+\paragraph{Part~\ref{part3}} shows our work towards project aim 3 by developing \gls{DWI} protocols that allow direct estimation of axon diameter and density of SC white matter tissue. Our {\SF} method is an extension of the ``ActiveImaging'' framework by \citet{Alexander:2010}, which we modify to be able to exploit the characteristic a-priori know single major fibre orientation in structures like the \gls{SC}. To aid the initial development we use in some experiments the corpus callosum as a model system of highly coherent white matter structures, similar to the \gls{SC} organisation.
+
+Chapter~\ref{chapter7} presents a first implementation of the {\SF} method. We use synthetic dataset from computer simulations to evaluate our method and compare with Alexander's original method and further show results of a first real-world implementation of our method applied to ex-vivo monkey spinal cord.
+
+Chapter~\ref{chapter8} introduces several improvements to our first {\SF} implementation and presents a first implementation of the {\SF} method in-vivo on a standard clinical scanner on two healthy volunteers. 
+
+Chapter~\ref{chapter9} brings together our efforts in improving image quality and \gls{DWI} acquisition protocols. We here devise a novel imaging and analysis pipeline for  {\SF}-ActiveImaging and assess its scan/rescan reproducibility in the human corpus-callosum. Furthermore, we also present a first application of {\SF} to the healthy in-vivo human cord in one subject.
+
 %\section{Report structure}
 %\section{Publications and presentations}
 %\subsection*{Journal papers in preparation}
