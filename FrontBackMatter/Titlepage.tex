@@ -3,7 +3,7 @@
 
 \begin{titlepage}
 
-\begin{addmargin}[-1cm]{-3cm}
+\begin{addmargin}[0cm]{0cm}
 \begin{center}
 \large
 
@@ -11,20 +11,25 @@
 \vfill
 
 \begingroup
-\large\color{Maroon}\sans{\myTitle} \\ \bigskip % Thesis title
+\Large\color{Maroon}{\myTitle} \\ \medskip % Thesis title
+\large\mySubtitle  % Thesis subtitle
 \endgroup
-
-\spacedlowsmallcaps{\myName} % Your name
-
 \vfill
+\large{\myName}\\[5ex] % Your name
 
-\mySubtitle \\ \medskip % Thesis subtitle
-\myDegree \\
+
+
+\begingroup
+\normalsize
+\vfill
+A dissertation submitted in partial fullfillment of the requirements for the degree of \\ \medskip
+\emph{\myDegree} \\ \medskip
+of the \\ \medskip
+\emph{\myUni} \\ \bigskip
+
 \myDepartment \\
 \myFaculty \\
-\myUni \\ \bigskip
-
-
+\endgroup
 
 \vfill
 
