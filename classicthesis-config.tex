@@ -20,9 +20,9 @@
 \setcounter{tocdepth}{1}
 
 %%% THESIS VARIABLES
-\newcommand{\myTitle}{Spinal Cord Diffusion Imaging: Imaging Challenges and Prognostic Value\xspace}
-\newcommand{\mySubtitle}{qq \xspace}
-\newcommand{\myDegree}{PhD\xspace}
+\newcommand{\myTitle}{Spinal Cord Diffusion Imaging\xspace}
+\newcommand{\mySubtitle}{Imaging Challenges and Prognostic Value \xspace}
+\newcommand{\myDegree}{Doctor of Philosophy\xspace}
 \newcommand{\myName}{Torben Schneider\xspace}
 \newcommand{\myProf}{Claudia Wheeler-Kingshott\xspace}
 \newcommand{\myOtherProf}{Daniel Alexander\xspace}
@@ -324,6 +324,7 @@ pdfproducer={LaTeX}
 	BoldFont = *-bold,
 	ItalicFont = *-italic,
 	BoldItalicFont = *-bolditalic,
+	SmallCapsFont = AlegreyaSC-Regular,	
 ]{texgyrepagella}
 
 % \setmainfont[
@@ -382,6 +383,12 @@ pdfproducer={LaTeX}
 	BoldItalicFont = SourceSansPro-BoldIt.otf,
 ]{sourcesans}
 
+
+\titleformat{\chapter}[display]
+        {\relax}{\mbox{}\oldmarginpar{\vspace*{-3\baselineskip}\color{halfgray}\chapterNumber\thechapter}}{0pt}%
+        {\Large\headerfont}[\vspace*{.0\baselineskip}\titlerule]%
+
+
 \newfontfamily\headermedfont[
 	Path=./fonts/,
 	UprightFont = SourceSansPro-Semibold.otf,
@@ -396,7 +403,6 @@ pdfproducer={LaTeX}
 	BoldFont  = *black,
 	ItalicFont = *black,
 ]{serif72beta}
-
 
 
 \newcommand*{\textheader}[1]{{\blackfont #1}}
