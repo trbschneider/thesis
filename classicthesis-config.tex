@@ -384,9 +384,6 @@ pdfproducer={LaTeX}
 ]{sourcesans}
 
 
-\titleformat{\chapter}[display]
-        {\relax}{\mbox{}\oldmarginpar{\vspace*{-3\baselineskip}\color{halfgray}\chapterNumber\thechapter}}{0pt}%
-        {\Large\headerfont}[\vspace*{.0\baselineskip}\titlerule]%
 
 
 \newfontfamily\headermedfont[
@@ -403,6 +400,11 @@ pdfproducer={LaTeX}
 	BoldFont  = *black,
 	ItalicFont = *black,
 ]{serif72beta}
+
+
+\titleformat{\chapter}[display]
+         {\relax}{\mbox{}\oldmarginpar{\vspace*{-3\baselineskip}\color{halfgray}\chapterNumber\thechapter}}{0pt}%
+         {\Large\textsc}[\vspace*{.0\baselineskip}\titlerule]%
 
 
 \newcommand*{\textheader}[1]{{\blackfont #1}}
