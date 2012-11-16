@@ -102,9 +102,52 @@
 
 
 
-%library & glossaries
+%bibliography 
 %\usepackage{natbib}
-\usepackage[style=apa,firstinits=true,maxcitenames=1,natbib=true,backend=biber]{biblatex}
+\usepackage{csquotes}
+\usepackage[style=numeric,firstinits=true,maxcitenames=1,natbib=true,backend=biber]{biblatex}
+%
+%
+%\newcounter{cbx:totalcite}
+%\newbibmacro{textcite:count}{%
+%  \iffirstcite
+%    {\setcounter{cbx:totalcite}{1}}
+%    {\addtocounter{cbx:totalcite}{1}}}
+%
+%\newbibmacro{textcite:delim}{%
+%  \iffirstcite
+%    {}
+%    {\iflastcite
+%       {\ifnumgreater{\value{cbx:totalcite}}{2}
+%          {\finalandcomma\space\bibstring{and}\space}
+%          {\addspace\bibstring{and}\space}}
+%       {\addcomma\space}}}
+%
+%\def\iffirstcite{%
+%  \ifboolexpr{ ( test {\ifnumequal{\value{multicitetotal}}{0}}
+%                 and test {\ifnumequal{\value{citecount}}{1}} )
+%               or ( test {\ifnumgreater{\value{multicitetotal}}{0}}
+%                    and test {\ifnumequal{\value{multicitecount}}{1}}
+%                    and test {\ifnumequal{\value{citecount}}{1}} ) }}
+%
+%\def\iflastcite{%
+%  \ifboolexpr{ test {\ifnumequal{\value{citecount}}{\value{citetotal}}}
+%               and test {\ifnumequal{\value{multicitecount}}{\value{multicitetotal}}} }}
+%
+%\DeclareCiteCommand{\textcite}
+%  {}% <precode>
+%  {\usebibmacro{citeindex}% <loopcode>
+%   \usebibmacro{textcite:count}%
+%   \usebibmacro{textcite:delim}%
+%   \usebibmacro{textcite}}
+%  {} % <sepcode>
+%  {\usebibmacro{textcite:postnote}}% <postcode>
+%
+%\DeclareMultiCiteCommand{\textcites}{\textcite}{}
+
+
+
+% glossaries
 \usepackage[nomain,acronym,nonumberlist,section=chapter]{glossaries}
 \glossarystyle{listdotted}
 \setlength{\glslistdottedwidth}{12em}
@@ -147,7 +190,7 @@
 \newcommand{\myfloatalign}{\centering} % To be used with each float for alignment
 \usepackage{caption}
 \captionsetup{format=hang,font=small,labelfont={bf}}
-
+\captionsetup[table]{position=t}
 
 %----------------------------------------------------------------------------------------
 %	HYPERREFERENCES
@@ -459,6 +502,8 @@ pdfproducer={LaTeX}
 %	USEFUL COMMANDS
 %----------------------------------------------------------------------------------------
 %%%%% USEFUL COMMANDS %%%%%%%%%%
+\newcommand{\q}{{\ensuremath{\mathbf{q}}}}
+
 \newcommand{\SF}{{\ensuremath{\mathcal{SF}}}}
 \newcommand{\OI}{{\ensuremath{\mathcal{OI}}}}
 \newcommand{\SD}{{\ensuremath{\mathcal{SF}_{pulses}}}}

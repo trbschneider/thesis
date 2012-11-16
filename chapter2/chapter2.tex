@@ -241,7 +241,7 @@ The kurtosis parameter, here defined as the excess kurtosis \citep{Kenney:1957},
 \begin{equation}
 	K=\frac{\tfrac{1}{n} \sum_{i=1}^n (x_i - \overline{x})^4}{\left(\tfrac{1}{n} \sum_{i=1}^n (x_i - \overline{x})^2\right)^2} - 3 
 \end{equation}
-with $\bar{x}$ being the sample mean. A high kurtosis distribution has a narrower peak and long, fat tail compared to a normal distribution. A low kurtosis distribution has a more rounded peak and a shorter, thinner tail. In the context of diffusion analysis, the kurtosis parameter can be used to quantify how much the dPDF differs from a Gaussian displacement distribution \citep{Jensen:2010}. High K values can therefore be interpreted as an indicator of restricted diffusion in a sample.
+with $\bar{x}$ being the sample mean. A high kurtosis distribution has a narrower peak and long, fat tail compared to a normal distribution. A low kurtosis distribution has a more rounded peak and a shorter, thinner tail. In the context of diffusion analysis, the kurtosis parameter can be used to quantify how much the \gls{dPDF} differs from a Gaussian displacement distribution \citep{Jensen:2010}. High K values can therefore be interpreted as an indicator of restricted diffusion in a sample.
 
 \subsubsection*{Limitations of QSI}
 \Gls{QSI} parameters measured in nervous tissue are often interpreted as a direct indicator of axonal architecture, such as the \gls{MAD}.  Early studies have demonstrated that q-space analysis can indeed provide exact estimates of the geometry in simple samples, e.g. yeast cells \citep{Cory:1990} or blood cells \citep{Kuchel:1997}. However, experiments on real nervous tissue have shown that the interpretation of q-space parameters in axonal tissue is more complicated \citep{King:1994,Assaf:2000,Assaf:2000a,Bar-Shir:2008}. Assaf and Cohen were first to demonstrate that the displacement profile of nervous tissue can be expressed as a combination of at least two compartments exhibiting hindered and restricted diffusion. A recent study of QSI in the in-vivo human brain by \citet{Nilsson:2009} confirmed that the FWHM perpendicular to white matter fibres did not change with diffusion time, while parallel FWHM increased linearly with the square root of diffusion time. This suggests the presence of both restricted and hindered diffusion along and across WM tracts repectively (see Figure~\ref{fig:chapter 2 types of diffusion}). It is assumed that hindered and restricted diffusion correspond to two different compartments: intra-cellular (IC) and extra-cellular (EC) water, although there is an ongoing debate over the interpretation of these results (see e.g. \citep{Kiselev:2007, Mulkern:2009}).
@@ -252,13 +252,13 @@ Since q-space analysis provides the average displacement probability over the wh
 
 \subsection{Apparent diffusion coefficient}
 \label{subsec:adc}
-In the absence of any diffusion impeding barriers, the dPDF takes the form of a simple Gaussian probability distribution, which is only dependent on the diffusion time $t$ and the diffusion coefficient $d$:
+In the absence of any diffusion impeding barriers, the \gls{dPDF} takes the form of a simple Gaussian probability distribution, which is only dependent on the diffusion time $t$ and the diffusion coefficient $d$:
 \begin{equation}
 P(\textbf{r}_{0},\textbf{r},\Delta) =  \frac{1}{\sqrt{(4\pi dt)^3}}\exp\bigg(-\frac{|\textbf{r}-\textbf{r}_{0}|^{2}}{4dt}\bigg).
 \label{Gaussian PDF}
 \end{equation}
 
-This closed form solution for the dPDF can be substituted in the general q-space formalism given in Equation~\ref{eq:chapter 2 qspace formula}, simplifying it to:
+This closed form solution for the \gls{dPDF} can be substituted in the general q-space formalism given in Equation~\ref{eq:chapter 2 qspace formula}, simplifying it to:
 \begin{equation}
 	S(s_0,d;\delta,\Delta,G) = s_0 \cdot \exp(-(2\pi\gamma\delta)^2\Delta \cdot d),
 \end{equation}
@@ -268,7 +268,7 @@ with model parameters being the diffusion coefficient $d$ and the baseline signa
 \end{equation}
 with $b  \approx -(2\pi\gamma\delta)^2\Delta$ under the \gls{SGP} assumption of $\delta \ll \Delta$.
 \paragraph{}
-In true free diffusion, $d$ is simply the diffusion coefficient of the medium and the signal equation above is exact. However, in real biological tissue, virtually all molecules will have interacted with their environment within the timescale of a typical diffusion MR experiment. In this case the above expression is just an approximation of the underlying true dPDF and $d$ above is not only related to the diffusivity of the medium but also informs about the diffusion impedance caused by molecules interacting with the environment. To highlight the difference to the classical definition of the diffusion coefficient, we refer to $d$ as the \gls{ADC}.
+In true free diffusion, $d$ is simply the diffusion coefficient of the medium and the signal equation above is exact. However, in real biological tissue, virtually all molecules will have interacted with their environment within the timescale of a typical diffusion MR experiment. In this case the above expression is just an approximation of the underlying true \gls{dPDF} and $d$ above is not only related to the diffusivity of the medium but also informs about the diffusion impedance caused by molecules interacting with the environment. To highlight the difference to the classical definition of the diffusion coefficient, we refer to $d$ as the \gls{ADC}.
 
 The model parameters $s_0$ and the \gls{ADC} are tissue dependent and can be estimated by acquiring a minimum of two diffusion weighted images with different $b$-value (usually $b=0$ and $b=800-1200mm/s^2$ for in-vivo nervous tissue). Typically a simple log-transformation of Equation~\ref{eq:chapter 2 adc} is used to obtain a linear equation:
 \begin{equation}
@@ -441,7 +441,7 @@ The optimisation framework was used in \citet{Alexander:2010} to estimate the pa
 
  
 \section{Summary}
-We have discussed ways of inferring microstructual information from  {\gls{DWI}} , ranging from simple methods such as \gls{ADC} or \gls{DTI} to sophisticated multi-compartment modelling. \gls{ADC} and \gls{DTI} are easy to obtain but the simplistic underlying assumptions of Gaussian  {\gls{dpdf}} is often inaccurate. As a result, different microstructural changes in pathologies can have the same effect on those metrics and therefore cannot be told apart by \gls{DTI} alone. At least in theory, \gls{QSI} has the potential to overcome this limitation but requires both very strong diffusion gradients and long acquisition times. Furthermore, \gls{QSI} derived parameters  {\gls{dpdf}} measures only relate indirectly to white matter structure and must be carefully interpreted if the SGP is violated.
+We have discussed ways of inferring microstructual information from  {\gls{DWI}} , ranging from simple methods such as \gls{ADC} or \gls{DTI} to sophisticated multi-compartment modelling. \gls{ADC} and \gls{DTI} are easy to obtain but the simplistic underlying assumptions of Gaussian  {\gls{dPDF}} is often inaccurate. As a result, different microstructural changes in pathologies can have the same effect on those metrics and therefore cannot be told apart by \gls{DTI} alone. At least in theory, \gls{QSI} has the potential to overcome this limitation but requires both very strong diffusion gradients and long acquisition times. Furthermore, \gls{QSI} derived parameters  {\gls{dPDF}} measures only relate indirectly to white matter structure and must be carefully interpreted if the SGP is violated.
 
 
 Using more advanced diffusion models, incorporating anatomical a-priori information about the different compartments of the investigated tissue can overcome the limitations of the simplistic \gls{DTI} model but at the same time allows more flexibility than \gls{QSI}. However, in-vivo scans are limited in in maximum scan time and hardware capabilities. Under these conditions, finding the optimal set of acquisition parameters is not trivial. The optimisation framework of Alexander can be used to find the  {\gls{DWI}}  protocol that is best suited to estimate the model parameters of interest while it respects the limitations of the clinical setup.  
