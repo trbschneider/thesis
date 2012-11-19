@@ -11,10 +11,10 @@ The next two chapters will present two \gls{QSI} studies that both address the a
 
 \section{Methods}
 \label{sec:chapter 5 exp1 methods}
-\subsection*{Study design}
+\subsection{Study design}
 Twenty right-handed male healthy subjects were recruited (mean age 35$\pm$11yrs) to be scanned on a 3T Tim Trio (Siemens Healthcare, Erlangen). Six subjects were recalled for a second scan on a different day to assess intra-subject reproducibility of \gls{QSI} derived parameters.
 
-\subsection*{Data acquisition}
+\subsection{Data acquisition}
 In each subject we perform cardiac-gated high b-value axial {\gls{DWI}} (matrix=96$\times$96, b-spline interpolated to 192$\times$192 in image space, FOV=$144\times144$ mm$^2$, slice thickness=5mm, 20 slices, TE=110ms, TR$\approx$4000ms). The \gls{QSI} set-up is based on parameters found in the most recent clinical \gls{QSI} study \citep{Farrell:2008}. However, our gradient system only allowed maximum \gls{gstr} of 23mT/m (\citet{Farrell:2008}: 60mT/m). To achieve similar {\q}-values it was necessary to increase the gradient duration \gls{smalldel} to 51ms. Reproduction of the protocol was further complicated by a limitation in the scanner software, which only permits a b-value to be specified in multiples of 50 mm/s$^2$ and means that {\q}-values can not be exactly linearly spaced. We acquire a total of 32 b-values between 0-3000s/mm$^2$ in three different {\gls{DWI}} directions: two directions perpendicular (XY) and one parallel (Z) to the main {\gls{SC}} axis. The full protocol is given in Table~\ref{tab:chap5exp1 protocol}.
 
 After an initial quality check, we found that the prescription of the axial \gls{DWI} slices varied greatly between different subjects. Figure~\ref{fig:chapter5 positioning} shows two representive cases for correct and incorrect positioning observed in the dataset. \gls{QSI} is very sensitive to its alignment to the fibre direction as shown e.g. in \citep{Avram:2004} and the variation in slice positioning might overshadow the subtle differences between \gls{WM} we are interested in. We therefore measure the angulation between imaging plane and \gls{SC} longitudinal axis as seen on a T2w sagittal scan at C2/C3. We excluded 11 subjects and their subsequent data where the angle was less than 80$^\circ$ (ideally we assume the axial images perfectly perpendicular, i.e 90$^\circ$)
@@ -27,7 +27,7 @@ After an initial quality check, we found that the prescription of the axial \gls
 \label{fig:chapter5 positioning}
 \end{figure}
 
-\subsection*{Data processing}
+\subsection{Data processing}
 Similar to \citet{Farrell:2008} the two perpendicular diffusion directions were averaged to increase the signal-to-noise ratio. The measurements are linearly regridded to be equidistant in q-space and the  {\gls{dPDF}} is computed using inverse Fast Fourier Transformation. To increase the resolution of the  {\gls{dPDF}}, the signal was extrapolated in q-space to a maximum q=166mm$^{-1}$ by fitting a bi-exponential decay curve to the {\gls{DWI}} data as suggested in \citet{Cohen:2002, Farrell:2008}. Figure~\ref{fig:chapter5 exp1 processing pipeline} illustrates the processing pipeline. Maps of the full width at half maximum and zero displacement probability were derived for XY and Z as described in Section~\ref{sec:qspace}. For comparison we also computed the \gls{ADC} from the monoexponential part of the decay curve (b < 1100s/mm2) as in \citet{Farrell:2008} for both XY and Z directions using a constrained non-linear least squared fitting algorithm. Figure~\ref{fig:chapter5 exemplary maps} shows both \gls{ADC} maps and the four \gls{QSI} parameter maps in one randomly chosen subject.
 
 
@@ -62,7 +62,7 @@ Similar to \citet{Farrell:2008} the two perpendicular diffusion directions were 
 \label{fig:chapter5 exemplary maps}
 \end{figure}
 
-\subsection*{ROI analysis} We semi-automatically delineate the whole cervical {\gls{SCA}} between levels C1 and C3 on the b=0 images using the active surface segmentation by \citet{Horsfield:2010} available in Jim6. We perform a morphological erosion (2 iterations) of the obtained segmentation mask to exclude voxels with potential partial-volume average effect from surrounding \gls{CSF}. In addition, four regions of interest were manually placed in specific white matter tracts and one ROI was positioned in the gray matter on all slices between level C1 and C3. The four white matter regions comprised the left and right tracts (l\&r-LT) running in the lateral columns and the anterior (AT) and posterior tracts (PT) similar to \citet{Hesseltine:2006,Freund:2010} (see Figure~\ref{fig:chapter5 exp1 ROIs}).
+\subsection{ROI analysis} We semi-automatically delineate the whole cervical {\gls{SCA}} between levels C1 and C3 on the b=0 images using the active surface segmentation by \citet{Horsfield:2010} available in Jim6. We perform a morphological erosion (2 iterations) of the obtained segmentation mask to exclude voxels with potential partial-volume average effect from surrounding \gls{CSF}. In addition, four regions of interest were manually placed in specific white matter tracts and one ROI was positioned in the gray matter on all slices between level C1 and C3. The four white matter regions comprised the left and right tracts (l\&r-LT) running in the lateral columns and the anterior (AT) and posterior tracts (PT) similar to \citet{Hesseltine:2006,Freund:2010} (see Figure~\ref{fig:chapter5 exp1 ROIs}).
 
   \begin{figure}
       \centering
@@ -130,7 +130,7 @@ Similar to \citet{Farrell:2008} the two perpendicular diffusion directions were 
 	 \end{adjustbox}
 \end{table}
 
-\subsection*{Statistical processing} We compare scan/re-scan reproducibility by computing the absolute difference and relative difference in ADC and \gls{QSI} parameters over the defined \glspl{ROI}.
+\subsection{Statistical processing} We compare scan/re-scan reproducibility by computing the absolute difference and relative difference in ADC and \gls{QSI} parameters over the defined \glspl{ROI}.
 %
 %
 Further, we investigate the correlation between individual \gls{ADC} and \gls{QSI} measurements in XY and Z directions. We pool all voxel-wise measurements over the segmented \gls{SC} area and compute Pearson's correlation coefficient over all voxels. We test for statistical significance of the correlations with a confidence interval of 95\%.
@@ -139,7 +139,7 @@ Further, we investigate the correlation between individual \gls{ADC} and \gls{QS
 We then compare significant differences in individual metrics using a paired two-tailed t-test and further investigate statisitical significance in the group mean values of the \gls{ADC} parameters and \gls{QSI} metrics between tracts by performing the Hotellings-T$^2$ test (confidence interval=95\%). To investigate the relevance of measurements in the different \gls{DWI} directions, we compute the same significance test of XY-only \gls{QSI} parameters (P0$_{xy}$, FWHM$_{xy}$) and compare with Z-only (P0$_z$, FWHM$_z$) and the combination of both (P0$_{xy}$, FWHM$_{xy}$, P0$_z$, FWHM$_z$).
 
 \section{Results}
-\subsection*{Reproducibility}
+\subsection{Reproducibility}
 \label{par:chapter5 exp1 reproducibility}
 Tables~\ref{tab:chap5exp1 scan rescan} shows absolute and relative differences between scan and rescan of three healthy subjects in ADC$_{xy}$ and ADC$_z$ and \gls{QSI} metrics in XY and Z direction. We observe a general trend of measurements perpendicular to the long \gls{SC} fibres presenting higher variation between scan and rescan than parallel measurements in \gls{ADC} and both \gls{QSI} metrics in all subjects. In particular ADC$_{xy}$ shows very high intra-subject variation between 20--40\% on average in all white matter \glspl{ROI}, while only GM values show good reproducibility value of less than 11\% variation. In particular ADC$_z$ appears more reproducible in all three subjects with average relative variation between 5--16\%.
 
@@ -254,7 +254,7 @@ The perpendicular \gls{QSI} metrics P0${_{xy}}$ and FWHM$_{xy}$ present good rep
 \end{adjustbox}
 \end{table}
 
-\subsection*{Differences between tract-specific ROI measurements}
+\subsection{Differences between tract-specific ROI measurements}
 Figure~\ref{fig:chapter5 exp1 vals} compares the average values and standard deviation over all 9 subjects between tract-specific for \gls{ADC} and \gls{QSI} metrics. As a general trend, we observe higher inter-subject variation in XY measurements compared to Z measurements among all 9 subjects which is in line with our results of intra-subject variation shown above.
 
 
@@ -377,7 +377,7 @@ Between \gls{WM} \glspl{ROI} only the left LT but not the right LT is significan
   	  	  	  }
 \end{table}%
 
-\subsection*{Multi-variate differences between tract-specific ROI measurements}
+\subsection{Multi-variate differences between tract-specific ROI measurements}
 The single parameter comparisions above indicate that both \gls{ADC} and \gls{QSI} metrics can discriminate some WM tracts, but offer complementary information in perpendicular and parallel measurements. The multivariate Hotelling's-T$^2$ test allows us to test whether a combination of XY and Z metrics is better suited to characterize and discriminate WM measures in different \glspl{ROI}. In the following, we present results for the following combinations of parameters:
 \begin{itemize}
     \item Both diffusivity parameters ADC$_{xy}$ and ADC$_z$ (Table~\ref{tab:chap5exp1_adc hotelling})
@@ -458,7 +458,7 @@ For combination of \gls{QSI} parameters in Z only, as well as the combination of
   }
 \end{table}%
 
-\subsection*{Voxel-wise correlation of ADC and QSI metrics}
+\subsection{Voxel-wise correlation of ADC and QSI metrics}
 Table~\ref{tab:chapter5 exp1 correlations} shows the Pearson correlation coefficient $\mathit{r}$ and statistical significance of the correlation between ADC and \gls{QSI} parameters over all \gls{SC} voxels in all subjects. We observe significant correlations between \gls{ADC}$_{xy}$ and \gls{ADC}$_z$. Further we find significant correlations between
 and \gls{QSI} parameters both within and across XY and Z direction. Interestingly, we find both FWHM$_{xy}$ and P0$_z$ are correlated with each other and also with both ADC parameters, while the other two \gls{QSI} parameters P0$_{xy}$ and FWHM$_z$ did neither correlate with each other nor any other metrics.%
 
@@ -493,7 +493,7 @@ and \gls{QSI} parameters both within and across XY and Z direction. Interestingl
 
 \section{Discussion} \gls{QSI} metrics obtained without sequence development, using a standard {\gls{DWI}} protocol available on a 3T clinical scanner, show a good reproducibility that is superior to simple \gls{ADC} analysis. We observe tract-specific correlations between \gls{ADC} and \gls{QSI} parameters between several WM tracts. However some of the associations in \gls{QSI} metrics are weaker in XY compared to Z, particularly between lateral and posterior tracts. Together with the findings of weak correlation between \gls{QSI} and ADC metrics in both XY and Z, our results suggest that the Z direction provides additional information to perpendicular measurements. Our results also suggest that on a clinical scanner \gls{QSI} might not be able to reliably distinguish between individual \gls{WM} tracts.
 
-\paragraph{} The results of this experiment need to be interpreted with caution due to the limitations in hardware and software in the experimental setup. In particular the low gradient strength used in this study might conceal differences between tracts. Simulations by \citet{Latt:2007} show that insufficient gradient strength might lead to overestimation of compartment size and suggest that gradients of at least 60 mT/m are required to be sensitive to the typical size of axons found in human WM. Beside the hardware limitations of the scanner, there are also several issues in the design of this study including:
+\paragraph{} The results of this experiment need to be interpreted with caution due to the limitations in hardware and software in the experimental set up. In particular the low gradient strength used in this study might conceal differences between tracts. Simulations by \citet{Latt:2007} show that insufficient gradient strength might lead to overestimation of compartment size and suggest that gradients of at least 60 mT/m are required to be sensitive to the typical size of axons found in human WM. Beside the hardware limitations of the scanner, there are also several issues in the design of this study including:
 \begin{enumerate}
 	\item the high number of subjects that had to be excluded due to misalignment of the axial images
 	\item the linear regridding that made necessary because of scanner software limitation

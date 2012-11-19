@@ -7,14 +7,14 @@ The {\gls{SC}} is the part of the {\gls{CNS}} that connects the brain and periph
 
 The {\gls{SC}} is protected by the vertebral column and is located inside the vertebral canal. In cross-section, the cord can be divided in two regions: (i) the peripheral region containing neuronal white matter tracts. (ii) the grey, butterfly-shaped central region made up of nerve cell bodies. This gray matter is centered around the central canal, containing \gls{CSF}.
 
-\subsection*{White matter architecture of the cord}
+\subsection{White matter architecture of the cord}
 The white matter of the {\gls{SC}} consists mostly of longitudinally running axons and glial cells. White matter axons are organized hierarchally grouped in bundles, tracts and pathways. Bundles of neighboring white matter axons that share similar features are called fibre bundles. A tract is formed by fibre bundles with same origin, course, termination and function. Multiple tracts with the same function form a pathway.
 
-\subsubsection*{Ascending tracts}
+\subsubsection{Ascending tracts}
 \label{sec:chap2:ascendingtracts}
 Figure \ref{fig:chapter 2 spinal_cord_anatomy} illustrates the location of the major ascending pathways in the {\gls{SC}}. These sensory tracts, arise either from cells of spinal ganglia in the white matter of the {\gls{SC}} or from intrinsic neurons within the gray matter that receive primary sensory input. The dorsal column hold the largest ascending tracts and are associated with tactile, pressure, and kinesthetic sense connecting with sensory areas of the cerebral cortex. Fibres of the spinothalamic tracts ascend in the lateral ventral part of the cord and convey signals related to pain and thermal sense. The anterior spinothalamic tract arises ascends more anteriorly in the {\gls{SC}}; conveying impulses related to light touch. At brain level the two spinothalamic tracts tend to merge and cannot be distinguished as separate entities. Anterior and posterior spinocerebellar tracts are involved in automatic muscle tone regulation. These tracts ascend peripherally in the dorsal and ventral margins of the cord.
 
-\subsubsection*{Descending tracts}
+\subsubsection{Descending tracts}
 \label{sec:chap2:descendingtracts}
 Tracts descending to the {\gls{SC}} as illustrated in Figure~\ref{fig:chapter 2 spinal_cord_anatomy} are concerned modulation of ascending sensory signals and are associated with voluntary motor function such as muscle tone and reflexes. The largest and most important, the {\gls{CST}}, originates in broad regions of the cerebral cortex and descents in the lateral dorsal part {\gls{SC}} white matter. Smaller descending tracts like the rubrospinal tract, the vestibulospinal tract, and the reticulospinal tract originate in small and diffuse regions of the midbrain, pons, and medulla and descend ventrally and laterally.
 \begin{figure}
@@ -25,9 +25,9 @@ Tracts descending to the {\gls{SC}} as illustrated in Figure~\ref{fig:chapter 2 
 \end{figure}
 
 \section{Principles of MRI}
-\Gls{MRI} is a non-invasive imaging method widely used in medicine. \gls{MRI} is free of gamma-radiation (unlike CT or X-ray methods), which makes is one of the major tools for application in neuroimaging. \Gls{MRI} can describe tissue in terms of many different properties such as relaxation, density, and diffusion. Specifically, in this thesis our main interest is in the sensitivity of MRI to the motion of water molecules experiments to infer information about the microscopic tissue morphology. A full account of MRI theory is beyond the scope of this chapter and can be found elsewhere (see e.g. in \cite{McRobbie:2002,Bernstein:2004}). However, a brief overview about the principles of magnetic resonance and \gls{MRI} is given below.
+\Gls{MRI} is a non-invasive imaging method widely used in medicine. \gls{MRI} is free of gamma-radiation (unlike CT or X-ray methods), which makes is one of the major tools for application in neuroimaging. \Gls{MRI} can describe tissue in terms of many different properties such as relaxation, density, and diffusion. Specifically, in this thesis our main interest is in the sensitivity of MRI to the motion of water molecules experiments to infer information about the microscopic tissue morphology. A full account of \gls{MRI} theory is beyond the scope of this chapter and can be found elsewhere (see e.g. in \cite{McRobbie:2002,Bernstein:2004}). However, a brief overview about the principles of magnetic resonance and \gls{MRI} is given below.
 
-\subsection*{Magnetic resonance}
+\subsection{Magnetic resonance}
 Nuclear magnetic resonance is a phenomenon that occurs when an element with a non-zero magnetic moment (possessing an odd number of electrons or neutrons) interacts with an external magnetic field. Hydrogen ($^1$H) is such an element, and is most commonly used in MRI due to its abundance in the human body. When such an element is placed in a magnetic field, its nuclear spin will begin to precess with a frequency governed by the equation:
 \begin{equation}
 \omega =\gamma \cdot \mathbf{B}_0 
@@ -56,7 +56,7 @@ The development of the net magnetisation vector is characterized by two time con
 \end{itemize}
 
 Usually the transverse magnetization decays more rapidly than it takes for the magnetisation to return to the longitudinal equilibrium. Both T1 and T2 are dependent on the magnetic field strength, but more importantly they are also specific to the macromolecular environment of the protons and therefore are specific for different types of tissue, e.g. for different tissue types within the live human brain (\gls{GM} T1/T2 = 2000/100 ms, \gls{WM} T1/T2 = 1100/70 ms at 3T magnetic field strength \citep{Stanisz:2005}).
-\subsection*{Spin-echo sequence}
+\subsection{Spin-echo sequence}
 \label{sec:chapter2 spin echo}
 The {\gls{SE}} sequence is the central pulse sequence that is used in all experiments we present in this dissertation. Figure \ref{fig:chap2 SE sequence} illustrates the layout and signal development of the \gls{SE} experiment. The \gls{SE} sequence starts with a 90$^\circ$(P90) excitation pulse that flips magnetization in the transverse plane, followed by a 180$^\circ$RF pulse (P180) after time TE/2 and the signal readout after another TE/2, producing an echo at time TE. The P180 inversion pulse will reverse the demagnetization by field inhomogeneities so that the contrast is mainly driven by spin-spin relaxation constant  T2. 
 %When TE is sufficiently small compared to the transverse relaxation time T1 of the sample, normally taken care by long repetitions times ($TR>5\times T1 $), the obtained signal is only dependent on T2 and is called T2-weighted (T2w). 
@@ -69,7 +69,7 @@ The {\gls{SE}} sequence is the central pulse sequence that is used in all experi
 \end{figure}
 
 
-\subsection*{Gradients and Image formation}
+\subsection{Gradients and Image formation}
 A magnetic gradient field $\textbf{G}=(G_{x},G_{y},G_{z})$ is a small spatially varying magnetic field, which is superimposed on the static magnetic field $\mathbf{B}_{0}$ and alters the spin frequency at a given position $x$ as follows:
 \begin{equation}
 \omega(x)= \omega_0 + \gamma \cdot \textbf{G}(t)\textbf{x}(t))
@@ -245,7 +245,7 @@ The kurtosis parameter, here defined as the excess kurtosis \citep{Kenney:1957},
 \end{equation}
 with $\bar{x}$ being the sample mean. A high kurtosis distribution has a narrower peak and long, fat tail compared to a normal distribution. A low kurtosis distribution has a more rounded peak and a shorter, thinner tail. In the context of diffusion analysis, the kurtosis parameter can be used to quantify how much the \gls{dPDF} differs from a Gaussian displacement distribution \citep{Jensen:2010}. High K values can therefore be interpreted as an indicator of restricted diffusion in a sample.
 
-\subsubsection*{Limitations of QSI}
+\subsubsection{Limitations of QSI}
 \Gls{QSI} parameters measured in nervous tissue are often interpreted as a direct indicator of axonal architecture, such as the \gls{MAD}.  Early studies have demonstrated that q-space analysis can indeed provide exact estimates of the geometry in simple samples, e.g. yeast cells \citep{Cory:1990} or blood cells \citep{Kuchel:1997}. However, experiments on real nervous tissue have shown that the interpretation of q-space parameters in axonal tissue is more complicated \citep{King:1994,Assaf:2000,Assaf:2000a,Bar-Shir:2008}. Assaf and Cohen were first to demonstrate that the displacement profile of nervous tissue can be expressed as a combination of at least two compartments exhibiting hindered and restricted diffusion. A recent study of QSI in the in-vivo human brain by \citet{Nilsson:2009} confirmed that the FWHM perpendicular to white matter fibres did not change with diffusion time, while parallel FWHM increased linearly with the square root of diffusion time. This suggests the presence of both restricted and hindered diffusion along and across WM tracts repectively (see Figure~\ref{fig:chapter 2 types of diffusion}). It is assumed that hindered and restricted diffusion correspond to two different compartments: intra-cellular (IC) and extra-cellular (EC) water, although there is an ongoing debate over the interpretation of these results (see e.g. \citep{Kiselev:2007, Mulkern:2009}).
 
 
@@ -316,7 +316,7 @@ It should be noted that the interpretation of $AD$ and $RD$ as parallel and perp
 \subsection{Limitations of the SGP approximation}
 \label{sec:chapter2 limits of SGP}
 Unlike modern NMR spectrometers and pre-clinical small bore scanners, most clinical MRI systems are only equipped with limited maximal gradient strength (usually 40-60 mT/m). On these systems the necessary high q-values, e.g., needed for q-space analysis cannot be achieved without prolonged diffusion gradient pulse durations. \citep{Mitra:1995} showed that the effective molecule displacement measured with a finite diffusion pulse $\delta$ is equivalent to the distance between the \gls{COM} of the molecule trajectories occurring while the diffusion gradients are applied. If the \gls{SGP} condition $ \delta \ll \Delta$ is fulfilled, the observed distance between the \glspl{COM} of the trajectories is approximately the same as the true displacement of the molecule. However, if $\delta$ is long, molecules movement will occur during the diffusion gradient pulses and only the displacement between the \gls{COM}s will be observed. As illustrated in Figure~\ref{fig:chapter2 com effect}, in the case of restricted diffusion, this increase in gradient pulse duration will cause the underestimation of the true displacement. 
-When implementing QSI protocols on a clinical scanner, one has to be wary of the effect of the finite gradient pulse duration and its implications. Usually, clinical studies of QSI have to violate the \gls{SGP} condition to achieve sufficiently high q-values. As expected from the \gls{COM} effect, this causes an artifactual reduction of the \gls{RMSD}. This has been confirmed in simulation \citep{Linse:1995,Laett:2007a} and various experimental studies in phantoms \citep{Avram:2004,Laett:2007}, excised tissue \citep{Malmborg:2006,Bar-Shir:2008} and even in in-vivo human scans \citep{Nilsson:2009}. As a consequence, the estimated displacement profile has to be interpreted with caution as is will not reflect the true displacement in the tissue. The \gls{SGP} violation is a fundamental problem in the above models and can only be avoided with an increase of the maximum gradient strength. 
+When implementing QSI protocols on a clinical scanner, one has to be wary of the effect of the finite gradient pulse duration and its implications. Usually, clinical studies of QSI have to violate the \gls{SGP} condition to achieve sufficiently high q-values. As expected from the \gls{COM} effect, this causes an artifactual reduction of the \gls{RMSD}. This has been confirmed in simulation \citep{Linse:1995,Latt:2007a} and various experimental studies in phantoms \citep{Avram:2004,Latt:2007}, excised tissue \citep{Malmborg:2006,Bar-Shir:2008} and even in in-vivo human scans \citep{Nilsson:2009}. As a consequence, the estimated displacement profile has to be interpreted with caution as is will not reflect the true displacement in the tissue. The \gls{SGP} violation is a fundamental problem in the above models and can only be avoided with an increase of the maximum gradient strength. 
 
 \begin{figure}[htbp]
 	\centering
@@ -359,7 +359,7 @@ The cylinder geometry is particularily well suited to approximate diffusion with
 \end{equation}
 }
 
-where  $a_{m}$ is the $m$th root of equation  $J'_{1}(a_{m}R)= 0$ and $J'_{1}$ is the derivative of the Bessel function of the first kind, order one. Please note that in the literature this model might also be attributed to \citet{VanGelderen:1994}.
+where  $a_{m}$ is the $m$th root of equation  $J'_{1}(a_{m}R)= 0$ and $J'_{1}$ is the derivative of the Bessel function of the first kind, order one. Please note that in the literature this model might also be attributed to \citet{Vangelderen:1994}.
 
 \subsection{Compartment models}
 \label{sec:multicompartment_modeling}
@@ -368,13 +368,13 @@ Using a-priori information about the microstructure of the investigated sample, 
 	S(\Phi;\prot)=\sum_{i=0}^{n}f_i\cdot S_i(\phi_i;\prot).
 \end{equation}
 
-\subsubsection*{Bi-exponential model}
+\subsubsection{Bi-exponential model}
 One of the simplest compartment models is the bi-exponential model, expressing diffusion as the summation of two separate mono-exponential decay curves (see Equation \ref{eq:chapter 2 adc}) with two different diffusion coefficients (usually named \gls{ADC}$_{slow}$ and \gls{ADC}$_{fast}$):
 \begin{equation}
 	S_{biexp}(b) = f_{slow} \exp(-b\cdot ADC_{slow}) + f_{fast} \exp(-b\cdot ADC_{fast}).
 \end{equation}
 Experiments by \citet{Clark:2002} in in-vivo brain data demonstrate good agreement between measurements and fitted signal curves over a range of $b$-values. However, the biophysical interpretation of the two compartments is still in debate and the relation between the compartments and the microstructural properties of white matter remains unclear. 
-\subsection*{Geometric multi-compartment models of nervous tissue}
+\subsection{Geometric multi-compartment models of nervous tissue}
 \paragraph*{Stanisz' model}
 \cite{Stanisz:1997} were the first to propose a model that reflects the underlying micro-anatomy of nervous tissue. They introduced a model of restricted diffusion in bovine optic nerve using a three-compartment model approach. In their model, prolate ellipsoids represented axons, glial cells are represented by spheres and Gaussian diffusion was assumed in a homogeneous extra-cellular medium surrounded by partially permeable membranes. Experimental data was in agreement with the signal predicted by their model and showed significant departure of the {\gls{DWI}} signal from the simple Gaussian model. However, the complexity of this models requires very high quality measurements, typically only achievable in NMR spectroscopy rather than MRI.
 \paragraph*{The CHARMED model} 
@@ -384,7 +384,7 @@ Recently, \citet{Assaf:2005} developed the CHARMED model of cylindrical axons wi
 \label{par:alexanders_model}
 \citet{Alexander:2010} uses a simplified CHARMED model to demonstrate measurements of axon diameter and density in excised monkey brain and live human brain on a standard clinical scanner with multi shell \gls{HARDI}. The \gls{MMWMD} expresses diffusion in a white matter voxel as a combination of water particles trapped inside three different compartments: 
 \begin{enumerate}
-  \item Intra-axonal water experiencing diffusion restricted inside cylindrical axons with equal radius $R$ as developed by \citet{VanGelderen:1994}
+  \item Intra-axonal water experiencing diffusion restricted inside cylindrical axons with equal radius $R$ \citep{Stepisnik:1993,Vangelderen:1994}
   \item Extra-axonal water that is hindered due to the presence of adjacent axons. Diffusion is approximated by a diffusion tensor, with parallel diffusion coefficent $d_\parallel$ in the direction of the cylinders and symmetric diffusion $d_\perp$ in the perpendicular directions.
   \item Water that experiences unhindered diffusion, e.g., in the {\gls{CSF}}, modeled by an isotropic Gaussian distribution of displacements with diffusion coefficient $d_{I}$.
   \item Non-diffusing water, e.g., trapped in membranes (no parameters).
