@@ -14,7 +14,8 @@
 %----------------------------------------------------------------------------------------
 
 % Remove drafting to get rid of the '[ Date - classicthesis version 4.0 ]' text at the bottom of every page
-\PassOptionsToPackage{eulerchapternumbers,listings, subfig,parts,floatperchapter,manychapters,dottedtoc,subfig}{classicthesisxetex}
+\PassOptionsToPackage{protrusion=true, expansion=true,final,babel}{microtype}
+\PassOptionsToPackage{pdfspacing,eulerchapternumbers,listings,subfig,parts,floatperchapter,manychapters,dottedtoc,subfig}{classicthesisxetex}
 % Available options: drafting parts nochapters linedheaders eulerchapternumbers beramono eulermath pdfspacing minionprospacing tocaligned dottedtoc manychapters listings floatperchapter subfig
 % Adding 'dottedtoc' will make page numbers in the table of contents flushed right with dots leading to them
 \setcounter{tocdepth}{1}
@@ -45,9 +46,10 @@
 \usepackage{xspace} % To get the spacing after macros right
 \usepackage{mparhack} % To get marginpar right
 \usepackage[dvipsnames]{xcolor}
-\usepackage{polyglossia}
-\setdefaultlanguage[variant=british]{english}
-\usepackage{microtype} % To get marginpar right
+\usepackage[british,UKenglish,USenglish,english,american]{babel}
+%\pdfprotrudechars=2
+%\pdfadjustspacing=2
+
 
 %%%% THESIS PACKAGES
 %math
@@ -246,6 +248,17 @@ pdfproducer={LaTeX}
 \fi}
 }{\relax} 
 
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER AND LAYOUT MODS
+%----------------------------------------------------------------------------------------
+
+\newcommand\chaptersub[2]{\chapter
+  [#1\hfil\hbox{}\protect\linebreak{\itshape#2}]%
+  {#1}%
+}
+
+
 %----------------------------------------------------------------------------------------
 %	AUTOREFERENCES SETUP
 %	Redefines how references in text are prefaced for different 
@@ -271,8 +284,8 @@ pdfproducer={LaTeX}
 
 %----------------------------------------------------------------------------------------
 
-\usepackage{classicthesisxetex} 
-%\usepackage{classicthesis} 
+%\usepackage{classicthesisxetex} 
+\usepackage{classicthesis} 
 
 
 %----------------------------------------------------------------------------------------
@@ -288,220 +301,26 @@ pdfproducer={LaTeX}
 %	USING DIFFERENT FONTS
 %----------------------------------------------------------------------------------------
 
-\usepackage[math]{anttor}
+
+%\usepackage{tgpagella}
+%\fontfamily{qpl}\selectfont
+\usepackage{libertine-type1}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+
 \DeclareMathSizes{12}{11}{9}{7}
 \DeclareMathSizes{11}{10}{8}{7}
 %\usepackage{cmbright}
 
-\usepackage{xltxtra}
-\defaultfontfeatures{Mapping=tex-text}
 
-%\newfontfamily\electra[
-%	Path = ./fonts/ ,
-%	Extension = .otf ,
-%	UprightFont = *-Regular,
-%	BoldFont = *-Bold,
-%	ItalicFont = *-Cursive,
-%	BoldItalicFont = *-BoldCursive,
-%]{ElectraLTStd}
-%\newcommand*{\textel}[1]{{\electra #1}}
-
-%\setmainfont[
-%	Path = ./fonts/ ,
-%	Extension = .otf ,
-%	UprightFont = *,
-%	BoldFont = *-Bold,
-%	ItalicFont = *-Italic,
-%	BoldItalicFont = *-BoldItalic,
-%]{BemboStd}
-
-% \setmainfont[
-% 	Path = ./fonts/ ,
-% 	Extension = .ttf ,
-% 	UprightFont = *-Regular,
-% 	BoldFont = *-Bold,
-% 	ItalicFont = *-Italic,
-% 	BoldItalicFont = *-BoldItalic,
-%   SmallCapsFont = GriffosSCapsFont % change font for sc
-% ]{DroidSerif}
-
-% \setmainfont[
-% 	Path = ./fonts/ ,
-% 	Extension = .ttf ,
-% 	UprightFont = *regular,
-% 	BoldFont = *bold,
-% 	ItalicFont = *italic,
-% 	BoldItalicFont = *bolditalic,
-% ]{serif72beta}
-
-%\setmainfont[
-%	Path = ./fonts/ ,
-%	Extension = .ttf ,
-%	UprightFont = *R,
-%	BoldFont = *B,
-%	ItalicFont = *I,
-%	BoldItalicFont = *BI,
-%]{GenBas}% Gentium Basic Book
-
-%\setmainfont[
-%	Path = ./fonts/ ,
-%	Extension = .ttf ,
-%	UprightFont = *-Regular,
-%	BoldFont = *-Bold,
-%	ItalicFont = *-Italic,
-%	BoldItalicFont = *Cursive-Regular,
-%]{Neuton}
-
-%\setmainfont[
-%	Path = ./fonts/ ,
-%	%Extension = .otf ,
-%	UprightFont = *-Regular-OTF.otf,
-%	BoldFont = *-Bold-OTF.otf,
-%	ItalicFont = *-Italic-OTF.ttf,
-%	BoldItalicFont = *-BoldItalic-OTF.otf,
-%]{Volkhov}
-
-%
-
-\setmainfont[
-	Path = ./fonts/ ,
-	Extension = .otf ,
-	UprightFont = *-regular,
-	BoldFont = *-bold,
-	ItalicFont = *-italic,
-	BoldItalicFont = *-bolditalic,
-	SmallCapsFont = AlegreyaSC-Regular,	
-]{texgyrepagella}
-
-% \setmainfont[
-% 	Path = ./fonts/ ,
-% 	Extension = .otf ,
-% 	UprightFont = *R,
-% 	BoldFont = *RB,
-% 	ItalicFont = *RI,
-% 	BoldItalicFont = *RBI,
-% ]{LinLibertine_}
-
-
-%
-%\setmainfont[
-%	Path = ./fonts/ ,
-%	Extension = .ttf ,
-%	UprightFont = *-Regular,
-%	BoldFont = *-Bold,
-%	ItalicFont = *-Italic,
-%	BoldItalicFont = *-BoldItalic,
-%]{Vollkorn}
-
-% \setmainfont[
-% 	Path = ./fonts/ ,
-% %	Extension = .ttf ,
-% 	UprightFont = *_Lt.ttf,
-% 	BoldFont = *_Bd.ttf,
-% 	ItalicFont = *_LtIt.ttf,
-% 	BoldItalicFont = *_BdIt.ttf,
-% 	SmallCapsFont = SourceSansPro-Semibold.otf,
-% ]{Aller}
-
-%\setmainfont[
-%	Path = ./fonts/ ,
-%	Extension = .otf ,
-%	UprightFont = *-Regular,
-%	BoldFont = *-Bold,
-%	ItalicFont = *-Italic,
-%	BoldItalicFont = *-BoldItalic,
-%]{Alegreya}
-
-%\setmainfont[
-%	Path = ./fonts/FontinSans_Cyrillic_46b/ ,
-%	Extension = .otf ,
-%	UprightFont = *_R_46b,
-%	BoldFont = *_B_46b,
-%	ItalicFont = *_I_46b,
-%	BoldItalicFont = *_BI_46b,
-%]{FontinSans_Cyrillic}
-
-\newfontfamily\headerfont[
-	Path=./fonts/,
-	UprightFont = SourceSansPro-Regular.otf,
-	BoldFont = SourceSansPro-Bold.otf,
-	ItalicFont = SourceSansPro-It.otf,
-	BoldItalicFont = SourceSansPro-BoldIt.otf,
-]{sourcesans}
-
-
-
-
-\newfontfamily\headermedfont[
-	Path=./fonts/,
-	UprightFont = SourceSansPro-Semibold.otf,
-	ItalicFont = SourceSansPro-SemiboldIt.otf,	
-]{sourcesans}
-
-
-\newfontfamily\blackfont[
-	Path = ./fonts/ ,
-	Extension = .ttf ,
-	UprightFont  = *black,
-	BoldFont  = *black,
-	ItalicFont = *black,
-]{serif72beta}
-
-
-\titleformat{\chapter}[display]
-         {\relax}{\mbox{}\oldmarginpar{\vspace*{-3\baselineskip}\color{halfgray}\chapterNumber\thechapter}}{0pt}%
-         {\Large\textsc}[\vspace*{.0\baselineskip}\titlerule]%
-
-
-\newcommand*{\textheader}[1]{{\blackfont #1}}
-\newcommand*{\textmark}[1]{{\headerfont #1}}
-% \renewcommand{\ct@parttext}{\relax} % Thanks to Ivo
-% \titleformat{\part}[display]
-%          {\normalfont\centering\huge}%
-%         {\thispagestyle{empty}\headerfont\partname~\MakeTextUppercase{\thepart}}{1em}%
-%         {\color{Maroon}\headerfont\caps}[\bigskip\normalsize\color{Black}]
-% 
-%     
-% \titleformat{\chapter}[display]
-%         {\relax}{\mbox{}\oldmarginpar{\vspace*{-3\baselineskip}\color{halfgray}\chapterNumber\thechapter}}{0pt}%
-%         {\Large\headerfont}[\vspace*{.0\baselineskip}\titlerule]%   
-% 
-% 
-%     % sections \FloatBarrier
-%     \titleformat{\section}
-%         {\relax}{\headerfont\Large\textbf\thesection}{1em}{\headerfont\Large\textbf}
-%     % subsections
-%     \titleformat{\subsection}
-%         {\relax}{\headerfont\normalsize\textbf\thesubsection}{1em}{\headerfont\normalsize\textbf}
-%     % subsubsections
-%     \titleformat{\subsubsection}
-%         {\relax}{\headerfont\normalsize\itshape\thesubsubsection}{1em}{\headerfont\normalsize\itshape}        
-%     % paragraphs
-%     \titleformat{\paragraph}[runin]
-% %        {\normalfont\normalsize}{\theparagraph}{0pt}{\spacedlowsmallcaps}    
-%         {\headermedfont\normalsize}{\theparagraph}{0pt}{\headermedfont\normalsize}    % no small caps for paragraphs
-    % descriptionlabels
-        %\renewcommand{\descriptionlabel}[1]{\hspace*{\labelsep}\caps{#1}}   % spacedlowsmallcaps textit textsc                  
-% 	
-% 	
-% 
-% \renewcommand{\headfont}{\headerfont\small}  
-% 
-
-%\setmainfont[
-%	Path = ./fonts/ ,
-%	Extension = .otf ,
-%	UprightFont = *_Light,
-%	BoldFont = *_Bold,
-%	ItalicFont = *_Italic_Light,
-%	BoldItalicFont = *_Italic_Bold,
-%]{Midiet_Sans}
 
 
 %----------------------------------------------------------------------------------------
 %	USEFUL COMMANDS
 %----------------------------------------------------------------------------------------
 %%%%% USEFUL COMMANDS %%%%%%%%%%
+
 \newcommand{\q}{{\ensuremath{\mathbf{q}}}}
 
 \newcommand{\SF}{{\ensuremath{\mathcal{SF}}}}
