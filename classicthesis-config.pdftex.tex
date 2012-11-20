@@ -15,7 +15,7 @@
 
 % Remove drafting to get rid of the '[ Date - classicthesis version 4.0 ]' text at the bottom of every page
 \PassOptionsToPackage{protrusion=true, expansion=true,final,babel}{microtype}
-\PassOptionsToPackage{pdfspacing,eulerchapternumbers,listings,subfig,parts,floatperchapter,manychapters,dottedtoc,subfig}{classicthesisxetex}
+\PassOptionsToPackage{pdfspacing,eulerchapternumbers,listings,subfig,parts,floatperchapter,manychapters,dottedtoc,subfig,eulermath}{classicthesis}
 % Available options: drafting parts nochapters linedheaders eulerchapternumbers beramono eulermath pdfspacing minionprospacing tocaligned dottedtoc manychapters listings floatperchapter subfig
 % Adding 'dottedtoc' will make page numbers in the table of contents flushed right with dots leading to them
 \setcounter{tocdepth}{1}
@@ -107,7 +107,7 @@
 %bibliography 
 %\usepackage{natbib}
 \usepackage{csquotes}
-\usepackage[style=numeric,firstinits=true,maxcitenames=1,natbib=true,backend=biber]{biblatex}
+\usepackage[style=numeric,firstinits=true,maxcitenames=1,natbib=true,backend=biber,sorting=none]{biblatex}
 %
 %
 %\newcounter{cbx:totalcite}
