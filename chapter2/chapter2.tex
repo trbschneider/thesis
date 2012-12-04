@@ -5,10 +5,10 @@
 \section{Anatomy of the spinal cord}
 The {\gls{SC}} is the part of the {\gls{CNS}} that connects the brain and peripheral nervous system. It controls the voluntary movement of limbs and trunk, receives sensory information from these regions and monitors and coordinates the internal organ function in thorax, abdomen and pelvis. 
 
-The {\gls{SC}} is protected by the vertebral column and is located inside the vertebral canal. In cross-section, the cord can be divided in two regions: (i) the peripheral region containing neuronal white matter tracts. (ii) the grey, butterfly-shaped central region made up of nerve cell bodies. This gray matter is centered around the central canal, containing \gls{CSF}.
+The {\gls{SC}} is protected by the vertebral column and is located inside the vertebral canal. In cross-section, the cord can be divided in two regions: (i) the peripheral region containing neuronal white matter tracts. (ii) the grey, butterfly-shaped central region made up of nerve cell bodies. This \gls{GM} is centred around the central canal, containing \gls{CSF}.
 
 \subsection{White matter architecture of the cord}
-The white matter of the {\gls{SC}} consists mostly of longitudinally running axons and glial cells. White matter axons are organized hierarchally grouped in bundles, tracts and pathways. Bundles of neighboring white matter axons that share similar features are called fibre bundles. A tract is formed by fibre bundles with same origin, course, termination and function. Multiple tracts with the same function form a pathway.
+The \gls{WM} of the {\gls{SC}} consists mostly of longitudinally running axons and glial cells. White matter axons are organized hierarchically grouped in bundles, tracts and pathways. Bundles of neighbouring white matter axons that share similar features are called fibre bundles. A tract is formed by fibre bundles with same origin, course, termination and function. Multiple tracts with the same function form a pathway.
 
 \subsubsection{Ascending tracts}
 \label{sec:chap2:ascendingtracts}
@@ -114,7 +114,7 @@ The observed effects on the diffusion MR signal can be quite diverse, depending 
   \subfloat[Illustration of molecule movement in different tissue environments]
   {
 	\pgfimage[height=0.4\textwidth]{chapter2/figs/diff_types.pdf}
-  }\hspace*{0.15\textwidth}
+  }\hspace*{0.01\textwidth}
   \subfloat[Root-mean-squared displacement over prolonged diffusion time for different tissue environments.]
   {
 	\pgfimage[height=0.4\textwidth]{chapter2/figs/rms_types.pdf}
@@ -131,7 +131,7 @@ The observed effects on the diffusion MR signal can be quite diverse, depending 
 \label{fig:chapter2 pgse_diagram}
 \end{figure}
 
-The MRI signal can be made sensitive to the molecular motion of the water molecules within the tissue, providing contrast about the molecular motion on a voxel scale. by far the most commonly used method for diffusion MRI is the {\gls{PGSE}} sequence, introduced by \citep{Stejskal:1965}. The {\gls{PGSE}} sequence, as shown in Figure \ref{fig:chapter2 pgse_diagram}), is based on the standard SE sequence with an additional pair of identical diffusion weighting gradients, which make the sequence sensitive to the diffusion of water molecules. 
+The MRI signal can be made sensitive to the molecular motion of the water molecules within the tissue, providing contrast about the molecular motion on a voxel scale. by far the most commonly used method for diffusion MRI is the {\gls{PGSE}} sequence, introduced by \citet{Stejskal:1965}. The {\gls{PGSE}} sequence, as shown in Figure \ref{fig:chapter2 pgse_diagram}, is based on the standard SE sequence with an additional pair of identical diffusion weighting gradients, which make the sequence sensitive to the diffusion of water molecules. 
 
 
 \begin{figure}[phtb]
@@ -179,7 +179,7 @@ or alternatively using the shortcut term $b$ as defined in Equation \ref{eq:bval
 \begin{equation*}		
 	\mathcal{P} = \{(\vec{g}_1,b_1),\cdots,(\vec{g}_n,b_n)\}.
 \end{equation*}
-Several other terms are often found to describe selected properties of a acquisition protocol. A gradient scheme usually describes a set of diffusion gradient directions only without specifying PGSE pulse parameters or $b$-values. The term \gls{HARDI} describes a special case of gradient scheme with a high number diffusion directions (>60), which are uniformely sampled over the unit sphere (e.g. like Cook, Jones). A \textit{shell} in the context of diffusion MRI refers to a protocol or subset of a protocol with several different gradient directions acquired at the same $b$-value. 
+Several other terms are often found to describe selected properties of a acquisition protocol. A gradient scheme usually describes a set of diffusion gradient directions only without specifying PGSE pulse parameters or $b$-values. The term \gls{HARDI} describes a special case of gradient scheme with a high number diffusion directions (>60), which are uniformely sampled over the unit sphere\citep{Tuch:2002,Tournier:2011}. A \textit{shell} in the context of diffusion MRI refers to a protocol or subset of a protocol with several different gradient directions acquired at the same $b$-value. 
 
 
 Different analysis methods have different requirements on the acquisition protocol. While it suffices for some methods to acquire few samples of the PGSE parameter space, other methods require one or more HARDI shells with different b-values and/or many different $(\vec{g},|G|,\delta,\Delta)$ combinations. 
