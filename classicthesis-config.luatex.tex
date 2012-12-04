@@ -1,0 +1,349 @@
+%!TEX root = ./thesis.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thesis Configuration File
+%
+% The main lines to change in this file are in the DOCUMENT VARIABLES
+% section, the rest of the file is for advanced configuration.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT VARIABLES
+%	Fill in the lines below to enter your information into the thesis template
+%	Each of the commands can be cited anywhere in the thesis
+%----------------------------------------------------------------------------------------
+
+% Remove drafting to get rid of the '[ Date - classicthesis version 4.0 ]' text at the bottom of every page
+\PassOptionsToPackage{protrusion=true, expansion=true,final,babel}{microtype}
+\PassOptionsToPackage{pdfspacing,eulerchapternumbers,listings,subfig,parts,floatperchapter,manychapters,dottedtoc,subfig}{classicthesis}
+% Available options: drafting parts nochapters linedheaders eulerchapternumbers beramono eulermath pdfspacing minionprospacing tocaligned dottedtoc manychapters listings floatperchapter subfig
+% Adding 'dottedtoc' will make page numbers in the table of contents flushed right with dots leading to them
+\setcounter{tocdepth}{1}
+
+%%% THESIS VARIABLES
+\newcommand{\myTitle}{Spinal Cord Diffusion Imaging\xspace}
+\newcommand{\mySubtitle}{Imaging Challenges and Prognostic Value \xspace}
+\newcommand{\myDegree}{Doctor of Philosophy\xspace}
+\newcommand{\myName}{Torben Schneider\xspace}
+\newcommand{\myProf}{Claudia Wheeler-Kingshott\xspace}
+\newcommand{\myOtherProf}{Daniel Alexander\xspace}
+\newcommand{\mySupervisor}{Put name here\xspace}
+\newcommand{\myFaculty}{UCL Institute of Neurology\xspace}
+\newcommand{\myDepartment}{Department of Neuroinflammation\xspace}
+\newcommand{\myUni}{University College London\xspace}
+\newcommand{\myLocation}{London, United Kingdom\xspace}
+\newcommand{\myTime}{\today\xspace}
+\newcommand{\myVersion}{}
+
+%%% COUNTER FIXES
+\newcounter{dummy} % Necessary for correct hyperlinks (to index, bib, etc.)
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES
+%----------------------------------------------------------------------------------------
+
+%%%% PACKAGES FOR CLASSIC THESIS
+\usepackage{xspace} % To get the spacing after macros right
+\usepackage{mparhack} % To get marginpar right
+\usepackage[dvipsnames]{xcolor}
+\usepackage[british,UKenglish,USenglish,english,american]{babel}
+%\pdfprotrudechars=2
+%\pdfadjustspacing=2
+
+
+%%%% THESIS PACKAGES
+%math
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{xfrac}
+\newcommand{\mat}[1]{\ensuremath{\mathbf{#1}}}
+
+%tikz & pgf
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary[calc]
+\usetikzlibrary[decorations.pathreplacing]
+\usetikzlibrary[svg.path]
+\usepgfplotslibrary{polar}
+\usepackage{pgfboxplot} %custom
+\usepackage{sequenceplot} %custom
+\usetikzlibrary{external}
+\tikzexternalize[mode=list and make]
+\tikzsetexternalprefix{tikz/}
+\tikzset{external/system call={xelatex \tikzexternalcheckshellescape -halt-on-error -interaction=batchmode -jobname "\image" "\texsource"}}
+%optional png setup
+\tikzset{
+  	% Add size information to the .dpth file (png is in density not size)
+   /pgf/images/external info,
+    png export/.style={
+        external/system call=%
+        {xelatex \tikzexternalcheckshellescape -halt-on-error -interaction=batchmode -jobname "\image" "\texsource"; convert -density 72 -transparent white "\image.pdf" "\image.png"},
+	},
+    % Use the png export AND the import
+    use png/.style={png export,png import},
+    png import/.code={%
+        \tikzset{%
+            /pgf/images/include external/.code={%
+                % Here you can alter to whatever you want
+                % \pgfexternalwidth is only available if /pgf/images/external info
+                % is set
+            		\includegraphics[width=\pgfexternalwidth,height=\pgfexternalheight]%
+					{##1.png}%
+            }%
+        }%
+    }%
+}
+
+
+%figures
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{placeins}
+\usepackage[export]{adjustbox}
+\usepackage{subfig}  
+
+
+
+%bibliography 
+%\usepackage{natbib}
+\usepackage{csquotes}
+\usepackage[style=numeric,firstinits=true,maxcitenames=1,natbib=true,backend=biber]{biblatex}
+%
+%
+%\newcounter{cbx:totalcite}
+%\newbibmacro{textcite:count}{%
+%  \iffirstcite
+%    {\setcounter{cbx:totalcite}{1}}
+%    {\addtocounter{cbx:totalcite}{1}}}
+%
+%\newbibmacro{textcite:delim}{%
+%  \iffirstcite
+%    {}
+%    {\iflastcite
+%       {\ifnumgreater{\value{cbx:totalcite}}{2}
+%          {\finalandcomma\space\bibstring{and}\space}
+%          {\addspace\bibstring{and}\space}}
+%       {\addcomma\space}}}
+%
+%\def\iffirstcite{%
+%  \ifboolexpr{ ( test {\ifnumequal{\value{multicitetotal}}{0}}
+%                 and test {\ifnumequal{\value{citecount}}{1}} )
+%               or ( test {\ifnumgreater{\value{multicitetotal}}{0}}
+%                    and test {\ifnumequal{\value{multicitecount}}{1}}
+%                    and test {\ifnumequal{\value{citecount}}{1}} ) }}
+%
+%\def\iflastcite{%
+%  \ifboolexpr{ test {\ifnumequal{\value{citecount}}{\value{citetotal}}}
+%               and test {\ifnumequal{\value{multicitecount}}{\value{multicitetotal}}} }}
+%
+%\DeclareCiteCommand{\textcite}
+%  {}% <precode>
+%  {\usebibmacro{citeindex}% <loopcode>
+%   \usebibmacro{textcite:count}%
+%   \usebibmacro{textcite:delim}%
+%   \usebibmacro{textcite}}
+%  {} % <sepcode>
+%  {\usebibmacro{textcite:postnote}}% <postcode>
+%
+%\DeclareMultiCiteCommand{\textcites}{\textcite}{}
+
+
+
+% glossaries
+\usepackage[nomain,acronym,nonumberlist,section=chapter]{glossaries}
+\glossarystyle{listdotted}
+\setlength{\glslistdottedwidth}{12em}
+
+
+
+
+%title
+%\usepackage{titlesec}
+%\usepackage[title, titletoc]{appendix}
+\usepackage{appendix}
+
+%misc
+\usepackage[super]{nth}
+
+%drafttools
+\usepackage{todonotes}
+\usepackage{ifdraft}
+
+
+%----------------------------------------------------------------------------------------
+%	FLOATS: TABLES, FIGURES AND CAPTIONS SETUP
+%----------------------------------------------------------------------------------------
+%tables
+\usepackage{multirow}
+\usepackage{ctable}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{tabularx} % Better tables
+
+
+%new columns with fixed width
+\newcolumntype{x}[1]{ >{\centering\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{y}[1]{ >{\arraybackslash\hspace{0pt}}p{#1}}
+
+
+\setlength{\extrarowheight}{3pt} % Increase table row height
+\newcommand{\tableheadline}[1]{\multicolumn{1}{c}{\spacedlowsmallcaps{#1}}}
+\newcommand{\myfloatalign}{\centering} % To be used with each float for alignment
+\usepackage{caption}
+\captionsetup{format=hang,font=small,labelfont={bf}}
+\captionsetup[table]{position=t}
+
+%----------------------------------------------------------------------------------------
+%	HYPERREFERENCES
+%----------------------------------------------------------------------------------------
+
+\PassOptionsToPackage{hyperfootnotes=false}{hyperref}
+\usepackage{hyperref}  % backref linktocpage pagebackref
+\hypersetup{
+% Uncomment the line below to remove all links (to references, figures, tables, etc)
+%draft, 
+colorlinks=true, linktocpage=true, pdfstartpage=3, pdfstartview=FitV,
+% Uncomment the line below if you want to have black links (e.g. for printing black and white)
+%colorlinks=false, linktocpage=false, pdfborder={0 0 0}, pdfstartpage=3, pdfstartview=FitV, 
+breaklinks=true, pdfpagemode=UseNone, pageanchor=true, pdfpagemode=UseOutlines,
+plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,
+hypertexnames=true, pdfhighlight=/O, urlcolor=webbrown, linkcolor=RoyalBlue, citecolor=webgreen,
+%------------------------------------------------
+% PDF file meta-information
+pdftitle={\myTitle},
+pdfauthor={\textcopyright\ \myName, \myUni, \myFaculty},
+pdfsubject={},
+pdfkeywords={},
+pdfcreator={xelatex},
+pdfproducer={LaTeX}
+%------------------------------------------------
+}   
+
+%----------------------------------------------------------------------------------------
+%	BACKREFERENCES
+%----------------------------------------------------------------------------------------
+
+\usepackage{ifthen} % Allows the user of the \ifthenelse command
+\newboolean{enable-backrefs} % Variable to enable backrefs in the bibliography
+\setboolean{enable-backrefs}{false} % Variable value: true or false
+
+\newcommand{\backrefnotcitedstring}{\relax} % (Not cited.)
+\newcommand{\backrefcitedsinglestring}[1]{(Cited on page~#1.)}
+\newcommand{\backrefcitedmultistring}[1]{(Cited on pages~#1.)}
+\ifthenelse{\boolean{enable-backrefs}} % If backrefs were enabled
+{
+\PassOptionsToPackage{hyperpageref}{backref}
+\usepackage{backref} % to be loaded after hyperref package 
+\renewcommand{\backreftwosep}{ and~} % separate 2 pages
+\renewcommand{\backreflastsep}{, and~} % separate last of longer list
+\renewcommand*{\backref}[1]{}  % disable standard
+\renewcommand*{\backrefalt}[4]{% detailed backref
+\ifcase #1 
+\backrefnotcitedstring
+\or
+\backrefcitedsinglestring{#2}
+\else
+\backrefcitedmultistring{#2}
+\fi}
+}{\relax} 
+
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER AND LAYOUT MODS
+%----------------------------------------------------------------------------------------
+
+\newcommand\chaptersub[2]{\chapter
+  [#1\hfil\hbox{}\protect\linebreak{\itshape#2}]%
+  {#1}%
+}
+
+
+%----------------------------------------------------------------------------------------
+%	AUTOREFERENCES SETUP
+%	Redefines how references in text are prefaced for different 
+%	languages (e.g. "Section 1.2" or "section 1.2")
+%----------------------------------------------------------------------------------------
+
+\makeatletter
+\@ifpackageloaded{babel}
+{
+\addto\extrasbritish{
+\renewcommand*{\figureautorefname}{Figure}
+\renewcommand*{\tableautorefname}{Table}
+\renewcommand*{\partautorefname}{Part}
+\renewcommand*{\chapterautorefname}{Chapter}
+\renewcommand*{\sectionautorefname}{Section}
+\renewcommand*{\subsectionautorefname}{Section}
+\renewcommand*{\subsubsectionautorefname}{Section}
+}
+
+\providecommand{\subfigureautorefname}{\figureautorefname} % Fix to getting autorefs for subfigures right
+}{\relax}
+\makeatother
+
+%----------------------------------------------------------------------------------------
+
+%\usepackage{classicthesisxetex} 
+\usepackage{classicthesis} 
+
+
+%----------------------------------------------------------------------------------------
+%	CHANGING TEXT AREA 
+%----------------------------------------------------------------------------------------
+
+\linespread{1.1} % a bit more for Palatino
+%\areaset[current]{312pt}{761pt} % 686 (factor 2.2) + 33 head + 42 head \the\footskip
+%\setlength{\marginparwidth}{7em}%
+%\setlength{\marginparsep}{2em}%
+
+%----------------------------------------------------------------------------------------
+%	USING DIFFERENT FONTS
+%----------------------------------------------------------------------------------------
+
+
+%\usepackage{tgpagella}
+%\fontfamily{qpl}\selectfont
+\usepackage[partial=upright,nabla=upright]{unicode-math}
+\usepackage{libertineotf}
+\fontspec[SmallCapsFont={LinLibertineCapitals}]{Linux Libertine O}
+%\setmonofont{LinMonoO} 
+\setmathfont{TG Pagella Math}
+\setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{XITS Math}
+
+\DeclareMathSizes{12}{11}{9}{7}
+\DeclareMathSizes{11}{10}{8}{7}
+%\usepackage{cmbright}
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	USEFUL COMMANDS
+%----------------------------------------------------------------------------------------
+%%%%% USEFUL COMMANDS %%%%%%%%%%
+
+\newcommand{\q}{{\ensuremath{\mathbf{q}}}}
+
+\newcommand{\SF}{{\ensuremath{\mathcal{SF}}}}
+\newcommand{\OI}{{\ensuremath{\mathcal{OI}}}}
+\newcommand{\SD}{{\ensuremath{\mathcal{SF}_{pulses}}}}
+\newcommand{\DO}{{\ensuremath{\mathcal{SF}_{dirs}}}}
+\newcommand{\FD}{{\SF}}
+
+\newcommand{\SFshort}{\SF$_{90}$}
+\newcommand{\SFlong}{\SF$_{360}$}
+\newcommand{\OIlong}{\OI$_{360}$}
+
+\newcommand{\FDmod}{{\ensuremath{\FD_{mod}}}}
+\newcommand{\SFasym}{{\ensuremath{a\mathcal{SF}}}}
+
+\tikzstyle{protocolbox} = [draw=black, thin, rectangle, rounded corners, inner xsep=5pt, outer ysep=0pt] \tikzstyle{protocolheader} = [draw=none, fill=gray!30, rounded corners, inner sep = 5pt] \tikzstyle{protocoltext} = [draw=black, fill=white, rounded corners, inner sep = 5pt]
+
+
+% spaces for figure list and table list
+%\usepackage{etoolbox}
+%\newcommand{\killdeactivateaddvspace}{\let\deactivateaddvspace\relax}
+%\AtEndPreamble{\addtocontents{lof}{\protect\killdeactivateaddvspace}}
+
+%\usepackage{arsclassica} 
