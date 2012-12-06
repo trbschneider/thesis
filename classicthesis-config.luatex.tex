@@ -14,7 +14,6 @@
 %----------------------------------------------------------------------------------------
 
 % Remove drafting to get rid of the '[ Date - classicthesis version 4.0 ]' text at the bottom of every page
-\PassOptionsToPackage{protrusion=true, expansion=true,final,babel}{microtype}
 \PassOptionsToPackage{pdfspacing,eulerchapternumbers,listings,subfig,parts,floatperchapter,manychapters,dottedtoc,subfig}{classicthesis}
 % Available options: drafting parts nochapters linedheaders eulerchapternumbers beramono eulermath pdfspacing minionprospacing tocaligned dottedtoc manychapters listings floatperchapter subfig
 % Adding 'dottedtoc' will make page numbers in the table of contents flushed right with dots leading to them
@@ -70,14 +69,14 @@
 \usetikzlibrary{external}
 \tikzexternalize[mode=list and make]
 \tikzsetexternalprefix{tikz/}
-\tikzset{external/system call={xelatex \tikzexternalcheckshellescape -halt-on-error -interaction=batchmode -jobname "\image" "\texsource"}}
+\tikzset{external/system call={lualatex \tikzexternalcheckshellescape -halt-on-error -interaction=batchmode -jobname "\image" "\texsource"}}
 %optional png setup
 \tikzset{
   	% Add size information to the .dpth file (png is in density not size)
    /pgf/images/external info,
     png export/.style={
         external/system call=%
-        {xelatex \tikzexternalcheckshellescape -halt-on-error -interaction=batchmode -jobname "\image" "\texsource"; convert -density 72 -transparent white "\image.pdf" "\image.png"},
+        {lualatex \tikzexternalcheckshellescape -halt-on-error -interaction=batchmode -jobname "\image" "\texsource"; convert -density 72 -transparent white "\image.pdf" "\image.png"},
 	},
     % Use the png export AND the import
     use png/.style={png export,png import},
@@ -147,7 +146,8 @@
 %
 %\DeclareMultiCiteCommand{\textcites}{\textcite}{}
 
-
+%for possessive cite
+\newcommand{\posscite}[1]{\citeauthor{#1}'s \autocite*{#1}} 
 
 % glossaries
 \usepackage[nomain,acronym,nonumberlist,section=chapter]{glossaries}
@@ -304,16 +304,44 @@ pdfproducer={LaTeX}
 
 %\usepackage{tgpagella}
 %\fontfamily{qpl}\selectfont
-\usepackage[partial=upright,nabla=upright]{unicode-math}
-\usepackage{libertineotf}
-\fontspec[SmallCapsFont={LinLibertineCapitals}]{Linux Libertine O}
-%\setmonofont{LinMonoO} 
-\setmathfont{TG Pagella Math}
-\setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{XITS Math}
+%\usepackage[partial=upright,nabla=upright]{unicode-math}
+%\usepackage{libertineotf}
+\usepackage{fontspec,microtype}
+\PassOptionsToPackage{protrusion=true, expansion=true,final}{microtype}
+\newfontfeature{Microtype}{protrusion=default;expansion=default;}
+\directlua{fonts.protrusions.setups.default.factor=500}
+\directlua{fonts.expansions.setups.default.stretch=10.5}
+
+\setmainfont[
+	Microtype,
+	Ligatures=TeX,
+	Path = ./fonts/ ,
+	Extension = .otf ,
+	UprightFont = *-regular,
+	BoldFont = *-bold,
+	ItalicFont = *-italic,
+	BoldItalicFont = *-bolditalic,
+	SmallCapsFont = LinLibertine_C,	
+]{texgyrepagella}
+\emergencystretch=1.5em
+
+
+
+%\setmathfont{TG Pagella Math}
+%\setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{XITS Math}
+\usepackage[sc]{mathpazo}
+%change microtype features
+
+%make lines flow better with gyre
+\emergencystretch=1.2em
 
 \DeclareMathSizes{12}{11}{9}{7}
 \DeclareMathSizes{11}{10}{8}{7}
-%\usepackage{cmbright}
+
+\titleformat{\chapter}[display]
+         {\relax}{\mbox{}\oldmarginpar{\vspace*{-3\baselineskip}\color{halfgray}\chapterNumber\thechapter}}{0pt}%
+         {\Large\textsc}[\vspace*{.0\baselineskip}\titlerule]%
+
 
 
 
@@ -325,11 +353,11 @@ pdfproducer={LaTeX}
 
 \newcommand{\q}{{\ensuremath{\mathbf{q}}}}
 
-\newcommand{\SF}{{\ensuremath{\mathcal{SF}}}}
-\newcommand{\OI}{{\ensuremath{\mathcal{OI}}}}
-\newcommand{\SD}{{\ensuremath{\mathcal{SF}_{pulses}}}}
-\newcommand{\DO}{{\ensuremath{\mathcal{SF}_{dirs}}}}
-\newcommand{\FD}{{\SF}}
+\newcommand{\SF}{SF}
+\newcommand{\OI}{OI}
+\newcommand{\SD}{\SF{}PULSES}
+\newcommand{\DO}{\SF{}DIRS}
+\newcommand{\FD}{\SF{}}
 
 \newcommand{\SFshort}{\SF$_{90}$}
 \newcommand{\SFlong}{\SF$_{360}$}
@@ -340,10 +368,3 @@ pdfproducer={LaTeX}
 
 \tikzstyle{protocolbox} = [draw=black, thin, rectangle, rounded corners, inner xsep=5pt, outer ysep=0pt] \tikzstyle{protocolheader} = [draw=none, fill=gray!30, rounded corners, inner sep = 5pt] \tikzstyle{protocoltext} = [draw=black, fill=white, rounded corners, inner sep = 5pt]
 
-
-% spaces for figure list and table list
-%\usepackage{etoolbox}
-%\newcommand{\killdeactivateaddvspace}{\let\deactivateaddvspace\relax}
-%\AtEndPreamble{\addtocontents{lof}{\protect\killdeactivateaddvspace}}
-
-%\usepackage{arsclassica} 

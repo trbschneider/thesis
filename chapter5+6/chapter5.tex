@@ -1,5 +1,5 @@
 %!TEX root = ../thesis.tex
-\chapter{Tract-specific q-space imaging of the healthy cervical spinal cord (I)}
+\chapter{Tract-specific $\q$-space imaging of the healthy cervical spinal cord (I)}
 \chaptermark{Tract-specific QSI of the healthy cord (I)}
 \label{chapter5}
 \glsresetall % resets all glossary entries so they will be spelled out again 
@@ -28,7 +28,7 @@ After an initial quality check, we found that the prescription of the axial \gls
 \end{figure}
 
 \subsection{Data processing}
-Similar to \citet{Farrell:2008} the two perpendicular diffusion directions were averaged to increase the signal-to-noise ratio. The measurements are linearly regridded to be equidistant in q-space and the  {\gls{dPDF}} is computed using inverse Fast Fourier Transformation. To increase the resolution of the  {\gls{dPDF}}, the signal was extrapolated in q-space to a maximum q=166mm$^{-1}$ by fitting a bi-exponential decay curve to the {\gls{DWI}} data as suggested in \citet{Cohen:2002, Farrell:2008}. Figure~\ref{fig:chapter5 exp1 processing pipeline} illustrates the processing pipeline. Maps of the full width at half maximum and zero displacement probability were derived for XY and Z as described in Section~\ref{sec:qspace}. For comparison we also computed the \gls{ADC} from the monoexponential part of the decay curve (b < 1100s/mm2) as in \citet{Farrell:2008} for both XY and Z directions using a constrained non-linear least squared fitting algorithm. Figure~\ref{fig:chapter5 exemplary maps} shows both \gls{ADC} maps and the four \gls{QSI} parameter maps in one randomly chosen subject.
+Similar to \citet{Farrell:2008} the two perpendicular diffusion directions were averaged to increase the signal-to-noise ratio. The measurements are linearly regridded to be equidistant in $\q$-space and the  {\gls{dPDF}} is computed using inverse Fast Fourier Transformation. To increase the resolution of the  {\gls{dPDF}}, the signal was extrapolated in $\q$-space to a maximum q=166mm$^{-1}$ by fitting a bi-exponential decay curve to the {\gls{DWI}} data as suggested in \citet{Cohen:2002, Farrell:2008}. Figure~\ref{fig:chapter5 exp1 processing pipeline} illustrates the processing pipeline. Maps of the full width at half maximum and zero displacement probability were derived for XY and Z as described in Section~\ref{sec:qspace}. For comparison we also computed the \gls{ADC} from the monoexponential part of the decay curve (b < 1100s/mm$^2$) as in \citet{Farrell:2008} for both XY and Z directions using a constrained non-linear least squared fitting algorithm. Figure~\ref{fig:chapter5 exemplary maps} shows both \gls{ADC} maps and the four \gls{QSI} parameter maps in one randomly chosen subject.
 
 
 \begin{figure}
@@ -73,7 +73,7 @@ Similar to \citet{Farrell:2008} the two perpendicular diffusion directions were 
 
   \begin{table}
       \centering
-     \caption{QSI protocol displaying: Gradient strength (G), q-value (q) and b-value (b) for each of the 32 DWI volumes.}
+     \caption{QSI protocol displaying: Gradient strength (G), $\q$-value (q) and b-value (b) for each of the 32 DWI volumes.}
 		 \begin{adjustbox}{width={0.47\textwidth},keepaspectratio}
         \begin{tabular}{rrr}
         \addlinespace
@@ -141,7 +141,7 @@ We then compare significant differences in individual metrics using a paired two
 \section{Results}
 \subsection{Reproducibility}
 \label{par:chapter5 exp1 reproducibility}
-Tables~\ref{tab:chap5exp1 scan rescan} shows absolute and relative differences between scan and rescan of three healthy subjects in ADC$_{xy}$ and ADC$_z$ and \gls{QSI} metrics in XY and Z direction. We observe a general trend of measurements perpendicular to the long \gls{SC} fibres presenting higher variation between scan and rescan than parallel measurements in \gls{ADC} and both \gls{QSI} metrics in all subjects. In particular ADC$_{xy}$ shows very high intra-subject variation between 20--40\% on average in all white matter \glspl{ROI}, while only GM values show good reproducibility value of less than 11\% variation. In particular ADC$_z$ appears more reproducible in all three subjects with average relative variation between 5--16\%.
+Tables~\ref{tab:chap5exp1 scan rescan} shows absolute and relative differences between scan and rescan of three healthy subjects in ADC$_{xy}$ and ADC$_z$ and \gls{QSI} metrics in XY and Z direction. We observe a general trend of measurements perpendicular to the long \gls{SC} fibres presenting higher variation between scan and rescan than parallel measurements in \gls{ADC} and both \gls{QSI} metrics in all subjects. In particular ADC$_{xy}$ shows very high intra-subject variation between 20--40\% on average in all white matter \glspl{ROI}, while only GM values show good reproducibility ($\approx$ 11\% variability). In particular ADC$_z$ appears more reproducible in all three subjects with average relative variation between 5--16\%.
 
 
 The perpendicular \gls{QSI} metrics P0${_{xy}}$ and FWHM$_{xy}$ present good reproducibility values of 6--12\% and are up to 4 times lower than ADC$_{xy}$ measurements in corresponding \glspl{ROI}. In both P0$_{z}$ and FWHM$_{z}$ we observe relative change between 4--13\% similar to values in ADC$_z$.%
