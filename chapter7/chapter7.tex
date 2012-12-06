@@ -2,15 +2,16 @@
 \chapter{An optimised diffusion MRI protocols framework for estimating axonal characteristics in the presence of a single fibre orientation}
 \chaptermark{Diffusion MRI protocols for single fibre structures}
 \label{chapter7}
+\glsresetall % resets all glossary entries so they will be spelled out again 
 In the previous chapters we have investigated two very different techniques in \gls{DTI} and \gls{QSI}. \gls{DTI} only requires relatively little amounts of data, but its underlying model is based on the assumption that all observed diffusion is Gaussian. Clearly, this is an over-simplification of the complex diffusion mechanisms present in biological tissue. \gls{QSI} on the other hand makes no assumption about the diffusion process and can theoretically reveal even the most complex diffusion displacement profiles. \gls{QSI} generally requires large amounts of data and requires very strong diffusion gradients. Henceforth, the implementation of true \gls{QSI} on clinical systems is very difficult and the derived parameters are often difficult to interpret (as seen e.g. in chapters \ref{chapter5}\&\ref{chapter6}).
 \paragraph{}
 In the following chapters we will investigate a different model-based diffusion imaging technique, which can be seen as a compromise between the simple model of \gls{DTI} and the complex \gls{QSI} approach. Here, our work is heavily based on the ActiveAx approach by \citet{Alexander:2008}, who used a simple compartment tissue model to derive axon diameter and axon density indices in the brain using standard clinical hardware (see Chapter~\ref{chapter2}, section~\ref{sec:protocol_optimisation}).
 
 
-Alexander's work is designed under the premise of full brain imaging and therefore he presents DWI protocols that work independently of the fibre orientation. We call this the \gls{OI} design. The \gls{OI} approach is characterised by acquiring multiple \gls{HARDI} shells and requires good angular resolution to retain the orientation invariant features. As a consequence, the {\gls{OI}} protocols used e.g. in \citep{Alexander:2010} require scan times of more than 1h, which limits their transition to clinical practice.
+Alexander's work is designed under the premise of full brain imaging and therefore he presents DWI protocols that work independently of the fibre orientation. We call this the \gls{OI} design. The \gls{OI} approach is characterised by acquiring multiple \gls{HARDI} shells and requires good angular resolution to retain the orientation invariant features. As a consequence, the {\gls{OI}} protocols used e.g. in \citep{Alexander:2010} require scan times of more than 1 hour, which limits their transition to clinical practice.
 
 
-The main motivation of this work is to reduce the scan time of the ActiveAx protocols to a more clinically applicable limit of 20-30 minutes. The central objective in attaining this reduction is to discard the requirement for orientation invariance and focus on structures with a coherent known single fibre orientation. Many previous studies have focussed on those single fibre structures (e.g. \gls{CC} or \gls{SC}) as they can be expressed in terms of relatively simple models, without the need to include complex fibre configurations such as multiple fibre crossings, bending or fanning. Furthermore, many single fibre structures such as \gls{CC} and \gls{SC} are of great importance to many developmental and pathological processes. Our approach makes imaging these structures more practicable within a 20-30 minute time frame, where a >1h. full-brain protocol might not be feasible.
+The main motivation of this work is to reduce the scan time of the ActiveAx protocols to a more clinically applicable limit of 20-30 minutes. The central objective in attaining this reduction is to discard the requirement for orientation invariance and focus on structures with a coherent known single fibre orientation. Many previous studies have focussed on those single fibre structures (e.g. \gls{CC} or \gls{SC}) as they can be expressed in terms of relatively simple models, without the need to include complex fibre configurations such as multiple fibre crossings, bending or fanning. Furthermore, many single fibre structures such as \gls{CC} and \gls{SC} are of great importance to many developmental and pathological processes. Our approach makes imaging these structures more practicable within a 20-30 minute time frame, where a full-brain protocol with a scan time of 1 hour or more might not be feasible.
 \paragraph{}
 In this chapter, we present a modification to the existing protocol optimization framework of \cite{Alexander:2008} (see Section~\ref{sec:protocol_optimisation}) that incorporates this a-priori information about fibre organisation. We call this the  \gls{SF} design. We evaluate different \gls{SF} implementations and use computer simulations to test and compare the \gls{SF} strategy with the original \gls{OI} approach. By design, the {\gls{SF}} protocols are optimised only for a specific predetermined fibre orientation. However, in reality there will always be some variation even in very coherently aligned \gls{WM} tracts. We therefore test how much influence this variation has on \gls{SF} compared to \gls{OI}. Finally, we implemented an instance of the {\gls{SF}} protocol to demonstrate its feasibility within a real biological tissue sample of fixed cervical monkey \gls{SC}. Although this study is motivated by improving \emph{in-vivo} clinical applicability, we chose to first test our approach on a pre-clinical scanner on a fixed tissue sample to avoid the challenges of \emph{in-vivo} scanning (e.g. motion and insufficient image resolution) and focus on an initial demonstration of our method. The results and observations made in this chapter form the basis of the subsequent \emph{in-vivo} implementation we present in the following chapter.
 
@@ -19,9 +20,9 @@ In this chapter, we present a modification to the existing protocol optimization
 This section discusses how we adapt the \gls{OI} optimisation of \citet{Alexander:2008} to the \gls{SF} case. The original \gls{OI} optimisation is designed to determine the best \gls{OI}{} DWI protocols, i.e. the best PGSE pulse parameters (i.e. \gls{gstr}, \gls{smalldel}, \gls{bigdel}) for a fixed number $M$ of shells, each including a fixed number $N$ of distributed gradient directions. The gradient directions scheme in the \gls{OI}{} protocols is fixed and uniformly distributed over the sphere as in \citep{Cook:2007}. The HARDI-like gradient scheme is necessary to guarantee orientational invariance, i.e. be sensitive to restriction regardless of diffusion direction. In our \gls{SF} implementation we can assume a known diffusion direction and therefore do not require the uniform angular sampling of the \gls{OI} approach. This allows us to include the gradient scheme to together with the PGSE pulse setting in the optimisation process. In addition to \gls{SF}, which optimises gradient scheme and PGSE pulse parameters simultaneously, we are also interested in how much the optimisation of the gradient scheme alone ({\DO}) and the PGSE parameters alone ({\SD}) has on the performance of the resulting protocols. In total we tested the four following different variants of \posscite{Alexander:2008} optimisation framework, given a number of shells $M$ and a number of gradient directions per shell $N$:
 
 \begin{description}
-	\item[\OI:] The orientation invariant protocol optimisation as described in \citep{Alexander:2008}
+	\item[\OI:] The orientation invariant protocol optimisation as described in \citep{Alexander:2008}. The algorithm uses a fixed gradient scheme of  isotropically distributed gradient directions for each of the $M$ shells and only optimises the PGSE pulse parameters. To minimise the influence of the fibre direction, the methods is performed for a set of \lq worst case\rq{} fibre directions, which are determined prior to the optimisation.
 	\item[\FD:] The adapted algorithm optimises both the PGSE parameters and gradient direction scheme for $M$ shells assuming a single a-priori known fibre direction. In other words, this individually optimises the $M*N$ gradient directions within the protocol together with the $M$ PGSE pulse parameters.
-\item[\SD:] Similar to the {\gls{OI}} optimisation approach, the algorithm uses a fixed gradient scheme for each of the $M$ shells and only optimises the PGSE pulse parameters. The main difference to \gls{OI}{} is that the algorithm optimises for a single a-priori known fibre direction instead of a set of \lq worst case\rq{} fibre directions.
+\item[\SD:] Similar to the {\gls{OI}} optimisation approach, the algorithm uses a fixed gradient scheme for each of the $M$ shells. The main difference to the \gls{OI}{} design is that the algorithm optimises for a single a-priori known fibre direction instead of a set of \lq worst case\rq{} fibre directions.
 	\item[\DO:] This is a two-step optimisation approach. The {\SD} algorithm is performed to determine the best $M$ PGSE pulse settings. In a second step the gradient scheme for each of the each $M$ shells is optimised, keeping the PGSE pulse parameters fixed.
 \end{description}
 
@@ -91,9 +92,16 @@ We implement the four algorithms as described in Section~\ref{sec:chapter 7 four
 \subsection{Optimised protocols}
 Figure~\ref{fig:chapter7 exp1 DIRS vs CRLB} shows the CRLB of the four different optimisation schemes for different $N$. We can see that CRLB distinguishes the four protocols in two groups: {\gls{OI}}/{\SD} with fixed directions and {\DO}/{\FD} with optimised directions. {\DO} and {\FD} consistently produce lower CRLB than {\gls{OI}} and {\SD} regardless of the chosen $N$, although the differences between the two groups become smaller for larger $N > 60$. For better comparison, Figure~\ref{fig:chapter7 exp1 DIRS vs CRLB} shows the corresponding $N$ for a different values of CRLB. We can see that {\FD} and {\DO} both achieve the same CRLB values of {\gls{OI}} with significantly less directions. In other words, the {\DO} and {\FD} promise a comparable performance to {\gls{OI}} with only 25\%--33\% the amount of data required.
 
-
 Furthermore, we observe that our {\FD} protocols contain slightly stronger diffusion weighting factors compared to the other protocols. We can attribute this to the custom gradient scheme, which translates to more perpendicular measurements and hence increases the effective SNR in this direction. The optimisation uses this increase in measurement quality to trade off against stronger diffusion weighting factors, which is inherently associated with more noisy data in our framework.
+\begin{figure}[H]
+	\centering
+	\input{chapter7/figs/DIRSvsCRLB_60mT.tex}
+	%\input{chapter7/figs/DIRSvsCRLB_300mTCopenhagen.tex}
+	\caption{CRLBs of optimised protocols with different $N$  number of gradient directions.}
+	\label{fig:chapter7 exp1 DIRS vs CRLB}
+\end{figure}
 
+Figure~\ref{fig:chapter7 exp1 SNR vs CRLB} shows the CRLB of the four different optimisations for a fixed $N=90$ but different \gls{SNR} conditions. The results here are very similar to the findings shown above. Both {\FD} and {\DO} consistently show CRLB values three to four times lower than those of {\gls{OI}} and {\SD} for similar \gls{SNR} values. The differences are most apparent for low \gls{SNR} values, which are also more common in real clinical diffusion MRI.
 
 \begin{figure}[H]
 	\centering
@@ -102,26 +110,18 @@ Furthermore, we observe that our {\FD} protocols contain slightly stronger diffu
 	\caption{CRLBs of optimised protocols under different SNR.}
 	\label{fig:chapter7 exp1 SNR vs CRLB}
 \end{figure}
-
-Figure~\ref{fig:chapter7 exp1 SNR vs CRLB} shows the CRLB of the four different optimisations for a fixed $N=90$ but different \gls{SNR} conditions. The results here are very similar to the findings shown above. Both {\FD} and {\DO} consistently show CRLB values three to four times lower than those of {\gls{OI}} and {\SD} for similar \gls{SNR} values. The differences are most apparent for low \gls{SNR} values, which are also more common in real clinical diffusion MRI.
-\begin{figure}[H]
-	\centering
-	\input{chapter7/figs/DIRSvsCRLB_60mT.tex}
-	%\input{chapter7/figs/DIRSvsCRLB_300mTCopenhagen.tex}
-	\caption{CRLBs of optimised protocols with different $N$  number of gradient directions.}
-	\label{fig:chapter7 exp1 DIRS vs CRLB}
-\end{figure}
-\paragraph{}
 Table~\ref{fig:chapter7 exp1 protocol 60mT} shows an example of the \gls{OI}{} and the three \gls{SF}{} protocol variants we obtain for $N=90$ and SNR$=20$. A more comprehensive visualisation of the different protocol parameters can be found in Appendix~\ref{app:chapter7 protocols 60mT}. We deliberately chose a large number of $M$ to reevaluate the optimal number of different PGSE for each protocol. Our findings here confirm the results of \citet{Alexander:2008}, which suggest that a smaller number of $M=4$ suffices to capture all unique combinations of PGSE pulse parameters. We also note that {\gls{OI}} and {\SD} protocols are almost identical, which suggest that the choice of diffusion orientation for the {\gls{OI}} has little influence on the outcome of the algorithm.
 \begin{table}[H]
 \caption{Protocol parameters and gradient schemes for $N=90$, $M=8$. The $M$ different gradient direction schemes are coded by different colors. Please note that in the \gls{OI}{} and \SD{} protocols all $M$ gradient direction schemes are identical.}
 \label{fig:chapter7 exp1 protocol 60mT}
-\begin{adjustbox}{width=0.9\linewidth,keepaspectratio,minipage=\linewidth}
+\centering
+\begin{adjustbox}{width=0.95\linewidth,keepaspectratio,minipage=\linewidth}
 \tiny
-\subfloat[\gls{OI} protocol]
+\subfloat[\OI{} protocol]
 {
     \begin{minipage}{\textwidth}
-    \begin{tabular}{rrrr}
+	\centering
+	\begin{tabular}{rrrr}
         \addlinespace
         \toprule
         $\delta$ & $\Delta$ & $|G|$ & $b$-value \\
@@ -137,8 +137,8 @@ Table~\ref{fig:chapter7 exp1 protocol 60mT} shows an example of the \gls{OI}{} a
         33    & 38    & 60    & 7585 \\
         \bottomrule
     \end{tabular}%
-    \hspace{1cm}
-        \raisebox{-2cm}{
+    \hspace{2cm}
+        \raisebox{-1cm}{
         \begin{tikzpicture}[scale=0.7]
               \begin{axis}[xmax=1, xmin=-1, ymax=1, ymin=-1, zmax=1, zmin=-1, width=4.0cm, height=4.0cm, grid=major,legend entries={all},cycle multi list={color list\nextlist[2 of]mark list},legend pos=outer north east]
               \addplot3+[only marks] table {chapter7/figs/protocols_par1/SF_OI_60mT001.txt};
@@ -153,7 +153,8 @@ Table~\ref{fig:chapter7 exp1 protocol 60mT} shows an example of the \gls{OI}{} a
 \subfloat[\FD protocol]
 {
     \begin{minipage}{\textwidth}
-    \begin{tabular}{rrrr}
+	\centering
+	\begin{tabular}{rrrr}
     \addlinespace
     \toprule
         $\delta$ & $\Delta$ & $|G|$ & $b$-value \\
@@ -169,8 +170,8 @@ Table~\ref{fig:chapter7 exp1 protocol 60mT} shows an example of the \gls{OI}{} a
         35    & 40    & 60    & 8974 \\
         \bottomrule
     \end{tabular}%
-    \hspace{1cm}
-        \raisebox{-2cm}{
+    \hspace{2cm}
+        \raisebox{-1cm}{
         \begin{tikzpicture}[scale=0.7]
               \begin{axis}[xmax=1, xmin=-1, ymax=1, ymin=-1, zmax=1, zmin=0, width=4.0cm, height=4.0cm, grid=major,legend entries={1,2,3,4,5,6,7,8},cycle multi list={color list\nextlist[2 of]mark list},legend pos=outer north east]
               \addplot3+[only marks] table {chapter7/figs/protocols_par1/SF_FD_60mT005.txt};
@@ -191,7 +192,8 @@ Table~\ref{fig:chapter7 exp1 protocol 60mT} shows an example of the \gls{OI}{} a
 \subfloat[\SD protocol]
 {
   \begin{minipage}{\textwidth}
-    \begin{tabular}{rrrr}
+  	\centering
+	\begin{tabular}{rrrr}
         \addlinespace
         \toprule
         $\delta$ & $\Delta$ & $|G|$ & $b$-value \\
@@ -208,7 +210,7 @@ Table~\ref{fig:chapter7 exp1 protocol 60mT} shows an example of the \gls{OI}{} a
         \bottomrule
     \end{tabular}%
     \hspace{1cm}
-        \raisebox{-2cm}{
+        \raisebox{-1cm}{
         \begin{tikzpicture}[scale=0.7]
               \begin{axis}[xmax=1, xmin=-1, ymax=1, ymin=-1, zmax=1, zmin=-1, width=4.0cm, height=4.0cm, grid=major,legend entries={all},cycle multi list={color list\nextlist[2 of]mark list},legend pos=outer north east]
               \addplot3+[only marks] table {chapter7/figs/protocols_par1/SF_OI_60mT001.txt};
@@ -219,10 +221,11 @@ Table~\ref{fig:chapter7 exp1 protocol 60mT} shows an example of the \gls{OI}{} a
 }
 
 
-\subfloat[\DO protocol]
+\subfloat[\DO{} protocol]
 {
     \begin{minipage}{\textwidth}
-        \begin{tabular}{rrrr}
+		\centering
+		\begin{tabular}{rrrr}
             \addlinespace
             \toprule
             $\delta$ & $\Delta$ & $|G|$ & $b$-value \\
@@ -238,8 +241,8 @@ Table~\ref{fig:chapter7 exp1 protocol 60mT} shows an example of the \gls{OI}{} a
             32.9  & 37.9  & 60    & 7515 \\
             \bottomrule
         \end{tabular}%
-        \hspace{1cm}
-        \raisebox{-2cm}{
+        \hspace{2cm}
+        \raisebox{-1cm}{
         \begin{tikzpicture}[scale=0.7]
               \begin{axis}[xmax=1, xmin=-1, ymax=1, ymin=-1, zmax=1, zmin=0, width=4.0cm, height=4.0cm, grid=major,legend entries={1,2,3,4,5,6,7,8},cycle multi list={color list\nextlist[2 of]mark list},legend pos=outer north east]
               \addplot3+[only marks] table {chapter7/figs/protocols_par1/SF_DO_60mT004.txt};
@@ -393,7 +396,7 @@ Smaller radii, $R=1\mu m$ and $R=2\mu m$ can clearly be distinguished from the l
 Figure~\ref{fig:chapter7 exp1 angular vals 60mT} shows the root mean squared error for both $f_{intra}$ and $R$ parameters with respect to the principle orientation of diffusion for cylinders with small radius $R=2\mu m$ and large radius $R=5\mu m$. As in the previous experiment, all the protocols generally perform better for $R=5\mu m$ than $R=2\mu m$. The most marked differences between protocols appear in the $R=2\mu m$ dataset.
 
 
-The plots clearly show that estimates of $f_{intra}$ are unaffected by the true diffusion orientation in all protocols for $R=2\mu m$. While this is expected for {\gls{OI}} and {\SD}, we can explain the performance of {\FD} and {\DO} by the small cylinder radius, which even at non-perpendicular angles offers enough restriction for {\FD} and {\gls{OI}} to distinguish hindered and restricted diffusion even when the gradient scheme is not aligned perpendicular to the intra-axonal compartment. Results for $R=5\mu m$ show that $f_{intra}$ estimates are affected more by the misalignment of the gradient scheme with larger radii, although the estimation error still remains low over all different directions.
+The plots clearly show that estimates of $f_{intra}$ are unaffected by the true diffusion orientation in all protocols for $R=2\mu m$. While this is expected for {\gls{OI}} and {\SD}, we can explain the performance of {\FD} and {\DO} by the small cylinder radius, which even at non-perpendicular angles offers enough restriction for {\FD} and {\gls{OI}} to distinguish hindered and restricted diffusion even when the gradient scheme is not aligned perpendicular to the intra-axonal compartment. Respectively, simulation results for $R=5\mu m$ show that $f_{intra}$ estimates are affected more by the misalignment of the gradient scheme, which artificially increases the effective cylinder radius and is misinterpreted as less restriction in the larger radii samples because less molecules are sufficiently explore the boundary (see also e.g. \citep{Avram:2004,Zhang:2011}). However, the estimation error still remains low over all different directions.
 
 
 Larger differences between the protocols can be seen in the $R$ estimation error. Again, {\gls{OI}} and {\SD} are consistent over the whole range of simulated fibre directions, with no apparent directional pattern of the estimation error. In contrast, {\FD} and {\DO} performance is considerably more impeded for larger misalignment of gradient scheme and cylinder orientation. The maximum estimation error is observed for rotation angles around $45^\circ$. With $\phi$ close to $90^\circ$, the {\gls{SF}} and {\DO} gradient direction scheme now features more measurements perpendicular and parallel to the cylinder compartment, which reduces again the fitting error. For smaller misalignments of $\phi<15^\circ$ both {\FD}/{\DO} perform very similar to the {\gls{OI}}/{\SD} protocols.
@@ -422,7 +425,7 @@ Larger differences between the protocols can be seen in the $R$ estimation error
 \end{figure}
 
 
-\paragraph{Effect of fibre dispersion: } Figure~\ref{fig:chapter7 exp1 dispersion 60mT} shows the fitted $f_{intra}$ and $R$ estimates different degrees of intra-voxel dispersion of fibre orientations. For small $\kappa$, i.e. high degrees of dispersion, we observe large errors in estimates of both $f_{intra}$ and $R$, as expected e.g. from \citep{Zhang:2011}. However, for $\kappa \ge 64$, the fitted parameters converge to their respective ground truth, despite a considerable degree of dispersion still present in those datasets. With increasing $\kappa$, there appears to be no noticeable difference between the four protocols.
+\paragraph{Effect of fibre dispersion: } Figure~\ref{fig:chapter7 exp1 dispersion 60mT} shows the fitted $f_{intra}$ and $R$ estimates different degrees of intra-voxel dispersion of fibre orientations. For small $\kappa$, i.e. high degrees of dispersion, we observe large errors in estimates of both $f_{intra}$ and $R$, as expected e.g. from \citep{Zhang:2011}. However, for $\kappa \ge 64$, the fitted parameters converge to their respective ground truth, although a value of $\kappa$ still presents a considerable degree of dispersion (5\% quantile of fibre misalignment  is 2.5$^\circ$, 50\%/10$^\circ$, 95\%/17$^\circ$ respectively). With increasing $\kappa$, there appears to be no noticeable difference between the four protocols.
 
 \begin{figure}[ht]
 	\centering
@@ -466,9 +469,7 @@ Figure~\ref{fig:chapter7 exp1 monkey data} presents maps of axon diameter $a$ an
 We presented here a novel method that provides optimal diffusion weightings and gradient directions for estimating axonal diameter by exploiting the single fibre orientation of structures like the corpus callosum or spinal cord. We demonstrated that the {\gls{SF}} approach reduces the required amount of data by 60--75\%, while achieving similar performance to {\gls{OI}}. This translates into a considerable reduction in scan time from >1h for {\gls{OI}} to less than 20-25 minutes, which makes routine clinical implementation much more viable.  
 
 \paragraph{}
-Our results suggest that a dedicated optimisation of gradient directions is clearly beneficial over the orientation invariant \gls{OI}{} approach, both in terms of CRLB and simulated noisy data when the fibre direction is known a-priori. We find that the optimisation routine deliberately diminishes angular resolution in favour of measuring diffusion only in the most informative directions (predominantly parallel and perpendicular to the WM tracts). We noticed that our optimised gradient scheme pick out predominantly gradient directions parallel and perpendicular to the cylinder compartment, presumably to maximise sensitivity to restricted diffusion. In that respect our automatically optimised gradient schemes agree with many other studies e.g. \citep{Stanisz:1997,Avram:2008,Assaf:2008,Panagiotaki:2012}, which only chose parallel and perdendicular measurements to maximise sensitivity to restricted diffusion. Our results confirm that these directions give the most information about the tissue, and one should focus on those directions when the fibre configuration is known a-priori. 
-
-The simulation results show that the combination of stronger diffusion weighting and custom gradient scheme in the \FD{} design is most successful in estimating the cylinder radius, especially when $R$ is very small.
+Our results suggest that a dedicated optimisation of gradient directions is clearly beneficial over the orientation invariant \gls{OI}{} approach, both in terms of CRLB and simulated noisy data when the fibre direction is known a-priori. We find that the optimisation routine deliberately diminishes angular resolution in favour of measuring diffusion only in the most informative directions (predominantly parallel and perpendicular to the WM tracts). We noticed that our optimised gradient scheme pick out predominantly gradient directions parallel and perpendicular to the cylinder compartment, presumably to maximise sensitivity to restricted diffusion. In that respect our automatically optimised gradient schemes agree with many other studies e.g. \citep{Stanisz:1997,Avram:2008,Assaf:2008,Panagiotaki:2012}, which only chose parallel and perdendicular measurements to maximise sensitivity to restricted diffusion.The few intermediate gradient directions are most likely a result of imperfections in the optimisation due to the overwhelming number of free parameters in the \FD{} and \DO{} designs (see next chapter for more details). Overall, our results confirm that parallel and perpendicuar directions gives the most information about the tissue, and one should focus on those directions when the fibre configuration is known a-priori. Furthermore, the simulation results show that the combination of stronger diffusion weighting and custom gradient scheme in the \FD{} design is most successful in estimating the cylinder radius, especially when $R$ is very small.
 
 
 Considering the small number of distinct gradient directions, it comes as no surprise that we found the optimised gradient schemes in {\FD} and {\DO} more prone to error when the true fibre orientation differs from the one assumed in the optimisation process. However, when the misalignment was less than 15$^\circ$ (as expected in coherent WM structures) the impact was neglible. We are confident that with careful positioning, the {\gls{SF}} gradient scheme can be aligned to the dominant fibre directions in CC and SC with little error without diminishing the performance of the {\gls{SF}} protocols.
@@ -493,19 +494,19 @@ Secondly, the spinal cord sample we used in this study was not available for his
     \subsection{Protocols optimised for $|G|_{max}$=60mT/m, N=90, M=8}
     \label{app:chapter7 protocols 60mT}
     \begin{figure}
-    	[H] \centering \input{chapter7/figs/protocols_par1/OInv_62mT.tex} \caption{\gls{OI} protocol optimised for clinical gradient strength.}
+    	[H] \centering \input{chapter7/figs/protocols_par1/OInv_62mT.tex} \caption{\OI{} protocol optimised for clinical gradient strength.}
        \label{fig:chapter7 exp1 OINV_62mT}
     \end{figure}
     \begin{figure}
-    	[H] \centering \input{chapter7/figs/protocols_par1/SameDirs_62mT.tex} \caption{\SD protocol optimised for clinical gradient strength}
+    	[H] \centering \input{chapter7/figs/protocols_par1/SameDirs_62mT.tex} \caption{\SD{} protocol optimised for clinical gradient strength}
        \label{fig:chapter7 exp1 SAMEDIRS_62mT}
     \end{figure}
     \begin{figure}
-    	[H] \centering \input{chapter7/figs/protocols_par1/DO_62mT.tex} \caption{\DO protocol optimised for clinical gradient strength}
+    	[H] \centering \input{chapter7/figs/protocols_par1/DO_62mT.tex} \caption{\DO{} protocol optimised for clinical gradient strength}
        \label{fig:chapter7 exp1 DIRSONLY_62mT}
     \end{figure}
     \begin{figure}
-    	[H] \centering \input{chapter7/figs/protocols_par1/FD_62mT.tex} \caption{\FD protocol optimised for clinical gradient strength}
+    	[H] \centering \input{chapter7/figs/protocols_par1/FD_62mT.tex} \caption{\FD{} protocol optimised for clinical gradient strength}
        \label{fig:chapter7 exp1 FREEDIRS_62mT}
     \end{figure}
 
