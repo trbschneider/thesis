@@ -2,14 +2,13 @@
 \chapter{Tract-specific q-space imaging of the healthy cervical spinal cord (II)}
 \chaptermark{Tract-specific QSI of the healthy cord (II)}
 \label{chapter6}
-\glsresetall % resets all glossary entries so they will be spelled out again 
 The aim of this study is to repeat the experiment in Chapter~\ref{chapter5} and improve on the several confounding factors in we identified the previous chapter. We carefully optimise the acquisition to achieve an increase in spatial resolution and \gls{SNR} of the axial \gls{DWI} measurements, and higher diffusion gradient strength as well as linear spacing of {\q}-values.
 
 \section{Methods}
 \subsection{Study design}
 We recruit 10 healthy volunteers (4 male/6 female) to be scanned on a 3T Philips Achieva 3TX (Philips Healthcare, Eindhoven). Four subjects are rescanned at a different time to assess intra-subject reproducibility of the derived parameters.
 \subsection{Data acquisition}
-To ensure consistent positioning of the \gls{DWI} volumes among all scans, we acquire a structural scan of the whole cervical cord using a sagittal T2 weighted turbo-spin-echo sequence (voxel size=1$\times$1$\times$3 mm$^3$, FOV=256$\times$247mm$^2$, TR=4000ms, TE=63ms, 2 averages). We then position the \gls{DWI} images based on the structural scan so that the centre of the acquisitions volume is aligned with the C2/C3 disc and the acquisition plane is parallel to the cord at this level.
+To ensure consistent positioning of the \gls{DWI} volumes among all scans, we acquire a structural scan of the whole cervical cord using a sagittal T2 weighted turbo-spin-echo sequence (voxel size=1$\times$1$\times$3 mm$^3$, FOV=256$\times$247mm$^2$, TR=4000ms, TE=63ms, 2 averages). We then position the \gls{DWI} volumes based on the structural scan so that the centre of the acquisitions volume is aligned with the C2/C3 disc and the acquisition plane is parallel to the cord at this level.
 
 We use a cardiac gated \gls{DWI} acquisition with the following imaging parameters: voxel size=1$\times$1$\times$5 mm$^3$, FOV=64$\times$64mm$^2$, TR=9RR, TE=129ms). To avoid aliasing artifacts from surrounding tissue we use a ZOOM sequence with outer-volume suppression as described by \citet{Wilm:2007}. We acquire 32 \gls{DWI} equally spaced {\q}-values in two directions perpendicular (XY) and in one parallel (Z) direction with respect to the main {\gls{SC}} axis. To achieve the maximum possible gradient strength on our scanner we exploit the combination of parallel gradient amplifiers in our scanner, which can each generate a maximum \gls{gstr} of 62mT/m along the major axes of the scanner bore. Assuming axial symmetry of the axons along the long axis of the spinal cord, we modify the scanner software to drive multiple gradient amplifiers in two orthogonal directions perpendicular to major SC fibre direction (see Figure~\ref{fig:chapter5_exp2_overplus_cartoon} for illustration). This allows us to generate a guaranteed maximum \gls{gstr} of $\sqrt{2} * 62mT/m = 87mT/m$ in XY direction.  In Z direction we use a maximum \gls{gstr} of 62 mT/m. We use the same {\q}-values in this experiment as described by \citet{Farrell:2008}. However the increase in \gls{gstr} allows us to reduce the gradient duration from 50ms to 11.4ms in XY direction (16ms in Z). The full protocol is given in Table~\ref{tab:chapter6 QSI protocol}.
 
@@ -20,8 +19,9 @@ We use a cardiac gated \gls{DWI} acquisition with the following imaging paramete
 \end{figure}
 
 \begin{table}
+	  \scriptsize
       \centering
-     \caption{QSI protocol displaying: Gradient strength (G), q-value (q) and b-value (b) for each of the 32 DWI volumes.}
+     \caption[QSI protocol displaying: Gradient strength (G), \q-value (q) and b-value (b) for each of the 32 DWI volumes.]{QSI protocol displaying: Gradient strength (G), \q-value (q) and b-value (b) for each of the 32 DWI volumes. The full protocol was split in two sub-session (left and right table), carried out immediately one after the other.}
      \subfloat[Protocol for X and Y direction]{
          \begin{tabular}{rrr}
             \addlinespace
@@ -130,7 +130,7 @@ We use a cardiac gated \gls{DWI} acquisition with the following imaging paramete
 
 
 \subsection{Data processing \& analysis}
-We apply the same data processing pipeline as in the previous experiment (see Section~\ref{sec:chapter 5 exp1 methods}) with the exception of the linear regridding of acquired q-values, which is not necessary in this data set. We segment the whole cervical {\gls{SC}} and place \glspl{ROI} in the lateral columns and the anterior and posterior tracts between level C1/2 and C3 in all subjects (refer to Figure~\ref{fig:chapter5 exp1 ROIs} for an illustration of the drawn \glspl{ROI}).
+We apply the same data processing pipeline as in the previous experiment (see Section~\ref{sec:chapter 5 exp1 methods}) with the exception of the linear regridding of acquired \q-values, which is not necessary in this data set. We segment the whole cervical {\gls{SC}} and place \glspl{ROI} in the lateral columns and the anterior and posterior tracts between level C1/2 and C3 in all subjects (refer to Figure~\ref{fig:chapter5 exp1 ROIs} for an illustration of the drawn \glspl{ROI}).
 
 \subsection{Statistical processing} We derive the same statistics from this dataset as in the previous chapter. We present the absolute difference and relative difference in ADC and \gls{QSI} parameters over the defined \glspl{ROI} in the scan/re-scan cases. Further we show results of t-tests between different tracts for individual metrics and the multivariate Hotelling-T$^2$ test for combination of parameters. We also investigate voxel-wise correlations between the six metrics using Pearson correlation coefficient.
 
@@ -144,9 +144,9 @@ Table~\ref{tab:chapter6 scan rescan} shows the intra-subject variability for ADC
     \caption{Absolute and relative change (in percent) between scan and rescan of ADC and QSI in 4 healthy volunteers}
     \footnotesize
     \centering
-\begin{adjustbox}{width={0.8\textwidth},keepaspectratio}
+\begin{adjustbox}{width={0.75\textwidth},keepaspectratio}
     		\begin{minipage}{\linewidth}
-    \subfloat[]
+    \subfloat[Perpendicular (ADC$_{xy}$) and parallel diffusivity (ADC$_{z}$)]
         {
 			\begin{minipage}{\linewidth}
             \begin{tabular}{rrrrrrr}
@@ -184,9 +184,9 @@ Table~\ref{tab:chapter6 scan rescan} shows the intra-subject variability for ADC
 		\end{minipage}
 		\end{adjustbox}	
 
-		\begin{adjustbox}{width={0.8\textwidth},keepaspectratio}
+		\begin{adjustbox}{width={0.75\textwidth},keepaspectratio}
     	\begin{minipage}{\linewidth}
-        \subfloat[]
+        \subfloat[Perpendicular and parallel QSI parameters]
         {
 			\begin{minipage}{\linewidth}
             \begin{tabular}{rrrrrrr}
@@ -295,7 +295,7 @@ Between WM regions, the combination of ADC$_{xy}$ and ADC$_{z}$) good discrimina
 \begin{table}
     \footnotesize
     \centering
-    \caption{Pair-wise t-test results between SC tracts in ADC and QSI parameters. Statistically different values are marked \textbf{bold} for p<0.05, \textbf{\textit{bold-italic}} for p<0.01.}
+    \caption[Pair-wise t-test results between SC tracts in ADC and QSI parameters.]{Pair-wise t-test results between SC tracts in ADC and QSI parameters. Statistically different values are marked \textbf{bold} for p<0.05, \textbf{\textit{bold-italic}} for p<0.01.}
     \subfloat[ADC$_{xy}$\& ADC$_{z}$]{
 	  	 \begin{minipage}{\linewidth}
 				\begin{tabular}{rrrrr}
@@ -388,7 +388,7 @@ Between WM regions, the combination of ADC$_{xy}$ and ADC$_{z}$) good discrimina
 
 \begin{table}
   \centering
-  \caption{Hotelling's-T$^2$ significance of pair-wise tract-specific differences ADC$_{xy}$+ADC$_{z}$ (confidence interval: 95\%)}
+  \caption[Hotelling's-T$^2$ significance of pair-wise tract-specific differences for ADC and QSI metrics.]{Hotelling's-T$^2$ significance of pair-wise tract-specific differences for ADC and QSI metrics (confidence interval: 95\%). Statistically different values are marked \textbf{bold} for p<0.05, \textbf{\textit{bold-italic}} for p<0.01.}
    \subfloat[ADC$_{xy}$,ADC$_{z}$]
    {
         \begin{tabular}{rrrrr}
@@ -457,10 +457,10 @@ Between WM regions, the combination of ADC$_{xy}$ and ADC$_{z}$) good discrimina
 Table~\ref{tab:chapter5 exp2 correlations} shows the Pearson coefficient and p-value for voxel-wise correlations between the investigated ADC and QSI metrics. We observe a strong correspondence (p<0.01) between ADC measurements and P0 and FWHH QSI metrics in X as well as FWHM in Z. P0$_z$ is the only parameter that does not correlate with any of the other metrics, suggesting additional information that is neither captured in the ADC$_z$ value nor captured with any of the XY measurements.%
 
 \begin{table}
- \caption{Pearson-correlation coefficient and significance between all ADC and QSI metrics. P-values $<0.01$ are displayed as \textbf{\textit{bold-italic}}.}
- \begin{adjustbox}{width=0.8\textwidth,keepaspectratio}
- \begin{minipage}{\textwidth}
+ \caption[Pearson-correlation coefficient and significance between all ADC and QSI metrics.]{Pearson-correlation coefficient and significance between all ADC and QSI metrics. P-values $<0.01$ are displayed as \textbf{\textit{bold-italic}}.}
  \centering
+ \begin{adjustbox}{width=0.9\textwidth,keepaspectratio}
+ \begin{minipage}{\textwidth}
     \begin{tabular}{rrrrrrrr}
     \addlinespace
     \toprule
@@ -494,7 +494,7 @@ Table~\ref{tab:chapter5 exp2 correlations} shows the Pearson coefficient and p-v
 
 \paragraph{} We did not observe any differences between WM regions in the XY direction with either ADC or QSI measurements. This is likely an effect of the relatively low gradient strength we used here,  which does not allow us to distinguish the small axon diameters we expect to find in WM tracts. Considering the relatively long gradient pulse duration of $\delta=11ms$ used in this study, the centre-of-mass effect described would cause similar contrast for small axons (in Section~\ref{sec:chapter2 limits of SGP} for details). A further indication of this is the strong correlations between ADC and QSI parameters, which might suggest that the contrast might be governed by the hindered diffusion compartment rather than by differences in restriction.
 
-Interestingly, we found ADC and QSI parameters in Z to be more sensitive to differences between lateral and and posterior tracts. Unlike, XY measurements, diffusion along the long axis of the SC is considered to be predominantly hindered. Henceforth, the observed differences are less likely to be attributed to differences in axon diameter distributions. Instead, they might inform about other microstructural properties such as the axon packing density or dispersion, which differ between the PT and the LTs. No significant correlation was found between QSI in XY and Z, suggesting that QSI in Z provides valuable information on these microstructural properties, which is complementary to the XY measurements.
+Interestingly, we found ADC and QSI parameters in Z to be more sensitive to differences between lateral and and posterior tracts. Unlike, XY measurements, diffusion along the long axis of the SC is considered to be predominantly hindered. Henceforth, the observed differences are less likely to be attributed to differences in axon diameter distributions. Instead, they might inform about other microstructural properties such as the axon packing density or dispersion\citep{Zhang:2012} or axonal undulation\citep{Nilsson:2012}, which might differ between the PT and the LTs. In addition, the parallel metrics might also be influenced more by non-axonal features such as glial cell density in the WM tracts than their perpendicular counterparts. No significant correlation was found between QSI in XY and Z, suggesting that QSI in Z provides valuable information on these microstructural properties, which is complementary to the XY measurements.
 
 Finally, we found no advantage in combining multiple QSI parameters in the multi-variate Hotelling-T$^2$ tests. We suggest this is caused by the redundant information provided by P0 and FWHM parameters describing the \gls{dPDF} in this clinical set up. This is also supported by the correlations we find between P0 and FWHM in both XY and Z.
 

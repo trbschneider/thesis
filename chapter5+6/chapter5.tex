@@ -1,5 +1,5 @@
 %!TEX root = ../thesis.tex
-\chapter{Tract-specific $\q$-space imaging of the healthy cervical spinal cord (I)}
+\chapter{Tract-specific q-space imaging of the healthy cervical spinal cord (I)}
 \chaptermark{Tract-specific QSI of the healthy cord (I)}
 \label{chapter5}
 \glsresetall % resets all glossary entries so they will be spelled out again 
@@ -7,7 +7,7 @@ In this chapter we investigate accuracy and sensitivity of spinal cord \gls{QSI}
 
 Following up on the encouraging results of these previous studies, we aim here to study the reproducibility of \gls{QSI} metrics in the cervical {\gls{SC}} on a standard 3T clinical MRI scanner. We also assess \gls{QSI} measures both in-plane (XY) and parallel to the main {\gls{SC}} axis (Z), not presented before. Previous work in \emph{in-vitro} rat spinal cord by \citet{Ong:2008,Ong:2010} suggest that \gls{QSI} parameters correlate with the axon diameter in different white matter regions. Our particular interest here is to explore whether clinical hardware constraints allow us to detect the structural differences between \gls{WM} and different ascending and descending \gls{WM} tracts of the cervical {\gls{SC}} with \gls{QSI}. We test whether \gls{QSI} can discriminate between \gls{WM} in the cervical in healthy subjects and compare conventional \gls{ADC} measures, both in plane and along the cord. Furthermore we also test whether any combination of \gls{QSI} derived FWHM and P0 metrics can better distinguish between WM \glspl{ROI} than the individual metrics alone.
 
-The next two chapters will present two \gls{QSI} studies that both address the aims outlined above. This first chapter presents a study performed on 9 healthy controls that were scanned at the Wellcome Trust Centre for Neuroimaging as part of a pilot study to study the effect of brachial plexus avulsion (and was also used to study \gls{NMO}). Our preliminary findings in healthy controls were submitted for presentation at the Annual Meeting of the International Society of Magnetic Resonance in Medicine and were accepted for oral presentation. Following the encouraging results in this first experiment, we re-implemented an improved protocol on the Philips 3T MRI scanner, that was newly installed in our lab. in 2010. The results of a second \gls{QSI} pilot study using the new protocols comprise the next chapter (Chapter~\ref{chapter6}).
+The next two chapters will present two \gls{QSI} studies that both address the aims outlined above. This first chapter presents a study performed on 9 healthy controls that were scanned at the Wellcome Trust Centre for Neuroimaging as part of a pilot study of microstrucutre changes in patients with complete brachial plexus avulsion \citep{Kachramanoglou:2012} (and was also used to study a case of \gls{NMO}). Our preliminary findings in healthy controls were submitted for presentation at the Annual Meeting of the International Society of Magnetic Resonance in Medicine and were accepted for oral presentation. Following the encouraging results in this first experiment, we re-implemented an improved protocol on the Philips 3T MRI scanner, that was newly installed in our lab. in 2010. The results of a second \gls{QSI} pilot study using the new protocols comprise the next chapter (Chapter~\ref{chapter6}).
 
 \section{Methods}
 \label{sec:chapter 5 exp1 methods}
@@ -73,7 +73,7 @@ Similar to \citet{Farrell:2008} the two perpendicular diffusion directions were 
 
   \begin{table}
       \centering
-     \caption{QSI protocol displaying: Gradient strength (G), $\q$-value (q) and b-value (b) for each of the 32 DWI volumes.}
+     \caption[QSI protocol displaying: Gradient strength (G), $\q$-value (q) and b-value (b) for each of the 32 DWI volumes.]{QSI protocol displaying: Gradient strength (G), $\q$-value (q) and b-value (b) for each of the 32 DWI volumes. The full protocol was split in two sub-session (left and right table), carried out immediately one after the other.}
 		 \begin{adjustbox}{width={0.47\textwidth},keepaspectratio}
         \begin{tabular}{rrr}
         \addlinespace
@@ -149,8 +149,7 @@ The perpendicular \gls{QSI} metrics P0${_{xy}}$ and FWHM$_{xy}$ present good rep
     \centering%
     \caption{Absolute and relative change (in percent) between scan and rescan of diffusivities and QSI parameters in 3 healthy volunteers}
 	 \label{tab:chap5exp1 scan rescan}
-    \footnotesize
-\begin{adjustbox}{width={0.9\textwidth},keepaspectratio}
+	 \begin{adjustbox}{width={0.7\textwidth},keepaspectratio}
     		\begin{minipage}{\linewidth}
 			\subfloat[Perpendicular (ADC$_{xy}$) and parallel diffusivity (ADC$_{z}$)]
 			{
@@ -187,7 +186,7 @@ The perpendicular \gls{QSI} metrics P0${_{xy}}$ and FWHM$_{xy}$ present good rep
 		}
 		\end{minipage}
 		\end{adjustbox}	
-\begin{adjustbox}{width={0.9\textwidth},keepaspectratio}
+\begin{adjustbox}{width={0.7\textwidth},keepaspectratio}
 \begin{minipage}{\linewidth}
 	\subfloat[Perpendicular and parallel QSI parameters]
 		    {
@@ -263,14 +262,14 @@ Table~\ref{tab:chap5exp1 single ttest} present $p$-values for pairwise differenc
 
 Between \gls{WM} \glspl{ROI} only the left LT but not the right LT is significantly different from both AT and PT in ADC$_{xy}$ perpendicular to long white matter fibres. Parallel to the long \gls{SC} axis we only find ADC$_{z}$ in the right LT significantly lower from AT and PT. Left and right LT show significant differences in both ADC$_{xy}$ and ADC$_{z}$ while we find no difference between AT or PT. In \gls{QSI} metrics we find the same tracts as with ADC to be significantly different in XY and Z direction. However, $p$-values are increased in \gls{QSI} compared to corresponding ADC, but remain below p<0.05.%
 \begin{figure}[h!tp]
-	\subfloat[]
+	\subfloat[Perpendicular (ADC$_{xy}$) and parallel diffusivity (ADC$_{z}$)]
 	{
 		\begin{minipage}{\linewidth}
 		   \centering
 		   \input{chapter5+6/figs/exp1_adcvals.tex}
 		\end{minipage}%
 	}\\
-	\subfloat[]
+	\subfloat[Perpendicular and parallel QSI parameters]
 	{
 		\begin{minipage}{\linewidth}
 	   	\input{chapter5+6/figs/exp1_qspacevals.tex}	
@@ -281,11 +280,11 @@ Between \gls{WM} \glspl{ROI} only the left LT but not the right LT is significan
 \end{figure}
 
 \begin{table}
-  \caption{Significance of pair-wise differences between SC tracts in diffusivities and QSI parameters (confidence interval: 95\%). Statistically significant differences are marked as follows: \textbf{bold} if p<0.05, \textbf{\emph{bold-italic}} if p<0.01.}	
+  \caption[Significance of pair-wise differences between SC tracts in diffusivities and QSI parameters.]{Significance of pair-wise differences between SC tracts in diffusivities and QSI parameters (confidence interval: 95\%). Statistically significant differences are marked as follows: \textbf{bold} if p<0.05, \textbf{\emph{bold-italic}} if p<0.01.}	
   \label{tab:chap5exp1 single ttest}%
 	\footnotesize
     \centering
-    \subfloat[]
+    \subfloat[Perpendicular (ADC$_{xy}$) and parallel diffusivity (ADC$_{z}$)]
        	{
    				\begin{minipage}{\linewidth}%
               	\begin{tabular}{rrrrr}
@@ -319,7 +318,7 @@ Between \gls{WM} \glspl{ROI} only the left LT but not the right LT is significan
 				\label{tab:chap5exp1_adc single ttest}%
 				
   	   }\\
-  	   	\subfloat[]
+  	   	\subfloat[Perpendicular and parallel QSI parameters]
   	  	{			
 		\begin{minipage}{\linewidth}
   				    \begin{tabular}{rrrrr}
@@ -378,7 +377,7 @@ Between \gls{WM} \glspl{ROI} only the left LT but not the right LT is significan
 \end{table}%
 
 \subsection{Multi-variate differences between tract-specific ROI measurements}
-The single parameter comparisions above indicate that both \gls{ADC} and \gls{QSI} metrics can discriminate some WM tracts, but offer complementary information in perpendicular and parallel measurements. The multivariate Hotelling's-T$^2$ test allows us to test whether a combination of XY and Z metrics is better suited to characterize and discriminate WM measures in different \glspl{ROI}. In the following, we present results for the following combinations of parameters:
+The single parameter comparisions above indicate that both \gls{ADC} and \gls{QSI} metrics can discriminate some WM tracts, but offer complementary information in perpendicular and parallel measurements. The multivariate Hotelling's-T$^2$ test allows us to test whether a combination of XY and Z metrics is better suited to characterize and discriminate \gls{WM} measures in different \glspl{ROI}. In the following, we present results for the following combinations of parameters:
 \begin{itemize}
     \item Both diffusivity parameters ADC$_{xy}$ and ADC$_z$ (Table~\ref{tab:chap5exp1_adc hotelling})
     \item Perpendicular only \gls{QSI} metrics P0$_{xy}$ and FWHM$_{xy}$ (Table~\ref{tab:chap5exp1_adc hotelling})
@@ -392,7 +391,7 @@ Similar to the single t-test results shown above, GM and WM \glspl{ROI} can clea
 For combination of \gls{QSI} parameters in Z only, as well as the combination of both XY and Z, the only two emerging differences are found between lLT/rLT and rLT/PT, both with p<0.05.%
 
 \begin{table}
-  \caption{Hotelling's-T$^2$ significance of pair-wise tract-specific differences for ADC and QSI parameters. (\textbf{bold} marks p<0.05, \textbf{\emph{bold-italic}} marks p<0.01).}
+  \caption[Hotelling's-T$^2$ significance of pair-wise tract-specific differences for ADC and QSI parameters.]{Hotelling's-T$^2$ significance of pair-wise tract-specific differences for ADC and QSI parameters. (\textbf{bold} marks p<0.05, \textbf{\emph{bold-italic}} marks p<0.01).}
   \label{tab:chap5exp1  hotelling}%
 
   \centering
@@ -464,7 +463,7 @@ and \gls{QSI} parameters both within and across XY and Z direction. Interestingl
 
 \begin{table}
 	\centering
-    \caption{Pearson-correlation coefficient and significance between all ADC and QSI metrics. The $p$-values $<0.01$ are marked \textbf\emph{bold-italic}.}
+    \caption[Pearson-correlation coefficient and significance between all ADC and QSI metrics.]{Pearson-correlation coefficient and significance between all ADC and QSI metrics. The $p$-values $<0.01$ are marked \textbf\emph{bold-italic}.}
 	 \begin{adjustbox}{width=0.8\textwidth,keepaspectratio}
 	 \begin{minipage}{\textwidth}
 	 \begin{tabular}{rrrrrrrr}
