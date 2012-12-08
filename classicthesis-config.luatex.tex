@@ -180,6 +180,7 @@
 \usepackage{booktabs}
 \usepackage{colortbl}
 \usepackage{tabularx} % Better tables
+\usepackage{etoolbox} % Modify tables
 
 
 %new columns with fixed width
@@ -190,9 +191,24 @@
 \setlength{\extrarowheight}{3pt} % Increase table row height
 \newcommand{\tableheadline}[1]{\multicolumn{1}{c}{\spacedlowsmallcaps{#1}}}
 \newcommand{\myfloatalign}{\centering} % To be used with each float for alignment
-\usepackage{caption}
-\captionsetup{format=hang,font=small,labelfont={bf}}
-\captionsetup[table]{position=t}
+
+%\captionsetup[table]{position=t}
+%\captionsetup{format=hang,font={small,it},labelfont={bf}}
+\setkomafont{caption}{\tiny}
+\setkomafont{captionlabel}{\small\bfseries}
+\setcapindent{1em}
+
+%change font and size of tables
+\makeatletter
+\AtBeginEnvironment{table}{%
+  \def\@floatboxreset{\reset@font\small\captionfont\@setminipage}%
+}
+\patchcmd{\@xfloat}{\normalsize}{\selectfont}{}{}
+\makeatother
+
+%boxed tables
+\floatstyle{boxed}
+\restylefloat{table}
 
 %----------------------------------------------------------------------------------------
 %	HYPERREFERENCES
@@ -292,7 +308,7 @@ pdfproducer={LaTeX}
 %	CHANGING TEXT AREA 
 %----------------------------------------------------------------------------------------
 
-\linespread{1.1} % a bit more for Palatino
+\linespread{1.05} % a bit more for Palatino
 %\areaset[current]{312pt}{761pt} % 686 (factor 2.2) + 33 head + 42 head \the\footskip
 %\setlength{\marginparwidth}{7em}%
 %\setlength{\marginparsep}{2em}%
@@ -304,13 +320,42 @@ pdfproducer={LaTeX}
 
 %\usepackage{tgpagella}
 %\fontfamily{qpl}\selectfont
-%\usepackage[partial=upright,nabla=upright]{unicode-math}
 %\usepackage{libertineotf}
 \usepackage{fontspec,microtype}
 \PassOptionsToPackage{protrusion=true, expansion=true,final}{microtype}
 \newfontfeature{Microtype}{protrusion=default;expansion=default;}
 \directlua{fonts.protrusions.setups.default.factor=500}
 \directlua{fonts.expansions.setups.default.stretch=10.5}
+
+% \setmainfont[
+% 	Path = ./fonts/ ,
+% 	Extension = .ttf ,
+% 	UprightFont = *regular,
+% 	BoldFont = *bold,
+% 	ItalicFont = *italic,
+% 	BoldItalicFont = *bolditalic,
+% ]{serif72beta}
+
+
+%\setmainfont[
+%	Microtype,
+%	Ligatures=TeX,
+%	Path = ./fonts/ ,
+%	Extension = .otf ,
+%	UprightFont = *-Regular,
+%	BoldFont = *-Bold,
+%	ItalicFont = *-It,
+%	BoldItalicFont = *-BoldIt,
+%]{MinionPro}
+
+%\setmainfont[
+%	Path = ./fonts/ ,
+%	Extension = .otf ,
+%	UprightFont = *,
+%	BoldFont = *-Bold,
+%	ItalicFont = *-Italic,
+%	BoldItalicFont = *-BoldItalic,
+%]{BemboStd}
 
 \setmainfont[
 	Microtype,
@@ -324,11 +369,84 @@ pdfproducer={LaTeX}
 	SmallCapsFont = LinLibertine_C,	
 ]{texgyrepagella}
 
+%\newfontfamily\chapfont[
+%	Path=./fonts/,
+%	UprightFont = SourceSansPro-Bold.otf,
+%	BoldFont = SourceSansPro-Bold.otf,
+%	ItalicFont = SourceSansPro-BoldIt.otf,
+%	BoldItalicFont = SourceSansPro-BoldIt.otf,
+%]{sourcesans}
+
+%\newfontfamily\subsectfont[
+%	Path = ./fonts/ ,
+%	Path=./fonts/,
+%	UprightFont = SourceSansPro-Regular.otf,
+%	BoldFont = SourceSansPro-Semibold.otf,
+%	ItalicFont = SourceSansPro-It.otf,
+%	BoldItalicFont = SourceSansPro-SemiboldIt.otf,
+%]{sourcesans}
+%
+%\newfontfamily\captionfont[
+%	Scale=MatchLowercase,
+%	Path = ./fonts/ ,
+%	Path=./fonts/,
+%	UprightFont = SourceSansPro-Regular.otf,
+%	BoldFont = SourceSansPro-Semibold.otf,
+%	ItalicFont = SourceSansPro-It.otf,
+%	BoldItalicFont = SourceSansPro-SemiboldIt.otf,
+%]{sourcesans}
 
 
-%\setmathfont{TG Pagella Math}
-%\setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{XITS Math}
-\usepackage[sc]{mathpazo}
+\newfontfamily\chapfont[
+	Scale=MatchUppercase,
+ 	Path = ./fonts/ ,
+	Extension = .ttf ,
+ 	UprightFont = *Display.ttf,
+ 	BoldFont = *_Bd.ttf,
+ 	ItalicFont = *_It.ttf,
+ 	BoldItalicFont = *_BdIt.ttf,
+ ]{Aller}
+
+\newfontfamily\sectfont[
+	Scale=MatchUppercase,
+ 	Path = ./fonts/ ,
+	Extension = .ttf ,
+ 	UprightFont = *Display.ttf,
+ 	BoldFont = *_Bd.ttf,
+ 	ItalicFont = *_It.ttf,
+ 	BoldItalicFont = *_BdIt.ttf,
+ ]{Aller}
+
+\newfontfamily\subsectfont[
+	Scale=MatchUppercase,
+ 	Path = ./fonts/ ,
+	Extension = .ttf ,
+ 	UprightFont = *_Rg.ttf,
+ 	BoldFont = *_Bd.ttf,
+ 	ItalicFont = *_It.ttf,
+ 	BoldItalicFont = *_BdIt.ttf,
+ ]{Aller}
+
+
+\newfontfamily\captionfont[
+	Scale=MatchUppercase,
+ 	Path = ./fonts/ ,
+	Extension = .ttf ,
+ 	UprightFont = *_Lt.ttf,
+ 	BoldFont = *_Bd.ttf,
+ 	ItalicFont = *_LtIt.ttf,
+ 	BoldItalicFont = *_BdIt.ttf,
+ ]{Aller}
+
+
+
+
+
+\usepackage[partial=upright,nabla=upright]{unicode-math}
+\setmathfont[Scale=MatchLowercase]{TG Pagella Math}
+\setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{XITS Math}
+%\usepackage[sc]{mathpazo}
+%\usepackage{fourier}
 %change microtype features
 
 %make lines flow better with gyre
@@ -337,11 +455,31 @@ pdfproducer={LaTeX}
 \DeclareMathSizes{12}{11}{9}{7}
 \DeclareMathSizes{11}{10}{8}{7}
 
-\titleformat{\chapter}[display]
+
+     
+ \titleformat{\chapter}[display]
          {\relax}{\mbox{}\oldmarginpar{\vspace*{-3\baselineskip}\color{halfgray}\chapterNumber\thechapter}}{0pt}%
-         {\Large\textsc}[\vspace*{.0\baselineskip}\titlerule]%
+         {\Large\chapfont\textbf}[\vspace*{.0\baselineskip}\titlerule]%   
+ 
+     % sections
+     \titleformat{\section}
+         {\relax}{\sectfont\textbf\thesection}{0.5em}{\sectfont\textbf}
+	 \titlespacing*{\section}{0pt}{5ex}{3ex}
+     % subsections
+     \titleformat{\subsection}
+         {\relax}{\subsectfont\normalsize\textbf\thesubsection}{1em}		{\subsectfont\normalsize\textbf}
+	 \titlespacing*{\subsection}{0pt}{3ex}{1ex}
+     % subsections
+     \titleformat{\subsubsection}
+         {\relax}{\subsectfont\normalsize\itshape\thesubsubsection}{1em}		{\subsectfont\normalsize\itshape}
+	 \titlespacing*{\subsubsection}{0pt}{3ex}{1ex}
 
 
+     % paragraphs
+     \titleformat{\paragraph}[runin]
+         {\normalfont\normalsize\itshape}{\theparagraph}{0pt}{\normalfont\normalsize\itshape}    % no small caps for paragraphs
+    % descriptionlabels
+		\renewcommand{\descriptionlabel}[1]{\hspace*{\labelsep}{\itshape{#1}}} 
 
 
 

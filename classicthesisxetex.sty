@@ -355,14 +355,14 @@
     \lehead{\mbox{\llap{\small\thepage\kern2em}\headmark\hfil}}
     \rohead{\mbox{\hfil{\headmark}\rlap{\small\kern2em\thepage}}}
     \renewcommand{\headfont}{\small}  
-%    \DeclareRobustCommand{\fixBothHeadlines}[2]{} % <--- ToDo
+    \DeclareRobustCommand{\fixBothHeadlines}[2]{} % <--- ToDo
     % hack to get the content headlines right (thanks, Lorenzo!)
 		\def\toc@heading{%
 	 		\ifthenelse{\boolean{@nochapters}}%
 	 		{\section*{\contentsname}}%nochapters
 	 		{\chapter*{\contentsname}}%chapters
 	 		\@mkboth{\spacedlowsmallcaps{\contentsname}}{\spacedlowsmallcaps{\contentsname}}}
-	 		  
+%	 		  
     
 % ********************************************************************
 % layout of the chapter-, section-, subsection-, subsubsection-,
