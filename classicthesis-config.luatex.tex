@@ -207,6 +207,22 @@
 \patchcmd{\@xfloat}{\normalsize}{\selectfont}{}{}
 \makeatother
 
+%frame tables
+\usepackage{environ}
+\NewEnviron{tableframe}[1][\textwidth]{%
+	\begin{tikzpicture}
+		\node [tablebox] (box){
+			\begin{minipage}{#1}
+       		 	\BODY
+		    \end{minipage}%  	  	
+  		};
+  	\end{tikzpicture}
+}
+
+\makeatletter
+\AtBeginEnvironment{table}{\begin{tableframe}}%
+\AtEndEnvironment{table}{\end{tableframe}}%
+\makeatother
 
 
 %----------------------------------------------------------------------------------------
@@ -557,4 +573,4 @@ pdfproducer={LaTeX}
 
 \tikzstyle{protocolbox} = [draw=black, thin, rectangle, rounded corners, inner xsep=5pt, outer ysep=0pt] \tikzstyle{protocolheader} = [draw=none, fill=gray!30, rounded corners, inner sep = 5pt] \tikzstyle{protocoltext} = [draw=black, fill=white, rounded corners, inner sep = 5pt]
 
-\tikzstyle{tablebox} = [draw=none, fill=gray!30, rounded corners, inner sep = 5pt]
+\tikzstyle{tablebox} = [draw=none, fill=gray!30, inner sep = 1pt]
