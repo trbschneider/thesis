@@ -192,23 +192,22 @@
 \newcommand{\tableheadline}[1]{\multicolumn{1}{c}{\spacedlowsmallcaps{#1}}}
 \newcommand{\myfloatalign}{\centering} % To be used with each float for alignment
 
-%\captionsetup[table]{position=t}
-%\captionsetup{format=hang,font={small,it},labelfont={bf}}
-\setkomafont{caption}{\tiny}
-\setkomafont{captionlabel}{\small\bfseries}
-\setcapindent{1em}
+\captionsetup[table]{position=t}
+\setkomafont{caption}{\captfont}
+\setkomafont{captionlabel}{\usekomafont{caption}}
+%\setcapindent{1em}
+\captionsetup{format=hang,font+={small,it},labelfont+={bf}}
+
 
 %change font and size of tables
 \makeatletter
 \AtBeginEnvironment{table}{%
-  \def\@floatboxreset{\reset@font\small\captionfont\@setminipage}%
+  \def\@floatboxreset{\reset@font\small\floatfont\@setminipage}%
 }
 \patchcmd{\@xfloat}{\normalsize}{\selectfont}{}{}
 \makeatother
 
-%boxed tables
-\floatstyle{boxed}
-\restylefloat{table}
+
 
 %----------------------------------------------------------------------------------------
 %	HYPERREFERENCES
@@ -337,16 +336,16 @@ pdfproducer={LaTeX}
 % ]{serif72beta}
 
 
-%\setmainfont[
-%	Microtype,
-%	Ligatures=TeX,
-%	Path = ./fonts/ ,
-%	Extension = .otf ,
-%	UprightFont = *-Regular,
-%	BoldFont = *-Bold,
-%	ItalicFont = *-It,
-%	BoldItalicFont = *-BoldIt,
-%]{MinionPro}
+\setmainfont[
+	Microtype,
+	Ligatures=TeX,
+	Path = ./fonts/ ,
+	Extension = .otf ,
+	UprightFont = *-Regular,
+	BoldFont = *-Bold,
+	ItalicFont = *-It,
+	BoldItalicFont = *-BoldIt,
+]{MinionPro}
 
 %\setmainfont[
 %	Path = ./fonts/ ,
@@ -357,17 +356,29 @@ pdfproducer={LaTeX}
 %	BoldItalicFont = *-BoldItalic,
 %]{BemboStd}
 
-\setmainfont[
-	Microtype,
-	Ligatures=TeX,
-	Path = ./fonts/ ,
-	Extension = .otf ,
-	UprightFont = *-regular,
-	BoldFont = *-bold,
-	ItalicFont = *-italic,
-	BoldItalicFont = *-bolditalic,
-	SmallCapsFont = LinLibertine_C,	
-]{texgyrepagella}
+% \setmainfont[
+% 	Microtype,
+% 	Ligatures=TeX,
+% 	Path = ./fonts/ ,
+% 	Extension = .otf ,
+% 	UprightFont = *-regular,
+% 	BoldFont = *-bold,
+% 	ItalicFont = *-italic,
+% 	BoldItalicFont = *-bolditalic,
+% 	SmallCapsFont = LinLibertine_C,	
+% ]{texgyrepagella}
+
+% \setmainfont[
+% 	Microtype,
+% 	Ligatures=TeX,
+% 	Path = ./fonts/ ,
+% 	Extension = .otf ,
+% 	UprightFont = *-regular,
+% 	BoldFont = *-bold,
+% 	ItalicFont = *-italic,
+% 	BoldItalicFont = *-bolditalic,
+% 	SmallCapsFont = LinLibertine_C,	
+% ]{texgyreschola}
 
 %\newfontfamily\chapfont[
 %	Path=./fonts/,
@@ -385,18 +396,39 @@ pdfproducer={LaTeX}
 %	ItalicFont = SourceSansPro-It.otf,
 %	BoldItalicFont = SourceSansPro-SemiboldIt.otf,
 %]{sourcesans}
-%
-%\newfontfamily\captionfont[
-%	Scale=MatchLowercase,
-%	Path = ./fonts/ ,
-%	Path=./fonts/,
-%	UprightFont = SourceSansPro-Regular.otf,
-%	BoldFont = SourceSansPro-Semibold.otf,
-%	ItalicFont = SourceSansPro-It.otf,
-%	BoldItalicFont = SourceSansPro-SemiboldIt.otf,
-%]{sourcesans}
 
 
+
+% \newfontfamily\chapfont[
+% 	Scale=MatchUppercase,
+% 	Path = ./fonts/ ,
+% 	Extension = .otf ,
+% 	UprightFont = *-regular,
+% 	BoldFont = *-bold,
+% 	ItalicFont = *-italic,
+% 	BoldItalicFont = *-bolditalic
+%  ]{texgyreadventor}
+% 
+% \newfontfamily\sectfont[
+% 	Scale=MatchUppercase,
+% 	Path = ./fonts/ ,
+% 	Extension = .otf ,
+% 	UprightFont = *-regular,
+% 	BoldFont = *-bold,
+% 	ItalicFont = *-italic,
+% 	BoldItalicFont = *-bolditalic
+%  ]{texgyreadventor}
+% 
+% \newfontfamily\subsectfont[
+% 	Scale=MatchUppercase,
+% 	Path = ./fonts/ ,
+% 	Extension = .otf ,
+% 	UprightFont = *-regular,
+% 	BoldFont = *-bold,
+% 	ItalicFont = *-italic,
+% 	BoldItalicFont = *-bolditalic
+%  ]{texgyreadventor}
+ 
 \newfontfamily\chapfont[
 	Scale=MatchUppercase,
  	Path = ./fonts/ ,
@@ -406,6 +438,7 @@ pdfproducer={LaTeX}
  	ItalicFont = *_It.ttf,
  	BoldItalicFont = *_BdIt.ttf,
  ]{Aller}
+
 
 \newfontfamily\sectfont[
 	Scale=MatchUppercase,
@@ -428,7 +461,9 @@ pdfproducer={LaTeX}
  ]{Aller}
 
 
-\newfontfamily\captionfont[
+\newfontfamily\captfont[
+	Microtype,
+	Ligatures=TeX,
 	Scale=MatchUppercase,
  	Path = ./fonts/ ,
 	Extension = .ttf ,
@@ -438,10 +473,20 @@ pdfproducer={LaTeX}
  	BoldItalicFont = *_BdIt.ttf,
  ]{Aller}
 
+\newfontfamily\floatfont[
+	Ligatures=TeX,
+	Scale=MatchLowercase,
+	Path = ./fonts/ ,
+	Path=./fonts/,
+	UprightFont = SourceSansPro-Regular.otf,
+	BoldFont = SourceSansPro-Semibold.otf,
+	ItalicFont = SourceSansPro-It.otf,
+	BoldItalicFont = SourceSansPro-SemiboldIt.otf,
+ ]{sourcesans}
+ 
 
 
-
-
+%%% all math font business
 \usepackage[partial=upright,nabla=upright]{unicode-math}
 \setmathfont[Scale=MatchLowercase]{TG Pagella Math}
 \setmathfont[range={\mathcal,\mathbfcal},StylisticSet=1]{XITS Math}
@@ -455,6 +500,13 @@ pdfproducer={LaTeX}
 \DeclareMathSizes{12}{11}{9}{7}
 \DeclareMathSizes{11}{10}{8}{7}
 
+
+%for tables and tikz figures change font to sans to match tables
+% \setmathfont[version=mysans,Scale=MatchLowercase,range={\mathit,\mathup},Path = ./fonts/]{SourceSansPro-It.otf}%
+% \setmathfont[version=mysans,Scale=MatchLowercase]{XITS Math}
+% 
+%change tikz font for everything
+\tikzstyle{every picture}+=[font=\floatfont]
 
      
  \titleformat{\chapter}[display]
@@ -505,3 +557,4 @@ pdfproducer={LaTeX}
 
 \tikzstyle{protocolbox} = [draw=black, thin, rectangle, rounded corners, inner xsep=5pt, outer ysep=0pt] \tikzstyle{protocolheader} = [draw=none, fill=gray!30, rounded corners, inner sep = 5pt] \tikzstyle{protocoltext} = [draw=black, fill=white, rounded corners, inner sep = 5pt]
 
+\tikzstyle{tablebox} = [draw=none, fill=gray!30, rounded corners, inner sep = 5pt]
