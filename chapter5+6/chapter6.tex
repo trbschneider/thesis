@@ -12,16 +12,20 @@ To ensure consistent positioning of the \gls{DWI} volumes among all scans, we ac
 
 We use a cardiac gated \gls{DWI} acquisition with the following imaging parameters: voxel size=1$\times$1$\times$5 mm$^3$, FOV=64$\times$64mm$^2$, TR=9RR, TE=129ms). To avoid aliasing artifacts from surrounding tissue we use a ZOOM sequence with outer-volume suppression as described by \citet{Wilm:2007}. We acquire 32 \gls{DWI} equally spaced {\q}-values in two directions perpendicular (XY) and in one parallel (Z) direction with respect to the main {\gls{SC}} axis. To achieve the maximum possible gradient strength on our scanner we exploit the combination of parallel gradient amplifiers in our scanner, which can each generate a maximum \gls{gstr} of 62mT/m along the major axes of the scanner bore. Assuming axial symmetry of the axons along the long axis of the spinal cord, we modify the scanner software to drive multiple gradient amplifiers in two orthogonal directions perpendicular to major SC fibre direction (see Figure~\ref{fig:chapter5_exp2_overplus_cartoon} for illustration). This allows us to generate a guaranteed maximum \gls{gstr} of $\sqrt{2} * 62mT/m = 87mT/m$ in XY direction.  In Z direction we use a maximum \gls{gstr} of 62 mT/m. We use the same {\q}-values in this experiment as described by \citet{Farrell:2008}. However the increase in \gls{gstr} allows us to reduce the gradient duration from 50ms to 11.4ms in XY direction (16ms in Z). The full protocol is given in Table~\ref{tab:chapter6 QSI protocol}.
 
-\begin{figure}
+\begin{figure}[htb]
   \pgfimage[width=\textwidth]{chapter5+6/figs/overplus_cartoon.pdf}
   \caption{Cartoon of our implemented gradient strength modification method.}
   \label{fig:chapter5_exp2_overplus_cartoon}
 \end{figure}
 
-\begin{table}
-	  \scriptsize
-      \centering
-     \caption[QSI protocol displaying: Gradient strength (G), \q-value (q) and b-value (b) for each of the 32 DWI volumes.]{QSI protocol displaying: Gradient strength (G), \q-value (q) and b-value (b) for each of the 32 DWI volumes. The full protocol was split in two sub-session (left and right table), carried out immediately one after the other.}
+\begin{table}[p]
+\scriptsize
+\begin{captionframe}
+	\caption[QSI protocol displaying: Gradient strength (G), \q-value (q) and b-value (b) for each of the 32 DWI volumes.]{QSI protocol displaying: Gradient strength (G), \q-value (q) and b-value (b) for each of the 32 DWI volumes. The full protocol was split in two sub-session (left and right table), carried out immediately one after the other.}
+   \label{tab:chapter6 QSI protocol}
+\end{captionframe}
+\begin{tableframe}
+\centering
      \subfloat[Protocol for X and Y direction]{
          \begin{tabular}{rrr}
             \addlinespace
@@ -124,13 +128,24 @@ We use a cardiac gated \gls{DWI} acquisition with the following imaging paramete
                 \bottomrule
             \end{tabular}%
      }
-     \label{tab:chapter6 QSI protocol}
+\end{tableframe}
 \end{table}
 
 
 
 \subsection{Data processing \& analysis}
-We apply the same data processing pipeline as in the previous experiment (see Section~\ref{sec:chapter 5 exp1 methods}) with the exception of the linear regridding of acquired \q-values, which is not necessary in this data set. We segment the whole cervical {\gls{SC}} and place \glspl{ROI} in the lateral columns and the anterior and posterior tracts between level C1/2 and C3 in all subjects (refer to Figure~\ref{fig:chapter5 exp1 ROIs} for an illustration of the drawn \glspl{ROI}).
+We apply the same data processing pipeline as in the previous experiment (see Section~\ref{sec:chapter 5 exp1 methods}) with the exception of the linear regridding of acquired \q-values, which is not necessary in this data set. We segment the whole cervical {\gls{SC}} and place \glspl{ROI} in the lateral columns and the anterior and posterior tracts between level C1/2 and C3 in all subjects. Figure~\ref{fig:chapter6 exp2 ROI and PDFs} illustrates the placement of the \glspl{ROI} and representative dPDFs in XY and Z direction respectively.
+
+\begin{figure}[tbh]
+      \centering
+		\subfloat[DPDF shapes for representative voxels in different tracts in XY and Z direction.]
+		{
+				\pgfimage[width=6cm]{chapter5+6/figs/exp2-pdfsQSI.pdf}
+				\pgfimage[width=6cm]{chapter5+6/figs/exp2-pdfsQSIZ.pdf}
+		}
+      \caption{Illustration of diffusion signals and PDFs derived for different ROIs.}
+      \label{fig:chapter6 exp2 ROI and PDFs}
+  \end{figure}
 
 \subsection{Statistical processing} We derive the same statistics from this dataset as in the previous chapter. We present the absolute difference and relative difference in ADC and \gls{QSI} parameters over the defined \glspl{ROI} in the scan/re-scan cases. Further we show results of t-tests between different tracts for individual metrics and the multivariate Hotelling-T$^2$ test for combination of parameters. We also investigate voxel-wise correlations between the six metrics using Pearson correlation coefficient.
 
@@ -140,10 +155,14 @@ We apply the same data processing pipeline as in the previous experiment (see Se
 \label{par:chapter6 reproducibility}
 Table~\ref{tab:chapter6 scan rescan} shows the intra-subject variability for ADC and QSI metrics in all five subjects. In both ADC and QSI and all \glspl{ROI}, the observed COV values are lower in Z compared to the XY direction. We also observe that QSI metrics are generally more reproducible than ADC values. The small relative change between scan/rescan values for QSI metrics suggest very good reproducibility in both XY (less than 10\%) and Z (less than 5\%), while the intra-subject variation of ADC values is considerably higher with 26\% in XY and 7\% in Z. All investigated \glspl{ROI} show similar scan/rescan reproducibility over all the studied ADC and QSI parameters.
 
-\begin{table}
+\begin{table}[p]
+\footnotesize
+\begin{captionframe}
     \caption{Absolute and relative change (in percent) between scan and rescan of ADC and QSI in 4 healthy volunteers}
-    \footnotesize
-    \centering
+	 \label{tab:chapter6 scan rescan}
+\end{captionframe}
+\begin{tableframe}
+\centering
 \begin{adjustbox}{width={0.75\textwidth},keepaspectratio}
     		\begin{minipage}{\linewidth}
     \subfloat[Perpendicular (ADC$_{xy}$) and parallel diffusivity (ADC$_{z}$)]
@@ -182,8 +201,10 @@ Table~\ref{tab:chapter6 scan rescan} shows the intra-subject variability for ADC
 			\label{tab:chapter6 scan rescan adc}
         }		
 		\end{minipage}
-		\end{adjustbox}	
-
+		\end{adjustbox}\\	
+		%%
+		\textcolor{white}{\rule{0.95\textwidth}{1pt}}\\[0.5ex]
+		%%
 		\begin{adjustbox}{width={0.75\textwidth},keepaspectratio}
     	\begin{minipage}{\linewidth}
         \subfloat[Perpendicular and parallel QSI parameters]
@@ -253,26 +274,9 @@ Table~\ref{tab:chapter6 scan rescan} shows the intra-subject variability for ADC
         }
 		\end{minipage}
 		\end{adjustbox}	
-\label{tab:chapter6 scan rescan}
+\end{tableframe}
 \end{table}
-\subsection{Differences between tract-specific ROI measurements}
-\label{par:chapter6 tract specific}
-\paragraph{Comparing XY and Z parameters }
-Figure~\ref{fig:chapter6 ADC and QSI vals} shows mean and standard deviation of both \gls{ADC} and \gls{QSI} values over all 10 healthy subjects in each \gls{ROI}. In all ROIs, ADC$_{xy}$ values are significantly lower than ADC$_{z}$. Similarly, in XY we also observe small FWHM and larger P0 compared to Z parameters. Both ADC and QSI findings support our assumption of restricted diffusion predominantly in XY direction.
-
-\paragraph{Difference between WM and GM }
-Table~\ref{tab:chapter6 single ttest} presents the results of pairwise t-tests between all GM and WM \glspl{ROI}, testing for for statistically significant differences in individual ADC and QSI metrics. The most significant differences are found between both the lateral tracts and GM region, as well as the posterior tract and GM. In both ADC and QSI, the XY measurements distinguish WM and GM regions better than the Z parameters. All the XY parameters, i.e. ADC$_{xy}$, P0$_{xy}$ and FWHM$_{xy}$, show similar p-values in detecting the differences between GM and the WM regions. In contrast, neither of the parameters is able to discriminate AT from GM.
-
-\paragraph{Differences between WM regions}
-No statistical difference is observed between left and right LT in neither ADC or QSI values. However, we detect differences between the PT and both LTs with ADC and QSI (p<0.05). The $P-values$ between PT and LTs are consistently smaller in P0$_{xy}$ and FWHM$_{xy}$ compared to ADC$_{xy}$. None of these tracts show significant differences in any of the XY metrics. AT appears different from all the other WM regions with  most ADC/QSI parameters in XY and Z.
-
-\paragraph*{Multi-variate differences between tract-specific ROI measurements }
-Table~\ref{tab:chapter6 hotelling} shows the results of the multivariate test for statistical differences between \glspl{ROI} for various combinations of ADC$_{xy}$, ADC$_{z}$, and P0 and FWHM metrics in XY and Z. As expected from single parameter t-test results, either tested combination is sensitive to differences between WM (except AT) and GM. However, including any of the QSI$_z$ parameters noticeably reduced the significance of the observed differences.
-
-Between WM regions, the combination of ADC$_{xy}$ and ADC$_{z}$) good discrimination between the left and right LTs and the PT. In contrast, neither combinations of QSI metrics in XY is significantly different between any pair of WM regions. However, the combined QSI$_z$ metrics (P0$_z$,FWHM$_z$) revealed differences between PT and rLT and PT and AT that are not found in XY. The full combination of both QSI$_{xy}$ and QSI$_{z}$ revealed the least differences between any tracts.
-
-
-\begin{figure}
+\begin{figure}[p]
       \centering
       \subfloat[ADC$_{xy}$\& ADC$_{z}$]
 	  {
@@ -291,11 +295,29 @@ Between WM regions, the combination of ADC$_{xy}$ and ADC$_{z}$) good discrimina
 	  \caption{Mean and standard deviation of ADC and QSI parameters over all 10 healthy controls for each SC tracts.}
       \label{fig:chapter6 ADC and QSI vals}
 \end{figure}%
+\subsection{Differences between tract-specific ROI measurements}
+\label{par:chapter6 tract specific}
+\paragraph{Comparing XY and Z parameters }
+Figure~\ref{fig:chapter6 ADC and QSI vals} shows mean and standard deviation of both \gls{ADC} and \gls{QSI} values over all 10 healthy subjects in each \gls{ROI}. In all ROIs, ADC$_{xy}$ values are significantly lower than ADC$_{z}$. Similarly, in XY we also observe small FWHM and larger P0 compared to Z parameters. Both ADC and QSI findings support our assumption of restricted diffusion predominantly in XY direction.
 
-\begin{table}
-    \footnotesize
-    \centering
+\paragraph{Difference between WM and GM }
+Table~\ref{tab:chapter6 single ttest} presents the results of pairwise t-tests between all GM and WM \glspl{ROI}, testing for for statistically significant differences in individual ADC and QSI metrics. The most significant differences are found between both the lateral tracts and GM region, as well as the posterior tract and GM. In both ADC and QSI, the XY measurements distinguish WM and GM regions better than the Z parameters. All the XY parameters, i.e. ADC$_{xy}$, P0$_{xy}$ and FWHM$_{xy}$, show similar p-values in detecting the differences between GM and the WM regions. In contrast, neither of the parameters is able to discriminate AT from GM.
+
+\paragraph{Differences between WM regions}
+No statistical difference is observed between left and right LT in neither ADC or QSI values. However, we detect differences between the PT and both LTs with ADC and QSI (p<0.05). The $P-values$ between PT and LTs are consistently smaller in P0$_{xy}$ and FWHM$_{xy}$ compared to ADC$_{xy}$. None of these tracts show significant differences in any of the XY metrics. AT appears different from all the other WM regions with  most ADC/QSI parameters in XY and Z.
+
+\paragraph*{Multi-variate differences between tract-specific ROI measurements }
+Table~\ref{tab:chapter6 hotelling} shows the results of the multivariate test for statistical differences between \glspl{ROI} for various combinations of ADC$_{xy}$, ADC$_{z}$, and P0 and FWHM metrics in XY and Z. As expected from single parameter t-test results, either tested combination is sensitive to differences between WM (except AT) and GM. However, including any of the QSI$_z$ parameters noticeably reduced the significance of the observed differences.
+
+Between WM regions, the combination of ADC$_{xy}$ and ADC$_{z}$) good discrimination between the left and right LTs and the PT. In contrast, neither combinations of QSI metrics in XY is significantly different between any pair of WM regions. However, the combined QSI$_z$ metrics (P0$_z$,FWHM$_z$) revealed differences between PT and rLT and PT and AT that are not found in XY. The full combination of both QSI$_{xy}$ and QSI$_{z}$ revealed the least differences between any tracts.
+\begin{table}[p]
+\begin{captionframe}
     \caption[Pair-wise t-test results between SC tracts in ADC and QSI parameters.]{Pair-wise t-test results between SC tracts in ADC and QSI parameters. Statistically different values are marked \textbf{bold} for p<0.05, \textbf{\textit{bold-italic}} for p<0.01.}
+    \label{tab:chapter6 single ttest}%			
+\end{captionframe}
+\begin{tableframe}
+\footnotesize
+\centering
     \subfloat[ADC$_{xy}$\& ADC$_{z}$]{
 	  	 \begin{minipage}{\linewidth}
 				\begin{tabular}{rrrrr}
@@ -325,7 +347,10 @@ Between WM regions, the combination of ADC$_{xy}$ and ADC$_{z}$) good discrimina
 	        \end{tabular}%
 	\end{minipage}		
 	\label{tab:chap5exp2_adc single ttest}%
-    }\\
+    }\\	
+	%%
+	\textcolor{white}{\rule{0.95\textwidth}{1pt}}\\[0.5ex]
+	%%
 	\subfloat[QSI$_{xy}$\& QSI$_{z}$ metrics]
 	{
 	   \begin{minipage}{\linewidth}
@@ -383,12 +408,15 @@ Between WM regions, the combination of ADC$_{xy}$ and ADC$_{z}$) good discrimina
 	 \end{minipage}%
 	 \label{tab:chap5exp2_qsi single ttest}%			
   }
-  \label{tab:chapter6 single ttest}%			
-  \end{table}
-
-\begin{table}
-  \centering
+\end{tableframe}
+\end{table}
+\begin{table}[tbp]
+\begin{captionframe}
   \caption[Hotelling's-T$^2$ significance of pair-wise tract-specific differences for ADC and QSI metrics.]{Hotelling's-T$^2$ significance of pair-wise tract-specific differences for ADC and QSI metrics (confidence interval: 95\%). Statistically different values are marked \textbf{bold} for p<0.05, \textbf{\textit{bold-italic}} for p<0.01.}
+  \label{tab:chapter6 hotelling}%
+\end{captionframe}
+\begin{tableframe}
+\centering
    \subfloat[ADC$_{xy}$,ADC$_{z}$]
    {
         \begin{tabular}{rrrrr}
@@ -449,18 +477,29 @@ Between WM regions, the combination of ADC$_{xy}$ and ADC$_{z}$) good discrimina
         \end{tabular}%
     \label{tab:chap5exp2_qsiall hotelling}%
   }
-  \label{tab:chapter6 hotelling}%
+\end{tableframe}
 \end{table}%
 
 \subsection{Correlation between ADC and QSI}
 \label{par:chapter5 exp2 correlation}
 Table~\ref{tab:chapter5 exp2 correlations} shows the Pearson coefficient and p-value for voxel-wise correlations between the investigated ADC and QSI metrics. We observe a strong correspondence (p<0.01) between ADC measurements and P0 and FWHH QSI metrics in X as well as FWHM in Z. P0$_z$ is the only parameter that does not correlate with any of the other metrics, suggesting additional information that is neither captured in the ADC$_z$ value nor captured with any of the XY measurements.%
+\section{Discussion}
+\subsection{Reproducibility}
+ We find overall very good reproducibility of our measurements in both XY and Z. We attribute this to the combination of (i) the small FOV imaging protocol (ii) careful positioning  (iii) strong gradient hardware. ADC values are considerably less reproducible than QSI metrics. To some degree this can be explained by the fact that only a subset of the full QSI dataset was used to compute the ADC values. On the other hand, the ADC model is very simple and the number of data points we used in this study for ADC fitting should suffice to allow a reliable fit of the mono-exponential decay curve. We assume therefore that the improvement we find in intra-subject reproducibility of QSI over ADC are unlikely to be just an effect of the number of acquisitions alone but rather a feature of the QSI method.
 
-\begin{table}
+\subsection{Discrimination of tracts in healthy spinal cord}
+\paragraph{} Both ADC and QSI parameters allow some degree of discrimination between the different \glspl{ROI} we investigated in this study. In both metrics, GM is most differentiated from all WM regions (except AT). The AT region presents values very similar to those found in the GM region. This can partly be explained by the largest standard deviation of all investigated \glspl{ROI}. However, it must be noted that the AT is the most difficult \gls{ROI} to locate due to its small size. Its size and location makes it hard to delineate from GM in the studied part of the \gls{SC}. Furthermore, both the AT and GM suffer most from \gls{CSF} contribution from the anterior median fissure (in case of the AT) and the spinal canal (in case of GM). Therefore the resulting measurements in this region might rather be caused by partial volume effects with \gls{CSF} and GM (as shown in Chapter~\ref{chapter5}) than reflect a difference in underlying microstructure of the WM in the AT.
+
+\begin{table}[tb]
+\begin{captionframe}
  \caption[Pearson-correlation coefficient and significance between all ADC and QSI metrics.]{Pearson-correlation coefficient and significance between all ADC and QSI metrics. P-values $<0.01$ are displayed as \textbf{\textit{bold-italic}}.}
+\label{tab:chapter5 exp2 correlations}	
+\end{captionframe}
+\begin{tableframe}
  \centering
  \begin{adjustbox}{width=0.9\textwidth,keepaspectratio}
  \begin{minipage}{\textwidth}
+	\centering
     \begin{tabular}{rrrrrrrr}
     \addlinespace
     \toprule
@@ -482,14 +521,8 @@ Table~\ref{tab:chapter5 exp2 correlations} shows the Pearson coefficient and p-v
     \end{tabular}%
   	\end{minipage}
 	\end{adjustbox}
-	\label{tab:chapter5 exp2 correlations}	
+\end{tableframe}
 \end{table}
-\section{Discussion}
-\subsection{Reproducibility}
- We find overall very good reproducibility of our measurements in both XY and Z. We attribute this to the combination of (i) the small FOV imaging protocol (ii) careful positioning  (iii) strong gradient hardware. ADC values are considerably less reproducible than QSI metrics. To some degree this can be explained by the fact that only a subset of the full QSI dataset was used to compute the ADC values. On the other hand, the ADC model is very simple and the number of data points we used in this study for ADC fitting should suffice to allow a reliable fit of the mono-exponential decay curve. We assume therefore that the improvement we find in intra-subject reproducibility of QSI over ADC are unlikely to be just an effect of the number of acquisitions alone but rather a feature of the QSI method.
-
-\subsection{Discrimination of tracts in healthy spinal cord}
-\paragraph{} Both ADC and QSI parameters allow some degree of discrimination between the different \glspl{ROI} we investigated in this study. In both metrics, GM is most differentiated from all WM regions (except AT). The AT region presents values very similar to those found in the GM region. This can partly be explained by the largest standard deviation of all investigated \glspl{ROI}. However, it must be noted that the AT is the most difficult \gls{ROI} to locate due to its small size. Its size and location makes it hard to delineate from GM in the studied part of the \gls{SC}. Furthermore, both the AT and GM suffer most from \gls{CSF} contribution from the anterior median fissure (in case of the AT) and the spinal canal (in case of GM). Therefore the resulting measurements in this region might rather be caused by partial volume effects with \gls{CSF} and GM (as shown in Chapter~\ref{chapter5}) than reflect a difference in underlying microstructure of the WM in the AT.
 
 
 \paragraph{} We did not observe any differences between WM regions in the XY direction with either ADC or QSI measurements. This is likely an effect of the relatively low gradient strength we used here,  which does not allow us to distinguish the small axon diameters we expect to find in WM tracts. Considering the relatively long gradient pulse duration of $\delta=11ms$ used in this study, the centre-of-mass effect described would cause similar contrast for small axons (in Section~\ref{sec:chapter2 limits of SGP} for details). A further indication of this is the strong correlations between ADC and QSI parameters, which might suggest that the contrast might be governed by the hindered diffusion compartment rather than by differences in restriction.
