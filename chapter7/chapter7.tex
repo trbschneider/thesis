@@ -425,7 +425,7 @@ Larger differences between the protocols can be seen in the $R$ estimation error
 \end{figure}
 
 
-\paragraph{Effect of fibre dispersion: } Figure~\ref{fig:chapter7 exp1 dispersion 60mT} shows the fitted $f_{intra}$ and $R$ estimates different degrees of intra-voxel dispersion of fibre orientations. For small $\kappa$, i.e. high degrees of dispersion, we observe large errors in estimates of both $f_{intra}$ and $R$, as expected e.g. from \citep{Zhang:2011}. However, for $\kappa \ge 64$, the fitted parameters converge to their respective ground truth, although a value of $\kappa$ still presents a considerable degree of dispersion (5\% quantile of fibre misalignment  is 2.5$^\circ$, 50\%/10$^\circ$, 95\%/17$^\circ$ respectively). With increasing $\kappa$, there appears to be no noticeable difference between the four protocols.
+\paragraph{Effect of fibre dispersion: } Figure~\ref{fig:chapter7 exp1 dispersion 60mT} shows the fitted $f_{intra}$ and $R$ estimates different degrees of intra-voxel dispersion of fibre orientations. For small $\kappa$, i.e. high degrees of dispersion, we observe large errors in estimates of both $f_{intra}$ and $R$, as expected e.g. from \citep{Zhang:2011}. However, for $\kappa \ge 64$, the fitted parameters converge to their respective ground truth, although such a value of $\kappa$ still presents a considerable degree of dispersion (5\% quantile of fibre misalignment is 2.5$^\circ$, 50\% quantile is 10$^\circ$, 95\% quantile is 17$^\circ$ respectively). With increasing $\kappa$, there appears to be no noticeable difference between the four protocols.
 
 \begin{figure}[ht]
 	\centering
@@ -447,10 +447,9 @@ Figure~\ref{fig:chapter7 exp1 monkey data} presents maps of axon diameter $a$ an
 	  	\draftpic
 	  }
       {
-		\pgfimage[width=4cm]{chapter7/figs/monkeySC_diam.png}
+		\pgfimage[width=0.8\textwidth]{chapter7/figs/monkeySC_diam.pdf}
       }   
-	}
-	\hspace{2cm}
+	}\\	
 	\subfloat[Axon density index $\rho$]
 	{
       \ifdraft
@@ -458,15 +457,15 @@ Figure~\ref{fig:chapter7 exp1 monkey data} presents maps of axon diameter $a$ an
 	  	\draftpic
 	  }
       {
-		\pgfimage[width=4cm]{chapter7/figs/monkeySC_dens.png}
+		\pgfimage[width=0.8\textwidth]{chapter7/figs/monkeySC_dens.pdf}
       }
 	}
-	\caption{Axial slice of upper cervical cord showing maps of $a$ and $\rho$. White markers show the approximate location of the corticospinal tracts (CST), anterolateral column (ALC) and dorsal column (DC)}
+	\caption{Axial slices of cervical cord (C1--C3) showing maps of $a$ and $\rho$. White markers show the approximate location of the corticospinal tracts (CST), anterolateral column (ALC) and dorsal column (DC)}
 	\label{fig:chapter7 exp1 monkey data}
 \end{figure}
 
 \section{Discussion}
-We presented here a novel method that provides optimal diffusion weightings and gradient directions for estimating axonal diameter by exploiting the single fibre orientation of structures like the corpus callosum or spinal cord. We demonstrated that the {\gls{SF}} approach reduces the required amount of data by 60--75\%, while achieving similar performance to {\gls{OI}}. This translates into a considerable reduction in scan time from >1h for {\gls{OI}} to less than 20-25 minutes, which makes routine clinical implementation much more viable.  
+We presented here a novel method that provides optimal diffusion weightings and gradient directions for estimating axonal diameter by exploiting the single fibre orientation of structures like the corpus callosum or spinal cord. We demonstrated that the {\gls{SF}} approach reduces the required amount of data by 60--75\%, while achieving similar performance to {\gls{OI}}. This translates into a considerable reduction in scan time from >1 hour for {\gls{OI}} to less than 20-25 minutes, which makes routine clinical implementation much more viable.  
 
 \paragraph{}
 Our results suggest that a dedicated optimisation of gradient directions is clearly beneficial over the orientation invariant \gls{OI}{} approach, both in terms of CRLB and simulated noisy data when the fibre direction is known a-priori. We find that the optimisation routine deliberately diminishes angular resolution in favour of measuring diffusion only in the most informative directions (predominantly parallel and perpendicular to the WM tracts). We noticed that our optimised gradient scheme pick out predominantly gradient directions parallel and perpendicular to the cylinder compartment, presumably to maximise sensitivity to restricted diffusion. In that respect our automatically optimised gradient schemes agree with many other studies e.g. \citep{Stanisz:1997,Avram:2008,Assaf:2008,Panagiotaki:2012}, which only chose parallel and perdendicular measurements to maximise sensitivity to restricted diffusion.The few intermediate gradient directions are most likely a result of imperfections in the optimisation due to the overwhelming number of free parameters in the \FD{} and \DO{} designs (see next chapter for more details). Overall, our results confirm that parallel and perpendicuar directions gives the most information about the tissue, and one should focus on those directions when the fibre configuration is known a-priori. Furthermore, the simulation results show that the combination of stronger diffusion weighting and custom gradient scheme in the \FD{} design is most successful in estimating the cylinder radius, especially when $R$ is very small.

@@ -194,6 +194,21 @@
 \captionsetup{format=hang,font=small,labelfont={bf}}
 \captionsetup[table]{position=t}
 
+%ident command for htlatex comp
+\makeatletter
+\usepackage{environ}
+\NewEnviron{tableframe}[1][\textwidth]{%
+		 	\BODY
+}
+\NewEnviron{captionframe}[1][\textwidth]{%
+ 		 	\BODY
+}
+
+%\AtBeginEnvironment{table}{\begin{tableframe}}%
+%\AtEndEnvironment{table}{\end{tableframe}}%
+\makeatother
+
+
 %----------------------------------------------------------------------------------------
 %	HYPERREFERENCES
 %----------------------------------------------------------------------------------------
@@ -219,7 +234,12 @@ pdfcreator={xelatex},
 pdfproducer={LaTeX}
 %------------------------------------------------
 }   
+\newcommand*{\theHsection}{\thesection} %for tex4ht
 
+%disable ligatures for html
+\usepackage{microtype}
+\DisableLigatures{encoding = *, family = * }
+\let\columnlines\empty
 %----------------------------------------------------------------------------------------
 %	BACKREFERENCES
 %----------------------------------------------------------------------------------------

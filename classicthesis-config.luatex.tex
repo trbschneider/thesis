@@ -9,7 +9,7 @@
 
 %----------------------------------------------------------------------------------------
 %	DOCUMENT VARIABLES
-%	Fill in the lines below to enter your information into the thesis template
+%	Fill in the lines below to enter your infcmation into the thesis template
 %	Each of the commands can be cited anywhere in the thesis
 %----------------------------------------------------------------------------------------
 
@@ -208,8 +208,10 @@
 \makeatother
 
 %frame tables
+\makeatletter
 \usepackage{environ}
 \NewEnviron{tableframe}[1][\textwidth]{%
+	\tikzset{external/export next=false}
 	\begin{tikzpicture}
 		\node [tablebox] (box){
 			\begin{minipage}{#1}
@@ -218,10 +220,19 @@
   		};
   	\end{tikzpicture}
 }
+\NewEnviron{captionframe}[1][\textwidth]{%
+	\tikzset{external/export next=false}
+	\begin{tikzpicture}
+		\node [captionbox] (box){
+			\begin{minipage}{#1}
+       		 	\BODY
+		    \end{minipage}%  	  	
+  		};
+  	\end{tikzpicture}
+}
 
-\makeatletter
-\AtBeginEnvironment{table}{\begin{tableframe}}%
-\AtEndEnvironment{table}{\end{tableframe}}%
+%\AtBeginEnvironment{table}{\begin{tableframe}}%
+%\AtEndEnvironment{table}{\end{tableframe}}%
 \makeatother
 
 
@@ -568,9 +579,19 @@ pdfproducer={LaTeX}
 \newcommand{\SFlong}{\SF$_{360}$}
 \newcommand{\OIlong}{\OI$_{360}$}
 
-\newcommand{\FDmod}{{\ensuremath{\FD_{mod}}}}
-\newcommand{\SFasym}{{\ensuremath{a\mathcal{SF}}}}
+\newcommand{\FDmod}{\FD{\ensuremath{_{mod}}}}
+\newcommand{\SFasym}{A\SF{}}
 
 \tikzstyle{protocolbox} = [draw=black, thin, rectangle, rounded corners, inner xsep=5pt, outer ysep=0pt] \tikzstyle{protocolheader} = [draw=none, fill=gray!30, rounded corners, inner sep = 5pt] \tikzstyle{protocoltext} = [draw=black, fill=white, rounded corners, inner sep = 5pt]
 
-\tikzstyle{tablebox} = [draw=none, fill=gray!30, inner sep = 1pt]
+%vertebrae colorscheme
+\definecolor{darkgray}{HTML}{666666}
+\definecolor{mediumgray}{HTML}{999999}
+\definecolor{lightgray}{HTML}{CCCCCC}
+\definecolor{green}{HTML}{ABDB25}
+
+
+\setlength{\abovecaptionskip}{4pt} % space above main figure caption was 8pt
+\setlength{\belowcaptionskip}{4pt} % space above main figure caption was 8pt
+\tikzstyle{tablebox} = [draw=none, fill=lightgray!50!white, inner xsep=5pt, inner ysep=5pt, outer sep=0pt]
+\tikzstyle{captionbox} = [draw=none, fill=mediumgray, inner xsep=5pt, inner ysep=0pt, outer sep=0pt]
