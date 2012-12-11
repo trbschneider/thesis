@@ -31,9 +31,12 @@ To reduce the complexity of the optimisation problem we therefore constrain our 
 For any given desired discrete realisation of \SFasym{} for a total number of measurements $N_{total}$, we can simply calculate the number of acquistions per set by $N_{m}=w_mN$. Table~\ref{tab:chapter8 asym parameter overview} summarises the optimisation parameters for the asymptotic protocol optimisation in comparision with the \OI{} and \FD{} methods described in the last chapter. Please note that the computational complexity of the \SFasym{} is only dependent on $M$, making it similar to the complexity of \OI{} and significantly less demanding than \FD{}.   
 
 \begin{table}[th]
+\begin{captionframe}
   	\caption{Overview of free and fixed parameters for the \SFasym{} protocol optimisation compared to \SF{} and \OI{} protocols.} 
-	\centering \vspace{2ex}
-    	\label{tab:chapter8 asym parameter overview}
+   	\label{tab:chapter8 asym parameter overview}
+\end{captionframe}
+\begin{tableframe}
+\centering
     	\begin{adjustbox}{width={\textwidth},totalheight=\textheight,keepaspectratio}
         	\begin{tabular}{@{}y{0.30\textwidth}x{0.20\textwidth}x{0.20\textwidth}x{0.20\textwidth}@{}}
                 \toprule
@@ -42,24 +45,29 @@ For any given desired discrete realisation of \SFasym{} for a total number of me
 				Free parameters & $w_m$, $\delta_m$, $\Delta_m$, $G_m$ & $\delta_m$, $\Delta_m$, $G_m$ & $\phi_{m,n}$, $\theta_{m,n}$, $\delta_m$, $\Delta_m$, $G_m$ \\[2ex]
         		Fixed parameters & $\phi_n$,$\theta_n$ & $\phi_n$,$\theta_n$ & --  \\[2ex]
         		Specific fibre direction & yes & no & yes \\[2ex]
-        		No. of free parameters & O($M$) &O($M$) & O($M\times N$) \\
+        		No. of free parameters & $O(M$) & $O(M$) & $O(M\times N$) \\
         		\bottomrule
         	\end{tabular}        	
     \end{adjustbox}
+\end{tableframe}
 \end{table}
 
  
 
 \section{Experiments \& Methods}
 \begin{table}
-\centering
+\begin{captionframe}
 \caption{{\protect\gls{PGSE}} settings of \SFshort{}, \SFlong{} and \OIlong{} protocols. $\perp$ and $\parallel$ mark acquisitions perpendicular and parallel to the fibre bundles.}
+\label{tab:experiment4:protocols}
+\end{captionframe}
+\begin{tableframe}
+\centering
 \subfloat[\textit{\SFlong{} and \SFshort{} protocols}]{
     \begin{tabular}{@{}llb{0.8cm}b{0.8cm}b{1.1cm}b{1.2cm}c@{}}
     %\multicolumn{6}{c}{}\\
     \multicolumn{2}{c}{$N_m$} & $\Delta$ $[ms]$   & $\delta$ $[ms]$ & $G$ $[mT/m]$ & $b$ $[s/mm^2]$ &\\ \midrule
     70 &18 & 0 & 0 & 0 & 0 &\\
-    72 &17 & 33.0  & 14.5 &	36.8 & 550 & $\parallel$\\
+    72 &17 & 33.0 & 14.5 &	36.8 & 550 & $\parallel$\\
     38 &10 & 22.4 & 15.9& 60.0  & 1114 & $\perp$\\
     45 &11 & 29.3 & 22.8 & 60.0 & 2908 & $\perp$\\
     68 &17 & 48.0 & 26.6 & 43.7 & 3666 & $\perp$\\
@@ -81,7 +89,7 @@ For any given desired discrete realisation of \SFasym{} for a total number of me
     \end{tabular}
     \label{tab:experiment4:oi-protocol}
 }
-\label{tab:experiment4:protocols}
+\end{tableframe}
 \end{table}
 
 \subsection{Protocols}

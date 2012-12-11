@@ -326,7 +326,6 @@ pdfproducer={LaTeX}
 
 %----------------------------------------------------------------------------------------
 
-%\usepackage{classicthesisxetex} 
 \usepackage{classicthesis} 
 
 
@@ -510,7 +509,17 @@ pdfproducer={LaTeX}
 	ItalicFont = SourceSansPro-It.otf,
 	BoldItalicFont = SourceSansPro-SemiboldIt.otf,
  ]{sourcesans}
- 
+
+\newfontfamily\hdrfont[
+	Ligatures=TeX,
+	Scale=MatchLowercase,
+	Path = ./fonts/ ,
+	Path=./fonts/,
+	UprightFont = SourceSansPro-Regular.otf,
+	BoldFont = SourceSansPro-Semibold.otf,
+	ItalicFont = SourceSansPro-It.otf,
+	BoldItalicFont = SourceSansPro-SemiboldIt.otf,
+ ]{sourcesans} 
 
 
 %%% all math font business
@@ -535,8 +544,9 @@ pdfproducer={LaTeX}
 %change tikz font for everything
 \tikzstyle{every picture}+=[font=\floatfont]
 
+\RequirePackage{textcase} % for \MakeTextUppercase
      
- \titleformat{\chapter}[display]
+\titleformat{\chapter}[display]
          {\relax}{\mbox{}\oldmarginpar{\vspace*{-3\baselineskip}\color{halfgray}\chapterNumber\thechapter}}{0pt}%
          {\Large\chapfont\textbf}[\vspace*{.0\baselineskip}\titlerule]%   
  
@@ -560,7 +570,44 @@ pdfproducer={LaTeX}
     % descriptionlabels
 		\renewcommand{\descriptionlabel}[1]{\hspace*{\labelsep}{\itshape{#1}}} 
 
+\makeatletter
+%%%%% headers
+%% kick the spaced caps into oblivion
+%\renewcommand{\spacedlowsmallcaps}[1]{set in ssc ::: #1 :::}%
+\clearscrheadings
+\setheadsepline{0pt}
 
+\renewcommand{\chaptermark}[1]{\markboth{{#1}}{{#1}}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\enspace{#1}}}
+ 
+\lehead{\mbox{\llap{\small\thepage\kern2em}\textit{\headmark}\hfil}}
+\rohead{\mbox{\hfil{\textit{\headmark}}\rlap{\small\kern2em\thepage}}}
+%
+\renewcommand{\headfont}{\hdrfont\small}  
+%
+%\DeclareRobustCommand{\fixBothHeadlines}[2]{} % <--- ToDo
+%    % hack to get the content headlines right (thanks, Lorenzo!)
+%\def\toc@heading{%
+%	\chapter*{\contentsname}
+%	\@mkboth
+%		{\hdrfont\itshape \contentsname}
+%		{\hdrfont\itshape \contentsname}
+%}
+
+
+%restore original chapter definition
+\renewcommand*{\chapter}{\oldchap}
+
+\let\oldchapa=\chapter
+\renewcommand*{\chapter}{%
+    \secdef{\Chap}{\ChapS}%
+}
+\renewcommand*\ChapS[1]{\oldchapa*{#1}}%
+\renewcommand*\Chap[2][]{\oldchapa[\texorpdfstring{{#1}}{#1}]{#2}}%
+    
+
+
+\makeatother
 
 %----------------------------------------------------------------------------------------
 %	USEFUL COMMANDS
@@ -595,3 +642,14 @@ pdfproducer={LaTeX}
 \setlength{\belowcaptionskip}{4pt} % space above main figure caption was 8pt
 \tikzstyle{tablebox} = [draw=none, fill=lightgray!50!white, inner xsep=5pt, inner ysep=5pt, outer sep=0pt]
 \tikzstyle{captionbox} = [draw=none, fill=mediumgray, inner xsep=5pt, inner ysep=0pt, outer sep=0pt]
+
+
+%make all titlecase
+\usepackage{stringstrings}
+\addlcwords{all of the and a an is before on}
+\DeclareRobustCommand*\MakeTitlecase[1]{%
+  \caselower[e]{#1}%
+  \capitalizetitle{\thestring}%
+}
+
+\makeatletter

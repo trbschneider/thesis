@@ -9,13 +9,6 @@
 
 \setcounter{secnumdepth}{2} % Depth of sections to number in the text itself - currently up to subsubsections
 
-\manualmark
-\markboth{\spacedlowsmallcaps{\contentsname}}{\spacedlowsmallcaps{\contentsname}}
-\tableofcontents 
-\automark[section]{chapter}
-\renewcommand{\chaptermark}[1]{\markboth{\spacedlowsmallcaps{#1}}{\spacedlowsmallcaps{#1}}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection\enspace\spacedlowsmallcaps{#1}}}
-
 \clearpage
 
 \begingroup 
@@ -70,7 +63,7 @@
 %\addcontentsline{toc}{chapter}{Acronyms} % Uncomment if you would like the acronyms to appear in the table of contents
 %\renewcommand{\glossarymark}[1]{\markboth{\spacedlowsmallcaps{#1}}{\spacedlowsmallcaps{#1}}}
 %
-\markboth{\spacedlowsmallcaps{Acronyms}}{\spacedlowsmallcaps{Acronyms}}
+\markboth{{Acronyms}}{{Acronyms}}
 \renewcommand{\glossarymark}[1]{}
 \renewcommand*{\glossarysection}[2][]{%
   \chapter*{Acronyms}%

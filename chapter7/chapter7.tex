@@ -28,12 +28,15 @@ This section discusses how we adapt the \gls{OI} optimisation of \citet{Alexande
 
 Table~\ref{tab:chapter7 exp1 opt parameter overview} summarises the optimisation parameters for each of the four algorithms. It is important to note that the inclusion of the optimisation of individual gradient directions in {\DO} and {\FD} drastically increases the number of free parameters to be optimised from $O(M)$ to $O(N\cdot M)$ compared to {\gls{OI}} and {\SD}.
 \begin{table}[th]
-  	\caption{Overview of parameters for the tested protocol optimisation approaches.} \centering \vspace{2ex}
-    \label{tab:chapter7 exp1 opt parameter overview}
+\begin{captionframe}
+  	\caption{Overview of parameters for the tested protocol optimisation approaches.}
+   \label{tab:chapter7 exp1 opt parameter overview}
+\end{captionframe}
+\begin{tableframe}
+\centering
+\vspace{2ex}
     \begin{adjustbox}{width={\textwidth},totalheight=\textheight,keepaspectratio}
-        	\begin{tabular}
-        		{@{}y{0.35\textwidth}x{0.2\textwidth}x{0.2\textwidth}x{0.2\textwidth}x{0.2\textwidth}x{0.15\textwidth}@{}}
-                \toprule
+        	\begin{tabular}        		{@{}y{0.35\textwidth}x{0.2\textwidth}x{0.2\textwidth}x{0.2\textwidth}x{0.2\textwidth}x{0.15\textwidth}@{}}
                 Protocol name & {\gls{OI}} & {\FD} & {\SD} & {\DO}  \\%
         		& \footnotesize{(orientation invariant)} & \footnotesize{(pulses + directions)} & \footnotesize{(pulses only)} & \footnotesize{(directions only)} \\%
         		\cmidrule(r){2-2} \cmidrule(rl){3-3} \cmidrule(rl){4-4} \cmidrule(l){5-5} Free parameters & $\delta_m,\Delta_m,G_m$ & $\phi_{m,n},\theta_{m,n}$ &  $\delta_m,\Delta_m,G_m$ & $\phi_{m,n},\theta_{m,n}$ \\
@@ -44,19 +47,24 @@ Table~\ref{tab:chapter7 exp1 opt parameter overview} summarises the optimisation
         		\bottomrule
         	\end{tabular}        	
     \end{adjustbox}
+\end{tableframe}
 \end{table}
 
 \subsection{Tissue model}
    Like \citet{Alexander:2008}, we use a simple two-compartment model of white matter tissue, with axons represented as cylinders with a single radius and extra-axonal tissue represented by an axially symmetric diffusion tensor ('ZeppelinCylinder' in the taxonomy of \citet{Panagiotaki:2012}).  For the optimisation we assume tissue diffusion properties typically found in \emph{in-vivo} human white matter. A full list of the model parameters used in the optimisation is given in Table~\ref{tab: chapter7 exp1 model opt parameters clinical}.
 
-\begin{table}[!ht]\scriptsize
+\begin{table}[!ht]
+\begin{captionframe}
 	\caption{Model parameters used for optimisation.}
+   \label{tab: chapter7 exp1 model opt parameters clinical}
+\end{captionframe}
+\begin{tableframe}
+	 \scriptsize
     \centering
     \vspace{2ex}	
     % Cylinder
     \begin{tabular}{y{0.1\textwidth}y{0.25\textwidth}}
     \addlinespace
-    \toprule
     \multicolumn{2}{c}{\textbf{Cylinder}} \\
     \multicolumn{2}{c}{(intra-axonal)} \\
     \midrule
@@ -67,11 +75,10 @@ Table~\ref{tab:chapter7 exp1 opt parameter overview} summarises the optimisation
     R & $\{1..1..10\}\mu m$ \\
     \bottomrule
     \end{tabular}%
-    \hspace{0.15\textwidth}
+    \hspace{0.05\textwidth}
     %%% Zeppelin
     \begin{tabular}{y{0.1\textwidth}y{0.25\textwidth}}
     \addlinespace
-    \toprule
     \multicolumn{2}{c}{\textbf{Axially symmetric tensor}} \\
     \multicolumn{2}{c}{(extra-axonal)} \\
     \midrule
@@ -82,7 +89,7 @@ Table~\ref{tab:chapter7 exp1 opt parameter overview} summarises the optimisation
     \bottomrule
     & \\ %empty line to level tables
     \end{tabular}%
-    \label{tab: chapter7 exp1 model opt parameters clinical}
+\end{tableframe}
     \vspace{2ex}	
 \end{table}
 
@@ -112,8 +119,11 @@ Figure~\ref{fig:chapter7 exp1 SNR vs CRLB} shows the CRLB of the four different 
 \end{figure}
 Table~\ref{fig:chapter7 exp1 protocol 60mT} shows an example of the \gls{OI}{} and the three \gls{SF}{} protocol variants we obtain for $N=90$ and SNR$=20$. A more comprehensive visualisation of the different protocol parameters can be found in Appendix~\ref{app:chapter7 protocols 60mT}. We deliberately chose a large number of $M$ to reevaluate the optimal number of different PGSE for each protocol. Our findings here confirm the results of \citet{Alexander:2008}, which suggest that a smaller number of $M=4$ suffices to capture all unique combinations of PGSE pulse parameters. We also note that {\gls{OI}} and {\SD} protocols are almost identical, which suggest that the choice of diffusion orientation for the {\gls{OI}} has little influence on the outcome of the algorithm.
 \begin{table}[H]
-\caption{Protocol parameters and gradient schemes for $N=90$, $M=8$. The $M$ different gradient direction schemes are coded by different colors. Please note that in the \gls{OI}{} and \SD{} protocols all $M$ gradient direction schemes are identical.}
+\begin{captionframe}
+\caption{Protocol parameters and gradient schemes for $N=90$, $M=8$. The $M$ different gradient direction schemes are coded by different colors. Please note that in the OI and \SD{} protocols all $M$ gradient direction schemes are identical.}
 \label{fig:chapter7 exp1 protocol 60mT}
+\end{captionframe}
+\begin{tableframe}
 \centering
 \begin{adjustbox}{width=0.95\linewidth,keepaspectratio,minipage=\linewidth}
 \tiny
@@ -146,10 +156,10 @@ Table~\ref{fig:chapter7 exp1 protocol 60mT} shows an example of the \gls{OI}{} a
         \end{tikzpicture}
         }
   \end{minipage}
-}
-
-
-
+}\\	
+%%
+\textcolor{white}{\rule{0.95\textwidth}{1pt}}\\[0.5ex]
+%%
 \subfloat[\FD protocol]
 {
     \begin{minipage}{\textwidth}
@@ -186,9 +196,10 @@ Table~\ref{fig:chapter7 exp1 protocol 60mT} shows an example of the \gls{OI}{} a
         \end{tikzpicture}
         }
     \end{minipage}
-}
-
-
+}\\	
+%%
+\textcolor{white}{\rule{0.95\textwidth}{1pt}}\\[0.5ex]
+%%
 \subfloat[\SD protocol]
 {
   \begin{minipage}{\textwidth}
@@ -218,9 +229,10 @@ Table~\ref{fig:chapter7 exp1 protocol 60mT} shows an example of the \gls{OI}{} a
         \end{tikzpicture}
         }
   \end{minipage}
-}
-
-
+}\\	
+%%
+\textcolor{white}{\rule{0.95\textwidth}{1pt}}\\[0.5ex]
+%%
 \subfloat[\DO{} protocol]
 {
     \begin{minipage}{\textwidth}
@@ -259,6 +271,7 @@ Table~\ref{fig:chapter7 exp1 protocol 60mT} shows an example of the \gls{OI}{} a
     \end{minipage}
 }
 \end{adjustbox}
+\end{tableframe}
 \end{table}
 
 \section{Experiments}
@@ -310,9 +323,13 @@ Scans were performed on an experimental 4.7 Tesla scanner (Varian Inc., Palo Alt
 \paragraph{}
 We used a volume coil for transmission and a homemade 20 mm surface coil was used as receive coil. The data was was acquired using a spin-echo sequence with single line readout and a conventional pulsed gradient spin-echo preparation \citep{Stejskal:1965}.  TE/TR were 59/2000 ms, \gls{FOV} was $10\times 10 mm^2$. The matrix size was 64$\times$64 and was 2-D interpolated to 128$\times$128 leading to an axial in-plane resolution of 79 $\times$ 79 $\mu$m$^2$. To support the high in-plane resolution we acquired thick slices of 1.5mm to achieve acceptable \gls{SNR} in our data. The protocol was repeated 4 times with a total imaging time of 13 h. The magnitude images of the four repeated measurements were averaged offline prior to analysis.
 
-\begin{table}[!ht]\scriptsize
+\begin{table}[!ht]
+	\scriptsize
+\begin{captionframe}
 	\caption{Adjusted \emph{ex-vivo} tissue model parameters used for pre-clinical scan optimisation (changes to \emph{in-vivo} protocol are displayed in red).}
-    \centering
+\end{captionframe}
+\begin{tableframe}
+	\centering
     \vspace{2ex}	
     % Cylinder
     \begin{tabular}{y{0.1\textwidth}y{0.25\textwidth}}
@@ -328,7 +345,7 @@ We used a volume coil for transmission and a homemade 20 mm surface coil was use
     R & {\color{red}$\{0.5,1,2\}\mu m$} \\
     \bottomrule
     \end{tabular}%
-    \hspace{0.15\textwidth}
+    \hspace{0.05\textwidth}
     %%% Zeppelin
     \begin{tabular}{y{0.1\textwidth}y{0.25\textwidth}}
     \addlinespace
@@ -345,7 +362,9 @@ We used a volume coil for transmission and a homemade 20 mm surface coil was use
     \end{tabular}%
     \label{tab: chapter7 exp1 model opt parameters ex-vivo}
     \vspace{2ex}	
+\end{tableframe}
 \end{table}
+
 
 \subsection{Model fitting}
 A voxel-wise fit of the MR signal is performed using a fitting method similar to \citet{Alexander:2010}. We define the objective function as the likelihood of model parameters given the observed MR signals under Rician noise ($\sigma=0.05$). We use the multi-run fitting routine of \citet{Panagiotaki:2012} to find an initial parameters, which determines the best parameter estimates from multiple gradient-descend runs with pertubed starting points (n=20 in our case). Based on the initial parameter estimates, we then performed a \gls{MCMC} algorithm to determine the posterior distributions of the model parameters. To ensure convergence, we used the following, rather conservative setting for the \gls{MCMC} algorithm: burn-in of 5000, sample interval of 1000, 5\% parameter pertubations with uniform, uninformative priors.
