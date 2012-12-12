@@ -4,7 +4,12 @@
 \refstepcounter{dummy}
 
 \pdfbookmark[1]{\contentsname}{tableofcontents} % Bookmark name visible in a PDF viewer
-
+\manualmark
+\markboth{\hdrfont\small{\contentsname}}{\hdrfont\small{\contentsname}}
+\tableofcontents 
+\automark[section]{chapter}
+\renewcommand{\chaptermark}[1]{\markboth{{#1}}{{#1}}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\enspace{#1}}}
 \setcounter{tocdepth}{1} % Depth of sections to include in the table of contents - currently up to subsections
 
 \setcounter{secnumdepth}{2} % Depth of sections to number in the text itself - currently up to subsubsections

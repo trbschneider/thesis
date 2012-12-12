@@ -107,7 +107,7 @@
 %bibliography 
 %\usepackage{natbib}
 \usepackage{csquotes}
-\usepackage[style=numeric,firstinits=true,maxcitenames=1,natbib=true,backend=biber]{biblatex}
+\usepackage[style=numeric-comp,firstinits=true,maxcitenames=1,natbib=true,backend=biber, doi=false,isbn=false,url=false]{biblatex}
 %
 %
 %\newcounter{cbx:totalcite}
@@ -522,6 +522,15 @@ pdfproducer={LaTeX}
 	BoldItalicFont = SourceSansPro-SemiboldIt.otf,
  ]{sourcesans} 
 
+\newfontfamily\titfont[
+	Ligatures=TeX,
+	Scale=MatchLowercase,
+	Path = ./fonts/ ,
+	Path=./fonts/,
+	UprightFont = SourceSansPro-Black.otf,
+	ItalicFont = SourceSansPro-It.otf,
+ ]{sourcesans} 
+
 
 %%% all math font business
 \usepackage[partial=upright,nabla=upright]{unicode-math}
@@ -546,7 +555,17 @@ pdfproducer={LaTeX}
 \tikzstyle{every picture}+=[font=\floatfont]
 
 \RequirePackage{textcase} % for \MakeTextUppercase
-     
+ 
+
+    \titleformat{\part}[display]
+        {\centering\huge\titfont}%
+        {\thispagestyle{empty}\partname~\MakeTextUppercase{\thepart}}{1em}%
+        {\textbf}[\bigskip\normalfont\normalsize\color{Black}]
+        \renewcommand{\thepart}{\roman{part}}%
+   
+	
+
+    
 \titleformat{\chapter}[display]
          {\relax}{\mbox{}\oldmarginpar{\vspace*{-3\baselineskip}\color{halfgray}\chapterNumber\thechapter}}{0pt}%
          {\Large\chapfont\textbf}[\vspace*{.0\baselineskip}\titlerule]%   
@@ -571,6 +590,18 @@ pdfproducer={LaTeX}
     % descriptionlabels
 		\renewcommand{\descriptionlabel}[1]{\hspace*{\labelsep}{\itshape{#1}}} 
 
+
+%%%TOC
+\renewcommand{\cftpartfont}{\titfont}%
+\renewcommand{\cftpartpagefont}{\floatfont}%
+
+\renewcommand{\cftchappresnum}{\floatfont}%
+\renewcommand{\cftchapfont}{\floatfont\textbf}%
+\renewcommand{\cftchappagefont}{\normalfont}%
+
+\renewcommand{\cftsecpresnum}{\floatfont}%
+\renewcommand{\cftsecfont}{\floatfont}%
+	
 \makeatletter
 %%%%% headers
 %% kick the spaced caps into oblivion
@@ -605,8 +636,20 @@ pdfproducer={LaTeX}
 }
 \renewcommand*\ChapS[1]{\oldchapa*{#1}}%
 \renewcommand*\Chap[2][]{\oldchapa[\texorpdfstring{{#1}}{#1}]{#2}}%
-    
 
+%restore old part definition
+\renewcommand*{\part}{\oldpart}
+    
+\let\oldparta=\part%
+\renewcommand*{\part}{%
+	     \secdef{\Part}{\PartS}%
+}%
+\renewcommand\PartS[1]{\oldparta*{#1}}%
+\renewcommand\Part[2][]{\oldparta[\texorpdfstring{{#1}}{#1}]{#2}}% spacedallcaps 
+
+\renewcommand{\tocEntry}[1]{
+	\texorpdfstring{#1}{#1}%
+}
 
 \makeatother
 
