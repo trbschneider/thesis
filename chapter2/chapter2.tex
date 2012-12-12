@@ -3,11 +3,18 @@
 \label{chapter2}
 \section{Anatomy of the spinal cord}
 \glsresetall
+This section will give a brief overview of the macroscopic and microscopic organisation of the \gls{SC} (see \citep{Carpenter:1991,Heimer:1995,Watson:2009} for more details).
+
+
 The {\gls{SC}} is the part of the {\gls{CNS}} that connects the brain and peripheral nervous system. It controls the voluntary movement of limbs and trunk, receives sensory information from these regions and monitors and coordinates the internal organ function in the thorax, abdomen and pelvis. 
 
-The {\gls{SC}} is protected by the vertebral column and is located inside the vertebral canal. In cross-section, the cord can be divided in two regions: (i) the peripheral region containing neuronal white matter tracts, and (ii) the grey, butterfly-shaped central region made up of nerve cell bodies. This \gls{GM} is centred around the central canal, containing \gls{CSF}.
 
-\subsection{Microstructural organisation of the spinal cord}
+The \gls{SC} is divided into different segments, according to the surrounding vertebrae. The cervical cord is divided in 7 segments (C1--C7), followed by the thoracical, lumbar and sacral cord segments \citep{Heimer:1995,Watson:2009}.
+
+
+The {\gls{SC}} is protected by the vertebral column and is located inside the vertebral canal. In cross-section, the cord can be divided in two regions: (i) the peripheral region containing neuronal white matter tracts, and (ii) the grey, butterfly-shaped central region made up of nerve cell bodies (see Figure~\ref{fig:chapter 2 spinal_cord_anatomy}). This \gls{GM} is centred around the central canal, containing \gls{CSF}.
+
+\subsection{Organisation of the spinal cord}
 The \gls{WM} of the {\gls{SC}} consists mostly of longitudinally oriented axons and glial cells. White matter axons are organized hierarchically grouped in bundles, tracts and pathways. Bundles of neighbouring white matter axons that share similar features are called fibre bundles. A tract is formed by fibre bundles with same origin, course, termination and function. Multiple tracts with the same function form a pathway.
 
 \subsubsection{Ascending tracts}
@@ -23,6 +30,11 @@ Tracts descending to the {\gls{SC}} as illustrated in Figure~\ref{fig:chapter 2 
   \caption{Illustration of the major ascending and descending fibre pathways of the {\protect\gls{SC}} (adapted from \url{http://en.wikipedia.org/wiki/Spinal_cord}).}
   \label{fig:chapter 2 spinal_cord_anatomy}
 \end{figure}
+
+\subsubsection{Microstructural organisation}
+A neural cell, or Neuron, possesses a cell body and two typically two types of extending structures: axons and dendrites. The dendrites carry afferent signals to the cell, while axons relay efferent signals. the typical size of the axon lies in the range of 1--10$\mu m$ \citep{Waxman:1989,Beaulieu:2002}. Larger axons are usually surrounded by layers of myelin, which acts as an isolator for the electrical transmission of signals and allows for higher transmission speeds than unmyelinated axons. The structure of the axon is supported by longitudinal micro-filaments\citep{Beaulieu:2002}.
+
+In the cord, the gray matter comprises the neuronal cell bodies and dendritic structures while the white matter mainly holds the axonal fibre bundles. The majority of white matter fibre bundles run parallel to the long axis of the cord. Peripheral nerves enter the spinal cord through the neuroanatomy, connecting to the gray matter\citep{Carpenter:1991}. 
 
 \section{Principles of MRI}
 \Gls{MRI} is a non-invasive imaging method widely used in medicine. \gls{MRI} is free of gamma-radiation (unlike e.g. X-ray methods), which makes it one of the major tools for application in neuroimaging. \Gls{MRI} can describe tissue in terms of many different properties such as relaxation, density, and diffusion. Specifically, in this thesis our main interest is in the sensitivity of MRI to the motion of water molecules to infer information about the microscopic tissue morphology. A full account of \gls{MRI} theory is beyond the scope of this chapter and can be found elsewhere \citep{McRobbie:2002,Bernstein:2004}. However, a brief overview about the principles of magnetic resonance and \gls{MRI} is given below.
@@ -90,6 +102,11 @@ After waiting the \gls{TR} for the longitudinal magnetisation to restore, the wh
 
 When TE is sufficiently small compared to the transverse relaxation time T1 of the sample, normally taken care by long repetitions times ($TR>5\times T1 $), the obtained signal is only dependent on T2 and is called T2-weighted (T2w). 
 
+\subsection{Small field of view imaging}
+Imaging the spinal cord presents many challenges, mainly due to its small size and surrounding tissue like \gls{CSF} and bone. On the other hand, to image the cord below the the neck, the conventional imaging method require a rather large \gls{FOV} to avoid aliasing artefacts \citep{Bernstein:2004,McRobbie:2002}. Small \gls{FOV} methods allow to image a smaller volume and minimise the aliasing artefacts by avoiding to encode the surrounding tissue\citep{Feinberg:1985}. Such methods are well suited for the application to \gls{SC}, as they reduce the necessary encoding steps and allow for the higher spatial resolution that is required for imaging of the cord.  
+
+
+In this thesis we use a small \gls{FOV} modification of the \gls{SE} sequence called ZOOM, which was introduced by \citet{Wheeler-Kingshott:2002,Wheeler-Kingshott:2002a}. The central idea is to perform the encoding gradients for the excitation pulse P90 and refocussing pulse P180 at an angle $\alpha$ instead of parallel as in conventional SE. This way, not only spins within the intersection of P90 and P180 are refocussed, effectively suppressing the unwanted signal outside the small \gls{FOV}. A disadvantage of the technique is that, dependent on the applied angle $\alpha$ between P90 and P180, spins within the adjacent region of the \gls{FOV} are also excited, which makes the continuous acquisition of adjacent slices within one \gls{TR} difficult.
 
 
 \section{Principles of Diffusion MRI}

@@ -79,7 +79,8 @@
         {lualatex \tikzexternalcheckshellescape -halt-on-error -interaction=batchmode -jobname "\image" "\texsource"; convert -density 72 -transparent white "\image.pdf" "\image.png"},
 	},
     % Use the png export AND the import
-    use png/.style={png export,png import},
+%    use png/.style={png export,png import},
+    use png/.style={},
     png import/.code={%
         \tikzset{%
             /pgf/images/include external/.code={%

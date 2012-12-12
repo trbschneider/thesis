@@ -319,13 +319,13 @@ which is defined for each point $\mathbf{x} \in \mathbb{R}^2$ on the unit sphere
  \end{figure}
 \egroup
 \subsection{Feasibility study on fixed monkey spinal cord}
-Scans were performed on an experimental 4.7 Tesla scanner (Varian Inc., Palo Alto, CA, USA) in collaboration with the Danish Research Centre for Magnetic Resonance (DRCMR). To make best use of the hardware, we carried out the protocol optimisation as described above but increased $|G|_{max}$ to $300mT/m$. We also adjusted for differences in tissue properties between live and fixed tissue, e.g. decreased diffusivity and shrinkage of axon diameters, based on preliminary \gls{DTI} analysis of the tissue sample. The full list of modified tissue parameters is given in Table~\ref{tab: chapter7 exp1 model opt parameters ex-vivo}. Scan time in this experiment was limited to 12h only. To retain acceptable image resolution and \gls{SNR} within the given time frame, we reduced the number of acquisitions to $M=4$ and $N=30$. Furthermore, we only had time to test the {\FD} protocol in this experiment. The resulting protocol is summarised in Table~\ref{TODO} and described more comprehensively in Appendix \ref{app:chapter7 protocols 300mT}. 
+Scans were performed on an experimental 4.7 Tesla scanner (Varian Inc., Palo Alto, CA, USA) in collaboration with the Danish Research Centre for Magnetic Resonance (DRCMR). To make best use of the hardware, we carried out the protocol optimisation as described above but increased $|G|_{max}$ to $300mT/m$. We also adjusted for differences in tissue properties between live and fixed tissue, e.g. decreased diffusivity and shrinkage of axon diameters, based on preliminary \gls{DTI} analysis of the tissue sample. The full list of modified tissue parameters is given in Table~\ref{tab: chapter7 exp1 model opt parameters ex-vivo}. Scan time in this experiment was limited to 12h only. To retain acceptable image resolution and \gls{SNR} within the given time frame, we reduced the number of acquisitions to $M=4$ and $N=30$. Furthermore, we only had time to test the {\FD} protocol in this experiment. The resulting protocol is summarised in Table~\ref{fig:chapter7 exp1 protocol 300mT} and described more comprehensively in Appendix \ref{app:chapter7 protocols 300mT}. 
 \paragraph{}
 We used a volume coil for transmission and a homemade 20 mm surface coil was used as receive coil. The data was acquired using a spin-echo sequence with single line readout and a conventional pulsed gradient spin-echo preparation \citep{Stejskal:1965}.  TE/TR were 59/2000 ms, \gls{FOV} was $10\times 10 mm^2$. The matrix size was 64$\times$64 and was 2-D interpolated to 128$\times$128 leading to an axial in-plane resolution of 79 $\times$ 79 $\mu$m$^2$. To support the high in-plane resolution we acquired thick slices of 1.5mm to achieve acceptable \gls{SNR} in our data. The protocol was repeated 4 times with a total imaging time of 13 h. The magnitude images of the four repeated measurements were averaged offline prior to analysis.
 \begin{table}[b]
 \begin{captionframe}
 \caption[Protocol parameters and gradient schemes for \emph{ex-vivo} protocol]{Protocol parameters and gradient schemes for the \emph{ex-vivo} protocol ($N=30$, $M=4$). The $M$ different gradient direction schemes are coded by different colors.}
-\label{fig:chapter7 exp1 protocol 60mT}
+\label{fig:chapter7 exp1 protocol 300mT}
 \end{captionframe}
 \begin{tableframe}
 \centering
@@ -343,7 +343,7 @@ We used a volume coil for transmission and a homemade 20 mm surface coil was use
         10  & 41  & 254    & 17736 \\
         \bottomrule
     \end{tabular}%
-        \raisebox{0cm}{
+        \raisebox{-1cm}{
         \begin{tikzpicture}[scale=0.7]
               \begin{axis}[xmax=1, xmin=-1, ymax=1, ymin=-1, zmax=1, zmin=0, width=4.0cm, height=4.0cm, grid=major,legend entries={1,2,3,4},cycle multi list={color list\nextlist[2 of]mark list},legend pos=outer north east]
               \addplot3+[only marks] table {chapter7/figs/protocols_par1/SF_FD_300mTCopenhagen003.txt};
@@ -361,6 +361,7 @@ We used a volume coil for transmission and a homemade 20 mm surface coil was use
 	\scriptsize
 \begin{captionframe}
 	\caption{Adjusted \emph{ex-vivo} tissue model parameters used for pre-clinical scan optimisation (changes to \emph{in-vivo} protocol are displayed in red).}
+    \label{tab: chapter7 exp1 model opt parameters ex-vivo}
 \end{captionframe}
 \begin{tableframe}
 	\centering
@@ -392,7 +393,6 @@ We used a volume coil for transmission and a homemade 20 mm surface coil was use
     \bottomrule
     & \\ %empty line to level tables
     \end{tabular}%
-    \label{tab: chapter7 exp1 model opt parameters ex-vivo}
     \vspace{2ex}	
 \end{tableframe}
 \end{table}
