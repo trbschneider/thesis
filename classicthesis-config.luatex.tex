@@ -206,6 +206,11 @@
   \def\@floatboxreset{\reset@font\small\floatfont\@setminipage}%
 }
 \patchcmd{\@xfloat}{\normalsize}{\selectfont}{}{}
+
+\AtBeginEnvironment{figure}{%
+  \def\@floatboxreset{\reset@font\small\floatfont\@setminipage}%
+}
+\patchcmd{\@xfloat}{\normalsize}{\selectfont}{}{}
 \makeatother
 
 %frame tables
@@ -561,9 +566,7 @@ pdfproducer={LaTeX}
         {\centering\huge\titfont}%
         {\thispagestyle{empty}\partname~\MakeTextUppercase{\thepart}}{1em}%
         {\textbf}[\bigskip\normalfont\normalsize\color{Black}]
-        \renewcommand{\thepart}{\roman{part}}%
-   
-	
+        \renewcommand{\thepart}{\Roman{part}}%
 
     
 \titleformat{\chapter}[display]
@@ -601,6 +604,12 @@ pdfproducer={LaTeX}
 
 \renewcommand{\cftsecpresnum}{\floatfont}%
 \renewcommand{\cftsecfont}{\floatfont}%
+
+%%LISTS
+\renewcommand\cftfigfont{\floatfont}
+\renewcommand\cftfigpagefont{\floatfont}
+\renewcommand\cfttabfont{\floatfont}
+\renewcommand\cfttabpagefont{\floatfont}
 	
 \makeatletter
 %%%%% headers
