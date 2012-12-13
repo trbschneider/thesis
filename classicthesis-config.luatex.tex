@@ -44,7 +44,7 @@
 %%%% PACKAGES FOR CLASSIC THESIS
 \usepackage{xspace} % To get the spacing after macros right
 \usepackage{mparhack} % To get marginpar right
-\usepackage[dvipsnames]{xcolor}
+\usepackage[dvipsnames,cmyk]{xcolor}
 \usepackage[british,UKenglish,USenglish,english,american]{babel}
 %\pdfprotrudechars=2
 %\pdfadjustspacing=2
@@ -705,16 +705,13 @@ pdfproducer={LaTeX}
 \tikzstyle{protocolbox} = [draw=black, thin, rectangle, rounded corners, inner xsep=5pt, outer ysep=0pt] \tikzstyle{protocolheader} = [draw=none, fill=gray!30, rounded corners, inner sep = 5pt] \tikzstyle{protocoltext} = [draw=black, fill=white, rounded corners, inner sep = 5pt]
 
 %vertebrae colorscheme
-\definecolor{darkgray}{HTML}{666666}
-\definecolor{mediumgray}{HTML}{999999}
-\definecolor{lightgray}{HTML}{CCCCCC}
-\definecolor{green}{HTML}{ABDB25}
-
+\definecolor{Gainsboro}{cmyk}{0,0,0,0.15}
+\definecolor{Silver}{cmyk}{0,0,0,0.35}
 
 \setlength{\abovecaptionskip}{4pt} % space above main figure caption was 8pt
 \setlength{\belowcaptionskip}{4pt} % space above main figure caption was 8pt
-\tikzstyle{tablebox} = [draw=none, fill=lightgray!50!white, inner xsep=5pt, inner ysep=5pt, outer sep=0pt]
-\tikzstyle{captionbox} = [draw=none, fill=mediumgray, inner xsep=5pt, inner ysep=0pt, outer sep=0pt]
+\tikzstyle{tablebox} = [draw=none, fill=Gainsboro, inner xsep=5pt, inner ysep=5pt, outer sep=0pt]
+\tikzstyle{captionbox} = [draw=none, fill=Silver, inner xsep=5pt, inner ysep=0pt, outer sep=0pt]
 
 
 %make all titlecase
