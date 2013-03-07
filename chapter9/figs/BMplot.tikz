@@ -17,7 +17,7 @@ R1={color=brewer10_1, mark=*, mark options={scale=1.5}}, R2={color=brewer10_3, m
 }}
 \begin{tikzpicture}[scale=1]
 \begin{axis}[legend columns=-1, blandaltman,width=0.8*\textwidth, height=0.6*\textwidth, xmin=8.877132,xmax=14.554980,ymin=-1.884580,ymax=1.884580, legend to name=leg:chap 9 bland altman,
-	title=Axon diameter index,
+	title={Axon diameter index $[\mu m]$},
 	xlabel={scan/rescan average},
 	ylabel={scan/rescan difference},]
 \addplot+[only marks, scatter]  [scatter src=explicit symbolic] 
@@ -83,7 +83,7 @@ coordinates {
 \begin{axis}[scaled ticks=false, blandaltman,width=0.8*\textwidth, height=0.6*\textwidth, xmin=0.020790,xmax=0.050490,ymin=-0.012710,ymax=0.012710,%
     xticklabel style={/pgf/number format/.cd,fixed}, % Use fixed point notation
 	yticklabel style={/pgf/number format/.cd,fixed, precision=3, zerofill}, % Use fixed point notation
-	title=Axon density index,
+	title=Axon density index $[\mu m^{-2}]$,
 	xlabel={scan/rescan average},
 	ylabel={scan/rescan difference},]
 \addplot+[only marks, scatter]  [scatter src=explicit symbolic] coordinates {
