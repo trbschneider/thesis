@@ -44,7 +44,12 @@ Nuclear magnetic resonance is a phenomenon that occurs when an element with a no
 \begin{equation}
 \omega =\gamma \cdot \mathbf{B}_0 
 \end{equation}
-where $\omega$ is the Larmor frequency, $\gamma$ is the nucleus specific gyromagnetic ratio, and $\mathbf{B}_0$ is the magnetic field strength. When a \gls{RF} pulse is applied perpendicular to the $\mathbf{B}_0$ field, with a frequency equal to the Larmor frequency (i.e. the resonance frequency) the magnetic proton spins tilt towards the transverse plane. Once the \gls{RF} pulse is removed, the nuclei realign themselves again parallel to the main magnetic field. In MR terms the application of the \gls{RF} pulse is called excitation and the following return to equilibrium is referred to as relaxation. The relaxation process is accompanied by a change of flux in the magnetic field , which can be measured up by a receiving \gls{RF} coil. The received signal is referred to as the \gls{FID} signal. Figure~\ref{fig:chapter2 spin FIDs} illustrates this process. 
+where $\omega$ is the Larmor frequency, $\gamma$ is the nucleus specific gyromagnetic ratio, and $\mathbf{B}_0$ is the magnetic field strength. In equilibrium, the nuclear spins rotate around the axis of the magnetic field $\mathbf{B}_0$ and their magnetic moment is aligned with the $\mathbf{B}_0$ field. 
+
+\paragraph{Excitation}
+When a \gls{RF} pulse is applied perpendicular to the $\mathbf{B}_0$ field, with a frequency equal to the Larmor frequency (i.e. the resonance frequency) the magnetic proton spins tilt towards the transverse plane and precess around the axis of the $\mathbf{B}_0$ field. The precession induces a change of flux in the magnetic field of the receiver coil and produces a measurable signal. It is often present the nuclear spins in a reference frame rotating at the Larmor frequency $\omega$ about the $\mathbf{B}_0$ axis. In this rotating frame of reference, the bulk magnetisation is stationary and the \gls{RF} pulse results in a tip from its equilibrium position toward the transverse plane by the angle $\alpha$. A 90$^\circ$ pulse flips the magnetisation into the transverse plane and a 180$^\circ$ pulse inverts the bulk magnetisation.
+
+Immediately after the excitation, the spins are completely in phase (coherent). After excitation follows a relaxation process, which is accompanied by a loss of phase coherence and a subsequent relaxation back to equilibrium state. The signal induces in the receiver coil after excitation is referred to as the \gls{FID} signal. Figure~\ref{fig:chapter2 spin FIDs} illustrates the excitation and relaxation process. 
 
 \begin{figure}[H]
 \centering
@@ -53,14 +58,14 @@ where $\omega$ is the Larmor frequency, $\gamma$ is the nucleus specific gyromag
 \label{fig:chapter2 spin FIDs}
 \end{figure}
 
-The development of the net magnetisation vector is characterized by two time constants T1 and T2 that are defined as:  
+Together with the density of nuclear spins $M_0$, the relevant time constants T1 and T2/T2$^*$ characterise the relaxation phenomena and are the principal source of contrast used in \gls{MRI}. In the case of a 90$^\circ$ excitation pulse, these time constants are defined as below:
 \begin{description}
-	\item[T1:] is the longitudinal relaxation time, which describes how long it takes for the net magnetisation to return to the longitudinal equilibrium. Formally, the T1 constant relates to the longitudinal component of the magnetisation $M_z$ at time $t$ after excitation by the formula:
+	\item[T1:] is the longitudinal relaxation time, which describes how long it takes for the net magnetisation to return to the longitudinal equilibrium. Formally, the T1 constant relates to the longitudinal component of the magnetisation $M_z$ at time $t$ after 90$^\circ$ excitation by the formula:
 	\begin{equation}
 		M_z(t) = M_0 \cdot (1-\exp(-t/T1)),
 	\end{equation} 
 	with $M_0$ (the proton density) being the total magnetisation, which is proportional to the total number of excited spins, 
-	\item[T2:] is the transverse relaxation time, i.e. it describes the time it takes for the FID signal to decay due to randomly fluctuating internal magnetic fields caused by spin-spin interactions in the substance. This causes the spins to get out of phase and the transverse magnetization (and induced signal) is lost exponentially. Formally, the signal development of the transverse magnetisation $M_{xy}(t)$ at time $t$ after excitation is described by:
+	\item[T2:] is the transverse relaxation time, i.e. it describes the time it takes for the FID signal to decay due to randomly fluctuating internal magnetic fields caused by spin-spin interactions in the substance. This causes the spins to get out of phase and the transverse magnetization (and induced signal) is lost exponentially. Formally, the signal development of the transverse magnetisation $M_{xy}(t)$ at time $t$ after 90$^\circ$ excitation is described by:
 	\begin{equation}
 		M_{xy}(t) = M_0 \cdot \exp(-t/T2),
 	\end{equation} 	
@@ -70,7 +75,7 @@ The development of the net magnetisation vector is characterized by two time con
 The transverse magnetization decays more rapidly than it takes for the magnetisation to return to the longitudinal equilibrium. Both T1 and T2 are dependent on the magnetic field strength, but more importantly they are also specific to the macromolecular environment of the protons and therefore are specific for different types of tissue, e.g. for different tissue types within the live human brain (\gls{GM} T1/T2 = 2000/100 ms, \gls{WM} T1/T2 = 1100/70 ms at 3T magnetic field strength \citep{Stanisz:2005}).
 \subsection{Spin-echo sequence}
 \label{sec:chapter2 spin echo}
-The {\gls{SE}} sequence is the central pulse sequence that is used in all experiments we present in this dissertation. Figure \ref{fig:chap2 SE sequence} illustrates the layout and signal development of the \gls{SE} experiment. The \gls{SE} sequence starts with a 90$^\circ$(P90) excitation pulse that flips magnetization in the transverse plane, followed by a 180$^\circ$RF pulse (P180) after time TE/2 and the signal readout after another TE/2, producing an echo at time TE. The P180 inversion pulse will reverse the demagnetization by field inhomogeneities so that the contrast is mainly driven by spin-spin relaxation constant  T2. 
+The {\gls{SE}} sequence is the central pulse sequence that is used in all experiments we present in this dissertation. Figure \ref{fig:chap2 SE sequence} illustrates the layout and signal development of the \gls{SE} experiment. The \gls{SE} sequence starts with a 90$^\circ$(P90) excitation pulse that flips magnetization in the transverse plane, followed by a 180$^\circ$RF pulse (P180) after time TE/2 and the signal readout after another TE/2, producing an echo at time TE. The P180 inversion pulse will reverse the demagnetization by field inhomogeneities so that the contrast is mainly driven by spin-spin relaxation constant T2 and the proton density $M_0$. 
 %When TE is sufficiently small compared to the transverse relaxation time T1 of the sample, normally taken care by long repetitions times ($TR>5\times T1 $), the obtained signal is only dependent on T2 and is called T2-weighted (T2w). 
 
 \begin{figure}[ht]

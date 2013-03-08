@@ -83,7 +83,7 @@ coordinates {
 \begin{axis}[scaled ticks=false, blandaltman,width=0.8*\textwidth, height=0.6*\textwidth, xmin=0.020790,xmax=0.050490,ymin=-0.012710,ymax=0.012710,%
     xticklabel style={/pgf/number format/.cd,fixed}, % Use fixed point notation
 	yticklabel style={/pgf/number format/.cd,fixed, precision=3, zerofill}, % Use fixed point notation
-	title=Axon density index $[\mu m^{-2}]$,
+	title={Axon density index $[\mu m]$},
 	xlabel={scan/rescan average},
 	ylabel={scan/rescan difference},]
 \addplot+[only marks, scatter]  [scatter src=explicit symbolic] coordinates {
